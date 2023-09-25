@@ -40,6 +40,10 @@
 		021027932ABF4CC20017990B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027922ABF4CC20017990B /* AuthCoordinator.swift */; };
 		021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027942ABF50320017990B /* ApplicationCoordinator.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
+		028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 028391CB2AC13D3800299AA5 /* FirebaseAuth */; };
+		028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 028391D72AC13D3800299AA5 /* FirebaseFirestore */; };
+		028391DE2AC13D3800299AA5 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 028391DD2AC13D3800299AA5 /* FirebaseFunctions */; };
+		028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 028391F12AC13D3800299AA5 /* FirebaseStorage */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -88,7 +92,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028391DE2AC13D3800299AA5 /* FirebaseFunctions in Frameworks */,
+				028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */,
 				02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */,
+				028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */,
+				028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +291,10 @@
 			name = WhatsApp;
 			packageProductDependencies = (
 				02EC3B0D2AC08B3E006ECA4C /* SnapKit */,
+				028391CB2AC13D3800299AA5 /* FirebaseAuth */,
+				028391D72AC13D3800299AA5 /* FirebaseFirestore */,
+				028391DD2AC13D3800299AA5 /* FirebaseFunctions */,
+				028391F12AC13D3800299AA5 /* FirebaseStorage */,
 			);
 			productName = WhatsApp;
 			productReference = 021027372ABF43730017990B /* WhatsApp.app */;
@@ -314,6 +326,7 @@
 			mainGroup = 0210272E2ABF43730017990B;
 			packageReferences = (
 				02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 021027382ABF43730017990B /* Products */;
 			projectDirPath = "";
@@ -591,6 +604,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.15.0;
+			};
+		};
 		02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -602,6 +623,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		028391CB2AC13D3800299AA5 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		028391D72AC13D3800299AA5 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		028391DD2AC13D3800299AA5 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		028391F12AC13D3800299AA5 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		02EC3B0D2AC08B3E006ECA4C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */;
