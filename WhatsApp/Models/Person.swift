@@ -15,21 +15,6 @@ struct Person: Identifiable, Hashable, Codable {
         Auth.auth().currentUser?.uid ?? ""
     }
 
-    static var currentUser: Self? {
-        if Auth.auth().currentUser != nil {
-            if let dictionary = UserDefaults.standard.data(forKey: "kCURRENTUSER") {
-                let decoder = JSONDecoder()
-                do {
-                    let userObject = try decoder.decode(Self.self, from: dictionary)
-                    return userObject
-                } catch {
-                    print("Error decoding user from user defaults ", error.localizedDescription)
-                }
-            }
-        }
-        return nil
-    }
-
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id
     }

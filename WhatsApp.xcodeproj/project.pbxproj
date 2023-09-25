@@ -328,11 +328,19 @@
 		0210278F2ABF4A1E0017990B /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				021027902ABF4A2E0017990B /* SystemNavigationController.swift */,
+				0236D8762AC1E518006EF776 /* Navigation */,
 				021027922ABF4CC20017990B /* AuthCoordinator.swift */,
 				021027942ABF50320017990B /* ApplicationCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		0236D8762AC1E518006EF776 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				021027902ABF4A2E0017990B /* SystemNavigationController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		028391FE2AC181B500299AA5 /* Loading */ = {

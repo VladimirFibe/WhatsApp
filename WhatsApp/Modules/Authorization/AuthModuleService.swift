@@ -10,10 +10,10 @@ extension FirebaseClient: AuthModuleServiceProtocol {
         let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
         try await authResult.user.sendEmailVerification()
         let uid = authResult.user.uid
-        try createPerson(withEmail: email, uid: uid)
+        try createPerson(with: email, uid: uid)
     }
 
     func login(withEmail email: String, password: String) async throws {
-        let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+        let _ = try await Auth.auth().signIn(withEmail: email, password: password)
     }
 }
