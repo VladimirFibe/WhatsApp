@@ -1,5 +1,7 @@
 import UIKit
 import FirebaseCore
+import FirebaseAuth
+import SwiftUI
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,7 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.start()
         self.appCoordinator = appCoordinator
         FirebaseApp.configure()
+        if Auth.auth().currentUser != nil {
+            signOut()
+        }
         return true
+    }
+
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("Error while trying to sign out: \(error.localizedDescription)")
+        }
     }
 }
 

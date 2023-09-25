@@ -18,6 +18,7 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
     
     func makeAuthCoordinator(parent: BaseCoordinator, router: Routable) -> AnyCoordinator<Void> {
         let coordinator = AnyCoordinator(AuthCoordinator(
+            output: self,
             router: router,
             parent: parent,
             moduleFactory: ModuleFactory.shared,
@@ -26,3 +27,10 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
         return coordinator
     }
 }
+
+extension CoordinatorFactory: AuthorizationModuleOutput {
+    func moduleFinish() {
+        print("Вошли")
+    }
+}
+

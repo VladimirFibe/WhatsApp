@@ -2,8 +2,12 @@ import UIKit
 import SnapKit
 import ProgressHUD
 
+protocol AuthorizationModuleOutput: AnyObject {
+    func moduleFinish()
+}
 class AuthorizationViewController: BaseViewController {
     let store: AuthStore
+    private weak var output: AuthorizationModuleOutput?
     enum Flow {
         case login
         case register
@@ -112,7 +116,11 @@ class AuthorizationViewController: BaseViewController {
         if isDataInputedFor(isLogin ? .login : .register) {
             let email = emailTextField.text
             let password = passwordTextField.text
-            store.sendAction(.register(email, password))
+            if isLogin {
+                store.sendAction(.login(email, password))
+            } else {
+                store.sendAction(.register(email, password))
+            }
         } else {
             ProgressHUD.showFailed("All fields are required")
         }
@@ -146,8 +154,11 @@ class AuthorizationViewController: BaseViewController {
         }
     }
 
-    init(store: AuthStore) {
+    init(store: AuthStore,
+         output: AuthorizationModuleOutput
+    ) {
         self.store = store
+        self.output = output
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -174,11 +185,11 @@ extension AuthorizationViewController {
         store
             .events
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] event in
-                guard let self = self else { return }
+            .sink { event in
+                weak var wSelf = self
                 switch event {
-                case let .done(id):
-                    print(id)
+                case .done:
+                    wSelf?.output?.moduleFinish()
                 }
             }.store(in: &bag)
     }

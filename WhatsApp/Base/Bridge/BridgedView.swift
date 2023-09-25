@@ -4,15 +4,13 @@ typealias BridgedView = UIViewController
 
 extension View {
     public func bridge() -> UIHostingController<Self> {
-        RestrictedUIHostingController(rootView: self).apply { vc in
-            vc.view.backgroundColor = .clear
+        RestrictedUIHostingController(rootView: self).apply {
+            $0.view.backgroundColor = .clear
         }
     }
 
     public func bridgeAndApply(_ configurator: (UIView) -> Void) -> UIHostingController<Self> {
-        bridge().apply { vc in
-            configurator(vc.view)
-        }
+        bridge().apply { configurator($0.view)}
     }
 }
 

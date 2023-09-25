@@ -3,8 +3,9 @@ import Foundation
 final class AuthCoordinator: BaseCoordinator {
     private let moduleFactory: ModuleFactoryProtocol
     private let coordinatorFactory: CoordinatorFactoryProtocol
-
+    private let output: AuthorizationModuleOutput
     init(
+        output: AuthorizationModuleOutput,
         router: Routable,
         parent: BaseCoordinator,
         moduleFactory: ModuleFactoryProtocol,
@@ -12,19 +13,20 @@ final class AuthCoordinator: BaseCoordinator {
     ) {
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
+        self.output = output
         super.init(router: router, parent: parent)
     }
 }
 
 extension AuthCoordinator: Coordinator {
     func start(with option: Void) {
-        showInitial()
+        showInitial(output: output)
     }
 }
 
 extension AuthCoordinator {
-    func showInitial() {
-        let module = moduleFactory.makeAuthModule()
+    func showInitial(output: AuthorizationModuleOutput) {
+        let module = moduleFactory.makeAuthModule(output: output)
         router.setRootModule(module, transition: nil)
     }
 }
