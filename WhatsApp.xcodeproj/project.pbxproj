@@ -45,6 +45,7 @@
 		028391DE2AC13D3800299AA5 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 028391DD2AC13D3800299AA5 /* FirebaseFunctions */; };
 		028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 028391F12AC13D3800299AA5 /* FirebaseStorage */; };
 		028391F62AC1446D00299AA5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F52AC1446D00299AA5 /* BaseView.swift */; };
+		028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F72AC1451C00299AA5 /* AuthTextField.swift */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		021027942ABF50320017990B /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		028391F72AC1451C00299AA5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		02EC3B112AC08B81006ECA4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				021027882ABF46620017990B /* AuthorizationViewController.swift */,
+				028391F72AC1451C00299AA5 /* AuthTextField.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				021027702ABF45B80017990B /* BridgedView.swift in Sources */,
 				0210278E2ABF493C0017990B /* CoordinatorFactory.swift in Sources */,
 				0210277C2ABF45B80017990B /* UINavigationController+.swift in Sources */,
+				028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */,
 				0210277B2ABF45B80017990B /* BaseCoordinator.swift in Sources */,
 				021027842ABF45B80017990B /* Transition.swift in Sources */,
 				021027892ABF46620017990B /* AuthorizationViewController.swift in Sources */,
