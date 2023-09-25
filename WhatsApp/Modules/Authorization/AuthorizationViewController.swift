@@ -3,6 +3,7 @@ import SnapKit
 import ProgressHUD
 
 class AuthorizationViewController: BaseViewController {
+    let store: AuthStore
     enum Flow {
         case login
         case register
@@ -18,7 +19,6 @@ class AuthorizationViewController: BaseViewController {
         $0.numberOfLines = 0
         return $0
     }(UILabel())
-
     private let emailTextField = {
         $0.configure(placeholder: "Email", isSecureTextEntry: false)
         return $0
@@ -110,7 +110,9 @@ class AuthorizationViewController: BaseViewController {
 
     @objc private func loginButtonTapped() {
         if isDataInputedFor(isLogin ? .login : .register) {
-
+            let email = emailTextField.text
+            let password = passwordTextField.text
+            store.sendAction(.register(email, password))
         } else {
             ProgressHUD.showFailed("All fields are required")
         }
@@ -142,6 +144,15 @@ class AuthorizationViewController: BaseViewController {
         case .register: return !emailTextField.text.isEmpty && !passwordTextField.text.isEmpty && passwordTextField.text == repeatPasswordTextField.text
         case .forgot: return !emailTextField.text.isEmpty
         }
+    }
+
+    init(store: AuthStore) {
+        self.store = store
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

@@ -47,6 +47,27 @@
 		028391F62AC1446D00299AA5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F52AC1446D00299AA5 /* BaseView.swift */; };
 		028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F72AC1451C00299AA5 /* AuthTextField.swift */; };
 		028391FB2AC1789C00299AA5 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 028391FA2AC1789C00299AA5 /* ProgressHUD */; };
+		028391FD2AC1819900299AA5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391FC2AC1819900299AA5 /* Store.swift */; };
+		028392132AC181B500299AA5 /* UIView+withLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392002AC181B500299AA5 /* UIView+withLoading.swift */; };
+		028392142AC181B500299AA5 /* UIKitLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392012AC181B500299AA5 /* UIKitLoadingView.swift */; };
+		028392152AC181B500299AA5 /* UIViewController+bindLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392022AC181B500299AA5 /* UIViewController+bindLoading.swift */; };
+		028392162AC181B500299AA5 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392032AC181B500299AA5 /* LoadingViewModel.swift */; };
+		028392172AC181B500299AA5 /* View+bindLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392052AC181B500299AA5 /* View+bindLoading.swift */; };
+		028392182AC181B500299AA5 /* View+withLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392062AC181B500299AA5 /* View+withLoading.swift */; };
+		028392192AC181B500299AA5 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392072AC181B500299AA5 /* LoadingView.swift */; };
+		0283921A2AC181B500299AA5 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392092AC181B500299AA5 /* ErrorViewModel.swift */; };
+		0283921B2AC181B500299AA5 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283920A2AC181B500299AA5 /* Error.swift */; };
+		0283921C2AC181B500299AA5 /* UIViewController+bindError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283920C2AC181B500299AA5 /* UIViewController+bindError.swift */; };
+		0283921D2AC181B500299AA5 /* UIKitErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283920D2AC181B500299AA5 /* UIKitErrorView.swift */; };
+		0283921E2AC181B500299AA5 /* View+bindError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283920F2AC181B500299AA5 /* View+bindError.swift */; };
+		0283921F2AC181B500299AA5 /* View+withError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392102AC181B500299AA5 /* View+withError.swift */; };
+		028392202AC181B500299AA5 /* DismissableErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392112AC181B500299AA5 /* DismissableErrorView.swift */; };
+		028392212AC181B500299AA5 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392122AC181B500299AA5 /* ErrorView.swift */; };
+		028392232AC181C800299AA5 /* WithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392222AC181C800299AA5 /* WithBackground.swift */; };
+		028392252AC181EE00299AA5 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392242AC181EE00299AA5 /* AuthStore.swift */; };
+		028392272AC182FE00299AA5 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392262AC182FE00299AA5 /* AuthUseCase.swift */; };
+		028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392282AC1851600299AA5 /* FirebaseClient.swift */; };
+		0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283922A2AC1858000299AA5 /* AuthModuleService.swift */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -89,6 +110,27 @@
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		028391F72AC1451C00299AA5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		028391FC2AC1819900299AA5 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		028392002AC181B500299AA5 /* UIView+withLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+withLoading.swift"; sourceTree = "<group>"; };
+		028392012AC181B500299AA5 /* UIKitLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitLoadingView.swift; sourceTree = "<group>"; };
+		028392022AC181B500299AA5 /* UIViewController+bindLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+bindLoading.swift"; sourceTree = "<group>"; };
+		028392032AC181B500299AA5 /* LoadingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
+		028392052AC181B500299AA5 /* View+bindLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+bindLoading.swift"; sourceTree = "<group>"; };
+		028392062AC181B500299AA5 /* View+withLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+withLoading.swift"; sourceTree = "<group>"; };
+		028392072AC181B500299AA5 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		028392092AC181B500299AA5 /* ErrorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
+		0283920A2AC181B500299AA5 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		0283920C2AC181B500299AA5 /* UIViewController+bindError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+bindError.swift"; sourceTree = "<group>"; };
+		0283920D2AC181B500299AA5 /* UIKitErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitErrorView.swift; sourceTree = "<group>"; };
+		0283920F2AC181B500299AA5 /* View+bindError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+bindError.swift"; sourceTree = "<group>"; };
+		028392102AC181B500299AA5 /* View+withError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+withError.swift"; sourceTree = "<group>"; };
+		028392112AC181B500299AA5 /* DismissableErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableErrorView.swift; sourceTree = "<group>"; };
+		028392122AC181B500299AA5 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		028392222AC181C800299AA5 /* WithBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithBackground.swift; sourceTree = "<group>"; };
+		028392242AC181EE00299AA5 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		028392262AC182FE00299AA5 /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		028392282AC1851600299AA5 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		0283922A2AC1858000299AA5 /* AuthModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleService.swift; sourceTree = "<group>"; };
 		02EC3B112AC08B81006ECA4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +176,7 @@
 				021027502ABF45B80017990B /* Base */,
 				0210274F2ABF452C0017990B /* Supporting Files */,
 				0210274E2ABF439D0017990B /* App */,
+				028392282AC1851600299AA5 /* FirebaseClient.swift */,
 			);
 			path = WhatsApp;
 			sourceTree = "<group>";
@@ -165,6 +208,10 @@
 				021027592ABF45B80017990B /* Extensions */,
 				0210275D2ABF45B80017990B /* Factory */,
 				02EC3B112AC08B81006ECA4C /* BaseViewController.swift */,
+				028392082AC181B500299AA5 /* Error */,
+				028391FE2AC181B500299AA5 /* Loading */,
+				028391FC2AC1819900299AA5 /* Store.swift */,
+				028392222AC181C800299AA5 /* WithBackground.swift */,
 				028391F52AC1446D00299AA5 /* BaseView.swift */,
 			);
 			path = Base;
@@ -257,7 +304,10 @@
 			isa = PBXGroup;
 			children = (
 				021027882ABF46620017990B /* AuthorizationViewController.swift */,
+				028392242AC181EE00299AA5 /* AuthStore.swift */,
 				028391F72AC1451C00299AA5 /* AuthTextField.swift */,
+				028392262AC182FE00299AA5 /* AuthUseCase.swift */,
+				0283922A2AC1858000299AA5 /* AuthModuleService.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -279,6 +329,67 @@
 				021027942ABF50320017990B /* ApplicationCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		028391FE2AC181B500299AA5 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				028391FF2AC181B500299AA5 /* UIKit */,
+				028392032AC181B500299AA5 /* LoadingViewModel.swift */,
+				028392042AC181B500299AA5 /* SwiftUI */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		028391FF2AC181B500299AA5 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				028392002AC181B500299AA5 /* UIView+withLoading.swift */,
+				028392012AC181B500299AA5 /* UIKitLoadingView.swift */,
+				028392022AC181B500299AA5 /* UIViewController+bindLoading.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		028392042AC181B500299AA5 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				028392052AC181B500299AA5 /* View+bindLoading.swift */,
+				028392062AC181B500299AA5 /* View+withLoading.swift */,
+				028392072AC181B500299AA5 /* LoadingView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		028392082AC181B500299AA5 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				028392092AC181B500299AA5 /* ErrorViewModel.swift */,
+				0283920A2AC181B500299AA5 /* Error.swift */,
+				0283920B2AC181B500299AA5 /* UIKit */,
+				0283920E2AC181B500299AA5 /* SwiftUI */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		0283920B2AC181B500299AA5 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				0283920C2AC181B500299AA5 /* UIViewController+bindError.swift */,
+				0283920D2AC181B500299AA5 /* UIKitErrorView.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		0283920E2AC181B500299AA5 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				0283920F2AC181B500299AA5 /* View+bindError.swift */,
+				028392102AC181B500299AA5 /* View+withError.swift */,
+				028392112AC181B500299AA5 /* DismissableErrorView.swift */,
+				028392122AC181B500299AA5 /* ErrorView.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,13 +476,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0283921E2AC181B500299AA5 /* View+bindError.swift in Sources */,
 				021027762ABF45B80017990B /* UIViewController+Extension.swift in Sources */,
+				028392182AC181B500299AA5 /* View+withLoading.swift in Sources */,
+				028392172AC181B500299AA5 /* View+bindLoading.swift in Sources */,
+				0283921D2AC181B500299AA5 /* UIKitErrorView.swift in Sources */,
+				0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */,
 				021027822ABF45B80017990B /* Routable.swift in Sources */,
 				021027772ABF45B80017990B /* Color+Extension.swift in Sources */,
 				021027742ABF45B80017990B /* InlineConfigurable.swift in Sources */,
 				02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */,
+				028392152AC181B500299AA5 /* UIViewController+bindLoading.swift in Sources */,
+				028392202AC181B500299AA5 /* DismissableErrorView.swift in Sources */,
 				021027912ABF4A2E0017990B /* SystemNavigationController.swift in Sources */,
+				0283921B2AC181B500299AA5 /* Error.swift in Sources */,
+				0283921A2AC181B500299AA5 /* ErrorViewModel.swift in Sources */,
 				021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */,
+				028392232AC181C800299AA5 /* WithBackground.swift in Sources */,
 				0210277A2ABF45B80017990B /* ApplicationRouter.swift in Sources */,
 				021027792ABF45B80017990B /* AnyCoordinator.swift in Sources */,
 				0210277D2ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift in Sources */,
@@ -385,19 +506,30 @@
 				021027712ABF45B80017990B /* BridgingRestrictedTableViewCell.swift in Sources */,
 				021027702ABF45B80017990B /* BridgedView.swift in Sources */,
 				0210278E2ABF493C0017990B /* CoordinatorFactory.swift in Sources */,
+				028392132AC181B500299AA5 /* UIView+withLoading.swift in Sources */,
 				0210277C2ABF45B80017990B /* UINavigationController+.swift in Sources */,
 				028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */,
+				0283921C2AC181B500299AA5 /* UIViewController+bindError.swift in Sources */,
+				028392212AC181B500299AA5 /* ErrorView.swift in Sources */,
+				028392192AC181B500299AA5 /* LoadingView.swift in Sources */,
+				0283921F2AC181B500299AA5 /* View+withError.swift in Sources */,
 				0210277B2ABF45B80017990B /* BaseCoordinator.swift in Sources */,
 				021027842ABF45B80017990B /* Transition.swift in Sources */,
 				021027892ABF46620017990B /* AuthorizationViewController.swift in Sources */,
+				028392272AC182FE00299AA5 /* AuthUseCase.swift in Sources */,
 				0210277F2ABF45B80017990B /* ModalTransitionStyle.swift in Sources */,
 				0210277E2ABF45B80017990B /* ModalPresentationStyle.swift in Sources */,
+				028391FD2AC1819900299AA5 /* Store.swift in Sources */,
+				028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */,
 				021027812ABF45B80017990B /* LifeCycleListener.swift in Sources */,
 				021027752ABF45B80017990B /* UIView+Extensions.swift in Sources */,
 				021027802ABF45B80017990B /* SystemNavigation.swift in Sources */,
+				028392142AC181B500299AA5 /* UIKitLoadingView.swift in Sources */,
 				0210278C2ABF47F90017990B /* ModuleFactory.swift in Sources */,
 				021027732ABF45B80017990B /* BridgingCollectionReusableView.swift in Sources */,
 				028391F62AC1446D00299AA5 /* BaseView.swift in Sources */,
+				028392252AC181EE00299AA5 /* AuthStore.swift in Sources */,
+				028392162AC181B500299AA5 /* LoadingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

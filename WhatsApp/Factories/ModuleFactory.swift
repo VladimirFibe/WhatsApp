@@ -9,6 +9,8 @@ final class ModuleFactory: ModuleFactoryProtocol {
     private init() {}
 
     func makeAuthModule() -> Presentable {
-        AuthorizationViewController()
+        let useCase = AuthUseCase(apiService: FirebaseClient.shared)
+        let store = AuthStore(authUseCase: useCase)
+        return AuthorizationViewController(store: store)
     }
 }
