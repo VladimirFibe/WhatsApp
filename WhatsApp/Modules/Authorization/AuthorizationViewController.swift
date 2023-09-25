@@ -159,7 +159,8 @@ class AuthorizationViewController: BaseViewController {
 extension AuthorizationViewController {
     override func setupViews() {
         super.setupViews()
-        [titleLabel, 
+        setupObservers()
+        [titleLabel,
          stackView,
          bottomStackView
         ].forEach { view.addSubview($0)}
@@ -167,6 +168,19 @@ extension AuthorizationViewController {
         middleView.addSubview(forgotButton)
         middleView.addSubview(resendButton)
         setupBackgroundTap()
+    }
+
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case let .done(id):
+                    print(id)
+                }
+            }.store(in: &bag)
     }
 
     func setupBackgroundTap() {

@@ -1,6 +1,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    var bag = Bag()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()

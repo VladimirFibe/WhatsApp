@@ -27,7 +27,6 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
 
     private func register(withEmail email: String, password: String) async throws {
         let id = try await authUseCase.register(withEmail: email, password: password)
-
         sendEvent(.done(id))
     }
 }

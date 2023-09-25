@@ -1,4 +1,4 @@
-import Foundation
+import FirebaseAuth
 
 protocol AuthModuleServiceProtocol {
     func register(withEmail email: String, password: String) async throws -> String
@@ -6,7 +6,9 @@ protocol AuthModuleServiceProtocol {
 
 extension FirebaseClient: AuthModuleServiceProtocol {
     func register(withEmail email: String, password: String) async throws -> String {
-        print(email, password)
-        return "id"
+        let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+        try await authResult.user.sendEmailVerification()
+        let id = authResult.user.uid
+        return id
     }
 }
