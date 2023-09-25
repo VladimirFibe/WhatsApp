@@ -44,6 +44,7 @@
 		028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 028391D72AC13D3800299AA5 /* FirebaseFirestore */; };
 		028391DE2AC13D3800299AA5 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 028391DD2AC13D3800299AA5 /* FirebaseFunctions */; };
 		028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 028391F12AC13D3800299AA5 /* FirebaseStorage */; };
+		028391F62AC1446D00299AA5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F52AC1446D00299AA5 /* BaseView.swift */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		021027922ABF4CC20017990B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		021027942ABF50320017990B /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		02EC3B112AC08B81006ECA4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				021027592ABF45B80017990B /* Extensions */,
 				0210275D2ABF45B80017990B /* Factory */,
 				02EC3B112AC08B81006ECA4C /* BaseViewController.swift */,
+				028391F52AC1446D00299AA5 /* BaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				021027802ABF45B80017990B /* SystemNavigation.swift in Sources */,
 				0210278C2ABF47F90017990B /* ModuleFactory.swift in Sources */,
 				021027732ABF45B80017990B /* BridgingCollectionReusableView.swift in Sources */,
+				028391F62AC1446D00299AA5 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
