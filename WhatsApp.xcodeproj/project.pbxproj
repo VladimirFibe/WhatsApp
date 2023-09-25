@@ -46,6 +46,7 @@
 		028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 028391F12AC13D3800299AA5 /* FirebaseStorage */; };
 		028391F62AC1446D00299AA5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F52AC1446D00299AA5 /* BaseView.swift */; };
 		028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F72AC1451C00299AA5 /* AuthTextField.swift */; };
+		028391FB2AC1789C00299AA5 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 028391FA2AC1789C00299AA5 /* ProgressHUD */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 				028391DE2AC13D3800299AA5 /* FirebaseFunctions in Frameworks */,
 				028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */,
 				02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */,
+				028391FB2AC1789C00299AA5 /* ProgressHUD in Frameworks */,
 				028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */,
 				028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */,
 			);
@@ -301,6 +303,7 @@
 				028391D72AC13D3800299AA5 /* FirebaseFirestore */,
 				028391DD2AC13D3800299AA5 /* FirebaseFunctions */,
 				028391F12AC13D3800299AA5 /* FirebaseStorage */,
+				028391FA2AC1789C00299AA5 /* ProgressHUD */,
 			);
 			productName = WhatsApp;
 			productReference = 021027372ABF43730017990B /* WhatsApp.app */;
@@ -333,6 +336,7 @@
 			packageReferences = (
 				02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				028391F92AC1789C00299AA5 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = 021027382ABF43730017990B /* Products */;
 			projectDirPath = "";
@@ -620,6 +624,14 @@
 				minimumVersion = 10.15.0;
 			};
 		};
+		028391F92AC1789C00299AA5 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.7.2;
+			};
+		};
 		02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -650,6 +662,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		028391FA2AC1789C00299AA5 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028391F92AC1789C00299AA5 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 		02EC3B0D2AC08B3E006ECA4C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
