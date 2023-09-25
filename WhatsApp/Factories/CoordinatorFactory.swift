@@ -17,8 +17,6 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
     }
     
     func makeAuthCoordinator(parent: BaseCoordinator, router: Routable) -> AnyCoordinator<Void> {
-//        let navigation = SystemNavigationController(hideNavigationBar: false)
-//        let router = ApplicationRouter(rootController: navigation)
         let coordinator = AnyCoordinator(AuthCoordinator(
             router: router,
             parent: parent,
