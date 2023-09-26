@@ -7,6 +7,7 @@ protocol CoordinatorFactoryProtocol: AnyObject {
 
 final class CoordinatorFactory: CoordinatorFactoryProtocol {
     static let shared = CoordinatorFactory()
+    let tabFactory = TabFactory()
     private init() {}
     
     func makeApplicationCoordinator(router: Routable) -> AnyCoordinator<Void> {
@@ -25,6 +26,22 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
             coordinatorFactory: self
         ))
         return coordinator
+    }
+
+    func makePrototypeTabCoordinator(parent: BaseCoordinator, tab: Tab)
+    -> (view: Presentable, coordinator: AnyCoordinator<PrototypeTabCoordinator.Deeplink>) {
+        let navigation = SystemNavigationController(hideNavigationBar: false)
+        navigation.tabBarItem = tabFactory.makeBarItem(for: tab)
+        let router = ApplicationRouter(rootController: navigation)
+        let coordinator = AnyCoordinator(
+            PrototypeTabCoordinator(
+                router: router,
+                parent: parent,
+                coordinatorFactory: self,
+                moduleFactory: ModuleFactory.shared
+            )
+        )
+        return (navigation, coordinator)
     }
 }
 

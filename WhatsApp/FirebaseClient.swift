@@ -7,9 +7,17 @@ final class FirebaseClient {
 
     func createPerson(with email: String, uid: String) throws {
         let person = Person(username: email, email: email, fullname: "")
-        try reference(.person)
+        try reference(.persons)
             .document(uid)
             .setData(from: person)
+    }
+
+    func fetchPerson(with id: String) async throws -> Person? {
+        let querySnapshot = try await reference(.persons)
+            .document(id)
+            .getDocument()
+
+        return try? querySnapshot.data(as: Person.self)
     }
 
     func reference(_ collectionReference: FCollectionReference) -> CollectionReference {
@@ -17,7 +25,7 @@ final class FirebaseClient {
     }
 
     enum FCollectionReference: String {
-        case person
+        case persons
     }
 }
 

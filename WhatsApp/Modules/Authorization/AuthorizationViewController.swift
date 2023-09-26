@@ -59,7 +59,7 @@ class AuthorizationViewController: BaseViewController {
 
     private lazy var resendButton: UIButton = {
         $0.contentHorizontalAlignment = .trailing
-        $0.isHidden = false
+        $0.isHidden = true
         $0.setTitle("Resend Email", for: [])
         $0.addTarget(self, action: #selector(resendButtonTapped), for: .primaryActionTriggered)
         return $0
@@ -97,30 +97,24 @@ class AuthorizationViewController: BaseViewController {
     }(UIStackView(arrangedSubviews: [bottomLabel, bottomButton]))
     
     @objc private func forgotButtonTapped() {
-        if isDataInputedFor(isLogin ? .login : .register) {
-            print(#function)
-        } else {
-            ProgressHUD.showFailed("Email is required")
-        }
+        let email = emailTextField.text
+        store.sendAction(.resetPassword(email))
+//        if isDataInputedFor(isLogin ? .login : .register) {
+//        } else {
+//            ProgressHUD.showFailed("Email is required")
+//        }
     }
 
     @objc private func resendButtonTapped() {
-        if isDataInputedFor(isLogin ? .login : .register) {
-            print(#function)
-        } else {
-            ProgressHUD.showFailed("Email is required")
-        }
+        store.sendAction(.sendEmailVerification)
     }
 
     @objc private func loginButtonTapped() {
         if isDataInputedFor(isLogin ? .login : .register) {
             let email = emailTextField.text
             let password = passwordTextField.text
-            if isLogin {
-                store.sendAction(.login(email, password))
-            } else {
-                store.sendAction(.register(email, password))
-            }
+            isLogin ? store.sendAction(.login(email, password))
+            : store.sendAction(.register(email, password))
         } else {
             ProgressHUD.showFailed("All fields are required")
         }
@@ -190,6 +184,13 @@ extension AuthorizationViewController {
                 switch event {
                 case .done:
                     wSelf?.output?.moduleFinish()
+                case .registered:
+                    ProgressHUD.showSucceed("Verification email send")
+                    wSelf?.resendButton.isHidden = false
+                    wSelf?.isLogin = true
+                case .notVerified:
+                    ProgressHUD.showFailed("Not verified")
+                    wSelf?.resendButton.isHidden = false
                 }
             }.store(in: &bag)
     }

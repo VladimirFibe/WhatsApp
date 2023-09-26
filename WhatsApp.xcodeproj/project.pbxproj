@@ -39,6 +39,18 @@
 		021027912ABF4A2E0017990B /* SystemNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027902ABF4A2E0017990B /* SystemNavigationController.swift */; };
 		021027932ABF4CC20017990B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027922ABF4CC20017990B /* AuthCoordinator.swift */; };
 		021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027942ABF50320017990B /* ApplicationCoordinator.swift */; };
+		0236D8782AC25445006EF776 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8772AC25445006EF776 /* Tab.swift */; };
+		0236D87B2AC2564F006EF776 /* SystemTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D87A2AC2564F006EF776 /* SystemTabBarController.swift */; };
+		0236D87D2AC256C5006EF776 /* TabBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D87C2AC256C5006EF776 /* TabBarManager.swift */; };
+		0236D87F2AC2588B006EF776 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D87E2AC2588B006EF776 /* TabBarCoordinator.swift */; };
+		0236D8812AC258DB006EF776 /* TransitionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8802AC258DB006EF776 /* TransitionFactory.swift */; };
+		0236D8872AC25917006EF776 /* DismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8832AC25917006EF776 /* DismissTransition.swift */; };
+		0236D8882AC25917006EF776 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8842AC25917006EF776 /* CustomTransition.swift */; };
+		0236D8892AC25917006EF776 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8852AC25917006EF776 /* FadeTransition.swift */; };
+		0236D88A2AC25917006EF776 /* CrossDissolveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8862AC25917006EF776 /* CrossDissolveTransition.swift */; };
+		0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */; };
+		0236D88E2AC25A50006EF776 /* PrototypeModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */; };
+		0236D8902AC25B31006EF776 /* TabFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88F2AC25B31006EF776 /* TabFactory.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 028391CB2AC13D3800299AA5 /* FirebaseAuth */; };
 		028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 028391D72AC13D3800299AA5 /* FirebaseFirestore */; };
@@ -108,6 +120,18 @@
 		021027902ABF4A2E0017990B /* SystemNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemNavigationController.swift; sourceTree = "<group>"; };
 		021027922ABF4CC20017990B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		021027942ABF50320017990B /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		0236D8772AC25445006EF776 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		0236D87A2AC2564F006EF776 /* SystemTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTabBarController.swift; sourceTree = "<group>"; };
+		0236D87C2AC256C5006EF776 /* TabBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarManager.swift; sourceTree = "<group>"; };
+		0236D87E2AC2588B006EF776 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		0236D8802AC258DB006EF776 /* TransitionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionFactory.swift; sourceTree = "<group>"; };
+		0236D8832AC25917006EF776 /* DismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissTransition.swift; sourceTree = "<group>"; };
+		0236D8842AC25917006EF776 /* CustomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
+		0236D8852AC25917006EF776 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
+		0236D8862AC25917006EF776 /* CrossDissolveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossDissolveTransition.swift; sourceTree = "<group>"; };
+		0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeTabCoordinator.swift; sourceTree = "<group>"; };
+		0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeModuleViewController.swift; sourceTree = "<group>"; };
+		0236D88F2AC25B31006EF776 /* TabFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFactory.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		028391F72AC1451C00299AA5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -173,6 +197,7 @@
 		021027392ABF43730017990B /* WhatsApp */ = {
 			isa = PBXGroup;
 			children = (
+				0236D8822AC25917006EF776 /* UserTransition */,
 				0210278F2ABF4A1E0017990B /* Coordinators */,
 				0210278A2ABF47D70017990B /* Factories */,
 				021027862ABF46410017990B /* Modules */,
@@ -300,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				021027872ABF46470017990B /* Authorization */,
+				0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -321,6 +347,8 @@
 			children = (
 				0210278B2ABF47F90017990B /* ModuleFactory.swift */,
 				0210278D2ABF493C0017990B /* CoordinatorFactory.swift */,
+				0236D8802AC258DB006EF776 /* TransitionFactory.swift */,
+				0236D88F2AC25B31006EF776 /* TabFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -330,7 +358,9 @@
 			children = (
 				0236D8762AC1E518006EF776 /* Navigation */,
 				021027922ABF4CC20017990B /* AuthCoordinator.swift */,
+				0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */,
 				021027942ABF50320017990B /* ApplicationCoordinator.swift */,
+				0236D8792AC25634006EF776 /* Tabbar */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -341,6 +371,28 @@
 				021027902ABF4A2E0017990B /* SystemNavigationController.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		0236D8792AC25634006EF776 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				0236D8772AC25445006EF776 /* Tab.swift */,
+				0236D87E2AC2588B006EF776 /* TabBarCoordinator.swift */,
+				0236D87A2AC2564F006EF776 /* SystemTabBarController.swift */,
+				0236D87C2AC256C5006EF776 /* TabBarManager.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		0236D8822AC25917006EF776 /* UserTransition */ = {
+			isa = PBXGroup;
+			children = (
+				0236D8832AC25917006EF776 /* DismissTransition.swift */,
+				0236D8842AC25917006EF776 /* CustomTransition.swift */,
+				0236D8852AC25917006EF776 /* FadeTransition.swift */,
+				0236D8862AC25917006EF776 /* CrossDissolveTransition.swift */,
+			);
+			path = UserTransition;
 			sourceTree = "<group>";
 		};
 		028391FE2AC181B500299AA5 /* Loading */ = {
@@ -504,20 +556,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				0283921E2AC181B500299AA5 /* View+bindError.swift in Sources */,
+				0236D8892AC25917006EF776 /* FadeTransition.swift in Sources */,
+				0236D87D2AC256C5006EF776 /* TabBarManager.swift in Sources */,
 				021027762ABF45B80017990B /* UIViewController+Extension.swift in Sources */,
 				028392182AC181B500299AA5 /* View+withLoading.swift in Sources */,
 				028392172AC181B500299AA5 /* View+bindLoading.swift in Sources */,
+				0236D87F2AC2588B006EF776 /* TabBarCoordinator.swift in Sources */,
 				0283921D2AC181B500299AA5 /* UIKitErrorView.swift in Sources */,
 				0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */,
 				021027822ABF45B80017990B /* Routable.swift in Sources */,
 				021027772ABF45B80017990B /* Color+Extension.swift in Sources */,
 				021027742ABF45B80017990B /* InlineConfigurable.swift in Sources */,
 				02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */,
+				0236D8902AC25B31006EF776 /* TabFactory.swift in Sources */,
 				028392152AC181B500299AA5 /* UIViewController+bindLoading.swift in Sources */,
 				028392202AC181B500299AA5 /* DismissableErrorView.swift in Sources */,
 				021027912ABF4A2E0017990B /* SystemNavigationController.swift in Sources */,
 				0283921B2AC181B500299AA5 /* Error.swift in Sources */,
 				0283921A2AC181B500299AA5 /* ErrorViewModel.swift in Sources */,
+				0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */,
+				0236D8882AC25917006EF776 /* CustomTransition.swift in Sources */,
 				02D8ED562AC19AAF002658D8 /* Person.swift in Sources */,
 				021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */,
 				028392232AC181C800299AA5 /* WithBackground.swift in Sources */,
@@ -525,14 +583,18 @@
 				021027792ABF45B80017990B /* AnyCoordinator.swift in Sources */,
 				0210277D2ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
+				0236D88E2AC25A50006EF776 /* PrototypeModuleViewController.swift in Sources */,
 				021027852ABF45B80017990B /* Coordinator.swift in Sources */,
 				0210276F2ABF45B80017990B /* RestrictedUIHostingController.swift in Sources */,
 				021027832ABF45B80017990B /* Presentable.swift in Sources */,
 				021027722ABF45B80017990B /* BridgingCollectionViewCell.swift in Sources */,
 				021027932ABF4CC20017990B /* AuthCoordinator.swift in Sources */,
+				0236D8782AC25445006EF776 /* Tab.swift in Sources */,
+				0236D8872AC25917006EF776 /* DismissTransition.swift in Sources */,
 				021027782ABF45B80017990B /* DefaultLifeCycleListener.swift in Sources */,
 				021027712ABF45B80017990B /* BridgingRestrictedTableViewCell.swift in Sources */,
 				021027702ABF45B80017990B /* BridgedView.swift in Sources */,
+				0236D8812AC258DB006EF776 /* TransitionFactory.swift in Sources */,
 				0210278E2ABF493C0017990B /* CoordinatorFactory.swift in Sources */,
 				028392132AC181B500299AA5 /* UIView+withLoading.swift in Sources */,
 				0210277C2ABF45B80017990B /* UINavigationController+.swift in Sources */,
@@ -550,9 +612,11 @@
 				028391FD2AC1819900299AA5 /* Store.swift in Sources */,
 				028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */,
 				021027812ABF45B80017990B /* LifeCycleListener.swift in Sources */,
+				0236D88A2AC25917006EF776 /* CrossDissolveTransition.swift in Sources */,
 				021027752ABF45B80017990B /* UIView+Extensions.swift in Sources */,
 				021027802ABF45B80017990B /* SystemNavigation.swift in Sources */,
 				028392142AC181B500299AA5 /* UIKitLoadingView.swift in Sources */,
+				0236D87B2AC2564F006EF776 /* SystemTabBarController.swift in Sources */,
 				0210278C2ABF47F90017990B /* ModuleFactory.swift in Sources */,
 				021027732ABF45B80017990B /* BridgingCollectionReusableView.swift in Sources */,
 				028391F62AC1446D00299AA5 /* BaseView.swift in Sources */,

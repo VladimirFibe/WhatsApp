@@ -2,11 +2,15 @@ import Foundation
 
 enum AuthEvent {
     case done
+    case notVerified
+    case registered
 }
 
 enum AuthAction {
     case register(String, String)
     case login(String, String)
+    case sendEmailVerification
+    case resetPassword(String)
 }
 
 final class AuthStore: Store<AuthEvent, AuthAction> {
@@ -34,6 +38,14 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
                     password: password
                 )
             }
+        case .sendEmailVerification:
+            statefulCall(sendEmailVerification)
+        case .resetPassword(let email):
+            statefulCall {
+                weak var wSelf = self
+                try await wSelf?.resetPassword(for: email)
+            }
+
         }
     }
 
@@ -42,14 +54,22 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
             withEmail: email, 
             password: password
         )
-        sendEvent(.done)
+        sendEvent(.registered)
     }
 
     private func login(withEmail email: String, password: String) async throws {
-        try await authUseCase.login(
+        let result = try await authUseCase.login(
             withEmail: email,
             password: password
         )
-        sendEvent(.done)
+        result ? sendEvent(.done): sendEvent(.notVerified)
+    }
+
+    private func sendEmailVerification() async throws {
+        try await authUseCase.sendEmailVerification()
+    }
+
+    private func resetPassword(for email: String) async throws {
+        try await authUseCase.resetPassword(for: email)
     }
 }
