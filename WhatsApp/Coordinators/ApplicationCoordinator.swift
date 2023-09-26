@@ -14,7 +14,11 @@ final class ApplicationCoordinator: BaseCoordinator {
 
 extension ApplicationCoordinator: Coordinator {
     func start(with option: Void) {
-        startLogin()
+        if Person.currentId.isEmpty {
+            startLogin()
+        } else {
+            startTabBarCoordinator()
+        }
     }
 }
 

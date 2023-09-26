@@ -41,7 +41,7 @@ open class SystemNavigationController: UINavigationController, UIGestureRecogniz
 			let appearance = UINavigationBarAppearance()
 			let buttonAppearance = UIBarButtonItemAppearance(style: .plain)
 			appearance.configureWithDefaultBackground()
-			appearance.backgroundColor = .white
+			appearance.backgroundColor = .systemBackground
 			appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
 
 			buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
