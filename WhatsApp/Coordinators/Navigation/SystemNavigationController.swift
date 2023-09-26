@@ -42,10 +42,10 @@ open class SystemNavigationController: UINavigationController, UIGestureRecogniz
 			let buttonAppearance = UIBarButtonItemAppearance(style: .plain)
 			appearance.configureWithDefaultBackground()
 			appearance.backgroundColor = .systemBackground
-			appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+			appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
 
-			buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
-			UINavigationBar.appearance().tintColor = UIColor.black
+			buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
+			UINavigationBar.appearance().tintColor = UIColor.label
 			appearance.buttonAppearance = buttonAppearance
 
 			navigationBar.standardAppearance = appearance
