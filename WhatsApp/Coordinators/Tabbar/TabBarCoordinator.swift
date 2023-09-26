@@ -49,37 +49,30 @@ private extension TabBarCoordinator {
             makeTabTwo(),
             makeTabThree(),
             makeTabFour(),
-            makeTabFive()
         ])
         router.setRootModule(tabBarManager.tabBarPresentable, transition: transitionFactory.custom)
     }
 
     func makeTabOne() -> Presentable {
-        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .one)
+        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .chats)
         unit.coordinator.start(with: .initial)
         return unit.view
     }
 
     func makeTabTwo() -> Presentable {
-        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .two)
+        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .channels)
         unit.coordinator.start(with: .initial)
         return unit.view
     }
 
     func makeTabThree() -> Presentable {
-        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .three)
+        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .users)
         unit.coordinator.start(with: .initial)
         return unit.view
     }
 
     func makeTabFour() -> Presentable {
-        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .four)
-        unit.coordinator.start(with: .initial)
-        return unit.view
-    }
-
-    func makeTabFive() -> Presentable {
-        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .five)
+        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .settings)
         unit.coordinator.start(with: .initial)
         return unit.view
     }

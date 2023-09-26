@@ -2,7 +2,10 @@ import Foundation
 
 protocol CoordinatorFactoryProtocol: AnyObject {
     func makeApplicationCoordinator(router: Routable) -> AnyCoordinator<Void>
-    func makeAuthCoordinator(parent: BaseCoordinator, router: Routable) -> AnyCoordinator<Void>
+    func makeAuthCoordinator(output: AuthorizationModuleOutput & BaseCoordinator, router: Routable) -> AnyCoordinator<Void>
+    func makeTabBarCoordinator(router: Routable, parent: BaseCoordinator) -> AnyCoordinator<TabBarCoordinator.Deeplink>
+    func makePrototypeTabCoordinator(parent: BaseCoordinator, tab: Tab)
+    -> (view: Presentable, coordinator: AnyCoordinator<PrototypeTabCoordinator.Deeplink>)
 }
 
 final class CoordinatorFactory: CoordinatorFactoryProtocol {
@@ -17,15 +20,29 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
         ))
     }
     
-    func makeAuthCoordinator(parent: BaseCoordinator, router: Routable) -> AnyCoordinator<Void> {
+    func makeAuthCoordinator(output: AuthorizationModuleOutput & BaseCoordinator, router: Routable) -> AnyCoordinator<Void> {
         let coordinator = AnyCoordinator(AuthCoordinator(
-            output: self,
+            output: output,
             router: router,
-            parent: parent,
+            parent: output,
             moduleFactory: ModuleFactory.shared,
             coordinatorFactory: self
         ))
         return coordinator
+    }
+
+    func makeTabBarCoordinator(router: Routable, parent: BaseCoordinator) -> AnyCoordinator<TabBarCoordinator.Deeplink> {
+        let tabbarController = SystemTabBarController()
+        let tabbarManager = TabBarManager(tabBar: tabbarController)
+        return AnyCoordinator(
+            TabBarCoordinator(
+                router: router,
+                parent: parent,
+                coordinatorFactory: self,
+                transitionFactory: TransitionFactory.shared,
+                tabBarManager: tabbarManager
+            )
+        )
     }
 
     func makePrototypeTabCoordinator(parent: BaseCoordinator, tab: Tab)
@@ -45,9 +62,4 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
     }
 }
 
-extension CoordinatorFactory: AuthorizationModuleOutput {
-    func moduleFinish() {
-        print("Вошли")
-    }
-}
 
