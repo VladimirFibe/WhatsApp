@@ -13,16 +13,17 @@ class AuthorizationViewController: BaseViewController {
         case register
         case forgot
     }
-    private var isLogin = false {
+    private var isLogin = true {
         didSet { updateUI() }
     }
     private let titleLabel = {
-        $0.text = "Register"
+        $0.text = "Login"
         $0.font = .systemFont(ofSize: 35)
         $0.textAlignment = .center
         $0.numberOfLines = 0
         return $0
     }(UILabel())
+
     private let emailTextField = {
         $0.configure(placeholder: "Email", isSecureTextEntry: false)
         return $0
@@ -35,6 +36,7 @@ class AuthorizationViewController: BaseViewController {
 
     private let repeatPasswordTextField = {
         $0.configure(placeholder: "Repeat Password")
+        $0.isHidden = true
         return $0
     }(AuthTextField())
 
@@ -66,19 +68,19 @@ class AuthorizationViewController: BaseViewController {
     }(UIButton(type: .system))
 
     private lazy var loginButton: UIButton = {
-        $0.setTitle("Regiter", for: [])
+        $0.setTitle("Login", for: [])
         $0.addTarget(self, action: #selector(loginButtonTapped), for: .primaryActionTriggered)
         return $0
     }(UIButton(type: .system))
 
     private let bottomLabel = {
-        $0.text = "Already have an account?"
+        $0.text = "Don't have an account?"
         return $0
     }(UILabel())
 
     private lazy var bottomButton: UIButton = {
         $0.contentHorizontalAlignment = .trailing
-        $0.setTitle("Login", for: [])
+        $0.setTitle("Register", for: [])
         $0.addTarget(
             self,
             action: #selector(bottomButtonTapped),
@@ -99,10 +101,6 @@ class AuthorizationViewController: BaseViewController {
     @objc private func forgotButtonTapped() {
         let email = emailTextField.text
         store.sendAction(.resetPassword(email))
-//        if isDataInputedFor(isLogin ? .login : .register) {
-//        } else {
-//            ProgressHUD.showFailed("Email is required")
-//        }
     }
 
     @objc private func resendButtonTapped() {
