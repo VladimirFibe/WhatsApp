@@ -3,9 +3,26 @@ import Foundation
 protocol CoordinatorFactoryProtocol: AnyObject {
     func makeApplicationCoordinator(router: Routable) -> AnyCoordinator<Void>
     func makeAuthCoordinator(output: AuthorizationModuleOutput & BaseCoordinator, router: Routable) -> AnyCoordinator<Void>
-    func makeTabBarCoordinator(router: Routable, parent: BaseCoordinator) -> AnyCoordinator<TabBarCoordinator.Deeplink>
-    func makePrototypeTabCoordinator(parent: BaseCoordinator, tab: Tab)
-    -> (view: Presentable, coordinator: AnyCoordinator<PrototypeTabCoordinator.Deeplink>)
+    func makeTabBarCoordinator(
+        output: AuthorizationModuleOutput & BaseCoordinator,
+        router: Routable,
+        parent: BaseCoordinator
+    ) -> AnyCoordinator<TabBarCoordinator.Deeplink>
+    func makeSettingsTabCoordinator(
+        output: AuthorizationModuleOutput & BaseCoordinator,
+        parent: BaseCoordinator,
+        tab: Tab
+    ) -> (
+        view: Presentable,
+        coordinator: AnyCoordinator<SettingsTabCoordinator.Deeplink>
+    )
+    func makePrototypeTabCoordinator(
+        parent: BaseCoordinator,
+        tab: Tab
+    ) -> (
+        view: Presentable,
+        coordinator: AnyCoordinator<PrototypeTabCoordinator.Deeplink>
+    )
 }
 
 final class CoordinatorFactory: CoordinatorFactoryProtocol {
@@ -20,7 +37,9 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
         ))
     }
     
-    func makeAuthCoordinator(output: AuthorizationModuleOutput & BaseCoordinator, router: Routable) -> AnyCoordinator<Void> {
+    func makeAuthCoordinator(
+        output: AuthorizationModuleOutput & BaseCoordinator,
+        router: Routable) -> AnyCoordinator<Void> {
         let coordinator = AnyCoordinator(AuthCoordinator(
             output: output,
             router: router,
@@ -31,11 +50,16 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
         return coordinator
     }
 
-    func makeTabBarCoordinator(router: Routable, parent: BaseCoordinator) -> AnyCoordinator<TabBarCoordinator.Deeplink> {
+    func makeTabBarCoordinator(
+        output: AuthorizationModuleOutput & BaseCoordinator,
+        router: Routable,
+        parent: BaseCoordinator
+    ) -> AnyCoordinator<TabBarCoordinator.Deeplink> {
         let tabbarController = SystemTabBarController()
         let tabbarManager = TabBarManager(tabBar: tabbarController)
         return AnyCoordinator(
             TabBarCoordinator(
+                output: output,
                 router: router,
                 parent: parent,
                 coordinatorFactory: self,
@@ -44,7 +68,29 @@ final class CoordinatorFactory: CoordinatorFactoryProtocol {
             )
         )
     }
-
+    func makeSettingsTabCoordinator(
+        output: AuthorizationModuleOutput & BaseCoordinator,
+        parent: BaseCoordinator,
+        tab: Tab
+    ) -> (
+        view: Presentable,
+        coordinator: AnyCoordinator<SettingsTabCoordinator.Deeplink>
+    ) {
+        let navigation = SystemNavigationController(hideNavigationBar: false)
+        navigation.tabBarItem = tabFactory.makeBarItem(for: tab)
+        let router = ApplicationRouter(rootController: navigation)
+        let coordinator = AnyCoordinator(
+            SettingsTabCoordinator(
+                output: output,
+                router: router,
+                parent: parent,
+                coordinatorFactory: self,
+                moduleFactory: ModuleFactory.shared
+            )
+        )
+        return (navigation, coordinator)
+    }
+    
     func makePrototypeTabCoordinator(parent: BaseCoordinator, tab: Tab)
     -> (view: Presentable, coordinator: AnyCoordinator<PrototypeTabCoordinator.Deeplink>) {
         let navigation = SystemNavigationController(hideNavigationBar: false)

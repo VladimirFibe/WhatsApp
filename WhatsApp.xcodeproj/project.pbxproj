@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020FC6F02AC3EAB2008C37DF /* SettingsNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020FC6EF2AC3EAB2008C37DF /* SettingsNameTableViewCell.swift */; };
+		020FC6F22AC3EAC9008C37DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020FC6F12AC3EAC9008C37DF /* BaseTableViewCell.swift */; };
+		020FC6F42AC3EBB5008C37DF /* SettingRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020FC6F32AC3EBB5008C37DF /* SettingRowTableViewCell.swift */; };
+		020FC6F72AC3FDDF008C37DF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 020FC6F62AC3FDDF008C37DF /* Kingfisher */; };
 		0210273B2ABF43730017990B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210273A2ABF43730017990B /* AppDelegate.swift */; };
 		021027442ABF43740017990B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021027432ABF43740017990B /* Assets.xcassets */; };
 		021027472ABF43740017990B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021027452ABF43740017990B /* LaunchScreen.storyboard */; };
@@ -51,6 +55,8 @@
 		0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */; };
 		0236D88E2AC25A50006EF776 /* PrototypeModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */; };
 		0236D8902AC25B31006EF776 /* TabFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88F2AC25B31006EF776 /* TabFactory.swift */; };
+		02372F092AC33C3600D04E2E /* SettingsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */; };
+		02372F0B2AC33C8400D04E2E /* SettingsModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 028391CB2AC13D3800299AA5 /* FirebaseAuth */; };
 		028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 028391D72AC13D3800299AA5 /* FirebaseFirestore */; };
@@ -86,6 +92,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020FC6EF2AC3EAB2008C37DF /* SettingsNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameTableViewCell.swift; sourceTree = "<group>"; };
+		020FC6F12AC3EAC9008C37DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		020FC6F32AC3EBB5008C37DF /* SettingRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowTableViewCell.swift; sourceTree = "<group>"; };
 		021027372ABF43730017990B /* WhatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0210273A2ABF43730017990B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		021027432ABF43740017990B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +141,8 @@
 		0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeTabCoordinator.swift; sourceTree = "<group>"; };
 		0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeModuleViewController.swift; sourceTree = "<group>"; };
 		0236D88F2AC25B31006EF776 /* TabFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFactory.swift; sourceTree = "<group>"; };
+		02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabCoordinator.swift; sourceTree = "<group>"; };
+		02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleViewController.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		028391F72AC1451C00299AA5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -167,6 +178,7 @@
 			files = (
 				028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */,
 				02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */,
+				020FC6F72AC3FDDF008C37DF /* Kingfisher in Frameworks */,
 				028391FB2AC1789C00299AA5 /* ProgressHUD in Frameworks */,
 				028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */,
 				028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */,
@@ -177,6 +189,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020FC6ED2AC3E854008C37DF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */,
+				020FC6EF2AC3EAB2008C37DF /* SettingsNameTableViewCell.swift */,
+				020FC6F32AC3EBB5008C37DF /* SettingRowTableViewCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		020FC6EE2AC3E863008C37DF /* Prototype */ = {
+			isa = PBXGroup;
+			children = (
+				0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */,
+			);
+			path = Prototype;
+			sourceTree = "<group>";
+		};
 		0210272E2ABF43730017990B = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +272,7 @@
 				028391FC2AC1819900299AA5 /* Store.swift */,
 				028392222AC181C800299AA5 /* WithBackground.swift */,
 				028391F52AC1446D00299AA5 /* BaseView.swift */,
+				020FC6F12AC3EAC9008C37DF /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -325,7 +356,8 @@
 			isa = PBXGroup;
 			children = (
 				021027872ABF46470017990B /* Authorization */,
-				0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */,
+				020FC6EE2AC3E863008C37DF /* Prototype */,
+				020FC6ED2AC3E854008C37DF /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -356,10 +388,11 @@
 		0210278F2ABF4A1E0017990B /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				021027942ABF50320017990B /* ApplicationCoordinator.swift */,
 				0236D8762AC1E518006EF776 /* Navigation */,
 				021027922ABF4CC20017990B /* AuthCoordinator.swift */,
 				0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */,
-				021027942ABF50320017990B /* ApplicationCoordinator.swift */,
+				02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */,
 				0236D8792AC25634006EF776 /* Tabbar */,
 			);
 			path = Coordinators;
@@ -494,6 +527,7 @@
 				028391F12AC13D3800299AA5 /* FirebaseStorage */,
 				028391FA2AC1789C00299AA5 /* ProgressHUD */,
 				02F8D65F2AC1A23C00AF399D /* FirebaseFirestoreSwift */,
+				020FC6F62AC3FDDF008C37DF /* Kingfisher */,
 			);
 			productName = WhatsApp;
 			productReference = 021027372ABF43730017990B /* WhatsApp.app */;
@@ -527,6 +561,7 @@
 				02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				028391F92AC1789C00299AA5 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				020FC6F52AC3FDDF008C37DF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 021027382ABF43730017990B /* Products */;
 			projectDirPath = "";
@@ -556,9 +591,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0283921E2AC181B500299AA5 /* View+bindError.swift in Sources */,
+				020FC6F42AC3EBB5008C37DF /* SettingRowTableViewCell.swift in Sources */,
+				02372F0B2AC33C8400D04E2E /* SettingsModuleViewController.swift in Sources */,
 				0236D8892AC25917006EF776 /* FadeTransition.swift in Sources */,
 				0236D87D2AC256C5006EF776 /* TabBarManager.swift in Sources */,
 				021027762ABF45B80017990B /* UIViewController+Extension.swift in Sources */,
+				020FC6F02AC3EAB2008C37DF /* SettingsNameTableViewCell.swift in Sources */,
 				028392182AC181B500299AA5 /* View+withLoading.swift in Sources */,
 				028392172AC181B500299AA5 /* View+bindLoading.swift in Sources */,
 				0236D87F2AC2588B006EF776 /* TabBarCoordinator.swift in Sources */,
@@ -594,11 +632,13 @@
 				021027782ABF45B80017990B /* DefaultLifeCycleListener.swift in Sources */,
 				021027712ABF45B80017990B /* BridgingRestrictedTableViewCell.swift in Sources */,
 				021027702ABF45B80017990B /* BridgedView.swift in Sources */,
+				02372F092AC33C3600D04E2E /* SettingsTabCoordinator.swift in Sources */,
 				0236D8812AC258DB006EF776 /* TransitionFactory.swift in Sources */,
 				0210278E2ABF493C0017990B /* CoordinatorFactory.swift in Sources */,
 				028392132AC181B500299AA5 /* UIView+withLoading.swift in Sources */,
 				0210277C2ABF45B80017990B /* UINavigationController+.swift in Sources */,
 				028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */,
+				020FC6F22AC3EAC9008C37DF /* BaseTableViewCell.swift in Sources */,
 				0283921C2AC181B500299AA5 /* UIViewController+bindError.swift in Sources */,
 				028392212AC181B500299AA5 /* ErrorView.swift in Sources */,
 				028392192AC181B500299AA5 /* LoadingView.swift in Sources */,
@@ -840,6 +880,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		020FC6F52AC3FDDF008C37DF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.9.1;
+			};
+		};
 		028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -867,6 +915,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		020FC6F62AC3FDDF008C37DF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 020FC6F52AC3FDDF008C37DF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		028391CB2AC13D3800299AA5 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

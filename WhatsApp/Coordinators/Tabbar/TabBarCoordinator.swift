@@ -8,8 +8,10 @@ final class TabBarCoordinator: BaseCoordinator {
     private let coordinatorFactory: CoordinatorFactoryProtocol
     private let transitionFactory: TransitionFactory
     private let tabBarManager: TabBarManagerProtocol
+    private let output: AuthorizationModuleOutput & BaseCoordinator
 
     init(
+        output: AuthorizationModuleOutput & BaseCoordinator,
         router: Routable,
         parent: BaseCoordinator,
         coordinatorFactory: CoordinatorFactoryProtocol,
@@ -19,6 +21,7 @@ final class TabBarCoordinator: BaseCoordinator {
         self.coordinatorFactory = coordinatorFactory
         self.transitionFactory = transitionFactory
         self.tabBarManager = tabBarManager
+        self.output = output
         super.init(router: router, parent: parent)
     }
 }
@@ -72,7 +75,11 @@ private extension TabBarCoordinator {
     }
 
     func makeTabFour() -> Presentable {
-        let unit = coordinatorFactory.makePrototypeTabCoordinator(parent: self, tab: .settings)
+        let unit = coordinatorFactory.makeSettingsTabCoordinator(
+            output: output,
+            parent: self,
+            tab: .settings
+        )
         unit.coordinator.start(with: .initial)
         return unit.view
     }

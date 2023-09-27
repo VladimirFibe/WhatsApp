@@ -11,7 +11,7 @@ final class ApplicationCoordinator: BaseCoordinator {
         super.init(router: router)
     }
 }
-
+// MARK: - Coordinator
 extension ApplicationCoordinator: Coordinator {
     func start(with option: Void) {
         if Person.currentId.isEmpty {
@@ -21,7 +21,7 @@ extension ApplicationCoordinator: Coordinator {
         }
     }
 }
-
+// MARK: - Navigation
 extension ApplicationCoordinator {
     func startLogin() {
         let coordinator = coordinatorFactory.makeAuthCoordinator(output: self, router: router)
@@ -29,14 +29,16 @@ extension ApplicationCoordinator {
     }
 
     func startTabBarCoordinator() {
-        let coordinator = coordinatorFactory.makeTabBarCoordinator(router: router, parent: self)
+        let coordinator = coordinatorFactory.makeTabBarCoordinator(
+            output: self,
+            router: router,
+            parent: self)
         coordinator.start(with: .initial)
     }
 }
-
+// MARK: - AuthorizationModuleOutput
 extension ApplicationCoordinator: AuthorizationModuleOutput {
     func moduleFinish() {
-        print("приехали")
-        startTabBarCoordinator()
+        start()
     }
 }

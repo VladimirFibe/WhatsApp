@@ -8,6 +8,13 @@ protocol ModuleFactoryProtocol: AnyObject {
         modalModuleHandler: @escaping () -> Void,
         modalUnitHandler: @escaping () -> Void
     ) -> Presentable
+    func makeSettingsTabModule(
+        output: AuthorizationModuleOutput,
+        pushUnitHandler: @escaping () -> Void,
+        pushModuleHandler: @escaping () -> Void,
+        modalModuleHandler: @escaping () -> Void,
+        modalUnitHandler: @escaping () -> Void
+    ) -> Presentable
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -30,6 +37,27 @@ final class ModuleFactory: ModuleFactoryProtocol {
         modalUnitHandler: @escaping () -> Void
     ) -> Presentable {
         return PrototypeModuleViewController(
+            model: .init(
+                pushUnitHandler: pushUnitHandler,
+                pushModuleHandler: pushModuleHandler,
+                closeUnitOrModuleHandler: nil,
+                popToRootHandler: nil,
+                modalModuleHandler: modalModuleHandler,
+                modalUnitHandler: modalUnitHandler,
+                closeModalHandler: nil
+            )
+        )
+    }
+
+    func makeSettingsTabModule(
+        output: AuthorizationModuleOutput,
+        pushUnitHandler: @escaping () -> Void,
+        pushModuleHandler: @escaping () -> Void,
+        modalModuleHandler: @escaping () -> Void,
+        modalUnitHandler: @escaping () -> Void
+    ) -> Presentable {
+        return SettingsModuleViewController(
+            output: output,
             model: .init(
                 pushUnitHandler: pushUnitHandler,
                 pushModuleHandler: pushModuleHandler,
