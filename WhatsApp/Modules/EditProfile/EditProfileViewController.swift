@@ -1,4 +1,6 @@
 import UIKit
+import Photos
+import PhotosUI
 
 class EditProfileViewController: BaseViewController {
     struct Model {
@@ -19,6 +21,7 @@ class EditProfileViewController: BaseViewController {
     }(PhotoTableViewCell())
 
     private lazy var textFieldCell: TextFieldTableViewCell = {
+        $0.configure(delegate: self)
         $0.selectionStyle = .none
         return $0
     }(TextFieldTableViewCell())
@@ -81,14 +84,47 @@ extension EditProfileViewController: UITableViewDataSource {
 // MARK: - Actions
 extension EditProfileViewController {
     @objc func editButtonTapped() {
-        print(#function)
+        presentPhotoPicker()
     }
 }
-// MARK: -
+// MARK: - UITableViewDelegate
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             model.profileStatusHandler?()
         }
+    }
+}
+// MARK: - UITextFieldDelegate
+extension EditProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if var person = FirebaseClient.shared.currentPerson,
+           let status = textField.text {
+            person.status = status
+            FirebaseClient.shared.currentPerson = person
+        }
+        return true
+    }
+}
+
+extension EditProfileViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController,
+                didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard let result = results.first else { return }
+        result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
+            guard let image = reading as? UIImage, error == nil else { return }
+            DispatchQueue.main.async {
+                self.photoCell.configrure(with: image)
+            }
+        }
+    }
+
+    func presentPhotoPicker() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
     }
 }

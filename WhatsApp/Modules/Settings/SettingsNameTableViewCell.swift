@@ -22,7 +22,7 @@ class SettingsNameTableViewCell: BaseTableViewCell {
         return $0
     }(UILabel())
     
-    public func configure(with person: Person) {
+    public func configure(with person: LocalPerson) {
         let url = URL(string: "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=1800&t=st=1695795355~exp=1695795955~hmac=3a280c81162b0e108f5f469da1e810209d8868e84296bc5bdc6cce47a0175b13")
         photoImageView.kf.setImage(with: url)
         titleLabel.text = person.username

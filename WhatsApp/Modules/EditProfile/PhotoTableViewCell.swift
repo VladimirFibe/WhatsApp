@@ -31,6 +31,10 @@ class PhotoTableViewCell: BaseTableViewCell {
             for: .primaryActionTriggered
         )
     }
+
+    public func configrure(with image: UIImage?) {
+        photoImageView.image = image
+    }
 }
 // MARK: - Setup
 extension PhotoTableViewCell {

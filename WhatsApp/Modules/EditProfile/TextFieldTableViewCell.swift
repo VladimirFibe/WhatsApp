@@ -2,9 +2,19 @@ import UIKit
 
 class TextFieldTableViewCell: BaseTableViewCell {
     private let textField: UITextField = {
+        $0.clearButtonMode = .whileEditing
+        $0.returnKeyType = .done
         $0.placeholder = "Enter name"
         return $0
     }(UITextField())
+
+    var text: String {
+        textField.text ?? ""
+    }
+    
+    public func configure(delegate: UITextFieldDelegate) {
+        textField.delegate = delegate
+    }
 }
 // MARK: - Setup
 extension TextFieldTableViewCell {

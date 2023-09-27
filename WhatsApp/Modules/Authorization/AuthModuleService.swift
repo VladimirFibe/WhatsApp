@@ -19,8 +19,7 @@ extension FirebaseClient: AuthModuleServiceProtocol {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
         let person = try await fetchPerson(with: result.user.uid)
         if let person {
-            FirebaseClient.shared.currentPerson = person
-            print(person)
+            FirebaseClient.shared.currentPerson = LocalPerson(person: person)
         }
         return result.user.isEmailVerified
     }

@@ -8,9 +8,22 @@ final class FirebaseClient {
 
     func createPerson(with email: String, uid: String) throws {
         let person = Person(username: email, email: email, fullname: "")
+        try updatePerson(person)
+    }
+
+    func updatePerson(_ person: Person) throws {
+        guard let uid = person.id else { return }
         try reference(.persons)
             .document(uid)
             .setData(from: person)
+    }
+
+    func updateLocalPerson() throws {
+        guard let local = currentPerson else { return }
+        try reference(.persons)
+            .document(local.id)
+            .setData(from: local.person)
+
     }
 
     func fetchPerson(with id: String) async throws -> Person? {
@@ -29,13 +42,13 @@ final class FirebaseClient {
         case persons
     }
 
-    var currentPerson: Person? {
+    var currentPerson: LocalPerson? {
         get {
             if Auth.auth().currentUser != nil {
-                if let dictionary = UserDefaults.standard.data(forKey: "savedPerson") {
+                if let dictionary = UserDefaults.standard.data(forKey: "localPerson") {
                     do {
-                        let result = try JSONDecoder().decode(SavePerson.self, from: dictionary)
-                        return result.person
+                        let result = try JSONDecoder().decode(LocalPerson.self, from: dictionary)
+                        return result
                     } catch {
                         return nil
                     }
@@ -48,21 +61,21 @@ final class FirebaseClient {
         }
         set {
             if let person = newValue {
-                let savedPerson = SavePerson(person: person)
                 do {
-                    let data = try JSONEncoder().encode(savedPerson)
-                    UserDefaults.standard.set(data, forKey: "savedPerson")
+                    let data = try JSONEncoder().encode(person)
+                    UserDefaults.standard.set(data, forKey: "localPerson")
+                    try updateLocalPerson()
                 } catch {
                     print(error.localizedDescription)
                 }
             } else {
-                UserDefaults.standard.removeObject(forKey: "savedPerson")
+                UserDefaults.standard.removeObject(forKey: "localPerson")
             }
         }
     }
 }
 
-struct SavePerson: Codable {
+struct LocalPerson: Codable {
     var id = ""
     let username: String
     let email: String
@@ -83,7 +96,6 @@ struct SavePerson: Codable {
 
     var person: Person {
         Person(
-            id: id,
             username: username,
             email: email,
             pushId: pushId,
