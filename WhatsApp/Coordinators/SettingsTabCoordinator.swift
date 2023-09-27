@@ -33,14 +33,16 @@ extension SettingsTabCoordinator: Coordinator {
 
 // MARK: - Navigation
 extension SettingsTabCoordinator {
+
     func showInitial() {
+        weak var wSelf = self
         let module = moduleFactory.makeSettingsTabModule(
             output: output, 
             pushUnitHandler: {
-                print("Unit")
+                wSelf?.showEditProfile()
             },
             pushModuleHandler: {
-                print("Module")
+                wSelf?.showEditProfile()
             },
             modalModuleHandler: {
                 print("Present")
@@ -49,6 +51,19 @@ extension SettingsTabCoordinator {
                 print("handler")
             }
         )
+        router.pushModule(module)
+    }
+
+    func showEditProfile() {
+        weak var wSelf = self
+        let module = moduleFactory.makeEditProfileModule(profileStatusHandler: {
+            wSelf?.showProfileStatus()
+        })
+        router.pushModule(module)
+    }
+
+    func showProfileStatus() {
+        let module = moduleFactory.makeProfileStatusModule()
         router.pushModule(module)
     }
 }

@@ -8,13 +8,13 @@ struct SettingsRowModel {
 
 final class SettingsModuleViewController: BaseViewController {
     struct Model {
-        let pushUnitHandler: (() -> Void)?
-        let pushModuleHandler: (() -> Void)?
-        let closeUnitOrModuleHandler: (() -> Void)?
-        let popToRootHandler: (() -> Void)?
-        let modalModuleHandler: (() -> Void)?
-        let modalUnitHandler: (() -> Void)?
-        let closeModalHandler: (() -> Void)?
+        let pushUnitHandler: Callback?
+        let pushModuleHandler: Callback?
+        let closeUnitOrModuleHandler: Callback?
+        let popToRootHandler: Callback?
+        let modalModuleHandler: Callback?
+        let modalUnitHandler: Callback?
+        let closeModalHandler: Callback?
     }
     private weak var output: AuthorizationModuleOutput?
     private let model: Model
@@ -29,6 +29,16 @@ final class SettingsModuleViewController: BaseViewController {
         [.init(title: "Help", image: #imageLiteral(resourceName: "settingHelp.pdf")),
          .init(title: "Tell a Fiend", image: #imageLiteral(resourceName: "settingShare.pdf"))]
     ]
+
+    private let footerLabel: UILabel = {
+        $0.text = "WhatsApp from Facebook\n" +
+        "App version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+        $0.font = .systemFont(ofSize: 12)
+        $0.textColor = .secondaryLabel
+        return $0
+    }(UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 60)))
     private let tableview: UITableView = {
         $0.register(
             SettingsNameTableViewCell.self,
@@ -57,20 +67,22 @@ final class SettingsModuleViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showUserInfo()
+    }
 }
 // MARK: - Setup
 extension SettingsModuleViewController {
     override func setupViews() {
         view.addSubview(tableview)
         tableview.dataSource = self
+        tableview.delegate = self
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(logout))
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
-        label.text = "WhatsApp from Facebook"
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 12)
-        label.textColor = .secondaryLabel
-        tableview.tableFooterView = label
+
+        tableview.tableFooterView = footerLabel
     }
 
     override func setupConstraints() {
@@ -80,12 +92,12 @@ extension SettingsModuleViewController {
     @objc private func logout() {
         do {
             try Auth.auth().signOut()
+            FirebaseClient.shared.currentPerson = nil
             output?.moduleFinish()
         } catch {}
     }
 
     private func showUserInfo() {
-//        if let person = Person.c
     }
 }
 // MARK: -
@@ -122,5 +134,11 @@ extension SettingsModuleViewController: UITableViewDataSource {
             cell.accessoryType = .disclosureIndicator
             return cell
         }
+    }
+}
+// MARK: -
+extension SettingsModuleViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        model.pushModuleHandler?()
     }
 }

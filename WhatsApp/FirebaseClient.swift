@@ -55,6 +55,8 @@ final class FirebaseClient {
                 } catch {
                     print(error.localizedDescription)
                 }
+            } else {
+                UserDefaults.standard.removeObject(forKey: "savedPerson")
             }
         }
     }

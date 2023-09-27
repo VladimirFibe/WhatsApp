@@ -1,21 +1,6 @@
 import Foundation
 
-protocol ModuleFactoryProtocol: AnyObject {
-    func makeAuthModule(output: AuthorizationModuleOutput) -> Presentable
-    func makeTabModule(
-        pushUnitHandler: @escaping () -> Void,
-        pushModuleHandler: @escaping () -> Void,
-        modalModuleHandler: @escaping () -> Void,
-        modalUnitHandler: @escaping () -> Void
-    ) -> Presentable
-    func makeSettingsTabModule(
-        output: AuthorizationModuleOutput,
-        pushUnitHandler: @escaping () -> Void,
-        pushModuleHandler: @escaping () -> Void,
-        modalModuleHandler: @escaping () -> Void,
-        modalUnitHandler: @escaping () -> Void
-    ) -> Presentable
-}
+
 
 final class ModuleFactory: ModuleFactoryProtocol {
     static let shared = ModuleFactory()
@@ -68,5 +53,15 @@ final class ModuleFactory: ModuleFactoryProtocol {
                 closeModalHandler: nil
             )
         )
+    }
+
+    func makeEditProfileModule(profileStatusHandler: @escaping Callback) -> Presentable {
+        return EditProfileViewController(
+            model: .init(closeUnitHandler: nil, profileStatusHandler: profileStatusHandler))
+    }
+
+
+    func makeProfileStatusModule() -> Presentable {
+        return ProfileStatusViewController()
     }
 }

@@ -86,6 +86,12 @@
 		028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392282AC1851600299AA5 /* FirebaseClient.swift */; };
 		0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283922A2AC1858000299AA5 /* AuthModuleService.swift */; };
 		02D8ED562AC19AAF002658D8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8ED552AC19AAF002658D8 /* Person.swift */; };
+		02E1097E2AC4486600F7882A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1097D2AC4486600F7882A /* EditProfileViewController.swift */; };
+		02E109812AC44A6E00F7882A /* ModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */; };
+		02E109832AC44D9300F7882A /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */; };
+		02E109852AC4544A00F7882A /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */; };
+		02E109872AC4547600F7882A /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109862AC4547600F7882A /* StatusTableViewCell.swift */; };
+		02E1098B2AC45C8900F7882A /* ProfileStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 		02F8D6602AC1A23C00AF399D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02F8D65F2AC1A23C00AF399D /* FirebaseFirestoreSwift */; };
@@ -168,6 +174,12 @@
 		028392282AC1851600299AA5 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		0283922A2AC1858000299AA5 /* AuthModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleService.swift; sourceTree = "<group>"; };
 		02D8ED552AC19AAF002658D8 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		02E1097D2AC4486600F7882A /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		02E109862AC4547600F7882A /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusViewController.swift; sourceTree = "<group>"; };
 		02EC3B112AC08B81006ECA4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -358,6 +370,8 @@
 				021027872ABF46470017990B /* Authorization */,
 				020FC6EE2AC3E863008C37DF /* Prototype */,
 				020FC6ED2AC3E854008C37DF /* Settings */,
+				02E1097F2AC4486D00F7882A /* EditProfile */,
+				02E1098C2AC45C9100F7882A /* ProfileStatus */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -378,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				0210278B2ABF47F90017990B /* ModuleFactory.swift */,
+				02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */,
 				0210278D2ABF493C0017990B /* CoordinatorFactory.swift */,
 				0236D8802AC258DB006EF776 /* TransitionFactory.swift */,
 				0236D88F2AC25B31006EF776 /* TabFactory.swift */,
@@ -487,6 +502,25 @@
 				028392122AC181B500299AA5 /* ErrorView.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		02E1097F2AC4486D00F7882A /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				02E1097D2AC4486600F7882A /* EditProfileViewController.swift */,
+				02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */,
+				02E109862AC4547600F7882A /* StatusTableViewCell.swift */,
+				02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		02E1098C2AC45C9100F7882A /* ProfileStatus */ = {
+			isa = PBXGroup;
+			children = (
+				02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */,
+			);
+			path = ProfileStatus;
 			sourceTree = "<group>";
 		};
 		02F8D65D2AC1A1D000AF399D /* Models */ = {
@@ -600,6 +634,8 @@
 				028392182AC181B500299AA5 /* View+withLoading.swift in Sources */,
 				028392172AC181B500299AA5 /* View+bindLoading.swift in Sources */,
 				0236D87F2AC2588B006EF776 /* TabBarCoordinator.swift in Sources */,
+				02E1098B2AC45C8900F7882A /* ProfileStatusViewController.swift in Sources */,
+				02E109872AC4547600F7882A /* StatusTableViewCell.swift in Sources */,
 				0283921D2AC181B500299AA5 /* UIKitErrorView.swift in Sources */,
 				0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */,
 				021027822ABF45B80017990B /* Routable.swift in Sources */,
@@ -610,6 +646,7 @@
 				028392152AC181B500299AA5 /* UIViewController+bindLoading.swift in Sources */,
 				028392202AC181B500299AA5 /* DismissableErrorView.swift in Sources */,
 				021027912ABF4A2E0017990B /* SystemNavigationController.swift in Sources */,
+				02E109832AC44D9300F7882A /* PhotoTableViewCell.swift in Sources */,
 				0283921B2AC181B500299AA5 /* Error.swift in Sources */,
 				0283921A2AC181B500299AA5 /* ErrorViewModel.swift in Sources */,
 				0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */,
@@ -626,6 +663,7 @@
 				0210276F2ABF45B80017990B /* RestrictedUIHostingController.swift in Sources */,
 				021027832ABF45B80017990B /* Presentable.swift in Sources */,
 				021027722ABF45B80017990B /* BridgingCollectionViewCell.swift in Sources */,
+				02E1097E2AC4486600F7882A /* EditProfileViewController.swift in Sources */,
 				021027932ABF4CC20017990B /* AuthCoordinator.swift in Sources */,
 				0236D8782AC25445006EF776 /* Tab.swift in Sources */,
 				0236D8872AC25917006EF776 /* DismissTransition.swift in Sources */,
@@ -645,6 +683,7 @@
 				0283921F2AC181B500299AA5 /* View+withError.swift in Sources */,
 				0210277B2ABF45B80017990B /* BaseCoordinator.swift in Sources */,
 				021027842ABF45B80017990B /* Transition.swift in Sources */,
+				02E109812AC44A6E00F7882A /* ModuleFactoryProtocol.swift in Sources */,
 				021027892ABF46620017990B /* AuthorizationViewController.swift in Sources */,
 				028392272AC182FE00299AA5 /* AuthUseCase.swift in Sources */,
 				0210277F2ABF45B80017990B /* ModalTransitionStyle.swift in Sources */,
@@ -662,6 +701,7 @@
 				028391F62AC1446D00299AA5 /* BaseView.swift in Sources */,
 				028392252AC181EE00299AA5 /* AuthStore.swift in Sources */,
 				028392162AC181B500299AA5 /* LoadingViewModel.swift in Sources */,
+				02E109852AC4544A00F7882A /* TextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
