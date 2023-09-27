@@ -77,8 +77,8 @@ final class FirebaseClient {
 
 struct LocalPerson: Codable {
     var id = ""
-    let username: String
-    let email: String
+    var username: String
+    var email: String
     var pushId = ""
     var avatarLink = ""
     var fullname: String

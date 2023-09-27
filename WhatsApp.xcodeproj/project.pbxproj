@@ -92,6 +92,7 @@
 		02E109852AC4544A00F7882A /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */; };
 		02E109872AC4547600F7882A /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109862AC4547600F7882A /* StatusTableViewCell.swift */; };
 		02E1098B2AC45C8900F7882A /* ProfileStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */; };
+		02E1098F2AC48A8E00F7882A /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1098E2AC48A8E00F7882A /* FileStorage.swift */; };
 		02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02EC3B0D2AC08B3E006ECA4C /* SnapKit */; };
 		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
 		02F8D6602AC1A23C00AF399D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02F8D65F2AC1A23C00AF399D /* FirebaseFirestoreSwift */; };
@@ -180,6 +181,7 @@
 		02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		02E109862AC4547600F7882A /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusViewController.swift; sourceTree = "<group>"; };
+		02E1098E2AC48A8E00F7882A /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		02EC3B112AC08B81006ECA4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,7 +248,7 @@
 				021027502ABF45B80017990B /* Base */,
 				0210274F2ABF452C0017990B /* Supporting Files */,
 				0210274E2ABF439D0017990B /* App */,
-				028392282AC1851600299AA5 /* FirebaseClient.swift */,
+				02E1098D2AC48A6900F7882A /* FirebaseHelpers */,
 				02F8D65D2AC1A1D000AF399D /* Models */,
 			);
 			path = WhatsApp;
@@ -523,6 +525,15 @@
 			path = ProfileStatus;
 			sourceTree = "<group>";
 		};
+		02E1098D2AC48A6900F7882A /* FirebaseHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				028392282AC1851600299AA5 /* FirebaseClient.swift */,
+				02E1098E2AC48A8E00F7882A /* FileStorage.swift */,
+			);
+			path = FirebaseHelpers;
+			sourceTree = "<group>";
+		};
 		02F8D65D2AC1A1D000AF399D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,6 +664,7 @@
 				0236D8882AC25917006EF776 /* CustomTransition.swift in Sources */,
 				02D8ED562AC19AAF002658D8 /* Person.swift in Sources */,
 				021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */,
+				02E1098F2AC48A8E00F7882A /* FileStorage.swift in Sources */,
 				028392232AC181C800299AA5 /* WithBackground.swift in Sources */,
 				0210277A2ABF45B80017990B /* ApplicationRouter.swift in Sources */,
 				021027792ABF45B80017990B /* AnyCoordinator.swift in Sources */,

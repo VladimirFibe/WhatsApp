@@ -99,14 +99,16 @@ extension EditProfileViewController: UITableViewDelegate {
 extension EditProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if var person = FirebaseClient.shared.currentPerson,
-           let status = textField.text {
-            person.status = status
+           let username = textField.text {
+            person.username = username
             FirebaseClient.shared.currentPerson = person
+            textField.resignFirstResponder()
+            return false
         }
         return true
     }
 }
-
+// MARK: - PHPickerViewControllerDelegate
 extension EditProfileViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController,
                 didFinishPicking results: [PHPickerResult]) {
