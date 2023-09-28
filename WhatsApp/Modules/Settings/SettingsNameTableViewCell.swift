@@ -23,7 +23,7 @@ class SettingsNameTableViewCell: BaseTableViewCell {
     }(UILabel())
     
     public func configure(with person: LocalPerson) {
-        let url = URL(string: "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=1800&t=st=1695795355~exp=1695795955~hmac=3a280c81162b0e108f5f469da1e810209d8868e84296bc5bdc6cce47a0175b13")
+        let url = URL(string: "https://firebasestorage.googleapis.com:443/v0/b/whatsappclone-78758.appspot.com/o/profile%2FF24EBA1C-9B6A-4095-B528-D34236CB9178?alt=media&token=835b8686-9adc-4c38-91e7-ffdc8f0284b9")
         photoImageView.kf.setImage(with: url)
         titleLabel.text = person.username
         subtitleLabel.text = person.status

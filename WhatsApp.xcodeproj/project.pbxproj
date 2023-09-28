@@ -57,6 +57,9 @@
 		0236D8902AC25B31006EF776 /* TabFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88F2AC25B31006EF776 /* TabFactory.swift */; };
 		02372F092AC33C3600D04E2E /* SettingsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */; };
 		02372F0B2AC33C8400D04E2E /* SettingsModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */; };
+		027672222AC5C8A300595B56 /* EditProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027672212AC5C8A300595B56 /* EditProfileStore.swift */; };
+		027672242AC5C95B00595B56 /* EditProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027672232AC5C95B00595B56 /* EditProfileUseCase.swift */; };
+		027672262AC5C9F800595B56 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027672252AC5C9F800595B56 /* EditProfileService.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 028391CB2AC13D3800299AA5 /* FirebaseAuth */; };
 		028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 028391D72AC13D3800299AA5 /* FirebaseFirestore */; };
@@ -150,6 +153,9 @@
 		0236D88F2AC25B31006EF776 /* TabFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFactory.swift; sourceTree = "<group>"; };
 		02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabCoordinator.swift; sourceTree = "<group>"; };
 		02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleViewController.swift; sourceTree = "<group>"; };
+		027672212AC5C8A300595B56 /* EditProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileStore.swift; sourceTree = "<group>"; };
+		027672232AC5C95B00595B56 /* EditProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUseCase.swift; sourceTree = "<group>"; };
+		027672252AC5C9F800595B56 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		028391F72AC1451C00299AA5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -510,6 +516,9 @@
 			isa = PBXGroup;
 			children = (
 				02E1097D2AC4486600F7882A /* EditProfileViewController.swift */,
+				027672212AC5C8A300595B56 /* EditProfileStore.swift */,
+				027672232AC5C95B00595B56 /* EditProfileUseCase.swift */,
+				027672252AC5C9F800595B56 /* EditProfileService.swift */,
 				02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */,
 				02E109862AC4547600F7882A /* StatusTableViewCell.swift */,
 				02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */,
@@ -662,6 +671,7 @@
 				0283921A2AC181B500299AA5 /* ErrorViewModel.swift in Sources */,
 				0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */,
 				0236D8882AC25917006EF776 /* CustomTransition.swift in Sources */,
+				027672262AC5C9F800595B56 /* EditProfileService.swift in Sources */,
 				02D8ED562AC19AAF002658D8 /* Person.swift in Sources */,
 				021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */,
 				02E1098F2AC48A8E00F7882A /* FileStorage.swift in Sources */,
@@ -672,6 +682,7 @@
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 				0236D88E2AC25A50006EF776 /* PrototypeModuleViewController.swift in Sources */,
 				021027852ABF45B80017990B /* Coordinator.swift in Sources */,
+				027672222AC5C8A300595B56 /* EditProfileStore.swift in Sources */,
 				0210276F2ABF45B80017990B /* RestrictedUIHostingController.swift in Sources */,
 				021027832ABF45B80017990B /* Presentable.swift in Sources */,
 				021027722ABF45B80017990B /* BridgingCollectionViewCell.swift in Sources */,
@@ -702,6 +713,7 @@
 				0210277E2ABF45B80017990B /* ModalPresentationStyle.swift in Sources */,
 				028391FD2AC1819900299AA5 /* Store.swift in Sources */,
 				028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */,
+				027672242AC5C95B00595B56 /* EditProfileUseCase.swift in Sources */,
 				021027812ABF45B80017990B /* LifeCycleListener.swift in Sources */,
 				0236D88A2AC25917006EF776 /* CrossDissolveTransition.swift in Sources */,
 				021027752ABF45B80017990B /* UIView+Extensions.swift in Sources */,

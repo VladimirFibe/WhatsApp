@@ -119,6 +119,12 @@ extension EditProfileViewController: PHPickerViewControllerDelegate {
             DispatchQueue.main.async {
                 self.photoCell.configrure(with: image)
             }
+            Task {
+                do {
+                    let url = try await FileStorage.uploadImage(image)
+                    print(url ?? "")
+                } catch {}
+            }
         }
     }
 
