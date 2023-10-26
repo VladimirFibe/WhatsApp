@@ -88,6 +88,8 @@
 		028392272AC182FE00299AA5 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392262AC182FE00299AA5 /* AuthUseCase.swift */; };
 		028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392282AC1851600299AA5 /* FirebaseClient.swift */; };
 		0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283922A2AC1858000299AA5 /* AuthModuleService.swift */; };
+		02A2708D2ACD7B9C0028674A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2708C2ACD7B9C0028674A /* Realm */; };
+		02A2708F2ACD7B9C0028674A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2708E2ACD7B9C0028674A /* RealmSwift */; };
 		02D8ED562AC19AAF002658D8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8ED552AC19AAF002658D8 /* Person.swift */; };
 		02E1097E2AC4486600F7882A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1097D2AC4486600F7882A /* EditProfileViewController.swift */; };
 		02E109812AC44A6E00F7882A /* ModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */; };
@@ -199,9 +201,11 @@
 				028391F22AC13D3800299AA5 /* FirebaseStorage in Frameworks */,
 				02EC3B0E2AC08B3E006ECA4C /* SnapKit in Frameworks */,
 				020FC6F72AC3FDDF008C37DF /* Kingfisher in Frameworks */,
+				02A2708F2ACD7B9C0028674A /* RealmSwift in Frameworks */,
 				028391FB2AC1789C00299AA5 /* ProgressHUD in Frameworks */,
 				028391CC2AC13D3800299AA5 /* FirebaseAuth in Frameworks */,
 				028391D82AC13D3800299AA5 /* FirebaseFirestore in Frameworks */,
+				02A2708D2ACD7B9C0028674A /* Realm in Frameworks */,
 				02F8D6602AC1A23C00AF399D /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +586,8 @@
 				028391FA2AC1789C00299AA5 /* ProgressHUD */,
 				02F8D65F2AC1A23C00AF399D /* FirebaseFirestoreSwift */,
 				020FC6F62AC3FDDF008C37DF /* Kingfisher */,
+				02A2708C2ACD7B9C0028674A /* Realm */,
+				02A2708E2ACD7B9C0028674A /* RealmSwift */,
 			);
 			productName = WhatsApp;
 			productReference = 021027372ABF43730017990B /* WhatsApp.app */;
@@ -616,6 +622,7 @@
 				028391BE2AC13D3800299AA5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				028391F92AC1789C00299AA5 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 				020FC6F52AC3FDDF008C37DF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				02A2708B2ACD7B9C0028674A /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 021027382ABF43730017990B /* Products */;
 			projectDirPath = "";
@@ -968,6 +975,14 @@
 				minimumVersion = 13.7.2;
 			};
 		};
+		02A2708B2ACD7B9C0028674A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		02EC3B0C2AC08B3E006ECA4C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1003,6 +1018,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 028391F92AC1789C00299AA5 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
 			productName = ProgressHUD;
+		};
+		02A2708C2ACD7B9C0028674A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A2708B2ACD7B9C0028674A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		02A2708E2ACD7B9C0028674A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A2708B2ACD7B9C0028674A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		02EC3B0D2AC08B3E006ECA4C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

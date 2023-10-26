@@ -122,7 +122,11 @@ extension EditProfileViewController: PHPickerViewControllerDelegate {
             Task {
                 do {
                     let url = try await FileStorage.uploadImage(image)
-                    print(url ?? "")
+                    if var person = FirebaseClient.shared.currentPerson,
+                       let url {
+                        person.avatarLink = url
+                        FirebaseClient.shared.currentPerson = person
+                    }
                 } catch {}
             }
         }
