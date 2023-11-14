@@ -7,158 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020FC6F02AC3EAB2008C37DF /* SettingsNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020FC6EF2AC3EAB2008C37DF /* SettingsNameTableViewCell.swift */; };
-		020FC6F22AC3EAC9008C37DF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020FC6F12AC3EAC9008C37DF /* BaseTableViewCell.swift */; };
-		020FC6F42AC3EBB5008C37DF /* SettingRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020FC6F32AC3EBB5008C37DF /* SettingRowTableViewCell.swift */; };
 		0210273B2ABF43730017990B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210273A2ABF43730017990B /* AppDelegate.swift */; };
 		021027442ABF43740017990B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021027432ABF43740017990B /* Assets.xcassets */; };
 		021027472ABF43740017990B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021027452ABF43740017990B /* LaunchScreen.storyboard */; };
-		0210276F2ABF45B80017990B /* RestrictedUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027522ABF45B80017990B /* RestrictedUIHostingController.swift */; };
-		021027702ABF45B80017990B /* BridgedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027532ABF45B80017990B /* BridgedView.swift */; };
-		021027712ABF45B80017990B /* BridgingRestrictedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027542ABF45B80017990B /* BridgingRestrictedTableViewCell.swift */; };
-		021027722ABF45B80017990B /* BridgingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027552ABF45B80017990B /* BridgingCollectionViewCell.swift */; };
-		021027732ABF45B80017990B /* BridgingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027562ABF45B80017990B /* BridgingCollectionReusableView.swift */; };
-		021027742ABF45B80017990B /* InlineConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027582ABF45B80017990B /* InlineConfigurable.swift */; };
-		021027752ABF45B80017990B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210275A2ABF45B80017990B /* UIView+Extensions.swift */; };
-		021027762ABF45B80017990B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210275B2ABF45B80017990B /* UIViewController+Extension.swift */; };
-		021027782ABF45B80017990B /* DefaultLifeCycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210275F2ABF45B80017990B /* DefaultLifeCycleListener.swift */; };
-		021027792ABF45B80017990B /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027602ABF45B80017990B /* AnyCoordinator.swift */; };
-		0210277A2ABF45B80017990B /* ApplicationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027612ABF45B80017990B /* ApplicationRouter.swift */; };
-		0210277B2ABF45B80017990B /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027622ABF45B80017990B /* BaseCoordinator.swift */; };
-		0210277C2ABF45B80017990B /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027642ABF45B80017990B /* UINavigationController+.swift */; };
-		0210277D2ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027652ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift */; };
-		0210277E2ABF45B80017990B /* ModalPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027662ABF45B80017990B /* ModalPresentationStyle.swift */; };
-		0210277F2ABF45B80017990B /* ModalTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027672ABF45B80017990B /* ModalTransitionStyle.swift */; };
-		021027802ABF45B80017990B /* SystemNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027692ABF45B80017990B /* SystemNavigation.swift */; };
-		021027812ABF45B80017990B /* LifeCycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210276A2ABF45B80017990B /* LifeCycleListener.swift */; };
-		021027822ABF45B80017990B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210276B2ABF45B80017990B /* Routable.swift */; };
-		021027832ABF45B80017990B /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210276C2ABF45B80017990B /* Presentable.swift */; };
-		021027842ABF45B80017990B /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210276D2ABF45B80017990B /* Transition.swift */; };
-		021027852ABF45B80017990B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210276E2ABF45B80017990B /* Coordinator.swift */; };
-		021027892ABF46620017990B /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027882ABF46620017990B /* AuthorizationViewController.swift */; };
-		0210278C2ABF47F90017990B /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210278B2ABF47F90017990B /* ModuleFactory.swift */; };
-		0210278E2ABF493C0017990B /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210278D2ABF493C0017990B /* CoordinatorFactory.swift */; };
-		021027912ABF4A2E0017990B /* SystemNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027902ABF4A2E0017990B /* SystemNavigationController.swift */; };
-		021027932ABF4CC20017990B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027922ABF4CC20017990B /* AuthCoordinator.swift */; };
-		021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021027942ABF50320017990B /* ApplicationCoordinator.swift */; };
-		0236D8782AC25445006EF776 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8772AC25445006EF776 /* Tab.swift */; };
-		0236D87B2AC2564F006EF776 /* SystemTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D87A2AC2564F006EF776 /* SystemTabBarController.swift */; };
-		0236D87D2AC256C5006EF776 /* TabBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D87C2AC256C5006EF776 /* TabBarManager.swift */; };
-		0236D87F2AC2588B006EF776 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D87E2AC2588B006EF776 /* TabBarCoordinator.swift */; };
-		0236D8812AC258DB006EF776 /* TransitionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8802AC258DB006EF776 /* TransitionFactory.swift */; };
-		0236D8872AC25917006EF776 /* DismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8832AC25917006EF776 /* DismissTransition.swift */; };
-		0236D8882AC25917006EF776 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8842AC25917006EF776 /* CustomTransition.swift */; };
-		0236D8892AC25917006EF776 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8852AC25917006EF776 /* FadeTransition.swift */; };
-		0236D88A2AC25917006EF776 /* CrossDissolveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D8862AC25917006EF776 /* CrossDissolveTransition.swift */; };
-		0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */; };
-		0236D88E2AC25A50006EF776 /* PrototypeModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */; };
-		0236D8902AC25B31006EF776 /* TabFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236D88F2AC25B31006EF776 /* TabFactory.swift */; };
-		02372F092AC33C3600D04E2E /* SettingsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */; };
-		02372F0B2AC33C8400D04E2E /* SettingsModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */; };
-		027672222AC5C8A300595B56 /* EditProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027672212AC5C8A300595B56 /* EditProfileStore.swift */; };
-		027672242AC5C95B00595B56 /* EditProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027672232AC5C95B00595B56 /* EditProfileUseCase.swift */; };
-		027672262AC5C9F800595B56 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027672252AC5C9F800595B56 /* EditProfileService.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
-		028391F62AC1446D00299AA5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F52AC1446D00299AA5 /* BaseView.swift */; };
-		028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391F72AC1451C00299AA5 /* AuthTextField.swift */; };
-		028391FD2AC1819900299AA5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028391FC2AC1819900299AA5 /* Store.swift */; };
-		028392252AC181EE00299AA5 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392242AC181EE00299AA5 /* AuthStore.swift */; };
-		028392272AC182FE00299AA5 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392262AC182FE00299AA5 /* AuthUseCase.swift */; };
-		028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028392282AC1851600299AA5 /* FirebaseClient.swift */; };
-		0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283922A2AC1858000299AA5 /* AuthModuleService.swift */; };
-		02D8ED562AC19AAF002658D8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8ED552AC19AAF002658D8 /* Person.swift */; };
-		02E1097E2AC4486600F7882A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1097D2AC4486600F7882A /* EditProfileViewController.swift */; };
-		02E109812AC44A6E00F7882A /* ModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */; };
-		02E109832AC44D9300F7882A /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */; };
-		02E109852AC4544A00F7882A /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */; };
-		02E109872AC4547600F7882A /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E109862AC4547600F7882A /* StatusTableViewCell.swift */; };
-		02E1098B2AC45C8900F7882A /* ProfileStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */; };
-		02E1098F2AC48A8E00F7882A /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1098E2AC48A8E00F7882A /* FileStorage.swift */; };
-		02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC3B112AC08B81006ECA4C /* BaseViewController.swift */; };
-		02F6A0C72AEA7A3A00D06EA3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0C62AEA7A3A00D06EA3 /* SnapKit */; };
-		02F6A0CA2AEA7A5500D06EA3 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0C92AEA7A5500D06EA3 /* ProgressHUD */; };
-		02F6A0CD2AEA7A6500D06EA3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0CC2AEA7A6500D06EA3 /* Kingfisher */; };
-		02F6A0D02AEA7AF800D06EA3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0CF2AEA7AF800D06EA3 /* Realm */; };
-		02F6A0D22AEA7AF800D06EA3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0D12AEA7AF800D06EA3 /* RealmSwift */; };
-		02F6A0D52AEA7CAE00D06EA3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0D42AEA7CAE00D06EA3 /* FirebaseAnalytics */; };
-		02F6A0D92AEA7CAE00D06EA3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0D82AEA7CAE00D06EA3 /* FirebaseAnalyticsSwift */; };
-		02F6A0DF2AEA7D0D00D06EA3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0DE2AEA7D0D00D06EA3 /* FirebaseAuth */; };
-		02F6A0E12AEA7D1800D06EA3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0E02AEA7D1800D06EA3 /* FirebaseFirestore */; };
-		02F6A0E32AEA7D2600D06EA3 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0E22AEA7D2600D06EA3 /* FirebaseFirestoreSwift */; };
-		02F6A0E52AEA7D3E00D06EA3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 02F6A0E42AEA7D3E00D06EA3 /* FirebaseStorage */; };
+		02A86BD32B03A03D008C159F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD22B03A03D008C159F /* Coordinator.swift */; };
+		02A86BD52B03A079008C159F /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD42B03A079008C159F /* Transition.swift */; };
+		02A86BD72B03A0B2008C159F /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD62B03A0B2008C159F /* Presentable.swift */; };
+		02A86BD92B03A111008C159F /* LifeCycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD82B03A111008C159F /* LifeCycleListener.swift */; };
+		02A86BDB2B03A255008C159F /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BDA2B03A255008C159F /* Routable.swift */; };
+		02A86BDD2B03A27E008C159F /* SystemNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BDC2B03A27E008C159F /* SystemNavigation.swift */; };
+		02A86BE02B03A2C3008C159F /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BDF2B03A2C3008C159F /* AnyCoordinator.swift */; };
+		02A86BE22B03A2DD008C159F /* ApplicationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE12B03A2DD008C159F /* ApplicationRouter.swift */; };
+		02A86BE42B03A2FE008C159F /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE32B03A2FE008C159F /* BaseCoordinator.swift */; };
+		02A86BE62B03A341008C159F /* DefaultLifeCycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE52B03A341008C159F /* DefaultLifeCycleListener.swift */; };
+		02A86BE92B03A368008C159F /* ModalPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE82B03A368008C159F /* ModalPresentationStyle.swift */; };
+		02A86BEB2B03A3DC008C159F /* ModalTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BEA2B03A3DC008C159F /* ModalTransitionStyle.swift */; };
+		02A86BEF2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BEE2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift */; };
+		02A86BF12B03A60D008C159F /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BF02B03A60D008C159F /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		020FC6EF2AC3EAB2008C37DF /* SettingsNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameTableViewCell.swift; sourceTree = "<group>"; };
-		020FC6F12AC3EAC9008C37DF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		020FC6F32AC3EBB5008C37DF /* SettingRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowTableViewCell.swift; sourceTree = "<group>"; };
 		021027372ABF43730017990B /* WhatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0210273A2ABF43730017990B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		021027432ABF43740017990B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		021027462ABF43740017990B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		021027482ABF43740017990B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		021027522ABF45B80017990B /* RestrictedUIHostingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictedUIHostingController.swift; sourceTree = "<group>"; };
-		021027532ABF45B80017990B /* BridgedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgedView.swift; sourceTree = "<group>"; };
-		021027542ABF45B80017990B /* BridgingRestrictedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingRestrictedTableViewCell.swift; sourceTree = "<group>"; };
-		021027552ABF45B80017990B /* BridgingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingCollectionViewCell.swift; sourceTree = "<group>"; };
-		021027562ABF45B80017990B /* BridgingCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingCollectionReusableView.swift; sourceTree = "<group>"; };
-		021027582ABF45B80017990B /* InlineConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineConfigurable.swift; sourceTree = "<group>"; };
-		0210275A2ABF45B80017990B /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		0210275B2ABF45B80017990B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		0210275F2ABF45B80017990B /* DefaultLifeCycleListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLifeCycleListener.swift; sourceTree = "<group>"; };
-		021027602ABF45B80017990B /* AnyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
-		021027612ABF45B80017990B /* ApplicationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationRouter.swift; sourceTree = "<group>"; };
-		021027622ABF45B80017990B /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
-		021027642ABF45B80017990B /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
-		021027652ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticCoordinatorConfiguration.swift; sourceTree = "<group>"; };
-		021027662ABF45B80017990B /* ModalPresentationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentationStyle.swift; sourceTree = "<group>"; };
-		021027672ABF45B80017990B /* ModalTransitionStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransitionStyle.swift; sourceTree = "<group>"; };
-		021027692ABF45B80017990B /* SystemNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemNavigation.swift; sourceTree = "<group>"; };
-		0210276A2ABF45B80017990B /* LifeCycleListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCycleListener.swift; sourceTree = "<group>"; };
-		0210276B2ABF45B80017990B /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
-		0210276C2ABF45B80017990B /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
-		0210276D2ABF45B80017990B /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
-		0210276E2ABF45B80017990B /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		021027882ABF46620017990B /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		0210278B2ABF47F90017990B /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
-		0210278D2ABF493C0017990B /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
-		021027902ABF4A2E0017990B /* SystemNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemNavigationController.swift; sourceTree = "<group>"; };
-		021027922ABF4CC20017990B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		021027942ABF50320017990B /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
-		0236D8772AC25445006EF776 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		0236D87A2AC2564F006EF776 /* SystemTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTabBarController.swift; sourceTree = "<group>"; };
-		0236D87C2AC256C5006EF776 /* TabBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarManager.swift; sourceTree = "<group>"; };
-		0236D87E2AC2588B006EF776 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
-		0236D8802AC258DB006EF776 /* TransitionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionFactory.swift; sourceTree = "<group>"; };
-		0236D8832AC25917006EF776 /* DismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissTransition.swift; sourceTree = "<group>"; };
-		0236D8842AC25917006EF776 /* CustomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
-		0236D8852AC25917006EF776 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
-		0236D8862AC25917006EF776 /* CrossDissolveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossDissolveTransition.swift; sourceTree = "<group>"; };
-		0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeTabCoordinator.swift; sourceTree = "<group>"; };
-		0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeModuleViewController.swift; sourceTree = "<group>"; };
-		0236D88F2AC25B31006EF776 /* TabFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFactory.swift; sourceTree = "<group>"; };
-		02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabCoordinator.swift; sourceTree = "<group>"; };
-		02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleViewController.swift; sourceTree = "<group>"; };
-		027672212AC5C8A300595B56 /* EditProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileStore.swift; sourceTree = "<group>"; };
-		027672232AC5C95B00595B56 /* EditProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUseCase.swift; sourceTree = "<group>"; };
-		027672252AC5C9F800595B56 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		028391F52AC1446D00299AA5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		028391F72AC1451C00299AA5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
-		028391FC2AC1819900299AA5 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		028392242AC181EE00299AA5 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
-		028392262AC182FE00299AA5 /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
-		028392282AC1851600299AA5 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
-		0283922A2AC1858000299AA5 /* AuthModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleService.swift; sourceTree = "<group>"; };
-		02D8ED552AC19AAF002658D8 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		02E1097D2AC4486600F7882A /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactoryProtocol.swift; sourceTree = "<group>"; };
-		02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
-		02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
-		02E109862AC4547600F7882A /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
-		02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusViewController.swift; sourceTree = "<group>"; };
-		02E1098E2AC48A8E00F7882A /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
-		02EC3B112AC08B81006ECA4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		02A86BD22B03A03D008C159F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		02A86BD42B03A079008C159F /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		02A86BD62B03A0B2008C159F /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		02A86BD82B03A111008C159F /* LifeCycleListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleListener.swift; sourceTree = "<group>"; };
+		02A86BDA2B03A255008C159F /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		02A86BDC2B03A27E008C159F /* SystemNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNavigation.swift; sourceTree = "<group>"; };
+		02A86BDF2B03A2C3008C159F /* AnyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
+		02A86BE12B03A2DD008C159F /* ApplicationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationRouter.swift; sourceTree = "<group>"; };
+		02A86BE32B03A2FE008C159F /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		02A86BE52B03A341008C159F /* DefaultLifeCycleListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLifeCycleListener.swift; sourceTree = "<group>"; };
+		02A86BE82B03A368008C159F /* ModalPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationStyle.swift; sourceTree = "<group>"; };
+		02A86BEA2B03A3DC008C159F /* ModalTransitionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionStyle.swift; sourceTree = "<group>"; };
+		02A86BEE2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCoordinatorConfiguration.swift; sourceTree = "<group>"; };
+		02A86BF02B03A60D008C159F /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,41 +55,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02F6A0CD2AEA7A6500D06EA3 /* Kingfisher in Frameworks */,
-				02F6A0C72AEA7A3A00D06EA3 /* SnapKit in Frameworks */,
-				02F6A0D52AEA7CAE00D06EA3 /* FirebaseAnalytics in Frameworks */,
-				02F6A0D92AEA7CAE00D06EA3 /* FirebaseAnalyticsSwift in Frameworks */,
-				02F6A0D02AEA7AF800D06EA3 /* Realm in Frameworks */,
-				02F6A0E32AEA7D2600D06EA3 /* FirebaseFirestoreSwift in Frameworks */,
-				02F6A0E12AEA7D1800D06EA3 /* FirebaseFirestore in Frameworks */,
-				02F6A0D22AEA7AF800D06EA3 /* RealmSwift in Frameworks */,
-				02F6A0E52AEA7D3E00D06EA3 /* FirebaseStorage in Frameworks */,
-				02F6A0CA2AEA7A5500D06EA3 /* ProgressHUD in Frameworks */,
-				02F6A0DF2AEA7D0D00D06EA3 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		020FC6ED2AC3E854008C37DF /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				02372F0A2AC33C8400D04E2E /* SettingsModuleViewController.swift */,
-				020FC6EF2AC3EAB2008C37DF /* SettingsNameTableViewCell.swift */,
-				020FC6F32AC3EBB5008C37DF /* SettingRowTableViewCell.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		020FC6EE2AC3E863008C37DF /* Prototype */ = {
-			isa = PBXGroup;
-			children = (
-				0236D88D2AC25A50006EF776 /* PrototypeModuleViewController.swift */,
-			);
-			path = Prototype;
-			sourceTree = "<group>";
-		};
 		0210272E2ABF43730017990B = {
 			isa = PBXGroup;
 			children = (
@@ -221,15 +81,9 @@
 		021027392ABF43730017990B /* WhatsApp */ = {
 			isa = PBXGroup;
 			children = (
-				0236D8822AC25917006EF776 /* UserTransition */,
-				0210278F2ABF4A1E0017990B /* Coordinators */,
-				0210278A2ABF47D70017990B /* Factories */,
-				021027862ABF46410017990B /* Modules */,
-				021027502ABF45B80017990B /* Base */,
+				02A86BCF2B039FE4008C159F /* Base */,
 				0210274F2ABF452C0017990B /* Supporting Files */,
 				0210274E2ABF439D0017990B /* App */,
-				02E1098D2AC48A6900F7882A /* FirebaseHelpers */,
-				02F8D65D2AC1A1D000AF399D /* Models */,
 			);
 			path = WhatsApp;
 			sourceTree = "<group>";
@@ -253,211 +107,57 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		021027502ABF45B80017990B /* Base */ = {
+		02A86BCF2B039FE4008C159F /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				021027512ABF45B80017990B /* Bridge */,
-				021027572ABF45B80017990B /* Utilties */,
-				021027592ABF45B80017990B /* Extensions */,
-				0210275D2ABF45B80017990B /* Factory */,
-				02EC3B112AC08B81006ECA4C /* BaseViewController.swift */,
-				028391FC2AC1819900299AA5 /* Store.swift */,
-				028391F52AC1446D00299AA5 /* BaseView.swift */,
-				020FC6F12AC3EAC9008C37DF /* BaseTableViewCell.swift */,
+				02A86BD02B039FEB008C159F /* AutomaticCoordinator */,
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		021027512ABF45B80017990B /* Bridge */ = {
+		02A86BD02B039FEB008C159F /* AutomaticCoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				021027522ABF45B80017990B /* RestrictedUIHostingController.swift */,
-				021027532ABF45B80017990B /* BridgedView.swift */,
-				021027542ABF45B80017990B /* BridgingRestrictedTableViewCell.swift */,
-				021027552ABF45B80017990B /* BridgingCollectionViewCell.swift */,
-				021027562ABF45B80017990B /* BridgingCollectionReusableView.swift */,
+				02A86BE72B03A362008C159F /* Common */,
+				02A86BDE2B03A2B1008C159F /* Core */,
+				02A86BD12B03A022008C159F /* Protocols */,
 			);
-			path = Bridge;
+			path = AutomaticCoordinator;
 			sourceTree = "<group>";
 		};
-		021027572ABF45B80017990B /* Utilties */ = {
+		02A86BD12B03A022008C159F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				021027582ABF45B80017990B /* InlineConfigurable.swift */,
-			);
-			path = Utilties;
-			sourceTree = "<group>";
-		};
-		021027592ABF45B80017990B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				0210275A2ABF45B80017990B /* UIView+Extensions.swift */,
-				0210275B2ABF45B80017990B /* UIViewController+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		0210275D2ABF45B80017990B /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				0210275E2ABF45B80017990B /* Core */,
-				021027632ABF45B80017990B /* Common */,
-				021027682ABF45B80017990B /* Protocols */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
-		0210275E2ABF45B80017990B /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				0210275F2ABF45B80017990B /* DefaultLifeCycleListener.swift */,
-				021027602ABF45B80017990B /* AnyCoordinator.swift */,
-				021027612ABF45B80017990B /* ApplicationRouter.swift */,
-				021027622ABF45B80017990B /* BaseCoordinator.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		021027632ABF45B80017990B /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				021027642ABF45B80017990B /* UINavigationController+.swift */,
-				021027652ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift */,
-				021027662ABF45B80017990B /* ModalPresentationStyle.swift */,
-				021027672ABF45B80017990B /* ModalTransitionStyle.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		021027682ABF45B80017990B /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				021027692ABF45B80017990B /* SystemNavigation.swift */,
-				0210276A2ABF45B80017990B /* LifeCycleListener.swift */,
-				0210276B2ABF45B80017990B /* Routable.swift */,
-				0210276C2ABF45B80017990B /* Presentable.swift */,
-				0210276D2ABF45B80017990B /* Transition.swift */,
-				0210276E2ABF45B80017990B /* Coordinator.swift */,
+				02A86BD22B03A03D008C159F /* Coordinator.swift */,
+				02A86BD42B03A079008C159F /* Transition.swift */,
+				02A86BD62B03A0B2008C159F /* Presentable.swift */,
+				02A86BD82B03A111008C159F /* LifeCycleListener.swift */,
+				02A86BDA2B03A255008C159F /* Routable.swift */,
+				02A86BDC2B03A27E008C159F /* SystemNavigation.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		021027862ABF46410017990B /* Modules */ = {
+		02A86BDE2B03A2B1008C159F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				021027872ABF46470017990B /* Authorization */,
-				020FC6EE2AC3E863008C37DF /* Prototype */,
-				020FC6ED2AC3E854008C37DF /* Settings */,
-				02E1097F2AC4486D00F7882A /* EditProfile */,
-				02E1098C2AC45C9100F7882A /* ProfileStatus */,
+				02A86BDF2B03A2C3008C159F /* AnyCoordinator.swift */,
+				02A86BE12B03A2DD008C159F /* ApplicationRouter.swift */,
+				02A86BE32B03A2FE008C159F /* BaseCoordinator.swift */,
+				02A86BE52B03A341008C159F /* DefaultLifeCycleListener.swift */,
 			);
-			path = Modules;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		021027872ABF46470017990B /* Authorization */ = {
+		02A86BE72B03A362008C159F /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				021027882ABF46620017990B /* AuthorizationViewController.swift */,
-				028392242AC181EE00299AA5 /* AuthStore.swift */,
-				028391F72AC1451C00299AA5 /* AuthTextField.swift */,
-				028392262AC182FE00299AA5 /* AuthUseCase.swift */,
-				0283922A2AC1858000299AA5 /* AuthModuleService.swift */,
+				02A86BE82B03A368008C159F /* ModalPresentationStyle.swift */,
+				02A86BEA2B03A3DC008C159F /* ModalTransitionStyle.swift */,
+				02A86BF02B03A60D008C159F /* UINavigationController+.swift */,
+				02A86BEE2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift */,
 			);
-			path = Authorization;
-			sourceTree = "<group>";
-		};
-		0210278A2ABF47D70017990B /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				0210278B2ABF47F90017990B /* ModuleFactory.swift */,
-				02E109802AC44A6E00F7882A /* ModuleFactoryProtocol.swift */,
-				0210278D2ABF493C0017990B /* CoordinatorFactory.swift */,
-				0236D8802AC258DB006EF776 /* TransitionFactory.swift */,
-				0236D88F2AC25B31006EF776 /* TabFactory.swift */,
-			);
-			path = Factories;
-			sourceTree = "<group>";
-		};
-		0210278F2ABF4A1E0017990B /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				021027942ABF50320017990B /* ApplicationCoordinator.swift */,
-				0236D8762AC1E518006EF776 /* Navigation */,
-				021027922ABF4CC20017990B /* AuthCoordinator.swift */,
-				0236D88B2AC259D9006EF776 /* PrototypeTabCoordinator.swift */,
-				02372F082AC33C3600D04E2E /* SettingsTabCoordinator.swift */,
-				0236D8792AC25634006EF776 /* Tabbar */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		0236D8762AC1E518006EF776 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				021027902ABF4A2E0017990B /* SystemNavigationController.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
-		0236D8792AC25634006EF776 /* Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				0236D8772AC25445006EF776 /* Tab.swift */,
-				0236D87E2AC2588B006EF776 /* TabBarCoordinator.swift */,
-				0236D87A2AC2564F006EF776 /* SystemTabBarController.swift */,
-				0236D87C2AC256C5006EF776 /* TabBarManager.swift */,
-			);
-			path = Tabbar;
-			sourceTree = "<group>";
-		};
-		0236D8822AC25917006EF776 /* UserTransition */ = {
-			isa = PBXGroup;
-			children = (
-				0236D8832AC25917006EF776 /* DismissTransition.swift */,
-				0236D8842AC25917006EF776 /* CustomTransition.swift */,
-				0236D8852AC25917006EF776 /* FadeTransition.swift */,
-				0236D8862AC25917006EF776 /* CrossDissolveTransition.swift */,
-			);
-			path = UserTransition;
-			sourceTree = "<group>";
-		};
-		02E1097F2AC4486D00F7882A /* EditProfile */ = {
-			isa = PBXGroup;
-			children = (
-				02E1097D2AC4486600F7882A /* EditProfileViewController.swift */,
-				027672212AC5C8A300595B56 /* EditProfileStore.swift */,
-				027672232AC5C95B00595B56 /* EditProfileUseCase.swift */,
-				027672252AC5C9F800595B56 /* EditProfileService.swift */,
-				02E109842AC4544A00F7882A /* TextFieldTableViewCell.swift */,
-				02E109862AC4547600F7882A /* StatusTableViewCell.swift */,
-				02E109822AC44D9300F7882A /* PhotoTableViewCell.swift */,
-			);
-			path = EditProfile;
-			sourceTree = "<group>";
-		};
-		02E1098C2AC45C9100F7882A /* ProfileStatus */ = {
-			isa = PBXGroup;
-			children = (
-				02E1098A2AC45C8900F7882A /* ProfileStatusViewController.swift */,
-			);
-			path = ProfileStatus;
-			sourceTree = "<group>";
-		};
-		02E1098D2AC48A6900F7882A /* FirebaseHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				028392282AC1851600299AA5 /* FirebaseClient.swift */,
-				02E1098E2AC48A8E00F7882A /* FileStorage.swift */,
-			);
-			path = FirebaseHelpers;
-			sourceTree = "<group>";
-		};
-		02F8D65D2AC1A1D000AF399D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				02D8ED552AC19AAF002658D8 /* Person.swift */,
-			);
-			path = Models;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		02F8D65E2AC1A23C00AF399D /* Frameworks */ = {
@@ -484,17 +184,6 @@
 			);
 			name = WhatsApp;
 			packageProductDependencies = (
-				02F6A0C62AEA7A3A00D06EA3 /* SnapKit */,
-				02F6A0C92AEA7A5500D06EA3 /* ProgressHUD */,
-				02F6A0CC2AEA7A6500D06EA3 /* Kingfisher */,
-				02F6A0CF2AEA7AF800D06EA3 /* Realm */,
-				02F6A0D12AEA7AF800D06EA3 /* RealmSwift */,
-				02F6A0D42AEA7CAE00D06EA3 /* FirebaseAnalytics */,
-				02F6A0D82AEA7CAE00D06EA3 /* FirebaseAnalyticsSwift */,
-				02F6A0DE2AEA7D0D00D06EA3 /* FirebaseAuth */,
-				02F6A0E02AEA7D1800D06EA3 /* FirebaseFirestore */,
-				02F6A0E22AEA7D2600D06EA3 /* FirebaseFirestoreSwift */,
-				02F6A0E42AEA7D3E00D06EA3 /* FirebaseStorage */,
 			);
 			productName = WhatsApp;
 			productReference = 021027372ABF43730017990B /* WhatsApp.app */;
@@ -525,11 +214,6 @@
 			);
 			mainGroup = 0210272E2ABF43730017990B;
 			packageReferences = (
-				02F6A0C52AEA7A3A00D06EA3 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				02F6A0C82AEA7A5500D06EA3 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
-				02F6A0CB2AEA7A6500D06EA3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				02F6A0CE2AEA7AF800D06EA3 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 021027382ABF43730017990B /* Products */;
 			projectDirPath = "";
@@ -558,71 +242,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				020FC6F42AC3EBB5008C37DF /* SettingRowTableViewCell.swift in Sources */,
-				02372F0B2AC33C8400D04E2E /* SettingsModuleViewController.swift in Sources */,
-				0236D8892AC25917006EF776 /* FadeTransition.swift in Sources */,
-				0236D87D2AC256C5006EF776 /* TabBarManager.swift in Sources */,
-				021027762ABF45B80017990B /* UIViewController+Extension.swift in Sources */,
-				020FC6F02AC3EAB2008C37DF /* SettingsNameTableViewCell.swift in Sources */,
-				0236D87F2AC2588B006EF776 /* TabBarCoordinator.swift in Sources */,
-				02E1098B2AC45C8900F7882A /* ProfileStatusViewController.swift in Sources */,
-				02E109872AC4547600F7882A /* StatusTableViewCell.swift in Sources */,
-				0283922B2AC1858000299AA5 /* AuthModuleService.swift in Sources */,
-				021027822ABF45B80017990B /* Routable.swift in Sources */,
-				021027742ABF45B80017990B /* InlineConfigurable.swift in Sources */,
-				02EC3B122AC08B81006ECA4C /* BaseViewController.swift in Sources */,
-				0236D8902AC25B31006EF776 /* TabFactory.swift in Sources */,
-				021027912ABF4A2E0017990B /* SystemNavigationController.swift in Sources */,
-				02E109832AC44D9300F7882A /* PhotoTableViewCell.swift in Sources */,
-				0236D88C2AC259D9006EF776 /* PrototypeTabCoordinator.swift in Sources */,
-				0236D8882AC25917006EF776 /* CustomTransition.swift in Sources */,
-				027672262AC5C9F800595B56 /* EditProfileService.swift in Sources */,
-				02D8ED562AC19AAF002658D8 /* Person.swift in Sources */,
-				021027952ABF50320017990B /* ApplicationCoordinator.swift in Sources */,
-				02E1098F2AC48A8E00F7882A /* FileStorage.swift in Sources */,
-				0210277A2ABF45B80017990B /* ApplicationRouter.swift in Sources */,
-				021027792ABF45B80017990B /* AnyCoordinator.swift in Sources */,
-				0210277D2ABF45B80017990B /* AutomaticCoordinatorConfiguration.swift in Sources */,
+				02A86BD52B03A079008C159F /* Transition.swift in Sources */,
+				02A86BEB2B03A3DC008C159F /* ModalTransitionStyle.swift in Sources */,
+				02A86BE22B03A2DD008C159F /* ApplicationRouter.swift in Sources */,
+				02A86BDB2B03A255008C159F /* Routable.swift in Sources */,
+				02A86BDD2B03A27E008C159F /* SystemNavigation.swift in Sources */,
+				02A86BE02B03A2C3008C159F /* AnyCoordinator.swift in Sources */,
+				02A86BE42B03A2FE008C159F /* BaseCoordinator.swift in Sources */,
+				02A86BE62B03A341008C159F /* DefaultLifeCycleListener.swift in Sources */,
+				02A86BEF2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift in Sources */,
+				02A86BD92B03A111008C159F /* LifeCycleListener.swift in Sources */,
+				02A86BD72B03A0B2008C159F /* Presentable.swift in Sources */,
+				02A86BF12B03A60D008C159F /* UINavigationController+.swift in Sources */,
+				02A86BE92B03A368008C159F /* ModalPresentationStyle.swift in Sources */,
+				02A86BD32B03A03D008C159F /* Coordinator.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
-				0236D88E2AC25A50006EF776 /* PrototypeModuleViewController.swift in Sources */,
-				021027852ABF45B80017990B /* Coordinator.swift in Sources */,
-				027672222AC5C8A300595B56 /* EditProfileStore.swift in Sources */,
-				0210276F2ABF45B80017990B /* RestrictedUIHostingController.swift in Sources */,
-				021027832ABF45B80017990B /* Presentable.swift in Sources */,
-				021027722ABF45B80017990B /* BridgingCollectionViewCell.swift in Sources */,
-				02E1097E2AC4486600F7882A /* EditProfileViewController.swift in Sources */,
-				021027932ABF4CC20017990B /* AuthCoordinator.swift in Sources */,
-				0236D8782AC25445006EF776 /* Tab.swift in Sources */,
-				0236D8872AC25917006EF776 /* DismissTransition.swift in Sources */,
-				021027782ABF45B80017990B /* DefaultLifeCycleListener.swift in Sources */,
-				021027712ABF45B80017990B /* BridgingRestrictedTableViewCell.swift in Sources */,
-				021027702ABF45B80017990B /* BridgedView.swift in Sources */,
-				02372F092AC33C3600D04E2E /* SettingsTabCoordinator.swift in Sources */,
-				0236D8812AC258DB006EF776 /* TransitionFactory.swift in Sources */,
-				0210278E2ABF493C0017990B /* CoordinatorFactory.swift in Sources */,
-				0210277C2ABF45B80017990B /* UINavigationController+.swift in Sources */,
-				028391F82AC1451C00299AA5 /* AuthTextField.swift in Sources */,
-				020FC6F22AC3EAC9008C37DF /* BaseTableViewCell.swift in Sources */,
-				0210277B2ABF45B80017990B /* BaseCoordinator.swift in Sources */,
-				021027842ABF45B80017990B /* Transition.swift in Sources */,
-				02E109812AC44A6E00F7882A /* ModuleFactoryProtocol.swift in Sources */,
-				021027892ABF46620017990B /* AuthorizationViewController.swift in Sources */,
-				028392272AC182FE00299AA5 /* AuthUseCase.swift in Sources */,
-				0210277F2ABF45B80017990B /* ModalTransitionStyle.swift in Sources */,
-				0210277E2ABF45B80017990B /* ModalPresentationStyle.swift in Sources */,
-				028391FD2AC1819900299AA5 /* Store.swift in Sources */,
-				028392292AC1851600299AA5 /* FirebaseClient.swift in Sources */,
-				027672242AC5C95B00595B56 /* EditProfileUseCase.swift in Sources */,
-				021027812ABF45B80017990B /* LifeCycleListener.swift in Sources */,
-				0236D88A2AC25917006EF776 /* CrossDissolveTransition.swift in Sources */,
-				021027752ABF45B80017990B /* UIView+Extensions.swift in Sources */,
-				021027802ABF45B80017990B /* SystemNavigation.swift in Sources */,
-				0236D87B2AC2564F006EF776 /* SystemTabBarController.swift in Sources */,
-				0210278C2ABF47F90017990B /* ModuleFactory.swift in Sources */,
-				021027732ABF45B80017990B /* BridgingCollectionReusableView.swift in Sources */,
-				028391F62AC1446D00299AA5 /* BaseView.swift in Sources */,
-				028392252AC181EE00299AA5 /* AuthStore.swift in Sources */,
-				02E109852AC4544A00F7882A /* TextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +413,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.WhatsAppClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -808,7 +442,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.WhatsAppClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -839,107 +473,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		02F6A0C52AEA7A3A00D06EA3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.6.0;
-			};
-		};
-		02F6A0C82AEA7A5500D06EA3 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.1.0;
-			};
-		};
-		02F6A0CB2AEA7A6500D06EA3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.9.1;
-			};
-		};
-		02F6A0CE2AEA7AF800D06EA3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.16.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		02F6A0C62AEA7A3A00D06EA3 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0C52AEA7A3A00D06EA3 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		02F6A0C92AEA7A5500D06EA3 /* ProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0C82AEA7A5500D06EA3 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
-			productName = ProgressHUD;
-		};
-		02F6A0CC2AEA7A6500D06EA3 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0CB2AEA7A6500D06EA3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		02F6A0CF2AEA7AF800D06EA3 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0CE2AEA7AF800D06EA3 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		02F6A0D12AEA7AF800D06EA3 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0CE2AEA7AF800D06EA3 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		02F6A0D42AEA7CAE00D06EA3 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		02F6A0D82AEA7CAE00D06EA3 /* FirebaseAnalyticsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsSwift;
-		};
-		02F6A0DE2AEA7D0D00D06EA3 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		02F6A0E02AEA7D1800D06EA3 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		02F6A0E22AEA7D2600D06EA3 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		02F6A0E42AEA7D3E00D06EA3 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02F6A0D32AEA7CAE00D06EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0210272F2ABF43730017990B /* Project object */;
 }
