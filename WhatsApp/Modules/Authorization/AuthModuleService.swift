@@ -16,7 +16,9 @@ extension FirebaseClient: AuthModuleServiceProtocol {
     }
 
     func login(withEmail email: String, password: String) async throws -> Bool {
+        print("DEBUG: ", password)
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
+        print("DEBUG: ", result.user.uid)
         let person = try await fetchPerson(with: result.user.uid)
         if let person {
             FirebaseClient.shared.currentPerson = LocalPerson(person: person)

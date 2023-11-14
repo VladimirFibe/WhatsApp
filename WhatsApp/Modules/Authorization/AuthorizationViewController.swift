@@ -114,7 +114,7 @@ class AuthorizationViewController: BaseViewController {
             isLogin ? store.sendAction(.login(email, password))
             : store.sendAction(.register(email, password))
         } else {
-            ProgressHUD.showFailed("All fields are required")
+            ProgressHUD.failed()
         }
     }
 
@@ -182,12 +182,13 @@ extension AuthorizationViewController {
                 switch event {
                 case .done:
                     wSelf?.output?.moduleFinish()
+                    ProgressHUD.succeed()
                 case .registered:
-                    ProgressHUD.showSucceed("Verification email send")
+                    ProgressHUD.success("Verification email send")
                     wSelf?.resendButton.isHidden = false
                     wSelf?.isLogin = true
                 case .notVerified:
-                    ProgressHUD.showFailed("Not verified")
+                    ProgressHUD.failed("Not verified")
                     wSelf?.resendButton.isHidden = false
                 }
             }.store(in: &bag)

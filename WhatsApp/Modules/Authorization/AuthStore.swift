@@ -58,11 +58,15 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
     }
 
     private func login(withEmail email: String, password: String) async throws {
-        let result = try await authUseCase.login(
-            withEmail: email,
-            password: password
-        )
-        result ? sendEvent(.done): sendEvent(.notVerified)
+        do {
+            let result = try await authUseCase.login(
+                withEmail: email,
+                password: password
+            )
+            result ? sendEvent(.done): sendEvent(.notVerified)
+        } catch {
+            print("DEBUG: ", error)
+        }
     }
 
     private func sendEmailVerification() async throws {
@@ -70,6 +74,10 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
     }
 
     private func resetPassword(for email: String) async throws {
-        try await authUseCase.resetPassword(for: email)
+        do {
+            try await authUseCase.resetPassword(for: email)
+        } catch {
+            print("DEBUG: ", error)
+        }
     }
 }

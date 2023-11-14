@@ -2,13 +2,34 @@ import Combine
 import SwiftUI
 
 typealias Bag = Set<AnyCancellable>
+typealias Callback = () -> Void
+typealias StatusCode = Int
 
+enum AppErrorType {
+    case generic
+}
+
+class AppError: Error {
+    var statusCode: StatusCode?
+    var isRetryable: Bool { false }
+    var message: String { "Ошибка" }
+    var type: AppErrorType { .generic }
+}
 protocol ErrorObservable {
     var errorViewModel: ErrorViewModel { get set }
 }
 
 protocol LoadingObservable {
     var loadingViewModel: LoadingViewModel { get set }
+}
+
+class ErrorViewModel: ObservableObject {
+    @Published var error: AppError?
+    var onRetry: Callback = {}
+}
+
+class LoadingViewModel: ObservableObject {
+    @Published var isLoading: Bool = true
 }
 
 class Store<Event, Action>: ErrorObservable, LoadingObservable {
@@ -56,9 +77,7 @@ class Store<Event, Action>: ErrorObservable, LoadingObservable {
         self.loadingViewModel.isLoading = true
         self.errorViewModel.error = nil
         do {
-            defer {
-                self.loadingViewModel.isLoading = false
-            }
+            defer { self.loadingViewModel.isLoading = false }
             try await action()
         } catch {
             self.errorViewModel.error = error as? AppError

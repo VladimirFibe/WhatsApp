@@ -14,6 +14,7 @@ final class ApplicationCoordinator: BaseCoordinator {
 // MARK: - Coordinator
 extension ApplicationCoordinator: Coordinator {
     func start(with option: Void) {
+        print("Person id: ", Person.currentId)
         if Person.currentId.isEmpty {
             startLogin()
         } else {

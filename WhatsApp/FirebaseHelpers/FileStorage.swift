@@ -16,9 +16,9 @@ struct FileStorage {
 }
 
 // MARK: - Helpers
-func fileInDocumentsDirectory(filename: String) -> String {
-    getDocumentsURL()?.appendingPathComponent(filename).pa 
-}
-func getDocumentsURL() -> URL? {
-    FileManager.default.url(for: .documentDirectory, in: .userDomainMask).last
-}
+//func fileInDocumentsDirectory(filename: String) -> String {
+//    getDocumentsURL()?.appendingPathComponent(filename).pa 
+//}
+//func getDocumentsURL() -> URL? {
+//    FileManager.default.url(for: .documentDirectory, in: .userDomainMask).last
+//}
