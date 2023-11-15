@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,9 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootViewController = UIViewController()
-        rootViewController.view.backgroundColor = .red
+        let rootViewController = AuthViewController()
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         return true
