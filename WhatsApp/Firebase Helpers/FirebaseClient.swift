@@ -8,22 +8,16 @@ final class FirebaseClient {
 
     func createPerson(with email: String, uid: String) throws {
         let person = Person(username: email, email: email, fullname: "")
-        try updatePerson(person)
-    }
-
-    func updatePerson(_ person: Person) throws {
-        guard let uid = person.id else { return }
-        try reference(.persons)
-            .document(uid)
-            .setData(from: person)
+        try reference(.persons).document(uid).setData(from: person)
     }
 
     func updateLocalPerson() throws {
-        guard let local = currentPerson else { return }
+        guard let local = currentPerson,
+              !local.id.isEmpty
+        else { return }
         try reference(.persons)
             .document(local.id)
             .setData(from: local.person)
-
     }
 
     func fetchPerson(with id: String) async throws -> Person? {
@@ -49,15 +43,9 @@ final class FirebaseClient {
                     do {
                         let result = try JSONDecoder().decode(LocalPerson.self, from: dictionary)
                         return result
-                    } catch {
-                        return nil
-                    }
-                } else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
+                    } catch { return nil }
+                } else { return nil }
+            } else { return nil }
         }
         set {
             if let person = newValue {
@@ -72,36 +60,5 @@ final class FirebaseClient {
                 UserDefaults.standard.removeObject(forKey: "localPerson")
             }
         }
-    }
-}
-
-struct LocalPerson: Codable {
-    var id = ""
-    var username: String
-    var email: String
-    var pushId = ""
-    var avatarLink = ""
-    var fullname: String
-    var status = ""
-
-    init(person: Person) {
-        id = person.id ?? ""
-        username = person.username
-        email = person.email
-        pushId = person.pushId
-        avatarLink = person.avatarLink
-        fullname = person.fullname
-        status = person.status
-    }
-
-    var person: Person {
-        Person(
-            username: username,
-            email: email,
-            pushId: pushId,
-            avatarLink: avatarLink,
-            fullname: fullname,
-            status: status
-        )
     }
 }

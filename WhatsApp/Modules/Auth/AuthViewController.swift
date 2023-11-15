@@ -7,7 +7,8 @@ class AuthViewController: BaseViewController {
         case register
         case forgot
     }
-
+    private let authUseCase = AuthUseCase(apiService: FirebaseClient.shared)
+    private lazy var store = AuthStore(authUseCase: authUseCase)
     private var show = true
     private var isLogin = true { didSet { updateUI() }}
     private lazy var titleLabel: UILabel = {
@@ -120,8 +121,8 @@ extension AuthViewController {
 
     @objc private func forgotButtonTapped() {
         if isDataInputedFor(.forgot) {
-            //        let email = emailTextField.text
-            //        store.sendAction(.resetPassword(email))
+            let email = emailTextField.text
+            store.sendAction(.resetPassword(email))
         } else {
             ProgressHUD.failed("Email is required")
         }
@@ -129,7 +130,7 @@ extension AuthViewController {
 
     @objc private func resendButtonTapped() {
         if isDataInputedFor(.forgot) {
-            //        store.sendAction(.sendEmailVerification)
+            store.sendAction(.sendEmailVerification)
         } else {
             ProgressHUD.failed("Email is required")
         }
@@ -139,9 +140,8 @@ extension AuthViewController {
         if isDataInputedFor(isLogin ? .login : .register) {
             let email = emailTextField.text
             let password = passwordTextField.text
-            ProgressHUD.succeed("\(email), \(password)")
-//            isLogin ? store.sendAction(.login(email, password))
-//            : store.sendAction(.register(email, password))
+            isLogin ? store.sendAction(.login(email, password))
+            : store.sendAction(.register(email, password))
         } else {
             ProgressHUD.failed("All Fields are required")
         }
@@ -183,6 +183,27 @@ extension AuthViewController {
         repeatTextField.isHidden = isLogin
         setupBackgroundTap()
         repeatTextField.alpha = isLogin ? 0 : 1
+        setupObservers()
+    }
+
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { event in
+                weak var wSelf = self
+                switch event {
+                case .done:
+                    ProgressHUD.succeed()
+                case .registered:
+                    ProgressHUD.success("Verification email send")
+                    wSelf?.resendButton.isHidden = false
+                    wSelf?.isLogin = true
+                case .notVerified:
+                    ProgressHUD.failed("Not verified")
+                    wSelf?.resendButton.isHidden = false
+                }
+            }.store(in: &bag)
     }
 
     func setupBackgroundTap() {

@@ -27,6 +27,11 @@
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
 		028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A32B0500DB00C9F71A /* FirebaseClient.swift */; };
+		028B32A62B05067500C9F71A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A52B05067500C9F71A /* Store.swift */; };
+		028B32A82B05074600C9F71A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A72B05074600C9F71A /* AuthStore.swift */; };
+		028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A92B05076700C9F71A /* AuthUseCase.swift */; };
+		028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32AB2B0507C100C9F71A /* AuthModuleService.swift */; };
+		028B32AE2B05163A00C9F71A /* LocalPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32AD2B05163A00C9F71A /* LocalPerson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		028B32A32B0500DB00C9F71A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		028B32A52B05067500C9F71A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		028B32A72B05074600C9F71A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		028B32A92B05076700C9F71A /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		028B32AB2B0507C100C9F71A /* AuthModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleService.swift; sourceTree = "<group>"; };
+		028B32AD2B05163A00C9F71A /* LocalPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPerson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +146,9 @@
 			children = (
 				022DEA062B04764B00A840B5 /* AuthViewController.swift */,
 				022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */,
+				028B32A72B05074600C9F71A /* AuthStore.swift */,
+				028B32A92B05076700C9F71A /* AuthUseCase.swift */,
+				028B32AB2B0507C100C9F71A /* AuthModuleService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -144,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				028B32A02B04FCD200C9F71A /* Person.swift */,
+				028B32AD2B05163A00C9F71A /* LocalPerson.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +176,7 @@
 				022DEA082B04767E00A840B5 /* BaseViewController.swift */,
 				022DEA0A2B04774200A840B5 /* BaseView.swift */,
 				022DEA102B0482A100A840B5 /* AppFont.swift */,
+				028B32A52B05067500C9F71A /* Store.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -261,12 +276,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				022DEA112B0482A100A840B5 /* AppFont.swift in Sources */,
+				028B32A82B05074600C9F71A /* AuthStore.swift in Sources */,
+				028B32AE2B05163A00C9F71A /* LocalPerson.swift in Sources */,
 				022DEA042B04761200A840B5 /* ProfileViewController.swift in Sources */,
 				022DEA092B04767E00A840B5 /* BaseViewController.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
+				028B32A62B05067500C9F71A /* Store.swift in Sources */,
+				028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */,
 				028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */,
 				022DEA072B04764B00A840B5 /* AuthViewController.swift in Sources */,
+				028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */,
 				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 			);
