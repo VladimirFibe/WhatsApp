@@ -28,7 +28,7 @@ class AuthViewController: BaseViewController {
 
     private lazy var resendButton: UIButton = {
         $0.contentHorizontalAlignment = .trailing
-//        $0.isHidden = true
+        $0.isHidden = true
         $0.setTitle("Resend Email", for: [])
         $0.addTarget(self, action: #selector(resendButtonTapped), for: .primaryActionTriggered)
         return $0
@@ -85,7 +85,7 @@ extension AuthViewController {
     }
 
     @objc private func forgotButtonTapped() {
-        let email = emailTextField.text
+//        let email = emailTextField.text
 //        store.sendAction(.resetPassword(email))
     }
 
