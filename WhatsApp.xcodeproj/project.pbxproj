@@ -25,6 +25,8 @@
 		022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */; };
 		022DEA112B0482A100A840B5 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA102B0482A100A840B5 /* AppFont.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
+		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
+		028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A32B0500DB00C9F71A /* FirebaseClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		022DEA102B0482A100A840B5 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		028B32A32B0500DB00C9F71A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		021027392ABF43730017990B /* WhatsApp */ = {
 			isa = PBXGroup;
 			children = (
+				028B32A22B0500AD00C9F71A /* Firebase Helpers */,
+				028B329F2B04FCC200C9F71A /* Models */,
 				022DEA012B04761200A840B5 /* Modules */,
 				02A86BCF2B039FE4008C159F /* Base */,
 				0210274F2ABF452C0017990B /* Supporting Files */,
@@ -132,6 +138,22 @@
 				022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		028B329F2B04FCC200C9F71A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				028B32A02B04FCD200C9F71A /* Person.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		028B32A22B0500AD00C9F71A /* Firebase Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				028B32A32B0500DB00C9F71A /* FirebaseClient.swift */,
+			);
+			path = "Firebase Helpers";
 			sourceTree = "<group>";
 		};
 		02A86BCF2B039FE4008C159F /* Base */ = {
@@ -243,7 +265,9 @@
 				022DEA092B04767E00A840B5 /* BaseViewController.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
+				028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */,
 				022DEA072B04764B00A840B5 /* AuthViewController.swift in Sources */,
+				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
