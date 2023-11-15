@@ -1,8 +1,15 @@
 import UIKit
+import ProgressHUD
 
 class AuthViewController: BaseViewController {
+    enum Flow {
+        case login
+        case register
+        case forgot
+    }
+
     private var show = true
-    private var isLogin = false { didSet { updateUI() }}
+    private var isLogin = true { didSet { updateUI() }}
     private lazy var titleLabel: UILabel = {
         $0.text = isLogin ? "Login" : "Register"
         $0.font = AppFont.book.s35()
@@ -46,7 +53,7 @@ class AuthViewController: BaseViewController {
     }(UIButton(type: .system))
 
     private lazy var loginButton: UIButton = {
-        $0.setTitle("Login", for: [])
+        $0.setTitle(isLogin ? "Login" : "Register", for: [])
         $0.addTarget(
             self,
             action: #selector(loginButtonTapped),
@@ -112,24 +119,32 @@ extension AuthViewController {
     }
 
     @objc private func forgotButtonTapped() {
-//        let email = emailTextField.text
-//        store.sendAction(.resetPassword(email))
+        if isDataInputedFor(.forgot) {
+            //        let email = emailTextField.text
+            //        store.sendAction(.resetPassword(email))
+        } else {
+            ProgressHUD.failed("Email is required")
+        }
     }
 
     @objc private func resendButtonTapped() {
-//        store.sendAction(.sendEmailVerification)
+        if isDataInputedFor(.forgot) {
+            //        store.sendAction(.sendEmailVerification)
+        } else {
+            ProgressHUD.failed("Email is required")
+        }
     }
 
     @objc private func loginButtonTapped() {
-        isLogin.toggle()
-//        if isDataInputedFor(isLogin ? .login : .register) {
-//            let email = emailTextField.text
-//            let password = passwordTextField.text
+        if isDataInputedFor(isLogin ? .login : .register) {
+            let email = emailTextField.text
+            let password = passwordTextField.text
+            ProgressHUD.succeed("\(email), \(password)")
 //            isLogin ? store.sendAction(.login(email, password))
 //            : store.sendAction(.register(email, password))
-//        } else {
-//            ProgressHUD.failed()
-//        }
+        } else {
+            ProgressHUD.failed("All Fields are required")
+        }
     }
 
     @objc private func bottomButtonTapped() {
@@ -147,6 +162,14 @@ extension AuthViewController {
         passwordTextField.updateSecure(show)
         repeatTextField.updateSecure(show)
     }
+
+    private func isDataInputedFor(_ flow: Flow) -> Bool {
+        switch flow {
+        case .login: return !emailTextField.text.isEmpty && !passwordTextField.text.isEmpty
+        case .register: return !emailTextField.text.isEmpty && !passwordTextField.text.isEmpty && passwordTextField.text == repeatTextField.text
+        case .forgot: return !emailTextField.text.isEmpty
+        }
+    }
 }
 
 extension AuthViewController {
@@ -160,11 +183,13 @@ extension AuthViewController {
         repeatTextField.isHidden = isLogin
         setupBackgroundTap()
         repeatTextField.alpha = isLogin ? 0 : 1
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.isLogin.toggle() }
     }
 
     func setupBackgroundTap() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(backgroundTapped)
+        )
         view.addGestureRecognizer(tapGesture)
     }
 
