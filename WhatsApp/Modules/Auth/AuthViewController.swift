@@ -1,6 +1,7 @@
 import UIKit
 
 class AuthViewController: BaseViewController {
+    private var show = true
     private var isLogin = false { didSet { updateUI() }}
     private lazy var titleLabel: UILabel = {
         $0.text = isLogin ? "Login" : "Register"
@@ -10,19 +11,29 @@ class AuthViewController: BaseViewController {
         return $0
     }(UILabel())
 
-    private let emailTextField = AuthTextField(
+    private lazy var emailTextField = AuthTextField(
         placeholder: "Email",
         isSecureTextEntry: false
     )
 
-    private let passwordTextField = AuthTextField(placeholder: "Password")
-    private let repeatTextField = AuthTextField(placeholder: "Repeat Password")
+    private lazy var passwordTextField = AuthTextField(
+        placeholder: "Password", rightButton: showPassword
+    )
+
+    private lazy var repeatTextField = AuthTextField(
+        placeholder: "Repeat Password", rightButton: showRepeat
+    )
+
     private let middleView = UIView()
 
     private lazy var forgotButton: UIButton = {
         $0.contentHorizontalAlignment = .leading
         $0.setTitle("Forgot Password?", for: [])
-        $0.addTarget(self, action: #selector(forgotButtonTapped), for: .primaryActionTriggered)
+        $0.addTarget(
+            self,
+            action: #selector(forgotButtonTapped),
+            for: .primaryActionTriggered
+        )
         return $0
     }(UIButton(type: .system))
 
@@ -36,7 +47,11 @@ class AuthViewController: BaseViewController {
 
     private lazy var loginButton: UIButton = {
         $0.setTitle("Login", for: [])
-        $0.addTarget(self, action: #selector(loginButtonTapped), for: .primaryActionTriggered)
+        $0.addTarget(
+            self,
+            action: #selector(loginButtonTapped),
+            for: .primaryActionTriggered
+        )
         return $0
     }(UIButton(type: .system))
 
@@ -54,6 +69,18 @@ class AuthViewController: BaseViewController {
             action: #selector(bottomButtonTapped),
             for: .primaryActionTriggered
         )
+        return $0
+    }(UIButton(type: .system))
+
+    private lazy var showPassword: UIButton = {
+        $0.addTarget(self, action: #selector(showChanged), for: .primaryActionTriggered)
+        $0.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
+        return $0
+    }(UIButton(type: .system))
+
+    private lazy var showRepeat: UIButton = {
+        $0.addTarget(self, action: #selector(showChanged), for: .primaryActionTriggered)
+        $0.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
         return $0
     }(UIButton(type: .system))
 
@@ -111,6 +138,14 @@ extension AuthViewController {
 
     @objc private func backgroundTapped() {
         view.endEditing(false)
+    }
+
+    @objc func showChanged() {
+        show.toggle()
+        showPassword.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
+        showRepeat.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
+        passwordTextField.updateSecure(show)
+        repeatTextField.updateSecure(show)
     }
 }
 

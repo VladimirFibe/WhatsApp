@@ -4,12 +4,20 @@ import SnapKit
 final class AuthTextField: UIView {
     private var placeholder = ""
 
-    init(placeholder: String, isSecureTextEntry: Bool = true) {
+    init(
+        placeholder: String,
+        isSecureTextEntry: Bool = true,
+        rightButton: UIButton = UIButton()
+    ) {
         super.init(frame: .zero)
         setupViews()
         setupConstraints()
         textField.placeholder = placeholder
         textField.isSecureTextEntry = isSecureTextEntry
+        if isSecureTextEntry {
+            textField.rightView = rightButton
+            textField.rightViewMode = .always
+        }
         self.placeholder = placeholder
     }
     
@@ -44,6 +52,10 @@ final class AuthTextField: UIView {
 
     @objc func textChanged() {
         label.text = text.isEmpty ? "" : placeholder
+    }
+
+    func updateSecure(_ isSecureTextEntry: Bool) {
+        textField.isSecureTextEntry = isSecureTextEntry
     }
 }
 
