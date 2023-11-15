@@ -11,20 +11,6 @@
 		021027442ABF43740017990B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021027432ABF43740017990B /* Assets.xcassets */; };
 		021027472ABF43740017990B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021027452ABF43740017990B /* LaunchScreen.storyboard */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
-		02A86BD32B03A03D008C159F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD22B03A03D008C159F /* Coordinator.swift */; };
-		02A86BD52B03A079008C159F /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD42B03A079008C159F /* Transition.swift */; };
-		02A86BD72B03A0B2008C159F /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD62B03A0B2008C159F /* Presentable.swift */; };
-		02A86BD92B03A111008C159F /* LifeCycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BD82B03A111008C159F /* LifeCycleListener.swift */; };
-		02A86BDB2B03A255008C159F /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BDA2B03A255008C159F /* Routable.swift */; };
-		02A86BDD2B03A27E008C159F /* SystemNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BDC2B03A27E008C159F /* SystemNavigation.swift */; };
-		02A86BE02B03A2C3008C159F /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BDF2B03A2C3008C159F /* AnyCoordinator.swift */; };
-		02A86BE22B03A2DD008C159F /* ApplicationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE12B03A2DD008C159F /* ApplicationRouter.swift */; };
-		02A86BE42B03A2FE008C159F /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE32B03A2FE008C159F /* BaseCoordinator.swift */; };
-		02A86BE62B03A341008C159F /* DefaultLifeCycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE52B03A341008C159F /* DefaultLifeCycleListener.swift */; };
-		02A86BE92B03A368008C159F /* ModalPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BE82B03A368008C159F /* ModalPresentationStyle.swift */; };
-		02A86BEB2B03A3DC008C159F /* ModalTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BEA2B03A3DC008C159F /* ModalTransitionStyle.swift */; };
-		02A86BEF2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BEE2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift */; };
-		02A86BF12B03A60D008C159F /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A86BF02B03A60D008C159F /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,20 +20,6 @@
 		021027462ABF43740017990B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		021027482ABF43740017990B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		02A86BD22B03A03D008C159F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		02A86BD42B03A079008C159F /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
-		02A86BD62B03A0B2008C159F /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
-		02A86BD82B03A111008C159F /* LifeCycleListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleListener.swift; sourceTree = "<group>"; };
-		02A86BDA2B03A255008C159F /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
-		02A86BDC2B03A27E008C159F /* SystemNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNavigation.swift; sourceTree = "<group>"; };
-		02A86BDF2B03A2C3008C159F /* AnyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
-		02A86BE12B03A2DD008C159F /* ApplicationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationRouter.swift; sourceTree = "<group>"; };
-		02A86BE32B03A2FE008C159F /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
-		02A86BE52B03A341008C159F /* DefaultLifeCycleListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLifeCycleListener.swift; sourceTree = "<group>"; };
-		02A86BE82B03A368008C159F /* ModalPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationStyle.swift; sourceTree = "<group>"; };
-		02A86BEA2B03A3DC008C159F /* ModalTransitionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionStyle.swift; sourceTree = "<group>"; };
-		02A86BEE2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCoordinatorConfiguration.swift; sourceTree = "<group>"; };
-		02A86BF02B03A60D008C159F /* UINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,54 +82,8 @@
 		02A86BCF2B039FE4008C159F /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				02A86BD02B039FEB008C159F /* AutomaticCoordinator */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		02A86BD02B039FEB008C159F /* AutomaticCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				02A86BE72B03A362008C159F /* Common */,
-				02A86BDE2B03A2B1008C159F /* Core */,
-				02A86BD12B03A022008C159F /* Protocols */,
-			);
-			path = AutomaticCoordinator;
-			sourceTree = "<group>";
-		};
-		02A86BD12B03A022008C159F /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				02A86BD22B03A03D008C159F /* Coordinator.swift */,
-				02A86BD42B03A079008C159F /* Transition.swift */,
-				02A86BD62B03A0B2008C159F /* Presentable.swift */,
-				02A86BD82B03A111008C159F /* LifeCycleListener.swift */,
-				02A86BDA2B03A255008C159F /* Routable.swift */,
-				02A86BDC2B03A27E008C159F /* SystemNavigation.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		02A86BDE2B03A2B1008C159F /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				02A86BDF2B03A2C3008C159F /* AnyCoordinator.swift */,
-				02A86BE12B03A2DD008C159F /* ApplicationRouter.swift */,
-				02A86BE32B03A2FE008C159F /* BaseCoordinator.swift */,
-				02A86BE52B03A341008C159F /* DefaultLifeCycleListener.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		02A86BE72B03A362008C159F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				02A86BE82B03A368008C159F /* ModalPresentationStyle.swift */,
-				02A86BEA2B03A3DC008C159F /* ModalTransitionStyle.swift */,
-				02A86BF02B03A60D008C159F /* UINavigationController+.swift */,
-				02A86BEE2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		02F8D65E2AC1A23C00AF399D /* Frameworks */ = {
@@ -242,20 +168,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02A86BD52B03A079008C159F /* Transition.swift in Sources */,
-				02A86BEB2B03A3DC008C159F /* ModalTransitionStyle.swift in Sources */,
-				02A86BE22B03A2DD008C159F /* ApplicationRouter.swift in Sources */,
-				02A86BDB2B03A255008C159F /* Routable.swift in Sources */,
-				02A86BDD2B03A27E008C159F /* SystemNavigation.swift in Sources */,
-				02A86BE02B03A2C3008C159F /* AnyCoordinator.swift in Sources */,
-				02A86BE42B03A2FE008C159F /* BaseCoordinator.swift in Sources */,
-				02A86BE62B03A341008C159F /* DefaultLifeCycleListener.swift in Sources */,
-				02A86BEF2B03A45C008C159F /* AutomaticCoordinatorConfiguration.swift in Sources */,
-				02A86BD92B03A111008C159F /* LifeCycleListener.swift in Sources */,
-				02A86BD72B03A0B2008C159F /* Presentable.swift in Sources */,
-				02A86BF12B03A60D008C159F /* UINavigationController+.swift in Sources */,
-				02A86BE92B03A368008C159F /* ModalPresentationStyle.swift in Sources */,
-				02A86BD32B03A03D008C159F /* Coordinator.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
