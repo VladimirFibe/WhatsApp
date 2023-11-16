@@ -18,8 +18,8 @@ final class SettingsViewController: BaseViewController {
     ]
 
     private let footerLabel: UILabel = {
-        $0.text = "WhatsApp from Facebook\n" +
-        "App version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        $0.text = "WhatsApp from Facebook\nApp version \(appVersion)"
         $0.textAlignment = .center
         $0.numberOfLines = 2
         $0.font = .systemFont(ofSize: 12)
