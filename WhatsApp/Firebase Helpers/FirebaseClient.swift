@@ -12,8 +12,7 @@ final class FirebaseClient {
     }
 
     func updateLocalPerson() throws {
-        guard let local = currentPerson,
-              !local.id.isEmpty
+        guard let local = currentPerson, !local.id.isEmpty
         else { return }
         try reference(.persons)
             .document(local.id)

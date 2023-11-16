@@ -131,6 +131,7 @@ extension AuthViewController {
     @objc private func resendButtonTapped() {
         if isDataInputedFor(.forgot) {
             store.sendAction(.sendEmailVerification)
+            resendButton.isHidden = true
         } else {
             ProgressHUD.failed("Email is required")
         }
