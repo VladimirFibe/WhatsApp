@@ -12,13 +12,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
+        setRootViewController()
+        return true
+    }
+
+    func setRootViewController() {
+        let callback: Callback = { [weak self] in
+            self?.setRootViewController()
+        }
         if Auth.auth().currentUser == nil {
-            window?.rootViewController = AuthViewController()
+            window?.rootViewController = AuthViewController(callback: callback)
         } else {
-            window?.rootViewController = MainTabBarViewController()
+            window?.rootViewController = MainTabBarViewController(callback: callback)
         }
         window?.makeKeyAndVisible()
-        return true
     }
 }
 

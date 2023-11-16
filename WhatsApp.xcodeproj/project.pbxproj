@@ -20,6 +20,13 @@
 		021726E82B061DB700C37B32 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E72B061DB700C37B32 /* SettingsStore.swift */; };
 		021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E92B061EF100C37B32 /* SettingsUseCase.swift */; };
 		021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726EB2B061F7900C37B32 /* SettingsService.swift */; };
+		021726EE2B06612D00C37B32 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726ED2B06612D00C37B32 /* EditProfileViewController.swift */; };
+		021726F12B06644B00C37B32 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726F02B06644B00C37B32 /* TextFieldTableViewCell.swift */; };
+		021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726F22B06646800C37B32 /* StatusTableViewCell.swift */; };
+		021726F52B06647E00C37B32 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726F42B06647E00C37B32 /* PhotoTableViewCell.swift */; };
+		021726F72B06649A00C37B32 /* EditProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726F62B06649A00C37B32 /* EditProfileStore.swift */; };
+		021726F92B0664C600C37B32 /* EditProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726F82B0664C600C37B32 /* EditProfileUseCase.swift */; };
+		021726FB2B0664E600C37B32 /* EditProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726FA2B0664E600C37B32 /* EditProfileService.swift */; };
 		022DE9C22B04671900A840B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 022DE9C12B04671900A840B5 /* SnapKit */; };
 		022DE9C52B04673300A840B5 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 022DE9C42B04673300A840B5 /* ProgressHUD */; };
 		022DE9C82B04675500A840B5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 022DE9C72B04675500A840B5 /* Kingfisher */; };
@@ -59,6 +66,13 @@
 		021726E72B061DB700C37B32 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		021726E92B061EF100C37B32 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		021726EB2B061F7900C37B32 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		021726ED2B06612D00C37B32 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		021726F02B06644B00C37B32 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		021726F22B06646800C37B32 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		021726F42B06647E00C37B32 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		021726F62B06649A00C37B32 /* EditProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileStore.swift; sourceTree = "<group>"; };
+		021726F82B0664C600C37B32 /* EditProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUseCase.swift; sourceTree = "<group>"; };
+		021726FA2B0664E600C37B32 /* EditProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileService.swift; sourceTree = "<group>"; };
 		022DEA032B04761200A840B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		022DEA062B04764B00A840B5 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		022DEA082B04767E00A840B5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +179,20 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		021726EF2B06614C00C37B32 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				021726ED2B06612D00C37B32 /* EditProfileViewController.swift */,
+				021726F02B06644B00C37B32 /* TextFieldTableViewCell.swift */,
+				021726F22B06646800C37B32 /* StatusTableViewCell.swift */,
+				021726F42B06647E00C37B32 /* PhotoTableViewCell.swift */,
+				021726F62B06649A00C37B32 /* EditProfileStore.swift */,
+				021726F82B0664C600C37B32 /* EditProfileUseCase.swift */,
+				021726FA2B0664E600C37B32 /* EditProfileService.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
 		022DEA012B04761200A840B5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +200,7 @@
 				022DEA052B04763400A840B5 /* Auth */,
 				022DEA022B04761200A840B5 /* Profile */,
 				021726DE2B06168700C37B32 /* Settings */,
+				021726EF2B06614C00C37B32 /* EditProfile */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -322,15 +351,21 @@
 				021726E22B06171000C37B32 /* SettingRowTableViewCell.swift in Sources */,
 				022DEA112B0482A100A840B5 /* AppFont.swift in Sources */,
 				021726E42B06173300C37B32 /* BaseTableViewCell.swift in Sources */,
+				021726F12B06644B00C37B32 /* TextFieldTableViewCell.swift in Sources */,
 				028B32A82B05074600C9F71A /* AuthStore.swift in Sources */,
 				022DEA042B04761200A840B5 /* ProfileViewController.swift in Sources */,
 				022DEA092B04767E00A840B5 /* BaseViewController.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
+				021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */,
+				021726EE2B06612D00C37B32 /* EditProfileViewController.swift in Sources */,
 				021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
 				021726DD2B06167900C37B32 /* SettingsViewController.swift in Sources */,
+				021726F52B06647E00C37B32 /* PhotoTableViewCell.swift in Sources */,
+				021726FB2B0664E600C37B32 /* EditProfileService.swift in Sources */,
 				021726E82B061DB700C37B32 /* SettingsStore.swift in Sources */,
 				028B32A62B05067500C9F71A /* Store.swift in Sources */,
+				021726F72B06649A00C37B32 /* EditProfileStore.swift in Sources */,
 				028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */,
 				028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */,
 				022DEA072B04764B00A840B5 /* AuthViewController.swift in Sources */,
@@ -339,6 +374,7 @@
 				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 				021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */,
+				021726F92B0664C600C37B32 /* EditProfileUseCase.swift in Sources */,
 				021726D92B06138A00C37B32 /* Tab.swift in Sources */,
 				021726E02B0616F600C37B32 /* SettingsNameTableViewCell.swift in Sources */,
 			);

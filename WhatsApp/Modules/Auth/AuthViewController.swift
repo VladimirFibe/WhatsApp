@@ -7,6 +7,16 @@ class AuthViewController: BaseViewController {
         case register
         case forgot
     }
+    var callback: Callback?
+    init(callback: Callback? = nil) {
+        self.callback = callback
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let authUseCase = AuthUseCase(apiService: FirebaseClient.shared)
     private lazy var store = AuthStore(authUseCase: authUseCase)
     private var show = true
@@ -195,7 +205,7 @@ extension AuthViewController {
                 weak var wSelf = self
                 switch event {
                 case .done:
-                    ProgressHUD.succeed("Бинго!!!")
+                    wSelf?.callback?()
                 case .registered:
                     ProgressHUD.success("Verification email send")
                     wSelf?.resendButton.isHidden = false

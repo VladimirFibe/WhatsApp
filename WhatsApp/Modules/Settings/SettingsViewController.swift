@@ -5,6 +5,15 @@ import FirebaseAuth
 final class SettingsViewController: BaseViewController {
     private let settingsUseCase = SettingsUseCase(apiService: FirebaseClient.shared)
     private lazy var store = SettingsStore(settingsUseCase: settingsUseCase)
+    var callback: Callback?
+    init(callback: Callback? = nil) {
+        self.callback = callback
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private let rows: [[SettingsRowModel]] = [
         [.init(title: "", image: nil)],
         [.init(title: "Starred Message", image: #imageLiteral(resourceName: "settingStar.pdf")),
@@ -52,7 +61,6 @@ extension SettingsViewController {
         tableview.delegate = self
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(logout))
-
         tableview.tableFooterView = footerLabel
         setupObservers()
     }
@@ -77,6 +85,7 @@ extension SettingsViewController {
     @objc private func logout() {
         do {
             try Auth.auth().signOut()
+            callback?()
         } catch {}
     }
 
@@ -126,5 +135,9 @@ extension SettingsViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        if indexPath.section == 0 {
+            let controller = EditProfileViewController()
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

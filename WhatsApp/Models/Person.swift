@@ -4,7 +4,7 @@ import FirebaseFirestoreSwift
 
 struct Person: Identifiable, Hashable, Codable {
     @DocumentID var id: String?
-    let username: String
+    var username: String
     let email: String
     var pushId = ""
     var avatarLink = ""
