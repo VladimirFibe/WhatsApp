@@ -4,6 +4,7 @@ enum AuthEvent {
     case done
     case notVerified
     case registered
+    case error(String)
 }
 
 enum AuthAction {
@@ -50,11 +51,15 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
     }
 
     private func register(withEmail email: String, password: String) async throws {
-        try await authUseCase.register(
-            withEmail: email,
-            password: password
-        )
-        sendEvent(.registered)
+        do {
+            try await authUseCase.register(
+                withEmail: email,
+                password: password
+            )
+            sendEvent(.registered)
+        } catch {
+            sendEvent(.error("Что то не так с регистацией"))
+        }
     }
 
     private func login(withEmail email: String, password: String) async throws {
@@ -63,10 +68,9 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
                 withEmail: email,
                 password: password
             )
-            print("DEBUG: result ", result)
             result ? sendEvent(.done): sendEvent(.notVerified)
         } catch {
-            print("DEBUG: ", error)
+            sendEvent(.error("Что то не так с авторизацией"))
         }
     }
 
@@ -78,7 +82,7 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
         do {
             try await authUseCase.resetPassword(for: email)
         } catch {
-            print("DEBUG: ", error)
+            sendEvent(.error("Что то не так со сбросом пароля"))
         }
     }
 }

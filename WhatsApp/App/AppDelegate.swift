@@ -1,6 +1,6 @@
 import UIKit
 import FirebaseCore
-
+import FirebaseAuth
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -12,8 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootViewController = AuthViewController()
-        window?.rootViewController = rootViewController
+        if Auth.auth().currentUser == nil {
+            window?.rootViewController = AuthViewController()
+        } else {
+            window?.rootViewController = MainTabBarViewController()
+        }
         window?.makeKeyAndVisible()
         return true
     }

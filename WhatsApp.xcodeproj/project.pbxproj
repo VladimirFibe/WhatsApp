@@ -10,6 +10,16 @@
 		0210273B2ABF43730017990B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210273A2ABF43730017990B /* AppDelegate.swift */; };
 		021027442ABF43740017990B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021027432ABF43740017990B /* Assets.xcassets */; };
 		021027472ABF43740017990B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021027452ABF43740017990B /* LaunchScreen.storyboard */; };
+		021726D92B06138A00C37B32 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726D82B06138A00C37B32 /* Tab.swift */; };
+		021726DB2B06143D00C37B32 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726DA2B06143D00C37B32 /* MainTabBarViewController.swift */; };
+		021726DD2B06167900C37B32 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726DC2B06167900C37B32 /* SettingsViewController.swift */; };
+		021726E02B0616F600C37B32 /* SettingsNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726DF2B0616F600C37B32 /* SettingsNameTableViewCell.swift */; };
+		021726E22B06171000C37B32 /* SettingRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E12B06171000C37B32 /* SettingRowTableViewCell.swift */; };
+		021726E42B06173300C37B32 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E32B06173300C37B32 /* BaseTableViewCell.swift */; };
+		021726E62B06181E00C37B32 /* SettingsRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E52B06181E00C37B32 /* SettingsRowModel.swift */; };
+		021726E82B061DB700C37B32 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E72B061DB700C37B32 /* SettingsStore.swift */; };
+		021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726E92B061EF100C37B32 /* SettingsUseCase.swift */; };
+		021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021726EB2B061F7900C37B32 /* SettingsService.swift */; };
 		022DE9C22B04671900A840B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 022DE9C12B04671900A840B5 /* SnapKit */; };
 		022DE9C52B04673300A840B5 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 022DE9C42B04673300A840B5 /* ProgressHUD */; };
 		022DE9C82B04675500A840B5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 022DE9C72B04675500A840B5 /* Kingfisher */; };
@@ -31,7 +41,6 @@
 		028B32A82B05074600C9F71A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A72B05074600C9F71A /* AuthStore.swift */; };
 		028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A92B05076700C9F71A /* AuthUseCase.swift */; };
 		028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32AB2B0507C100C9F71A /* AuthModuleService.swift */; };
-		028B32AE2B05163A00C9F71A /* LocalPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32AD2B05163A00C9F71A /* LocalPerson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +49,16 @@
 		021027432ABF43740017990B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		021027462ABF43740017990B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		021027482ABF43740017990B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		021726D82B06138A00C37B32 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		021726DA2B06143D00C37B32 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		021726DC2B06167900C37B32 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		021726DF2B0616F600C37B32 /* SettingsNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameTableViewCell.swift; sourceTree = "<group>"; };
+		021726E12B06171000C37B32 /* SettingRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowTableViewCell.swift; sourceTree = "<group>"; };
+		021726E32B06173300C37B32 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		021726E52B06181E00C37B32 /* SettingsRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowModel.swift; sourceTree = "<group>"; };
+		021726E72B061DB700C37B32 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		021726E92B061EF100C37B32 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
+		021726EB2B061F7900C37B32 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		022DEA032B04761200A840B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		022DEA062B04764B00A840B5 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		022DEA082B04767E00A840B5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +72,6 @@
 		028B32A72B05074600C9F71A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		028B32A92B05076700C9F71A /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
 		028B32AB2B0507C100C9F71A /* AuthModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleService.swift; sourceTree = "<group>"; };
-		028B32AD2B05163A00C9F71A /* LocalPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPerson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,11 +142,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		021726D72B06137D00C37B32 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				021726D82B06138A00C37B32 /* Tab.swift */,
+				021726DA2B06143D00C37B32 /* MainTabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		021726DE2B06168700C37B32 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				021726DC2B06167900C37B32 /* SettingsViewController.swift */,
+				021726DF2B0616F600C37B32 /* SettingsNameTableViewCell.swift */,
+				021726E12B06171000C37B32 /* SettingRowTableViewCell.swift */,
+				021726E52B06181E00C37B32 /* SettingsRowModel.swift */,
+				021726E72B061DB700C37B32 /* SettingsStore.swift */,
+				021726E92B061EF100C37B32 /* SettingsUseCase.swift */,
+				021726EB2B061F7900C37B32 /* SettingsService.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		022DEA012B04761200A840B5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				021726D72B06137D00C37B32 /* TabBar */,
 				022DEA052B04763400A840B5 /* Auth */,
 				022DEA022B04761200A840B5 /* Profile */,
+				021726DE2B06168700C37B32 /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -157,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				028B32A02B04FCD200C9F71A /* Person.swift */,
-				028B32AD2B05163A00C9F71A /* LocalPerson.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +217,7 @@
 			children = (
 				022DEA082B04767E00A840B5 /* BaseViewController.swift */,
 				022DEA0A2B04774200A840B5 /* BaseView.swift */,
+				021726E32B06173300C37B32 /* BaseTableViewCell.swift */,
 				022DEA102B0482A100A840B5 /* AppFont.swift */,
 				028B32A52B05067500C9F71A /* Store.swift */,
 			);
@@ -275,20 +318,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021726DB2B06143D00C37B32 /* MainTabBarViewController.swift in Sources */,
+				021726E22B06171000C37B32 /* SettingRowTableViewCell.swift in Sources */,
 				022DEA112B0482A100A840B5 /* AppFont.swift in Sources */,
+				021726E42B06173300C37B32 /* BaseTableViewCell.swift in Sources */,
 				028B32A82B05074600C9F71A /* AuthStore.swift in Sources */,
-				028B32AE2B05163A00C9F71A /* LocalPerson.swift in Sources */,
 				022DEA042B04761200A840B5 /* ProfileViewController.swift in Sources */,
 				022DEA092B04767E00A840B5 /* BaseViewController.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
+				021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
+				021726DD2B06167900C37B32 /* SettingsViewController.swift in Sources */,
+				021726E82B061DB700C37B32 /* SettingsStore.swift in Sources */,
 				028B32A62B05067500C9F71A /* Store.swift in Sources */,
 				028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */,
 				028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */,
 				022DEA072B04764B00A840B5 /* AuthViewController.swift in Sources */,
 				028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */,
+				021726E62B06181E00C37B32 /* SettingsRowModel.swift in Sources */,
 				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
+				021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */,
+				021726D92B06138A00C37B32 /* Tab.swift in Sources */,
+				021726E02B0616F600C37B32 /* SettingsNameTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

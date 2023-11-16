@@ -195,7 +195,7 @@ extension AuthViewController {
                 weak var wSelf = self
                 switch event {
                 case .done:
-                    ProgressHUD.succeed()
+                    ProgressHUD.succeed("Бинго!!!")
                 case .registered:
                     ProgressHUD.success("Verification email send")
                     wSelf?.resendButton.isHidden = false
@@ -203,6 +203,8 @@ extension AuthViewController {
                 case .notVerified:
                     ProgressHUD.failed("Not verified")
                     wSelf?.resendButton.isHidden = false
+                case .error(let text):
+                    ProgressHUD.failed(text)
                 }
             }.store(in: &bag)
     }
