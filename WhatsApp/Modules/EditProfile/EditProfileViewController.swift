@@ -83,7 +83,8 @@ extension EditProfileViewController {
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-//            model.profileStatusHandler?()
+            let controller = ProfileStatusViewController()
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
