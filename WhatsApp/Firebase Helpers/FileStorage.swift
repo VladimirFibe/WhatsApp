@@ -38,18 +38,17 @@ class FileStorage {
     }
 
     class func downloadImage(person: Person, completion: @escaping (UIImage?) -> Void) {
-        if let id = person.id,
-            fileExistsAtPath(id),
-            let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: id)) {
-            // get it locally
+        guard let id = person.id else {
+            completion(nil)
+            return
+        }
+        if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: id)) {
             completion(contentsOfFile)
         } else {
-            // download from fb
             if let url = URL(string: person.avatarLink) {
                 let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
                 downloadQueue.async {
-                    if let data = NSData(contentsOf: url),
-                       let id = person.id {
+                    if let data = NSData(contentsOf: url) {
                         FileStorage.saveFileLocally(fileData: data, fileName: id)
                         DispatchQueue.main.async {
                             completion(UIImage(data: data as Data))
@@ -90,7 +89,7 @@ func fileExistsAtPath(_ path: String) -> Bool {
 // https://firebasestorage.googleapis.com:443/v0/b/whatsappclone-78758.appspot.com/o/profile%2FYMlCL7QPVNb03OehkAYdxZEh43s2.jpg?alt=media&token=c3648d99-05e2-432a-9a8c-5ab91335cd33
 func fileNameFrom(fileUrl: String) -> String? {
     if let name = fileUrl.components(separatedBy: "profile%2F").last {
-        return name.components(separatedBy: ".").first
+        return name.components(separatedBy: ".jpg?").first
     } else {
         return nil
     }

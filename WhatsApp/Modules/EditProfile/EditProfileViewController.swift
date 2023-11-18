@@ -44,11 +44,21 @@ extension EditProfileViewController {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
+        showUserInfo()
     }
 
     override func setupConstraints() {
         tableView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+
+    private func showUserInfo() {
+        if let person = FirebaseClient.shared.person {
+            textFieldCell.configure(person.username)
+            FileStorage.downloadImage(person: person) { image in
+                self.photoCell.configrure(with: image?.circleMasked)
+            }
         }
     }
 }

@@ -97,9 +97,7 @@ extension SettingsViewController {
         if let person = FirebaseClient.shared.person {
             userInfoCell.configure(with: person)
             FileStorage.downloadImage(person: person) { image in
-                DispatchQueue.main.async {
-                    self.userInfoCell.configure(with: image?.circleMasked)
-                }
+                self.userInfoCell.configure(with: image?.circleMasked)
             }
         }
     }

@@ -15,6 +15,10 @@ class TextFieldTableViewCell: BaseTableViewCell {
     public func configure(delegate: UITextFieldDelegate) {
         textField.delegate = delegate
     }
+
+    public func configure(_ text: String) {
+        textField.text = text
+    }
 }
 // MARK: - Setup
 extension TextFieldTableViewCell {
