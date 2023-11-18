@@ -101,8 +101,8 @@ extension UIImage {
     var breadthSize: CGSize { CGSize(width: breadth, height: breadth)}
     var breadthRect: CGRect { CGRect(origin: .zero, size: breadthSize)}
     var breadthPoint: CGPoint { CGPoint(
-        x: isPortrait ? 0 : (size.width - size.height) / 2,
-        y: isPortrait ? (size.height - size.width) / 2 : 0)}
+        x: isPortrait ? 0 : floor((size.width - size.height) / 2),
+        y: isPortrait ? floor((size.height - size.width) / 2) : 0)}
     var circleMasked: UIImage? {
         UIGraphicsBeginImageContextWithOptions(breadthSize, false, scale)
         defer { UIGraphicsEndImageContext() }
