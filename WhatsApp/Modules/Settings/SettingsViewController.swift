@@ -26,6 +26,7 @@ final class SettingsViewController: BaseViewController {
          .init(title: "Tell a Fiend", image: #imageLiteral(resourceName: "settingShare.pdf"))]
     ]
 
+    private let userInfoCell = SettingsNameTableViewCell()
     private let footerLabel: UILabel = {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         $0.text = "WhatsApp from Facebook\nApp version \(appVersion)"
@@ -60,7 +61,11 @@ extension SettingsViewController {
         tableview.dataSource = self
         tableview.delegate = self
         navigationItem.title = "Settings"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(logout))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(logout)
+        )
         tableview.tableFooterView = footerLabel
         setupObservers()
     }
@@ -74,6 +79,8 @@ extension SettingsViewController {
                 switch event {
                 case .done:
                     wSelf?.showUserInfo()
+                case .signOut:
+                    wSelf?.callback?()
                 }
             }.store(in: &bag)
     }
@@ -83,21 +90,25 @@ extension SettingsViewController {
     }
 
     @objc private func logout() {
-        do {
-            try Auth.auth().signOut()
-            callback?()
-        } catch {}
+        store.sendAction(.signOut)
     }
 
     private func showUserInfo() {
-        tableview.reloadData()
+        if let person = FirebaseClient.shared.person {
+            userInfoCell.configure(with: person)
+            FileStorage.downloadImage(person: person) { image in
+                DispatchQueue.main.async {
+                    self.userInfoCell.configure(with: image?.circleMasked)
+                }
+            }
+        }
     }
 }
 // MARK: -
 extension SettingsViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        rows.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         rows[section].count
@@ -105,17 +116,7 @@ extension SettingsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: SettingsNameTableViewCell.identifier,
-                for: indexPath
-            ) as? SettingsNameTableViewCell
-            else { fatalError() }
-            cell.accessoryType = .disclosureIndicator
-            if let person = FirebaseClient.shared.person {
-                cell.configure(with: person)
-            }
-            return cell
+        case 0: return userInfoCell
         default:
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: SettingRowTableViewCell.identifier,

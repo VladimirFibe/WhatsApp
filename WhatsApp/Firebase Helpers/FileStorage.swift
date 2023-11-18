@@ -4,26 +4,36 @@ import ProgressHUD
 
 class FileStorage {
     // MARK: - Images
-    class func uploadImage(_ image: UIImage, directory: String, completion: @escaping (String?) -> Void) {
+    class func uploadImage(
+        _ image: UIImage,
+        directory: String,
+        completion: @escaping (String?) -> Void
+    ) {
         let storageRef = Storage.storage().reference().child(directory)
-        guard let imageData = image.jpegData(compressionQuality: 0.6) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.6) 
+        else { return }
         var task: StorageUploadTask!
         task = storageRef.putData(imageData) { metadata, error in
             task.removeAllObservers()
             ProgressHUD.dismiss()
-            if let error = error {
+            if let error {
                 print("error uploading image \(error.localizedDescription)")
-                return
+                completion(nil)
+            } else {
+                storageRef.downloadURL { url, error in
+                    if let url {
+                        completion(url.absoluteString)
+                    } else {
+                        completion(nil)
+                    }
+                }
             }
-            storageRef.downloadURL { url, error in
-                guard let url = url else { return }
-                completion(url.absoluteString)
-            }
-
         }
         task.observe(StorageTaskStatus.progress) { snapshot in
-            let progress = snapshot.progress!.completedUnitCount / snapshot.progress!.totalUnitCount
-            ProgressHUD.progress(CGFloat(progress))
+            if let snapshotProgress = snapshot.progress {
+                let progress = snapshotProgress.completedUnitCount / snapshotProgress.totalUnitCount
+                ProgressHUD.progress(CGFloat(progress))
+            }
         }
     }
 
@@ -58,6 +68,7 @@ class FileStorage {
     // MARK: - Save Locally
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
+        print(docUrl)
         fileData.write(to: docUrl, atomically: true)
     }
 
@@ -76,9 +87,9 @@ func fileInDocumetsDirectory(fileName: String) -> String {
 func fileExistsAtPath(_ path: String) -> Bool {
     FileManager.default.fileExists(atPath: fileInDocumetsDirectory(fileName: path))
 }
-
+// https://firebasestorage.googleapis.com:443/v0/b/whatsappclone-78758.appspot.com/o/profile%2FYMlCL7QPVNb03OehkAYdxZEh43s2.jpg?alt=media&token=c3648d99-05e2-432a-9a8c-5ab91335cd33
 func fileNameFrom(fileUrl: String) -> String? {
-    if let name = fileUrl.components(separatedBy: "avatars%2F").last {
+    if let name = fileUrl.components(separatedBy: "profile%2F").last {
         return name.components(separatedBy: ".").first
     } else {
         return nil

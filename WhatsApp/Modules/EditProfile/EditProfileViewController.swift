@@ -1,4 +1,5 @@
 import UIKit
+import ProgressHUD
 import Photos
 import PhotosUI
 
@@ -78,6 +79,21 @@ extension EditProfileViewController {
     @objc func editButtonTapped() {
         presentPhotoPicker()
     }
+
+    private func uploadAvatarImage(_ image: UIImage) {
+        guard let id = FirebaseClient.shared.person?.id else { return }
+        let path = "/profile/\(id).jpg"
+        FileStorage.uploadImage(image, directory: path) { avatarLink in
+            if let avatarLink {
+                self.store.sendAction(.updateAvatarLink(avatarLink))
+                ProgressHUD.succeed("Аватар сохранен")
+                guard let data = image.jpegData(compressionQuality: 1.0) as? NSData else { return }
+                FileStorage.saveFileLocally(fileData: data, fileName: id)
+            } else {
+                ProgressHUD.failed("Аватар не сохранен")
+            }
+        }
+    }
 }
 // MARK: - UITableViewDelegate
 extension EditProfileViewController: UITableViewDelegate {
@@ -104,11 +120,14 @@ extension EditProfileViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         guard let result = results.first else { return }
         result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
-            guard let image = reading as? UIImage, error == nil else { return }
+            guard let image = reading as? UIImage, error == nil else { 
+                ProgressHUD.failed("Выберите другое изображение")
+                return
+            }
             DispatchQueue.main.async {
                 self.photoCell.configrure(with: image)
             }
-            self.store.sendAction(.uploadImage(image))
+            self.uploadAvatarImage(image)
         }
     }
 

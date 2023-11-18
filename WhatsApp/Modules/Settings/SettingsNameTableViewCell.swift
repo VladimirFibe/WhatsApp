@@ -1,5 +1,4 @@
 import UIKit
-import Kingfisher
 
 class SettingsNameTableViewCell: BaseTableViewCell {
     static let identifier = "SettingsNameTableViewCell"
@@ -23,15 +22,20 @@ class SettingsNameTableViewCell: BaseTableViewCell {
     }(UILabel())
 
     public func configure(with person: Person) {
-        let url = URL(string: person.avatarLink)
-        photoImageView.kf.setImage(with: url)
+//        let url = URL(string: person.avatarLink)
+//        photoImageView.kf.setImage(with: url)
         titleLabel.text = person.username
         subtitleLabel.text = person.status
+    }
+
+    public func configure(with image: UIImage?) {
+        photoImageView.image = image
     }
 }
 // MARK: - Setup
 extension SettingsNameTableViewCell {
     override func setupViews() {
+        accessoryType = .disclosureIndicator
         [photoImageView, titleLabel, subtitleLabel]
             .forEach { contentView.addSubview($0)}
     }

@@ -7,6 +7,7 @@ enum EditProfileEvent {
 enum EditProfileAction {
     case updateUsername(String)
     case uploadImage(UIImage)
+    case updateAvatarLink(String)
 }
 
 final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
@@ -28,7 +29,16 @@ final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
                 weak var wSelf = self
                 try await wSelf?.uploadImage(image)
             }
+        case .updateAvatarLink(let link):
+            statefulCall {
+                weak var wSelf = self
+                try wSelf?.updateAvatarLink(link)
+            }
         }
+    }
+
+    private func updateAvatarLink(_ link: String) throws {
+        try useCase.updateAvatar(link)
     }
 
     private func updateUsername(_ username: String) throws {

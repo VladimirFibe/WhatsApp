@@ -2,6 +2,7 @@ import FirebaseAuth
 
 protocol SettingsServiceProtocol {
     func fetchPerson() async throws
+    func signOut() throws
 }
 
 extension FirebaseClient: SettingsServiceProtocol {
@@ -11,5 +12,9 @@ extension FirebaseClient: SettingsServiceProtocol {
             .document(id)
             .getDocument()
         person = try? querySnapshot.data(as: Person.self)
+    }
+
+    func signOut() throws {
+        try Auth.auth().signOut()
     }
 }
