@@ -51,6 +51,9 @@
 		028B32A82B05074600C9F71A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A72B05074600C9F71A /* AuthStore.swift */; };
 		028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A92B05076700C9F71A /* AuthUseCase.swift */; };
 		028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32AB2B0507C100C9F71A /* AuthModuleService.swift */; };
+		02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF942B08E2AB0073F47C /* ProfileStatusService.swift */; };
+		02ABFF972B08E32D0073F47C /* ProfileStatusUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF962B08E32D0073F47C /* ProfileStatusUseCase.swift */; };
+		02ABFF992B08E3D80073F47C /* ProfileStatusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF982B08E3D80073F47C /* ProfileStatusStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +95,9 @@
 		028B32A72B05074600C9F71A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		028B32A92B05076700C9F71A /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
 		028B32AB2B0507C100C9F71A /* AuthModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleService.swift; sourceTree = "<group>"; };
+		02ABFF942B08E2AB0073F47C /* ProfileStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusService.swift; sourceTree = "<group>"; };
+		02ABFF962B08E32D0073F47C /* ProfileStatusUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusUseCase.swift; sourceTree = "<group>"; };
+		02ABFF982B08E3D80073F47C /* ProfileStatusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +213,7 @@
 				022DEA022B04761200A840B5 /* Profile */,
 				021726DE2B06168700C37B32 /* Settings */,
 				021726EF2B06614C00C37B32 /* EditProfile */,
-				021727002B06E7AA00C37B32 /* ProfileStatusViewController.swift */,
+				02ABFF932B08DECF0073F47C /* Status */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -260,6 +266,17 @@
 				028B32A52B05067500C9F71A /* Store.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		02ABFF932B08DECF0073F47C /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				021727002B06E7AA00C37B32 /* ProfileStatusViewController.swift */,
+				02ABFF942B08E2AB0073F47C /* ProfileStatusService.swift */,
+				02ABFF962B08E32D0073F47C /* ProfileStatusUseCase.swift */,
+				02ABFF982B08E3D80073F47C /* ProfileStatusStore.swift */,
+			);
+			path = Status;
 			sourceTree = "<group>";
 		};
 		02F8D65E2AC1A23C00AF399D /* Frameworks */ = {
@@ -365,9 +382,11 @@
 				028B32A82B05074600C9F71A /* AuthStore.swift in Sources */,
 				022DEA042B04761200A840B5 /* ProfileViewController.swift in Sources */,
 				022DEA092B04767E00A840B5 /* BaseViewController.swift in Sources */,
+				02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */,
 				021726FF2B06E75400C37B32 /* Status.swift in Sources */,
+				02ABFF972B08E32D0073F47C /* ProfileStatusUseCase.swift in Sources */,
 				021726EE2B06612D00C37B32 /* EditProfileViewController.swift in Sources */,
 				021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
@@ -387,6 +406,7 @@
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 				021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */,
 				021726F92B0664C600C37B32 /* EditProfileUseCase.swift in Sources */,
+				02ABFF992B08E3D80073F47C /* ProfileStatusStore.swift in Sources */,
 				021726D92B06138A00C37B32 /* Tab.swift in Sources */,
 				021726E02B0616F600C37B32 /* SettingsNameTableViewCell.swift in Sources */,
 			);

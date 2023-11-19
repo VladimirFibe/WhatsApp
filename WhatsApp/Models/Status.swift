@@ -12,4 +12,13 @@ enum Status: String, CaseIterable {
     case AtTheGym = "At the gym"
     case Sleeping = "Sleeping"
     case UrgentCallsOnly = "Urgent calls only"
+
+    static var statuses: [String] {
+        get {
+            UserDefaults.standard.object(forKey: "statuses") as? [String] ?? []
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "statuses")
+        }
+    }
 }

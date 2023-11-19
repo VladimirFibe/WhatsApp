@@ -30,6 +30,7 @@ final class EditProfileViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showUserInfo()
         self.tabBarController?.tabBar.isHidden = true
     }
 
@@ -44,7 +45,7 @@ extension EditProfileViewController {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        showUserInfo()
+        navigationItem.title = "Edit Profile"
     }
 
     override func setupConstraints() {
@@ -56,6 +57,7 @@ extension EditProfileViewController {
     private func showUserInfo() {
         if let person = FirebaseClient.shared.person {
             textFieldCell.configure(person.username)
+            statusCell.textLabel?.text = person.status
             FileStorage.downloadImage(person: person) { image in
                 self.photoCell.configrure(with: image?.circleMasked)
             }
