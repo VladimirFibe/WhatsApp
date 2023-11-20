@@ -93,5 +93,7 @@ extension UsersViewControlller: UITableViewDataSource {
 extension UsersViewControlller: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let controller = ProfileViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
