@@ -44,6 +44,8 @@
 		022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA0A2B04774200A840B5 /* BaseView.swift */; };
 		022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */; };
 		022DEA112B0482A100A840B5 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA102B0482A100A840B5 /* AppFont.swift */; };
+		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
+		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
 		028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A32B0500DB00C9F71A /* FirebaseClient.swift */; };
@@ -88,6 +90,8 @@
 		022DEA0A2B04774200A840B5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		022DEA102B0482A100A840B5 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
+		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		028B32A32B0500DB00C9F71A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				021726DE2B06168700C37B32 /* Settings */,
 				021726EF2B06614C00C37B32 /* EditProfile */,
 				02ABFF932B08DECF0073F47C /* Status */,
+				025EDBA52B0B0FFA002A7E7F /* Users */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -236,6 +241,15 @@
 				028B32AB2B0507C100C9F71A /* AuthModuleService.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		025EDBA52B0B0FFA002A7E7F /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */,
+				025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		028B329F2B04FCC200C9F71A /* Models */ = {
@@ -395,9 +409,11 @@
 				021726F52B06647E00C37B32 /* PhotoTableViewCell.swift in Sources */,
 				021726FB2B0664E600C37B32 /* EditProfileService.swift in Sources */,
 				021726E82B061DB700C37B32 /* SettingsStore.swift in Sources */,
+				025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */,
 				028B32A62B05067500C9F71A /* Store.swift in Sources */,
 				021726F72B06649A00C37B32 /* EditProfileStore.swift in Sources */,
 				028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */,
+				025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */,
 				028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */,
 				022DEA072B04764B00A840B5 /* AuthViewController.swift in Sources */,
 				028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */,

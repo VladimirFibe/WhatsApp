@@ -19,14 +19,14 @@ final class MainTabBarViewController: UITabBarController {
         view.backgroundColor = .systemBackground
         let chats = UINavigationController(rootViewController: ProfileViewController())
         let channels = UINavigationController(rootViewController: ProfileViewController())
-        let users = UINavigationController(rootViewController: ProfileViewController())
+        let users = UINavigationController(rootViewController: UsersViewControlller())
         let settings = UINavigationController(rootViewController: SettingsViewController(callback: callback))
         chats.tabBarItem = tabItem(for: .chats)
         channels.tabBarItem = tabItem(for: .channels)
         users.tabBarItem = tabItem(for: .users)
         settings.tabBarItem = tabItem(for: .settings)
         setViewControllers([chats, channels, users, settings], animated: true)
-        selectedIndex = 3
+        selectedIndex = 2
     }
 
     private func tabItem(for tab: Tab) -> UITabBarItem {
