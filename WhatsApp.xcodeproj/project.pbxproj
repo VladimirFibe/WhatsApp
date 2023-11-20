@@ -46,6 +46,9 @@
 		022DEA112B0482A100A840B5 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA102B0482A100A840B5 /* AppFont.swift */; };
 		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
 		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
+		025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA82B0B29CA002A7E7F /* UsersService.swift */; };
+		025EDBAB2B0B2BE1002A7E7F /* UsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBAA2B0B2BE1002A7E7F /* UsersUseCase.swift */; };
+		025EDBAD2B0B2C62002A7E7F /* UsersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBAC2B0B2C62002A7E7F /* UsersStore.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
 		028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A32B0500DB00C9F71A /* FirebaseClient.swift */; };
@@ -92,6 +95,9 @@
 		022DEA102B0482A100A840B5 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
+		025EDBA82B0B29CA002A7E7F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		025EDBAA2B0B2BE1002A7E7F /* UsersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersUseCase.swift; sourceTree = "<group>"; };
+		025EDBAC2B0B2C62002A7E7F /* UsersStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersStore.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		028B32A32B0500DB00C9F71A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -248,6 +254,9 @@
 			children = (
 				025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */,
 				025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */,
+				025EDBA82B0B29CA002A7E7F /* UsersService.swift */,
+				025EDBAA2B0B2BE1002A7E7F /* UsersUseCase.swift */,
+				025EDBAC2B0B2C62002A7E7F /* UsersStore.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -387,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				025EDBAB2B0B2BE1002A7E7F /* UsersUseCase.swift in Sources */,
 				021726DB2B06143D00C37B32 /* MainTabBarViewController.swift in Sources */,
 				021726E22B06171000C37B32 /* SettingRowTableViewCell.swift in Sources */,
 				022DEA112B0482A100A840B5 /* AppFont.swift in Sources */,
@@ -402,6 +412,7 @@
 				021726FF2B06E75400C37B32 /* Status.swift in Sources */,
 				02ABFF972B08E32D0073F47C /* ProfileStatusUseCase.swift in Sources */,
 				021726EE2B06612D00C37B32 /* EditProfileViewController.swift in Sources */,
+				025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */,
 				021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
 				021726DD2B06167900C37B32 /* SettingsViewController.swift in Sources */,
@@ -423,6 +434,7 @@
 				021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */,
 				021726F92B0664C600C37B32 /* EditProfileUseCase.swift in Sources */,
 				02ABFF992B08E3D80073F47C /* ProfileStatusStore.swift in Sources */,
+				025EDBAD2B0B2C62002A7E7F /* UsersStore.swift in Sources */,
 				021726D92B06138A00C37B32 /* Tab.swift in Sources */,
 				021726E02B0616F600C37B32 /* SettingsNameTableViewCell.swift in Sources */,
 			);

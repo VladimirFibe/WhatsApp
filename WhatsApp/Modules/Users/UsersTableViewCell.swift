@@ -18,6 +18,14 @@ class UsersTableViewCell: BaseTableViewCell {
         $0.text = "status"
         return $0
     }(UILabel())
+
+    public func configure(with person: Person) {
+        usernameLabel.text = person.username
+        statusLabel.text = person.status
+        FileStorage.downloadImage(person: person) { image in
+            self.avatarImageView.image = image?.circleMasked
+        }
+    }
 }
 
 extension UsersTableViewCell {

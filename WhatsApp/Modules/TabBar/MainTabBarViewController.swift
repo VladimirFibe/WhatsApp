@@ -26,7 +26,7 @@ final class MainTabBarViewController: UITabBarController {
         users.tabBarItem = tabItem(for: .users)
         settings.tabBarItem = tabItem(for: .settings)
         setViewControllers([chats, channels, users, settings], animated: true)
-        selectedIndex = 2
+        selectedIndex = 3
     }
 
     private func tabItem(for tab: Tab) -> UITabBarItem {
