@@ -50,6 +50,10 @@
 		025EDBAB2B0B2BE1002A7E7F /* UsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBAA2B0B2BE1002A7E7F /* UsersUseCase.swift */; };
 		025EDBAD2B0B2C62002A7E7F /* UsersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBAC2B0B2C62002A7E7F /* UsersStore.swift */; };
 		025EDBAF2B0B5D3E002A7E7F /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBAE2B0B5D3E002A7E7F /* ProfileHeaderCell.swift */; };
+		025EDBB12B0B7796002A7E7F /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB02B0B7796002A7E7F /* RecentChat.swift */; };
+		025EDBB32B0B798E002A7E7F /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB22B0B798E002A7E7F /* ChatsTableViewController.swift */; };
+		025EDBB52B0B79F5002A7E7F /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB42B0B79F5002A7E7F /* BaseTableViewController.swift */; };
+		025EDBB82B0B7AC2002A7E7F /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
 		028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A32B0500DB00C9F71A /* FirebaseClient.swift */; };
@@ -100,6 +104,10 @@
 		025EDBAA2B0B2BE1002A7E7F /* UsersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersUseCase.swift; sourceTree = "<group>"; };
 		025EDBAC2B0B2C62002A7E7F /* UsersStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersStore.swift; sourceTree = "<group>"; };
 		025EDBAE2B0B5D3E002A7E7F /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		025EDBB02B0B7796002A7E7F /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
+		025EDBB22B0B798E002A7E7F /* ChatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
+		025EDBB42B0B79F5002A7E7F /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		028B32A32B0500DB00C9F71A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -227,6 +235,7 @@
 				021726EF2B06614C00C37B32 /* EditProfile */,
 				02ABFF932B08DECF0073F47C /* Status */,
 				025EDBA52B0B0FFA002A7E7F /* Users */,
+				025EDBB62B0B7AA9002A7E7F /* Chats */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -264,11 +273,21 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
+		025EDBB62B0B7AA9002A7E7F /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				025EDBB22B0B798E002A7E7F /* ChatsTableViewController.swift */,
+				025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
 		028B329F2B04FCC200C9F71A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				028B32A02B04FCD200C9F71A /* Person.swift */,
 				021726FE2B06E75400C37B32 /* Status.swift */,
+				025EDBB02B0B7796002A7E7F /* RecentChat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -286,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				022DEA082B04767E00A840B5 /* BaseViewController.swift */,
+				025EDBB42B0B79F5002A7E7F /* BaseTableViewController.swift */,
 				022DEA0A2B04774200A840B5 /* BaseView.swift */,
 				021726E32B06173300C37B32 /* BaseTableViewCell.swift */,
 				022DEA102B0482A100A840B5 /* AppFont.swift */,
@@ -418,6 +438,7 @@
 				025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */,
 				021726EA2B061EF100C37B32 /* SettingsUseCase.swift in Sources */,
 				022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */,
+				025EDBB82B0B7AC2002A7E7F /* ChatsCell.swift in Sources */,
 				021726DD2B06167900C37B32 /* SettingsViewController.swift in Sources */,
 				021727012B06E7AA00C37B32 /* ProfileStatusViewController.swift in Sources */,
 				021726F52B06647E00C37B32 /* PhotoTableViewCell.swift in Sources */,
@@ -426,17 +447,20 @@
 				025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */,
 				028B32A62B05067500C9F71A /* Store.swift in Sources */,
 				021726F72B06649A00C37B32 /* EditProfileStore.swift in Sources */,
+				025EDBB52B0B79F5002A7E7F /* BaseTableViewController.swift in Sources */,
 				028B32AA2B05076700C9F71A /* AuthUseCase.swift in Sources */,
 				025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */,
 				028B32A42B0500DB00C9F71A /* FirebaseClient.swift in Sources */,
 				025EDBAF2B0B5D3E002A7E7F /* ProfileHeaderCell.swift in Sources */,
 				022DEA072B04764B00A840B5 /* AuthViewController.swift in Sources */,
 				028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */,
+				025EDBB12B0B7796002A7E7F /* RecentChat.swift in Sources */,
 				021726E62B06181E00C37B32 /* SettingsRowModel.swift in Sources */,
 				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 				021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */,
 				021726F92B0664C600C37B32 /* EditProfileUseCase.swift in Sources */,
+				025EDBB32B0B798E002A7E7F /* ChatsTableViewController.swift in Sources */,
 				02ABFF992B08E3D80073F47C /* ProfileStatusStore.swift in Sources */,
 				025EDBAD2B0B2C62002A7E7F /* UsersStore.swift in Sources */,
 				021726D92B06138A00C37B32 /* Tab.swift in Sources */,

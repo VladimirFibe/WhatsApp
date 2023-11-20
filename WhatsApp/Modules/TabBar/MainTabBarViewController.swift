@@ -17,7 +17,7 @@ final class MainTabBarViewController: UITabBarController {
 
     private func setupTabBar() {
         view.backgroundColor = .systemBackground
-        let chats = UINavigationController(rootViewController: ProfileViewController())
+        let chats = UINavigationController(rootViewController: ChatsTableViewController())
         let channels = UINavigationController(rootViewController: ProfileViewController())
         let users = UINavigationController(rootViewController: UsersViewControlller())
         let settings = UINavigationController(rootViewController: SettingsViewController(callback: callback))
