@@ -24,6 +24,7 @@ extension UsersViewControlller {
         store.sendAction(.fetch)
         setupObservers()
         setupSearchController()
+        tableView.refreshControl = UIRefreshControl()
     }
 
     private func setupObservers() {
@@ -52,6 +53,13 @@ extension UsersViewControlller {
     override func setupConstraints() {
         tableView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if tableView.refreshControl!.isRefreshing {
+            store.sendAction(.fetch)
+            tableView.refreshControl!.endRefreshing()
         }
     }
 }
@@ -83,5 +91,7 @@ extension UsersViewControlller: UITableViewDataSource {
 }
 
 extension UsersViewControlller: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
