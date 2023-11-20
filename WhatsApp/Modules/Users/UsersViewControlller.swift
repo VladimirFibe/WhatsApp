@@ -94,6 +94,7 @@ extension UsersViewControlller: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let controller = ProfileViewController()
+        controller.person = searchController.isActive ? filtered[indexPath.row] : persons[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
 }

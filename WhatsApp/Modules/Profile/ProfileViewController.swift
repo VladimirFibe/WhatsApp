@@ -2,7 +2,8 @@ import UIKit
 import FirebaseAuth
 
 class ProfileViewController: BaseViewController {
-
+    var person: Person?
+    
     private lazy var tableView: UITableView = {
         $0.dataSource = self
         $0.delegate = self
@@ -10,6 +11,8 @@ class ProfileViewController: BaseViewController {
     }(UITableView())
 
     private let headerCell = ProfileHeaderCell()
+
+
 }
 
 extension ProfileViewController {
@@ -32,7 +35,11 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return headerCell
+            let cell = headerCell
+            if let person {
+                cell.configure(with: person)
+            }
+            return cell
         } else {
             let cell = UITableViewCell()
             cell.textLabel?.text = "Start Chat"
