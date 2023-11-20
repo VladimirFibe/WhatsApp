@@ -29,13 +29,19 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
+            print("Start Chat")
+        }
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = headerCell
+            cell.selectionStyle = .none
             if let person {
                 cell.configure(with: person)
             }
