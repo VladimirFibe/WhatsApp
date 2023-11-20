@@ -6,7 +6,7 @@ final class UsersViewControlller: BaseViewController {
     var persons: [Person] = []
     var filtered: [Person] = []
 
-    private let seachController = UISearchController()
+    private let searchController = UISearchController()
 
     private lazy var tableView: UITableView = {
         $0.dataSource = self
@@ -23,6 +23,7 @@ extension UsersViewControlller {
         view.addSubview(tableView)
         store.sendAction(.fetch)
         setupObservers()
+        setupSearchController()
     }
 
     private func setupObservers() {
@@ -39,6 +40,15 @@ extension UsersViewControlller {
             }.store(in: &bag)
     }
 
+    private func setupSearchController() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Users"
+        searchController.searchResultsUpdater = self
+        definesPresentationContext = true
+    }
+
     override func setupConstraints() {
         tableView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
@@ -46,14 +56,27 @@ extension UsersViewControlller {
     }
 }
 
+extension UsersViewControlller: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        filteredContentForSearchText(text.lowercased())
+    }
+
+    private func filteredContentForSearchText(_ text: String) {
+        filtered = text.isEmpty ? persons : persons.filter { $0.username.lowercased().contains(text)}
+        tableView.reloadData()
+    }
+
+}
+
 extension UsersViewControlller: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        seachController.isActive ? filtered.count : persons.count
+        searchController.isActive ? filtered.count : persons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewCell.identifier, for: indexPath) as? UsersTableViewCell else { fatalError()}
-        let person = seachController.isActive ? filtered[indexPath.row] : persons[indexPath.row]
+        let person = searchController.isActive ? filtered[indexPath.row] : persons[indexPath.row]
         cell.configure(with: person)
         return cell
     }
