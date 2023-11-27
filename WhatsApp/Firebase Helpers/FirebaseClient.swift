@@ -18,5 +18,11 @@ final class FirebaseClient {
 
     enum FCollectionReference: String {
         case persons
+        case recent
+    }
+
+    func chatRoomIdFrom(firstId: String, secondId: String) -> String {
+        let value = firstId.compare(secondId).rawValue
+        return value < 0 ? firstId + secondId : secondId + firstId
     }
 }

@@ -11,8 +11,6 @@ class ProfileViewController: BaseViewController {
     }(UITableView())
 
     private let headerCell = ProfileHeaderCell()
-
-
 }
 
 extension ProfileViewController {
@@ -32,7 +30,8 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            print("Start Chat")
+            let controller = ChatViewController()
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

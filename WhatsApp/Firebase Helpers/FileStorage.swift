@@ -64,6 +64,31 @@ class FileStorage {
             }
         }
     }
+
+    class func downloadImage(id: String, link: String, completion: @escaping (UIImage?) -> Void) {
+        if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: id)) {
+            completion(contentsOfFile)
+        } else {
+            if let url = URL(string: link) {
+                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+                downloadQueue.async {
+                    if let data = NSData(contentsOf: url) {
+                        FileStorage.saveFileLocally(fileData: data, fileName: id)
+                        DispatchQueue.main.async {
+                            completion(UIImage(data: data as Data))
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            completion(nil)
+                        }
+                    }
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
     // MARK: - Save Locally
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)

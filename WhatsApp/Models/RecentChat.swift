@@ -2,16 +2,15 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct RecentChat: Codable {
-
-    var id = ""
-    var chatRoomId = ""
-    var senderId = ""
-    var senderName = ""
-    var receiverId = ""
-    var receiverName = ""
+    var id = "id"
+    var chatRoomId = "chatRoomId"
+    var senderId = "senderId"
+    var senderName = "senderName"
+    var receiverId = "receiverId"
+    var receiverName = "receiverName"
     @ServerTimestamp var date = Date()
-    var memberIds = [""]
-    var lastMessage = ""
-    var unreadCounter = 0
-    var avatarLink = ""
+    var memberIds = ["senderId", "receiverId"]
+    var lastMessage = "муха..."
+    var unreadCounter = 1
+    var avatarLink = "https://imgv3.fotor.com/images/gallery/watercolor-female-avatar.jpg"
 }

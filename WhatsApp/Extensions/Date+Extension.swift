@@ -1,27 +1,22 @@
 import Foundation
 
 extension Date {
-
     func timeElapsed() -> String {
-
         let seconds = Date().timeIntervalSince(self)
-
         if seconds < 60 {
             return "Just now"
-        } else if seconds < 60 * 60 {
-
+        } else if seconds < 3600 { // 1 hour
             let minutes = Int(seconds / 60)
-            let minText = minutes > 1 ? "mins" : "min"
+            let minText = minutes == 1 ? "min" : "mins"
             return "\(minutes) \(minText)"
-
-        } else if seconds < 24 * 60 * 60 {
-            let hours = Int(seconds / (60 * 60))
-            let hourText = hours > 1 ? "hours" : "hour"
-            return "\(hours) \(hourText)"
-
+        } else if seconds < 24 * 3600 {
+            let hours = Int(seconds / 3600)
+            let hoursText = hours == 1 ? "hour" : "hours"
+            return "\(hours) \(hoursText)"
         } else {
             return longDate()
         }
+
     }
 
     func longDate() -> String {
