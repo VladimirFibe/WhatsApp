@@ -3,11 +3,11 @@ import MessageKit
 import InputBarAccessoryView
 
 final class ChatViewController: MessagesViewController {
-
+    let currentUser = MKSender(senderId: Person.currentId, displayName: "Current User")
     private let refreshControl = UIRefreshControl()
 
     private let micButton = InputBarButtonItem()
-
+    var mkMessages: [MKMessage] = []
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -16,6 +16,12 @@ final class ChatViewController: MessagesViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        confugureMessageCollectionView()
+        configureMesssageInputBar()
     }
 }
 // MARK: - Configurations
@@ -53,22 +59,11 @@ extension ChatViewController {
     }
 }
 
-extension ChatViewController: InputBarAccessoryViewDelegate {
 
-}
 
-extension ChatViewController: MessagesDataSource {
 
-}
 
-extension ChatViewController: MessageCellDelegate {
 
-}
 
-extension ChatViewController: MessagesDisplayDelegate {
 
-}
 
-extension ChatViewController: MessagesLayoutDelegate {
-
-}
