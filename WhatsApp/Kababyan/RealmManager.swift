@@ -19,4 +19,13 @@ class RealmManager {
         }
     }
     
+    func deleteFromRealm<T: Object>(_ object: T) {
+        do {
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch {
+            print("Error deleting realm Object ", error.localizedDescription)
+        }
+    }
 }
