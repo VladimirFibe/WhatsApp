@@ -3,11 +3,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 final class FirebaseClient {
-
-    let COLLECTION_PERSONS = Firestore.firestore().collection("persons")
-    let COLLECTION_MESSAGES = Firestore.firestore().collection("messages")
-    let COLLECTION_CHANNELS = Firestore.firestore().collection("channels")
-
     static let shared = FirebaseClient()
     private init() {}
     var person: Person? = nil
@@ -23,7 +18,6 @@ final class FirebaseClient {
 
     enum FCollectionReference: String {
         case persons
-        case recent
         case messages
     }
 
@@ -33,22 +27,13 @@ final class FirebaseClient {
     }
 
     func sendMessage(_ message: LocalMessage, friendUid: String) throws {
-//        let text = ""
-//        let currentUrl = ""
-//        let currentName = ""
-//        let friendUid = ""
-//        let friendUrl = ""
-//        let friendName = ""
-//
-//        guard let currentUid = person?.id else { return }
-//
-        try COLLECTION_MESSAGES
+        try reference(.messages)
             .document(message.senderId)
             .collection(friendUid)
             .document(message.id)
             .setData(from: message)
 
-        try COLLECTION_MESSAGES
+        try reference(.messages)
             .document(friendUid)
             .collection(message.senderId)
             .document(message.id)

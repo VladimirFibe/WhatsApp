@@ -30,7 +30,12 @@ class OutgoingMessage {
             message.type = kTEXT
             sendMessage(message: message, memberIds: memberIds)
         }
-
+        guard let friendUid = memberIds.last else { return }
+        do {
+            try FirebaseClient.shared.sendMessage(message, friendUid: friendUid)
+        } catch {
+            print(error.localizedDescription)
+        }
         // TODO: Send push notifition
         // TODO: update recent
     }

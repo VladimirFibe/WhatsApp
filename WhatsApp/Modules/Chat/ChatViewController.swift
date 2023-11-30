@@ -1,6 +1,7 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import RealmSwift
 
 final class ChatViewController: MessagesViewController {
     private var chatId = "chatId"
@@ -12,10 +13,15 @@ final class ChatViewController: MessagesViewController {
 
     private let micButton = InputBarButtonItem()
     var mkMessages: [MKMessage] = []
-    
+    var allLocalMessages: Results<LocalMessage>!
+    let realm = try! Realm()
+
+    var notificationToken: NotificationToken?
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        loadChats()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,12 +68,18 @@ extension ChatViewController {
         messageInputBar.delegate = self
 
         let attachButton = InputBarButtonItem()
-        attachButton.image = UIImage(systemName: "plus")
+        attachButton.image = UIImage(
+            systemName: "plus",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 30)
+        )
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachButton.onTouchUpInside { item in
             print("Attach button pressed")
         }
-        micButton.image = UIImage(systemName: "mic.fill")
+        micButton.image = UIImage(
+            systemName: "mic.fill",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 30)
+        )
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
         micButton.onTouchUpInside { item in
             print("Mic button pressed")
@@ -82,6 +94,27 @@ extension ChatViewController {
 }
 // MARK: Actions
 extension ChatViewController {
+
+    private func loadChats() {
+        let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
+        allLocalMessages = realm
+            .objects(LocalMessage.self)
+            .filter(predicate)
+            .sorted(byKeyPath: kDATE, ascending: true)
+
+        notificationToken = allLocalMessages.observe({ changes in
+            switch changes {
+            case .initial:
+                print(" we have \(self.allLocalMessages.count) messages")
+            case .update(_, _, let insertions, _):
+                for index in insertions {
+                    print(self.allLocalMessages[index].message)
+                }
+            case .error(let error):
+                print("Error on new insertion ", error.localizedDescription)
+            }
+        })
+    }
     func messageSend(
         text: String? = nil,
         photo: UIImage? = nil,
@@ -98,7 +131,7 @@ extension ChatViewController {
             audio: audio,
             audioDuration: audioDuration, 
             location: location,
-            memberIds: [User.currentId, "recipientId"]
+            memberIds: [User.currentId, recipientId]
         )
     }
 }
