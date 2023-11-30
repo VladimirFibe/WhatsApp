@@ -105,16 +105,36 @@ extension ChatViewController {
         notificationToken = allLocalMessages.observe({ changes in
             switch changes {
             case .initial:
-                print(" we have \(self.allLocalMessages.count) messages")
+                self.insertMessages()
+                self.messagesCollectionView.reloadData()
+                self.messagesCollectionView.scrollToLastItem()
             case .update(_, _, let insertions, _):
                 for index in insertions {
                     print(self.allLocalMessages[index].message)
+                    self.insertMessage(self.allLocalMessages[index])
+                    self.messagesCollectionView.reloadData()
+                    self.messagesCollectionView.scrollToLastItem()
                 }
             case .error(let error):
                 print("Error on new insertion ", error.localizedDescription)
             }
         })
     }
+
+    private func insertMessages() {
+        for message in allLocalMessages {
+            insertMessage(message)
+        }
+
+    }
+
+    private func insertMessage(_ message: LocalMessage) {
+        let incoming = IncomingMessage(self)
+        if let message = incoming.createMessage(localMessage: message) {
+            mkMessages.append(message)
+        }
+    }
+
     func messageSend(
         text: String? = nil,
         photo: UIImage? = nil,
