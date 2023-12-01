@@ -18,6 +18,27 @@ final class ChatViewController: MessagesViewController {
 
     var notificationToken: NotificationToken?
 
+    //MARK: - Views
+    let leftBarButtonView: UIView = {
+        return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    }()
+
+    let titleLabel: UILabel = {
+       let title = UILabel(frame: CGRect(x: 5, y: 0, width: 180, height: 25))
+        title.textAlignment = .left
+        title.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        title.adjustsFontSizeToFitWidth = true
+        return title
+    }()
+
+    let subTitleLabel: UILabel = {
+       let subTitle = UILabel(frame: CGRect(x: 5, y: 22, width: 180, height: 20))
+        subTitle.textAlignment = .left
+        subTitle.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        subTitle.adjustsFontSizeToFitWidth = true
+        return subTitle
+    }()
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -33,7 +54,7 @@ final class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         confugureMessageCollectionView()
         configureMesssageInputBar()
-        navigationItem.title = recipientName
+        configureNavBar()
     }
 
     init(
@@ -62,6 +83,28 @@ extension ChatViewController {
 
         scrollsToLastItemOnKeyboardBeginsEditing = true
         maintainPositionOnInputBarHeightChanged = true
+    }
+
+    private func configureNavBar() {
+        configureCustomTitle()
+        configureLeftBarButton()
+    }
+
+    private func configureLeftBarButton() {
+        let leftButton = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            style: .plain,
+            target: self,
+            action: #selector(backButtonPressed)
+        )
+        let leftView = UIBarButtonItem(customView: leftBarButtonView)
+        navigationItem.leftBarButtonItems = [leftButton, leftView]
+    }
+
+    private func configureCustomTitle() {
+        leftBarButtonView.addSubview(titleLabel)
+        leftBarButtonView.addSubview(subTitleLabel)
+        titleLabel.text = recipientName
     }
 
     private func configureMesssageInputBar() {
@@ -94,6 +137,10 @@ extension ChatViewController {
 }
 // MARK: Actions
 extension ChatViewController {
+    @objc private func backButtonPressed() {
+        //TODO: remove listeners
+        navigationController?.popViewController(animated: true)
+    }
 
     private func loadChats() {
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
