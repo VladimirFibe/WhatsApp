@@ -7,6 +7,10 @@ final class ChatViewController: MessagesViewController {
     private var chatId = "chatId"
     private var recipientId = "recipientId"
     private var recipientName = "recipientName"
+    var displayingMessagesCount = 0
+    var maxMessageNumber = 0
+    var minMessageNumber = 0
+
 
     let currentUser = MKSender(senderId: Person.currentId, displayName: "Current User")
     private let refreshControl = UIRefreshControl()
@@ -195,16 +199,24 @@ extension ChatViewController {
     }
 
     private func insertMessages() {
-        for message in allLocalMessages {
-            insertMessage(message)
+
+        maxMessageNumber = allLocalMessages.count - displayingMessagesCount
+        minMessageNumber = maxMessageNumber - kNUMBEROFMESSAGES
+
+        if minMessageNumber < 0 {
+            minMessageNumber = 0
         }
 
+        for i in minMessageNumber ..< maxMessageNumber {
+            insertMessage(allLocalMessages[i])
+        }
     }
 
     private func insertMessage(_ message: LocalMessage) {
         let incoming = IncomingMessage(self)
         if let message = incoming.createMessage(localMessage: message) {
             mkMessages.append(message)
+            displayingMessagesCount += 1
         }
     }
 
