@@ -203,7 +203,6 @@ extension ChatViewController {
     }
 
     // MARK: - Update Typing Indicator
-
     func updateTypingIndicator(_ show: Bool) {
         subTitleLabel.text = show ? "Typing..." : ""
     }
