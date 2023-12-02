@@ -201,6 +201,12 @@ extension ChatViewController {
             memberIds: [User.currentId, recipientId]
         )
     }
+
+    // MARK: - Update Typing Indicator
+
+    func updateTypingIndicator(_ show: Bool) {
+        subTitleLabel.text = show ? "Typing..." : ""
+    }
 }
 
 
