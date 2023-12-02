@@ -42,7 +42,6 @@ final class ChatViewController: MessagesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        loadChats()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,6 +55,8 @@ final class ChatViewController: MessagesViewController {
         configureMesssageInputBar()
         configureNavBar()
         updateMicButtonStatus(show: true)
+        loadChats()
+        listenForNewChats()
     }
 
     init(
@@ -159,7 +160,11 @@ extension ChatViewController {
             .objects(LocalMessage.self)
             .filter(predicate)
             .sorted(byKeyPath: kDATE, ascending: true)
-
+        
+        if allLocalMessages.isEmpty {
+            checkForOldChats()
+        }
+        
         notificationToken = allLocalMessages.observe({ changes in
             switch changes {
             case .initial:
@@ -177,6 +182,16 @@ extension ChatViewController {
                 print("Error on new insertion ", error.localizedDescription)
             }
         })
+    }
+
+    private func listenForNewChats() {
+        var lastMessageDate = allLocalMessages.last?.date ?? Date()
+        lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
+        FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recipientId, lastMessageDate: lastMessageDate)
+    }
+
+    private func checkForOldChats() {
+        FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recipientId)
     }
 
     private func insertMessages() {
