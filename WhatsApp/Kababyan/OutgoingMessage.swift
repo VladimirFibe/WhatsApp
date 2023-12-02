@@ -5,6 +5,7 @@ import FirebaseFirestoreSwift
 class OutgoingMessage {
     
     static func send(
+        recent: Recent,
         chatId: String,
         text: String?,
         photo: UIImage?,
@@ -32,7 +33,7 @@ class OutgoingMessage {
         }
         guard let friendUid = memberIds.last else { return }
         do {
-            try FirebaseClient.shared.sendMessage(message, friendUid: friendUid)
+            try FirebaseClient.shared.sendMessage(message, recent: recent)
         } catch {
             print(error.localizedDescription)
         }

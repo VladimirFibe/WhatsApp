@@ -86,55 +86,39 @@ final class FirebaseClient {
 
 
 
-    func sendMessage(_ message: LocalMessage, friendUid: String) throws {
+    func sendMessage(_ message: LocalMessage, recent: Recent) throws {
         try reference(.messages)
             .document(message.senderId)
-            .collection(friendUid)
+            .collection(recent.chatRoomId)
             .document(message.id)
             .setData(from: message)
 
         try reference(.messages)
-            .document(friendUid)
+            .document(recent.chatRoomId)
             .collection(message.senderId)
             .document(message.id)
             .setData(from: message)
 
-//        let currentRef = COLLECTION_MESSAGES
-//          .document(currentUid)
-//          .collection(friendUid)
-//          .document()
-//
-//        let messageId = currentRef.documentID
-//
-//        var data: [String: Any] = [
-//          "text": text,
-//          "read": false,
-//          "uid": friendUid,
-//          "timestamp": Timestamp(date: Date()),
-//        ]
-//        currentRef.setData(data)
-//
-//        data["uid"] = friendName
-//        data["avatarLink"] = friendUrl
-//        COLLECTION_MESSAGES
-//            .document(currentUid)
-//            .collection("recents")
-//            .document(friendUid)
-//            .setData(data)
-//
-//        data["uid"] = currentName
-//        data["avatarLink"] = currentUrl
-//        COLLECTION_MESSAGES
-//          .document(friendUid)
-//          .collection("recents")
-//          .document(currentUid)
-//          .setData(data)
-//
-//        data["uid"] = currentUid
-//        COLLECTION_MESSAGES
-//          .document(friendUid)
-//          .collection(currentUid)
-//          .document(messageId)
-//          .setData(data)
+        var data: [String: Any] = [
+            "text":             message.message,
+            "name":             recent.name,
+            "date":             message.date,
+            "avatarLink":       recent.avatarLink,
+            "unreadCounter":    0
+        ]
+
+        reference(.messages)
+            .document(Person.currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .setData(data)
+
+        data["name"] = person?.username ?? ""
+        data["avatarLink"] = person?.avatarLink ?? ""
+        reference(.messages)
+            .document(recent.chatRoomId)
+            .collection("recents")
+            .document(Person.currentId)
+            .setData(data)
     }
 }

@@ -30,11 +30,12 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            let controller = ChatViewController(
-                chatId: "123",
-                recipientId: person?.id ?? "",
-                recipientName: person?.fullname ?? ""
-            )
+            guard let id = person?.id,
+                  let name = person?.username,
+                  let avatarLink = person?.avatarLink
+            else { return }
+            let recent = Recent(id: id, name: name, avatarLink: avatarLink)
+            let controller = ChatViewController(recent: recent)
             navigationController?.pushViewController(controller, animated: true)
         }
     }

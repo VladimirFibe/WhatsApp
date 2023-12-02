@@ -4,9 +4,7 @@ import InputBarAccessoryView
 import RealmSwift
 
 final class ChatViewController: MessagesViewController {
-    private var chatId = "chatId"
-    private var recipientId = "recipientId"
-    private var recipientName = "recipientName"
+    private let recent: Recent
     var displayingMessagesCount = 0
     var maxMessageNumber = 0
     var minMessageNumber = 0
@@ -63,15 +61,9 @@ final class ChatViewController: MessagesViewController {
         listenForNewChats()
     }
 
-    init(
-        chatId: String = "chatId",
-        recipientId: String = "recipientId",
-        recipientName: String = "recipientName"
-    ) {
+    init(recent: Recent) {
+        self.recent = recent
         super.init(nibName: nil, bundle: nil)
-        self.chatId = chatId
-        self.recipientId = recipientId
-        self.recipientName = recipientName
     }
     
     required init?(coder: NSCoder) {
@@ -110,7 +102,7 @@ extension ChatViewController {
     private func configureCustomTitle() {
         leftBarButtonView.addSubview(titleLabel)
         leftBarButtonView.addSubview(subTitleLabel)
-        titleLabel.text = recipientName
+        titleLabel.text = recent.name
     }
 
     private func configureMesssageInputBar() {
@@ -159,7 +151,7 @@ extension ChatViewController {
     }
 
     private func loadChats() {
-        let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
+        let predicate = NSPredicate(format: "chatRoomId = %@", recent.chatRoomId)
         allLocalMessages = realm
             .objects(LocalMessage.self)
             .filter(predicate)
@@ -191,11 +183,11 @@ extension ChatViewController {
     private func listenForNewChats() {
         var lastMessageDate = allLocalMessages.last?.date ?? Date()
         lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
-        FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recipientId, lastMessageDate: lastMessageDate)
+        FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
     }
 
     private func checkForOldChats() {
-        FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recipientId)
+        FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
     }
 
     private func insertMessages() {
@@ -229,14 +221,15 @@ extension ChatViewController {
         audioDuration: Float = 0.0
     ) {
         OutgoingMessage.send(
-            chatId: chatId,
+            recent: recent,
+            chatId: recent.chatRoomId,
             text: text,
             photo: photo,
             video: video,
             audio: audio,
             audioDuration: audioDuration, 
             location: location,
-            memberIds: [User.currentId, recipientId]
+            memberIds: [User.currentId, recent.chatRoomId]
         )
     }
 
