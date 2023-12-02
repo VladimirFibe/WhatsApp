@@ -55,6 +55,7 @@ final class ChatViewController: MessagesViewController {
         confugureMessageCollectionView()
         configureMesssageInputBar()
         configureNavBar()
+        updateMicButtonStatus(show: true)
     }
 
     init(
@@ -133,6 +134,16 @@ extension ChatViewController {
         messageInputBar.inputTextView.isImagePasteEnabled = false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
+    }
+
+    func updateMicButtonStatus(show: Bool) {
+        if show {
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+        }
     }
 }
 // MARK: Actions
