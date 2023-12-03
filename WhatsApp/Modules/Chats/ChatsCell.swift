@@ -38,9 +38,9 @@ class ChatsCell: BaseTableViewCell {
         return $0
     }(UILabel())
 
-    public func configure(with recent: RecentChat) {
-        usernameLabel.text = recent.receiverName
-        lastMessageLabel.text = recent.lastMessage
+    public func configure(with recent: Recent) {
+        usernameLabel.text = recent.name
+        lastMessageLabel.text = recent.text
         dateLabel.text = recent.date?.timeElapsed()
         if recent.unreadCounter != 0 {
             unreadCounterLabel.text = "\(recent.unreadCounter)"
@@ -48,7 +48,7 @@ class ChatsCell: BaseTableViewCell {
         } else {
             unreadCounterLabel.isHidden = true
         }
-        setAvatar(id: recent.receiverId, link: recent.avatarLink)
+        setAvatar(id: recent.chatRoomId, link: recent.avatarLink)
     }
 
     private func setAvatar(id: String, link: String) {
