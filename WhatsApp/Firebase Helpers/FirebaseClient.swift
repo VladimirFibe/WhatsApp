@@ -86,21 +86,23 @@ final class FirebaseClient {
     
     
     
-    func sendMessage(_ message: LocalMessage, recent: Recent) throws {
-        try reference(.messages)
-            .document(message.senderId)
-            .collection(chatRoomIdFrom(firstId: message.senderId, secondId: recent.chatRoomId))
+    func sendMessage(_ message: Message, recent: Recent) {
+        var data: [String: Any] = message.data
+        reference(.messages)
+            .document(message.uid)
+            .collection(recent.chatRoomId)
             .document(message.id)
-            .setData(from: message)
-        
-        try reference(.messages)
+            .setData(data)
+
+        data["incoming"] = true
+        reference(.messages)
             .document(recent.chatRoomId)
-            .collection(chatRoomIdFrom(firstId: message.senderId, secondId: recent.chatRoomId))
+            .collection(message.uid)
             .document(message.id)
-            .setData(from: message)
-        
-        var data: [String: Any] = [
-            "text":             message.message,
+            .setData(data)
+
+        data = [
+            "text":             message.text,
             "name":             recent.name,
             "date":             message.date,
             "avatarLink":       recent.avatarLink,

@@ -222,7 +222,6 @@ extension ChatViewController {
     ) {
         OutgoingMessage.send(
             recent: recent,
-            chatId: chatRoomIdFrom(user1Id: recent.chatRoomId, user2Id: Person.currentId),
             text: text,
             photo: photo,
             video: video,

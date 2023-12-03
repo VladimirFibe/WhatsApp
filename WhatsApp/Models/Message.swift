@@ -21,4 +21,19 @@ class Message: Object, Codable {
     @objc dynamic var incoming = false
 
     override class func primaryKey() -> String? {"id"}
+    var data: [String: Any] {[
+        "id": id,
+        "date": date,
+        "uid": uid,
+        "initials": initials,
+        "readDate": readDate,
+        "status": status,
+        "audioUrl": audioUrl,
+        "videoUrl": videoUrl,
+        "pictureUrl": pictureUrl,
+        "latitude": latitude,
+        "longitude": longitude,
+        "autdioDuration": audioDuration,
+        "incoming": incoming
+    ]}
 }

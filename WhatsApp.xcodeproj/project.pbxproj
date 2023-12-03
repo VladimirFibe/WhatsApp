@@ -351,9 +351,9 @@
 			children = (
 				028B32A02B04FCD200C9F71A /* Person.swift */,
 				021726FE2B06E75400C37B32 /* Status.swift */,
-				025EDBB02B0B7796002A7E7F /* RecentChat.swift */,
 				0281D3642B1BDDEA007F1082 /* Recent.swift */,
 				026A2A172B1C702600770D96 /* Message.swift */,
+				02A571FD2B14794F0042B782 /* OutgoingMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				02A571F42B1464170042B782 /* LocalMessage.swift */,
-				02A571FD2B14794F0042B782 /* OutgoingMessage.swift */,
+				025EDBB02B0B7796002A7E7F /* RecentChat.swift */,
 				02C0B8032B14B97C008B44E1 /* IncomingMessage.swift */,
 				02C80A022B11D649009B46E6 /* User.swift */,
 				02C80A0A2B11D6A3009B46E6 /* Constants.swift */,
