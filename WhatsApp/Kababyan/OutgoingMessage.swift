@@ -31,7 +31,6 @@ class OutgoingMessage {
             message.type = kTEXT
             sendMessage(message: message, memberIds: memberIds)
         }
-        guard let friendUid = memberIds.last else { return }
         do {
             try FirebaseClient.shared.sendMessage(message, recent: recent)
         } catch {

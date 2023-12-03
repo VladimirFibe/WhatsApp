@@ -42,6 +42,7 @@ extension ChatsTableViewController {
 extension ChatsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(recents[indexPath.row].name)
+        let controller = ChatViewController(recent: recents[indexPath.row])
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

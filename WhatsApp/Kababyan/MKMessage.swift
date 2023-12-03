@@ -24,4 +24,15 @@ class MKMessage: NSObject, MessageType {
         self.readDate = message.readDate
         self.incoming = Person.currentId != mkSender.senderId
     }
+
+    init(message: Message) {
+        self.messageId = message.id
+        self.mkSender = MKSender(senderId: message.uid, displayName: message.name)
+        self.status = message.status
+        self.kind = MessageKind.text(message.text)
+        self.senderInitials = message.initials
+        self.sentDate = message.date
+        self.readDate = message.readDate
+        self.incoming = message.incoming
+    }
 }

@@ -33,7 +33,7 @@ final class FirebaseClient {
         
         newChatListener = reference(.messages)
             .document(documentId)
-            .collection(friendUid)
+            .collection(chatRoomIdFrom(firstId: documentId, secondId: friendUid))
             .whereField(kDATE, isGreaterThan: lastMessageDate)
             .addSnapshotListener { querySnapshot, error in
                 
@@ -71,7 +71,7 @@ final class FirebaseClient {
         
         reference(.messages)
             .document(documentId)
-            .collection(friendUid)
+            .collection(chatRoomIdFrom(firstId: documentId, secondId: friendUid))
             .getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
                     print("no documents for old chats")
@@ -89,13 +89,13 @@ final class FirebaseClient {
     func sendMessage(_ message: LocalMessage, recent: Recent) throws {
         try reference(.messages)
             .document(message.senderId)
-            .collection(recent.chatRoomId)
+            .collection(chatRoomIdFrom(firstId: message.senderId, secondId: recent.chatRoomId))
             .document(message.id)
             .setData(from: message)
         
         try reference(.messages)
             .document(recent.chatRoomId)
-            .collection(message.senderId)
+            .collection(chatRoomIdFrom(firstId: message.senderId, secondId: recent.chatRoomId))
             .document(message.id)
             .setData(from: message)
         

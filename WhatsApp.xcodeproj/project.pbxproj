@@ -55,6 +55,7 @@
 		025EDBB52B0B79F5002A7E7F /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB42B0B79F5002A7E7F /* BaseTableViewController.swift */; };
 		025EDBB82B0B7AC2002A7E7F /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */; };
 		025EDBBB2B0B9EFB002A7E7F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBBA2B0B9EFB002A7E7F /* Date+Extension.swift */; };
+		026A2A182B1C702600770D96 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A2A172B1C702600770D96 /* Message.swift */; };
 		0281D3652B1BDDEA007F1082 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281D3642B1BDDEA007F1082 /* Recent.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
@@ -134,6 +135,7 @@
 		025EDBB42B0B79F5002A7E7F /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
 		025EDBBA2B0B9EFB002A7E7F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		026A2A172B1C702600770D96 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0281D3642B1BDDEA007F1082 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		0210274F2ABF452C0017990B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02A571F62B14641F0042B782 /* RealmManager.swift */,
 				021027432ABF43740017990B /* Assets.xcassets */,
 				021027452ABF43740017990B /* LaunchScreen.storyboard */,
 				028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */,
@@ -350,6 +353,7 @@
 				021726FE2B06E75400C37B32 /* Status.swift */,
 				025EDBB02B0B7796002A7E7F /* RecentChat.swift */,
 				0281D3642B1BDDEA007F1082 /* Recent.swift */,
+				026A2A172B1C702600770D96 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				02A571F42B1464170042B782 /* LocalMessage.swift */,
-				02A571F62B14641F0042B782 /* RealmManager.swift */,
 				02A571FD2B14794F0042B782 /* OutgoingMessage.swift */,
 				02C0B8032B14B97C008B44E1 /* IncomingMessage.swift */,
 				02C80A022B11D649009B46E6 /* User.swift */,
@@ -583,6 +586,7 @@
 				0281D3652B1BDDEA007F1082 /* Recent.swift in Sources */,
 				025EDBAD2B0B2C62002A7E7F /* UsersStore.swift in Sources */,
 				02A571EF2B1459D10042B782 /* InputBarAccessoryViewDelegate+ChatViewController.swift in Sources */,
+				026A2A182B1C702600770D96 /* Message.swift in Sources */,
 				021726D92B06138A00C37B32 /* Tab.swift in Sources */,
 				025EDBBB2B0B9EFB002A7E7F /* Date+Extension.swift in Sources */,
 				02A571E92B1458DD0042B782 /* MessageCellDelegate+ChatViewController.swift in Sources */,

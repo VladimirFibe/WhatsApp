@@ -8,7 +8,5 @@ struct Recent: Identifiable, Codable, Hashable {
     var text = ""
     var unreadCounter = 1
     @ServerTimestamp var date = Date()
-    var chatRoomId: String {
-        id ?? ""
-    }
+    var chatRoomId: String { id ?? "" }
 }
