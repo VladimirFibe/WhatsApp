@@ -15,7 +15,7 @@ class RealmManager {
                 realm.add(object, update: .all)
             }
         } catch {
-            print("Error saving realm Object ", error.localizedDescription)
+            print("DEBUG: Error saving realm Object ", error.localizedDescription)
         }
     }
     

@@ -19,10 +19,10 @@ class OutgoingMessage {
 
         let message = Message()
         message.id = UUID().uuidString
+        message.chatRoomId = Person.chatRoomIdFrom(id: recent.chatRoomId)
         message.uid = Person.currentId
         message.name = currentUser.username
         message.initials = String(currentUser.username.first ?? "?")
-        message.incoming = false
         message.date = Date()
         message.status = kSENT
         if let text {

@@ -9,13 +9,13 @@ final class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
 
-
     let currentUser = MKSender(senderId: Person.currentId, displayName: "Current User")
     private let refreshControl = UIRefreshControl()
 
     private let micButton = InputBarButtonItem()
+
     var mkMessages: [MKMessage] = []
-    var allLocalMessages: Results<LocalMessage>!
+    var allLocalMessages: Results<Message>!
     let realm = try! Realm()
 
     var notificationToken: NotificationToken?
@@ -151,9 +151,9 @@ extension ChatViewController {
     }
 
     private func loadChats() {
-        let predicate = NSPredicate(format: "chatRoomId = %@", recent.chatRoomId)
+        let predicate = NSPredicate(format: "chatRoomId = %@", Person.chatRoomIdFrom(id: recent.chatRoomId))
         allLocalMessages = realm
-            .objects(LocalMessage.self)
+            .objects(Message.self)
             .filter(predicate)
             .sorted(byKeyPath: kDATE, ascending: true)
         
@@ -169,7 +169,6 @@ extension ChatViewController {
                 self.messagesCollectionView.scrollToLastItem()
             case .update(_, _, let insertions, _):
                 for index in insertions {
-                    print(self.allLocalMessages[index].message)
                     self.insertMessage(self.allLocalMessages[index])
                     self.messagesCollectionView.reloadData()
                     self.messagesCollectionView.scrollToLastItem()
@@ -181,12 +180,14 @@ extension ChatViewController {
     }
 
     private func listenForNewChats() {
+        print("DEBUG: ", #function)
         var lastMessageDate = allLocalMessages.last?.date ?? Date()
         lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
         FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
     }
 
     private func checkForOldChats() {
+        print("DEBUG: ", #function)
         FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
     }
 
@@ -204,9 +205,9 @@ extension ChatViewController {
         }
     }
 
-    private func insertMessage(_ message: LocalMessage) {
+    private func insertMessage(_ message: Message) {
         let incoming = IncomingMessage(self)
-        if let message = incoming.createMessage(localMessage: message) {
+        if let message = incoming.createMessage(message) {
             mkMessages.append(message)
             displayingMessagesCount += 1
         }

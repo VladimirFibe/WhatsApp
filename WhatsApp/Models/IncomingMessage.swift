@@ -12,10 +12,8 @@ class IncomingMessage {
         
     //MARK: - CreateMessage
     
-    func createMessage(localMessage: LocalMessage) -> MKMessage? {
-        
-        let mkMessage = MKMessage(message: localMessage)
-        return mkMessage
+    func createMessage(_ message: Message) -> MKMessage? {
+        MKMessage(message: message)
     }
 }
 

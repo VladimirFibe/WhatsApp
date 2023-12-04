@@ -24,43 +24,35 @@ final class FirebaseClient {
         case messages
     }
     
-    func chatRoomIdFrom(firstId: String, secondId: String) -> String {
-        let value = firstId.compare(secondId).rawValue
-        return value < 0 ? firstId + secondId : secondId + firstId
-    }
-    
     func listenForNewChats(_ documentId: String, friendUid: String, lastMessageDate: Date) {
-        
         newChatListener = reference(.messages)
             .document(documentId)
-            .collection(chatRoomIdFrom(firstId: documentId, secondId: friendUid))
+            .collection(friendUid)
             .whereField(kDATE, isGreaterThan: lastMessageDate)
             .addSnapshotListener { querySnapshot, error in
-                
                 guard let snapshot = querySnapshot else { return }
-                
+
                 for change in snapshot.documentChanges {
-                    
+
                     if change.type == .added {
-                        
+
                         let result = Result {
-                            try? change.document.data(as: LocalMessage.self)
+                            try? change.document.data(as: Message.self)
                         }
-                        
                         switch result {
                         case .success(let messageObject):
-                            
+
                             if let message = messageObject {
-                                
-                                if message.senderId != Person.currentId {
+
+                                if message.uid != Person.currentId {
                                     RealmManager.shared.saveToRealm(message)
                                 }
                             } else {
-                                print("Document doesnt exist")
+                                print("DEBUG: Document doesnt exist")
                             }
                             
                         case .failure(let error):
-                            print("Error decoding local message: \(error.localizedDescription)")
+                            print("DEBUG: Error decoding local message: \(error.localizedDescription)")
                         }
                     }
                 }
@@ -68,40 +60,36 @@ final class FirebaseClient {
     }
     
     func checkForOldChats(_ documentId: String, friendUid: String) {
-        
         reference(.messages)
             .document(documentId)
-            .collection(chatRoomIdFrom(firstId: documentId, secondId: friendUid))
+            .collection(friendUid)
             .getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
-                    print("no documents for old chats")
+                    print("DEBUG: no documents for old chats")
                     return
                 }
-                
-                let oldMessages = documents.compactMap { try? $0.data(as: LocalMessage.self)}.sorted(by: {$0.date < $1.date })
+                let oldMessages = documents.compactMap { try? $0.data(as: Message.self)}.sorted(by: {$0.date < $1.date })
                 
                 oldMessages.forEach { RealmManager.shared.saveToRealm($0)}
             }
     }
-    
-    
-    
+
     func sendMessage(_ message: Message, recent: Recent) {
-        var data: [String: Any] = message.data
-        reference(.messages)
-            .document(message.uid)
-            .collection(recent.chatRoomId)
-            .document(message.id)
-            .setData(data)
+        do {
+            try reference(.messages)
+                .document(Person.currentId)
+                .collection(recent.chatRoomId)
+                .document(message.id)
+                .setData(from: message)
 
-        data["incoming"] = true
-        reference(.messages)
-            .document(recent.chatRoomId)
-            .collection(message.uid)
-            .document(message.id)
-            .setData(data)
+            try reference(.messages)
+                .document(recent.chatRoomId)
+                .collection(Person.currentId)
+                .document(message.id)
+                .setData(from: message)
+        } catch { print(error.localizedDescription) }
 
-        data = [
+        var data: [String: Any] = [
             "text":             message.text,
             "name":             recent.name,
             "date":             message.date,

@@ -11,7 +11,8 @@ extension FirebaseClient: UsersServiceProtocol {
         let query = try await reference(.persons)
             .limit(to: 10)
             .getDocuments()
-        let persons = query.documents.compactMap { try? $0.data(as: Person.self)}
+        var persons = query.documents.compactMap { try? $0.data(as: Person.self)}
+        persons = persons.filter({$0.id != Person.currentId})
         return persons
     }
 }
