@@ -5,6 +5,7 @@ import RealmSwift
 
 final class ChatViewController: MessagesViewController {
     private let recent: Recent
+
     var displayingMessagesCount = 0
     var maxMessageNumber = 0
     var minMessageNumber = 0
@@ -180,19 +181,16 @@ extension ChatViewController {
     }
 
     private func listenForNewChats() {
-        print("DEBUG: ", #function)
         var lastMessageDate = allLocalMessages.last?.date ?? Date()
         lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
         FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
     }
 
     private func checkForOldChats() {
-        print("DEBUG: ", #function)
         FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
     }
 
     private func insertMessages() {
-
         maxMessageNumber = allLocalMessages.count - displayingMessagesCount
         minMessageNumber = maxMessageNumber - kNUMBEROFMESSAGES
 
@@ -200,7 +198,7 @@ extension ChatViewController {
             minMessageNumber = 0
         }
 
-        for i in minMessageNumber ..< maxMessageNumber {
+        for i in (minMessageNumber ..< maxMessageNumber).reversed() {
             insertMessage(allLocalMessages[i])
         }
     }
@@ -208,7 +206,7 @@ extension ChatViewController {
     private func insertMessage(_ message: Message) {
         let incoming = IncomingMessage(self)
         if let message = incoming.createMessage(message) {
-            mkMessages.append(message)
+            mkMessages.insert(message, at: 0)
             displayingMessagesCount += 1
         }
     }
@@ -236,6 +234,17 @@ extension ChatViewController {
     // MARK: - Update Typing Indicator
     func updateTypingIndicator(_ show: Bool) {
         subTitleLabel.text = show ? "Typing..." : ""
+    }
+
+    // MARK: - UIScrollViewDelegate
+    override func scrollViewDidEndDecelerating(_: UIScrollView) {
+        if refreshControl.isRefreshing {
+            if displayingMessagesCount < allLocalMessages.count {
+                insertMessages()
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+            refreshControl.endRefreshing()
+        }
     }
 }
 

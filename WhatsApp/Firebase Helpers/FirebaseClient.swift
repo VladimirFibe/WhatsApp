@@ -24,33 +24,27 @@ final class FirebaseClient {
         case messages
     }
     
-    func listenForNewChats(_ documentId: String, friendUid: String, lastMessageDate: Date) {
+    func listenForNewChats(
+        _ currentId: String,
+        friendUid: String,
+        lastMessageDate: Date
+    ) {
         newChatListener = reference(.messages)
-            .document(documentId)
+            .document(currentId)
             .collection(friendUid)
             .whereField(kDATE, isGreaterThan: lastMessageDate)
             .addSnapshotListener { querySnapshot, error in
                 guard let snapshot = querySnapshot else { return }
-
-                for change in snapshot.documentChanges {
-
+                snapshot.documentChanges.forEach { change in
                     if change.type == .added {
-
                         let result = Result {
                             try? change.document.data(as: Message.self)
                         }
                         switch result {
-                        case .success(let messageObject):
-
-                            if let message = messageObject {
-
-                                if message.uid != Person.currentId {
-                                    RealmManager.shared.saveToRealm(message)
-                                }
-                            } else {
-                                print("DEBUG: Document doesnt exist")
+                        case .success(let message):
+                            if let message, message.uid != Person.currentId {
+                                RealmManager.shared.saveToRealm(message)
                             }
-                            
                         case .failure(let error):
                             print("DEBUG: Error decoding local message: \(error.localizedDescription)")
                         }
@@ -59,17 +53,19 @@ final class FirebaseClient {
             }
     }
     
-    func checkForOldChats(_ documentId: String, friendUid: String) {
+    func checkForOldChats(_ currentId: String, friendUid: String) {
         reference(.messages)
-            .document(documentId)
+            .document(currentId)
             .collection(friendUid)
             .getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
                     print("DEBUG: no documents for old chats")
                     return
                 }
-                let oldMessages = documents.compactMap { try? $0.data(as: Message.self)}.sorted(by: {$0.date < $1.date })
-                
+                let oldMessages = documents
+                    .compactMap { try? $0.data(as: Message.self)}
+                    .sorted(by: {$0.date < $1.date })
+
                 oldMessages.forEach { RealmManager.shared.saveToRealm($0)}
             }
     }
