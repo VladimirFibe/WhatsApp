@@ -150,6 +150,7 @@ extension ChatViewController {
 extension ChatViewController {
     @objc private func backButtonPressed() {
         FirebaseClient.shared.removeListeners()
+        FirebaseClient.shared.resetUnreadCounter(recent: recent)
         navigationController?.popViewController(animated: true)
     }
 

@@ -71,7 +71,15 @@ final class FirebaseClient {
                 oldMessages.forEach { RealmManager.shared.saveToRealm($0)}
             }
     }
-
+    
+    func resetUnreadCounter(recent: Recent) {
+        reference(.messages)
+            .document(Person.currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .updateData(["unreadCounter": 0])
+    }
+    
     func sendMessage(_ message: Message, recent: Recent) {
         do {
             try reference(.messages)
@@ -100,16 +108,31 @@ final class FirebaseClient {
             .collection("recents")
             .document(recent.chatRoomId)
             .setData(data)
-        
+
         data["name"] = person?.username ?? ""
         data["avatarLink"] = person?.avatarLink ?? ""
         reference(.messages)
             .document(recent.chatRoomId)
             .collection("recents")
             .document(Person.currentId)
-            .setData(data)
+            .getDocument { snapshot, error in
+                guard let snapshot,
+                      let old = snapshot.data(),
+                      let unreadCounter = old["unreadCounter"] as? Int
+                else {
+                    return
+                }
+                data["unreadCounter"] = unreadCounter + 1
+                self.reference(.messages)
+                    .document(recent.chatRoomId)
+                    .collection("recents")
+                    .document(Person.currentId)
+                    .setData(data)
+            }
     }
-    
+
+
+
     func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
         
         reference(.messages)
@@ -147,8 +170,8 @@ final class FirebaseClient {
                 .addSnapshotListener { snapshot, error in
                     guard let snapshot,
                           let data = snapshot.data(),
-                            let typing = data["typing"] as? Bool
-                    else { 
+                          let typing = data["typing"] as? Bool
+                    else {
                         completion(false)
                         return }
                     completion(typing)

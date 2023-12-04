@@ -6,7 +6,7 @@ struct Recent: Identifiable, Codable, Hashable {
     var name: String
     var avatarLink = ""
     var text = ""
-    var unreadCounter = 1
+    var unreadCounter = 0
     @ServerTimestamp var date = Date()
     var chatRoomId: String { id ?? "" }
 }
