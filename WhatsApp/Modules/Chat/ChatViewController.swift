@@ -9,6 +9,7 @@ final class ChatViewController: MessagesViewController {
     var displayingMessagesCount = 0
     var maxMessageNumber = 0
     var minMessageNumber = 0
+    var typingCounter = 0
 
     let currentUser = MKSender(senderId: Person.currentId, displayName: "Current User")
     private let refreshControl = UIRefreshControl()
@@ -60,6 +61,7 @@ final class ChatViewController: MessagesViewController {
         updateMicButtonStatus(show: true)
         loadChats()
         listenForNewChats()
+        createTypingObserver()
     }
 
     init(recent: Recent) {
@@ -147,7 +149,7 @@ extension ChatViewController {
 // MARK: Actions
 extension ChatViewController {
     @objc private func backButtonPressed() {
-        //TODO: remove listeners
+        FirebaseClient.shared.removeListeners()
         navigationController?.popViewController(animated: true)
     }
 
@@ -170,7 +172,7 @@ extension ChatViewController {
                 self.messagesCollectionView.scrollToLastItem()
             case .update(_, _, let insertions, _):
                 for index in insertions {
-                    self.insertMessage(self.allLocalMessages[index])
+                    self.appendMessage(self.allLocalMessages[index])
                     self.messagesCollectionView.reloadData()
                     self.messagesCollectionView.scrollToLastItem()
                 }
@@ -211,6 +213,14 @@ extension ChatViewController {
         }
     }
 
+    private func appendMessage(_ message: Message) {
+        let incoming = IncomingMessage(self)
+        if let message = incoming.createMessage(message) {
+            mkMessages.append(message)
+            displayingMessagesCount += 1
+        }
+    }
+
     func messageSend(
         text: String? = nil,
         photo: UIImage? = nil,
@@ -234,6 +244,29 @@ extension ChatViewController {
     // MARK: - Update Typing Indicator
     func updateTypingIndicator(_ show: Bool) {
         subTitleLabel.text = show ? "Typing..." : ""
+    }
+
+    func typingIndicatorUpdate() {
+        typingCounter += 1
+        FirebaseClient.shared.saveTyping(typing: true, chatRoomId: recent.chatRoomId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.typingCounterStop()
+        }
+    }
+
+    func typingCounterStop() {
+        typingCounter -= 1
+        if typingCounter == 0 {
+            FirebaseClient.shared.saveTyping(typing: false, chatRoomId: recent.chatRoomId)
+        }
+    }
+
+    func createTypingObserver() {
+        FirebaseClient.shared.createTypingObserver(chatRoomId: recent.chatRoomId) { typing in
+            DispatchQueue.main.async {
+                self.updateTypingIndicator(typing)
+            }
+        }
     }
 
     // MARK: - UIScrollViewDelegate

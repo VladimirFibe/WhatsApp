@@ -6,6 +6,8 @@ final class FirebaseClient {
     static let shared = FirebaseClient()
     var newChatListener: ListenerRegistration!
     var updatedChatListener: ListenerRegistration!
+    var typingListener: ListenerRegistration!
+
     var person: Person? = nil
     
     private init() {}
@@ -123,5 +125,41 @@ final class FirebaseClient {
                 let allRecents = documents.compactMap {  try? $0.data(as: Recent.self)}
                 completion(allRecents)
             }
+    }
+
+    //MARK: - Typing ...
+
+    func saveTyping(typing: Bool, chatRoomId: String) {
+        reference(.messages)
+            .document(chatRoomId)
+            .collection("typing")
+            .document(Person.currentId)
+            .setData(["typing": typing])
+    }
+
+    func createTypingObserver(
+        chatRoomId: String,
+        completion: @escaping (Bool) -> Void) {
+            typingListener = reference(.messages)
+                .document(Person.currentId)
+                .collection("typing")
+                .document(chatRoomId)
+                .addSnapshotListener { snapshot, error in
+                    guard let snapshot,
+                          let data = snapshot.data(),
+                            let typing = data["typing"] as? Bool
+                    else { 
+                        completion(false)
+                        return }
+                    completion(typing)
+                }
+        }
+
+    func removeListeners() {
+        self.newChatListener.remove()
+        self.typingListener.remove()
+        if self.updatedChatListener != nil {
+            self.updatedChatListener.remove()
+        }
     }
 }
