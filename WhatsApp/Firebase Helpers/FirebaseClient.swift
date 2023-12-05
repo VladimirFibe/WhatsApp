@@ -4,9 +4,9 @@ import FirebaseFirestoreSwift
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
-    var newChatListener: ListenerRegistration!
-    var updatedChatListener: ListenerRegistration!
-    var typingListener: ListenerRegistration!
+    var newChatListener: ListenerRegistration?
+    var updatedChatListener: ListenerRegistration?
+    var typingListener: ListenerRegistration?
 
     var person: Person? = nil
     
@@ -120,18 +120,39 @@ final class FirebaseClient {
                       let old = snapshot.data(),
                       let unreadCounter = old["unreadCounter"] as? Int
                 else {
+                    data["unreadCounter"] = 1
+                    self.saveRecent(
+                        firstId: recent.chatRoomId,
+                        secondId: Person.currentId,
+                        data: data
+                    )
                     return
                 }
                 data["unreadCounter"] = unreadCounter + 1
-                self.reference(.messages)
-                    .document(recent.chatRoomId)
-                    .collection("recents")
-                    .document(Person.currentId)
-                    .setData(data)
+                self.saveRecent(
+                    firstId: recent.chatRoomId,
+                    secondId: Person.currentId,
+                    data: data
+                )
             }
     }
+    
+    func saveRecent(firstId: String, secondId: String, data: [String: Any]) {
+        reference(.messages)
+            .document(firstId)
+            .collection("recents")
+            .document(secondId)
+            .setData(data)
+    }
 
-
+    func updateMessageInFireStore(_ message: Message) {
+        let data: [String: Any] = [kSTATUS: kREAD, kREADDATE: Date()]
+        reference(.messages)
+            .document(Person.currentId)
+            .collection(message.uid)
+            .document(message.id)
+            .updateData(data)
+    }
 
     func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
         
@@ -179,10 +200,8 @@ final class FirebaseClient {
         }
 
     func removeListeners() {
-        self.newChatListener.remove()
-        self.typingListener.remove()
-        if self.updatedChatListener != nil {
-            self.updatedChatListener.remove()
-        }
+        newChatListener?.remove()
+        typingListener?.remove()
+        updatedChatListener?.remove()
     }
 }

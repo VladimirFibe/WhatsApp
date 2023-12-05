@@ -208,17 +208,24 @@ extension ChatViewController {
 
     private func insertMessage(_ message: Message) {
         let incoming = IncomingMessage(self)
-        if let message = incoming.createMessage(message) {
-            mkMessages.insert(message, at: 0)
-            displayingMessagesCount += 1
+        if let mkMessage = incoming.createMessage(message) {
+            mkMessages.insert(mkMessage, at: 0)
+            markMessageAsRead(message)
         }
     }
 
     private func appendMessage(_ message: Message) {
         let incoming = IncomingMessage(self)
-        if let message = incoming.createMessage(message) {
-            mkMessages.append(message)
-            displayingMessagesCount += 1
+        if let mkMessage = incoming.createMessage(message) {
+            mkMessages.append(mkMessage)
+            markMessageAsRead(message)
+        }
+    }
+
+    private func markMessageAsRead(_ message: Message) {
+        displayingMessagesCount += 1
+        if message.uid != Person.currentId {
+            FirebaseClient.shared.updateMessageInFireStore(message)
         }
     }
 

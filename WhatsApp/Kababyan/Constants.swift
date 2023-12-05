@@ -34,7 +34,7 @@ public let kLOCATION = "location"
 
 
 public let kDATE = "date"
-public let kREADDATE = "date"
+public let kREADDATE = "readDate"
 
 public let kADMINID = "adminId"
 public let kMEMBERIDS = "memberIds"
