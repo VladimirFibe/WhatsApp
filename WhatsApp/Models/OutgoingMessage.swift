@@ -3,7 +3,11 @@ import UIKit
 import FirebaseFirestoreSwift
 
 class OutgoingMessage {
-    
+    static func save(message: Message, recent: Recent) {
+        RealmManager.shared.saveToRealm(message)
+        FirebaseClient.shared.sendMessage(message, recent: recent)
+    }
+
     static func send(
         recent: Recent,
         text: String?,
@@ -28,8 +32,7 @@ class OutgoingMessage {
         if let text {
             message.text = text
             message.type = kTEXT
-            RealmManager.shared.saveToRealm(message)
-            FirebaseClient.shared.sendMessage(message, recent: recent)
+            save(message: message, recent: recent)
         } else if let photo {
             message.text = Date().stringDate()
             message.type = kPHOTO
@@ -39,8 +42,7 @@ class OutgoingMessage {
             FileStorage.uploadImage(photo, directory: fileDirectory) { pictureUrl in
                 if let pictureUrl {
                     message.pictureUrl = pictureUrl
-                    RealmManager.shared.saveToRealm(message)
-                    FirebaseClient.shared.sendMessage(message, recent: recent)
+                    save(message: message, recent: recent)
                 }
             }
         }

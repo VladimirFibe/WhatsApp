@@ -4,10 +4,10 @@ import CoreLocation
 
 class IncomingMessage {
     
-    var messageCollectionView: MessagesViewController
-    
-    init(_ collectionView: MessagesViewController) {
-        messageCollectionView = collectionView
+    var controller: MessagesViewController
+
+    init(_ controller: MessagesViewController) {
+        self.controller = controller
     }
         
     //MARK: - CreateMessage
@@ -16,7 +16,13 @@ class IncomingMessage {
         let mkMessage = MKMessage(message: message)
         print(message.text)
         if message.type == kPHOTO {
-            print("DEBUG: Photo")
+            let photoItem = PhotoMessage(path: message.pictureUrl)
+            mkMessage.photoItem = photoItem
+            mkMessage.kind = MessageKind.photo(photoItem)
+            FileStorage.downloadImage(id: message.text, link: message.pictureUrl) { image in
+                mkMessage.photoItem?.image = image
+                self.controller.messagesCollectionView.reloadData()
+            }
         }
         return mkMessage
     }
