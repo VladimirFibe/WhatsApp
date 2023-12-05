@@ -61,6 +61,7 @@ final class ChatViewController: MessagesViewController {
         updateMicButtonStatus(show: true)
         loadChats()
         listenForNewChats()
+        listenForReadStatusChange()
         createTypingObserver()
     }
 
@@ -189,6 +190,12 @@ extension ChatViewController {
         FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
     }
 
+    private func listenForReadStatusChange() {
+        FirebaseClient.shared.listenForReadStatusChanges(Person.currentId, friendUid: recent.chatRoomId) { message in
+            self.updateMessage(message)
+        }
+    }
+
     private func checkForOldChats() {
         FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
     }
@@ -219,6 +226,17 @@ extension ChatViewController {
         if let mkMessage = incoming.createMessage(message) {
             mkMessages.append(mkMessage)
             markMessageAsRead(message)
+        }
+    }
+
+    private func updateMessage(_ message: Message) {
+        for index in mkMessages.indices {
+            if message.id == mkMessages[index].messageId {
+                mkMessages[index].status = message.status
+                mkMessages[index].readDate = message.readDate
+                RealmManager.shared.saveToRealm(message)
+                messagesCollectionView.reloadData()
+            }
         }
     }
 

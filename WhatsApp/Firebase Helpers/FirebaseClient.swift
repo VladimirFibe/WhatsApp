@@ -54,7 +54,35 @@ final class FirebaseClient {
                 }
             }
     }
-    
+
+    func listenForReadStatusChanges(
+        _ currentId: String,
+        friendUid: String,
+        completion: @escaping (Message) -> Void
+    ) {
+        updatedChatListener = reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .addSnapshotListener{ querySnapshot, error in
+                guard let snapshot = querySnapshot else { return }
+                snapshot.documentChanges.forEach { change in
+                    if change.type == .modified {
+                        let result = Result {
+                            try? change.document.data(as: Message.self)
+                        }
+                        switch result {
+                        case .success(let message):
+                            if let message, message.status != kSENT {
+                                completion(message)
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+    }
+
     func checkForOldChats(_ currentId: String, friendUid: String) {
         reference(.messages)
             .document(currentId)
@@ -148,8 +176,8 @@ final class FirebaseClient {
     func updateMessageInFireStore(_ message: Message) {
         let data: [String: Any] = [kSTATUS: kREAD, kREADDATE: Date()]
         reference(.messages)
-            .document(Person.currentId)
-            .collection(message.uid)
+            .document(message.uid)
+            .collection(Person.currentId)
             .document(message.id)
             .updateData(data)
     }
