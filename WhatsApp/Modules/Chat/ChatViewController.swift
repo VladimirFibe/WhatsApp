@@ -2,6 +2,9 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 import RealmSwift
+import Photos
+import PhotosUI
+import ProgressHUD
 
 final class ChatViewController: MessagesViewController {
     private let recent: Recent
@@ -166,7 +169,7 @@ extension ChatViewController {
             self.showImageGallery(.camera)
         }
         let library = UIAlertAction(title: "Library", style: .default) { alert in
-            self.showImageGallery(.photoLibrary)
+            self.presentPhotoPicker()
         }
         let location = UIAlertAction(title: "Location", style: .default) { alert in
             print("Location")
@@ -345,8 +348,9 @@ extension ChatViewController: UIImagePickerControllerDelegate & UINavigationCont
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
-        guard let image = info[.editedImage] as? UIImage else { return }
-        messageSend(photo: image)
+        if let image = info[.editedImage] as? UIImage  {
+            messageSend(photo: image)
+        }
         picker.dismiss(animated: true)
     }
 
@@ -355,7 +359,41 @@ extension ChatViewController: UIImagePickerControllerDelegate & UINavigationCont
     }
 }
 
+// MARK: - PHPickerViewControllerDelegate
+extension ChatViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController,
+                didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard let result = results.first else { return }
+        let progress = result.itemProvider.loadTransferable(type: Data.self) { result in
+            print("DEBUG: video")
+        }
+//        Task {
+//            do {
+//
+//            } catch {}
+//        }
 
+//        result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
+//            if let _ = reading as? UIImage, error == nil {
+//                ProgressHUD.succeed("Выбрано изображение")
+//                return
+//            }
+//            DispatchQueue.main.async {
+////                self.photoCell.configrure(with: image)
+//            }
+//        }
+    }
+
+    func presentPhotoPicker() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = .videos
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+}
 
 
 
