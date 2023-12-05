@@ -119,7 +119,7 @@ extension ChatViewController {
         )
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachButton.onTouchUpInside { item in
-            print("Attach button pressed")
+            self.actionAttachMessage()
         }
         micButton.image = UIImage(
             systemName: "mic.fill",
@@ -153,6 +153,30 @@ extension ChatViewController {
         FirebaseClient.shared.removeListeners()
         FirebaseClient.shared.resetUnreadCounter(recent: recent)
         navigationController?.popViewController(animated: true)
+    }
+
+    private func actionAttachMessage() {
+        messageInputBar.inputTextView.resignFirstResponder()
+        let optionMenu = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        let camera = UIAlertAction(title: "Camera", style: .default) { alert in
+            self.showImageGallery(.camera)
+        }
+        let library = UIAlertAction(title: "Library", style: .default) { alert in
+            self.showImageGallery(.photoLibrary)
+        }
+        let location = UIAlertAction(title: "Location", style: .default) { alert in
+            print("Location")
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        camera.setValue(UIImage(systemName: "camera"), forKey: "image")
+        library.setValue(UIImage(systemName: "photo.fill"), forKey: "image")
+        location.setValue(UIImage(systemName: "mappin.and.ellipse"), forKey: "image")
+        [camera, library, location, cancel].forEach { optionMenu.addAction($0)}
+        self.present(optionMenu, animated: true)
     }
 
     private func loadChats() {
@@ -305,8 +329,31 @@ extension ChatViewController {
             refreshControl.endRefreshing()
         }
     }
+
+    // MARK: - ImagePicker
+    private func showImageGallery(_ sourceType: UIImagePickerController.SourceType) {
+        let picker = UIImagePickerController()
+        picker.sourceType = sourceType
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
 }
 
+extension ChatViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        messageSend(photo: image)
+        picker.dismiss(animated: true)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}
 
 
 

@@ -29,8 +29,21 @@ class OutgoingMessage {
             message.text = text
             message.type = kTEXT
             RealmManager.shared.saveToRealm(message)
+            FirebaseClient.shared.sendMessage(message, recent: recent)
+        } else if let photo {
+            message.text = Date().stringDate()
+            message.type = kPHOTO
+            let fileDirectory = "MediaMessages/Photo/\(message.chatRoomId)/\(message.text).jpg"
+            guard let data = photo.jpegData(compressionQuality: 0.6) as? NSData else {return}
+            FileStorage.saveFileLocally(fileData: data, fileName: message.text)
+            FileStorage.uploadImage(photo, directory: fileDirectory) { pictureUrl in
+                if let pictureUrl {
+                    message.pictureUrl = pictureUrl
+                    RealmManager.shared.saveToRealm(message)
+                    FirebaseClient.shared.sendMessage(message, recent: recent)
+                }
+            }
         }
-        FirebaseClient.shared.sendMessage(message, recent: recent)
         // TODO: Send push notifition
         // TODO: update recent
     }

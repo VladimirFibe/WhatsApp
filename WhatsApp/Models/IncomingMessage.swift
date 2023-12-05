@@ -13,7 +13,12 @@ class IncomingMessage {
     //MARK: - CreateMessage
     
     func createMessage(_ message: Message) -> MKMessage? {
-        MKMessage(message: message)
+        let mkMessage = MKMessage(message: message)
+        print(message.text)
+        if message.type == kPHOTO {
+            print("DEBUG: Photo")
+        }
+        return mkMessage
     }
 }
 
