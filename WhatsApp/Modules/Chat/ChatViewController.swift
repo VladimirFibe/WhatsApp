@@ -432,33 +432,28 @@ extension ChatViewController: PHPickerViewControllerDelegate {
                         throw error ?? NSError(domain: NSFileProviderErrorDomain, code: -1, userInfo: nil)
                     }
                     self?.messageSend(videoUrl: url)
-//                    guard let videoData = NSData(contentsOfFile: url.path) as? Data else { return }
-//                    let videoDirectory = "MediaMessages/Video/\(Date().stringDate()).mov"
-//                    FileStorage.uploadData(videoData, directory: videoDirectory) { url in
-//                        print(url ?? "empty")
-//                    }
-//                    let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
-//                    try? FileManager.default.removeItem(at: localURL)
-//                    try FileManager.default.copyItem(at: url, to: localURL)
-//                    print(localURL)
-//                    DispatchQueue.main.async {
-//                        self?.handleCompletion(assetIdentifier: assetIdentifier, object: localURL)
-//                    }
                 } catch let catchedError {
                     DispatchQueue.main.async {
-                        self?.handleCompletion(assetIdentifier: assetIdentifier, object: nil, error: catchedError)
+                        self?.handleCompletion(
+                            assetIdentifier: assetIdentifier,
+                            object: nil,
+                            error: catchedError
+                        )
                     }
                 }
             }
         } else {
             progress = nil
         }
-
+        print(progress?.fractionCompleted ?? 0.0)
     }
 
 
     func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
         guard currentAssetIdentifier == assetIdentifier else { return }
+        if let image = object as? UIImage {
+            messageSend(photo: image)
+        }
     }
 
 }

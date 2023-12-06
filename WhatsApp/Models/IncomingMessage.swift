@@ -26,9 +26,19 @@ class IncomingMessage {
             }
         }
         if message.type == kVIDEO {
-            FileStorage.downloadImage(id: message.id, link: message.pictureUrl) { thumbNail in
+            FileStorage.downloadVideo(id: message.id, link: message.videoUrl) { filename in
+                if let filename {
+                    let videoURL = URL(fileURLWithPath: fileInDocumetsDirectory(fileName: filename))
+                    let videoItem = VideoMessage(url: videoURL)
+                    mkMessage.videoItem = videoItem
+                    mkMessage.kind = MessageKind.video(videoItem)
+                    self.controller.messagesCollectionView.reloadData()
+                }
 
             }
+//            FileStorage.downloadImage(id: message.id, link: message.pictureUrl) { thumbNail in
+//
+//            }
         }
         return mkMessage
     }

@@ -44,6 +44,7 @@
 		022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA0A2B04774200A840B5 /* BaseView.swift */; };
 		022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */; };
 		022DEA112B0482A100A840B5 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA102B0482A100A840B5 /* AppFont.swift */; };
+		024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */; };
 		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
 		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
 		025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA82B0B29CA002A7E7F /* UsersService.swift */; };
@@ -129,6 +130,7 @@
 		022DEA0A2B04774200A840B5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		022DEA102B0482A100A840B5 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewController.swift; sourceTree = "<group>"; };
 		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		025EDBA82B0B29CA002A7E7F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				02ABFF932B08DECF0073F47C /* Status */,
 				025EDBA52B0B0FFA002A7E7F /* Users */,
 				025EDBB62B0B7AA9002A7E7F /* Chats */,
+				024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				02B1835A2B17621C00091EA4 /* MKSender.swift in Sources */,
 				02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */,
 				02A571E22B1437170042B782 /* ChatViewController.swift in Sources */,
+				024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				02C80A052B11D678009B46E6 /* FCollectionReference.swift in Sources */,
 				021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */,
