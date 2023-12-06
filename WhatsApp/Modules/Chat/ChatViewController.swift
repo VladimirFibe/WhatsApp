@@ -169,7 +169,7 @@ extension ChatViewController {
             self.showImageGallery(.camera)
         }
         let library = UIAlertAction(title: "Library", style: .default) { alert in
-            self.presentPhotoPicker()
+            self.showImageGallery(.photoLibrary)
         }
         let location = UIAlertAction(title: "Location", style: .default) { alert in
             print("Location")
@@ -364,10 +364,10 @@ extension ChatViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController,
                 didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        guard let result = results.first else { return }
-        let progress = result.itemProvider.loadTransferable(type: Data.self) { result in
-            print("DEBUG: video")
-        }
+//        guard let result = results.first else { return }
+//        let progress = result.itemProvider.loadTransferable(type: Data.self) { result in
+//            print("DEBUG: video")
+//        }
 //        Task {
 //            do {
 //

@@ -1,7 +1,8 @@
 import UIKit
 import MessageKit
 
-class PhotoMessage: NSObject, MediaItem {
+class VideoMessage: NSObject, MediaItem {
+
     var url: URL?
     var image: UIImage?
     var placeholderImage: UIImage
@@ -9,7 +10,7 @@ class PhotoMessage: NSObject, MediaItem {
 
     init(url: URL?) {
         self.url = url
-        self.placeholderImage = .photoPlaceholder
+        self.placeholderImage = UIImage(named: "photoPlaceholder")!
         self.size = CGSize(width: 240, height: 240)
     }
 

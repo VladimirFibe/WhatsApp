@@ -16,15 +16,41 @@ class IncomingMessage {
         let mkMessage = MKMessage(message: message)
         print(message.text)
         if message.type == kPHOTO {
-            let photoItem = PhotoMessage(path: message.pictureUrl)
+            let url = URL(fileURLWithPath: message.pictureUrl)
+            let photoItem = PhotoMessage(url: url)
             mkMessage.photoItem = photoItem
             mkMessage.kind = MessageKind.photo(photoItem)
-            FileStorage.downloadImage(id: message.text, link: message.pictureUrl) { image in
+            FileStorage.downloadImage(id: message.id, link: message.pictureUrl) { image in
                 mkMessage.photoItem?.image = image
                 self.controller.messagesCollectionView.reloadData()
             }
         }
+        if message.type == kVIDEO {
+            FileStorage.downloadImage(id: message.id, link: message.pictureUrl) { thumbNail in
+
+            }
+        }
         return mkMessage
     }
+/*
+    if localMessage.type == kVIDEO {
+
+        FileStorage.downloadImage(imageUrl: localMessage.pictureUrl) { (thumbNail) in
+
+            FileStorage.downloadVideo(videoLink: localMessage.videoUrl) { (readyToPlay, fileName) in
+
+                let videoURL = URL(fileURLWithPath: fileInDocumentsDirectory(fileName: fileName))
+
+                let videoItem = VideoMessage(url: videoURL)
+
+                mkMessage.videoItem = videoItem
+                mkMessage.kind = MessageKind.video(videoItem)
+            }
+
+            mkMessage.videoItem?.image = thumbNail
+            self.messageCollectionView.messagesCollectionView.reloadData()
+        }
+    }
+ */
 }
 

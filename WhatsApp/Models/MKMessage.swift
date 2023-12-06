@@ -14,6 +14,7 @@ class MKMessage: NSObject, MessageType {
     var status: String
     var readDate: Date
     var photoItem: PhotoMessage?
+    var videoItem: VideoMessage?
 
     init(message: Message) {
         self.messageId = message.id
@@ -24,8 +25,13 @@ class MKMessage: NSObject, MessageType {
         self.readDate = message.readDate
         self.incoming = Person.currentId != message.uid
         switch message.type {
+        case kVIDEO:
+            let videoItem = VideoMessage(url: nil)
+            self.kind = MessageKind.video(videoItem)
+            self.videoItem = videoItem
         case kPHOTO:
-            let photoItem = PhotoMessage(path: message.pictureUrl)
+            let url = URL(fileURLWithPath: message.pictureUrl)
+            let photoItem = PhotoMessage(url: url)
             self.kind = MessageKind.photo(photoItem)
             self.photoItem = photoItem
         default:

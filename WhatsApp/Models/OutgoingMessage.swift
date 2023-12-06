@@ -34,11 +34,11 @@ class OutgoingMessage {
             message.type = kTEXT
             save(message: message, recent: recent)
         } else if let photo {
-            message.text = Date().stringDate()
+            message.text = "Photo Message"
             message.type = kPHOTO
-            let fileDirectory = "MediaMessages/Photo/\(message.chatRoomId)/\(message.text).jpg"
+            let fileDirectory = "MediaMessages/Photo/\(message.chatRoomId)/\(message.id).jpg"
             guard let data = photo.jpegData(compressionQuality: 0.6) as? NSData else {return}
-            FileStorage.saveFileLocally(fileData: data, fileName: message.text)
+            FileStorage.saveFileLocally(fileData: data, fileName: "\(message.id).jpg")
             FileStorage.uploadImage(photo, directory: fileDirectory) { pictureUrl in
                 if let pictureUrl {
                     message.pictureUrl = pictureUrl

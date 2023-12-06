@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 final class MainTabBarViewController: UITabBarController {
     var callback: Callback?
@@ -18,7 +19,7 @@ final class MainTabBarViewController: UITabBarController {
     private func setupTabBar() {
         view.backgroundColor = .systemBackground
         let chats = UINavigationController(rootViewController: ChatsTableViewController())
-        let channels = UINavigationController(rootViewController: ProfileViewController())
+        let channels = UIHostingController(rootView: AddVideoView())
         let users = UINavigationController(rootViewController: UsersViewControlller())
         let settings = UINavigationController(rootViewController: SettingsViewController(callback: callback))
         chats.tabBarItem = tabItem(for: .chats)

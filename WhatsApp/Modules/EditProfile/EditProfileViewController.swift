@@ -58,13 +58,14 @@ extension EditProfileViewController {
         if let person = FirebaseClient.shared.person {
             textFieldCell.configure(person.username)
             statusCell.textLabel?.text = person.status
-            FileStorage.downloadImage(person: person) { image in
+            guard let id = person.id else { return }
+            FileStorage.downloadImage(id: id, link: person.avatarLink) { image in
                 self.photoCell.configrure(with: image?.circleMasked)
             }
         }
     }
 }
-// MARK: -
+// MARK: - UITableViewDataSource
 extension EditProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2

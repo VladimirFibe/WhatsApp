@@ -96,7 +96,8 @@ extension SettingsViewController {
     private func showUserInfo() {
         if let person = FirebaseClient.shared.person {
             userInfoCell.configure(with: person)
-            FileStorage.downloadImage(person: person) { image in
+            guard let id = person.id else { return }
+            FileStorage.downloadImage(id: id, link: person.avatarLink) { image in
                 self.userInfoCell.configure(with: image?.circleMasked)
             }
         }

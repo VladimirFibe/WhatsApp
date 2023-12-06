@@ -4,21 +4,57 @@ import ProgressHUD
 
 class FileStorage {
     // MARK: - Images
-    class func uploadImage(
+    static func uploadImage(
         _ image: UIImage,
         directory: String,
         completion: @escaping (String?) -> Void
     ) {
-        let storageRef = Storage.storage().reference().child(directory)
         guard let imageData = image.jpegData(compressionQuality: 0.6) 
         else { return }
+        uploadData(imageData, directory: directory, completion: completion)
+    }
+
+    static func downloadImage(id: String, link: String, completion: @escaping (UIImage?) -> Void) {
+        let fileName = "\(id).jpg"
+        if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: fileName)) {
+            completion(contentsOfFile)
+        } else {
+            if let url = URL(string: link) {
+                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+                downloadQueue.async {
+                    if let data = NSData(contentsOf: url) {
+                        FileStorage.saveFileLocally(fileData: data, fileName: fileName)
+                        DispatchQueue.main.async {
+                            completion(UIImage(data: data as Data))
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            completion(nil)
+                        }
+                    }
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
+    // MARK: - Video
+    static func uploadVideo(
+        _ video: Data,
+        directory: String,
+        completion: @escaping (String?) -> Void
+    ) {
+        let storageRef = Storage
+            .storage()
+            .reference()
+            .child(directory)
         var task: StorageUploadTask!
-        task = storageRef.putData(imageData) { metadata, error in
+        task = storageRef.putData(video) { metadata, error in
             task.removeAllObservers()
             ProgressHUD.dismiss()
             if let error {
-                print("error uploading image \(error.localizedDescription)")
-                completion(nil)
+                print("DEBUG: error uploading video", error.localizedDescription)
             } else {
                 storageRef.downloadURL { url, error in
                     if let url {
@@ -37,54 +73,36 @@ class FileStorage {
         }
     }
 
-    class func downloadImage(person: Person, completion: @escaping (UIImage?) -> Void) {
-        guard let id = person.id else {
-            completion(nil)
-            return
-        }
-        if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: id)) {
-            completion(contentsOfFile)
-        } else {
-            if let url = URL(string: person.avatarLink) {
-                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
-                downloadQueue.async {
-                    if let data = NSData(contentsOf: url) {
-                        FileStorage.saveFileLocally(fileData: data, fileName: id)
-                        DispatchQueue.main.async {
-                            completion(UIImage(data: data as Data))
-                        }
+    // MARK: - Data
+    static func uploadData(
+        _ data: Data,
+        directory: String,
+        completion: @escaping (String?) -> Void
+    ) {
+        let storageRef = Storage
+            .storage()
+            .reference()
+            .child(directory)
+        var task: StorageUploadTask!
+        task = storageRef.putData(data) { metadata, error in
+            task.removeAllObservers()
+            ProgressHUD.dismiss()
+            if let error {
+                print("DEBUG: error uploading data", error.localizedDescription)
+            } else {
+                storageRef.downloadURL { url, error in
+                    if let url {
+                        completion(url.absoluteString)
                     } else {
-                        DispatchQueue.main.async {
-                            completion(nil)
-                        }
+                        completion(nil)
                     }
                 }
-            } else {
-                completion(nil)
             }
         }
-    }
-
-    class func downloadImage(id: String, link: String, completion: @escaping (UIImage?) -> Void) {
-        if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: id)) {
-            completion(contentsOfFile)
-        } else {
-            if let url = URL(string: link) {
-                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
-                downloadQueue.async {
-                    if let data = NSData(contentsOf: url) {
-                        FileStorage.saveFileLocally(fileData: data, fileName: id)
-                        DispatchQueue.main.async {
-                            completion(UIImage(data: data as Data))
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            completion(nil)
-                        }
-                    }
-                }
-            } else {
-                completion(nil)
+        task.observe(StorageTaskStatus.progress) { snapshot in
+            if let snapshotProgress = snapshot.progress {
+                let progress = snapshotProgress.completedUnitCount / snapshotProgress.totalUnitCount
+                ProgressHUD.progress(CGFloat(progress))
             }
         }
     }
@@ -92,7 +110,6 @@ class FileStorage {
     // MARK: - Save Locally
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
-        print(docUrl)
         fileData.write(to: docUrl, atomically: true)
     }
 
