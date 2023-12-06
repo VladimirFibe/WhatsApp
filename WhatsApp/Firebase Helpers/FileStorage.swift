@@ -9,66 +9,60 @@ class FileStorage {
         directory: String,
         completion: @escaping (String?) -> Void
     ) {
-        guard let imageData = image.jpegData(compressionQuality: 0.6) 
+        guard let imageData = image.jpegData(compressionQuality: 0.6)
         else { return }
-        uploadData(imageData, directory: directory, completion: completion)
+        uploadData(
+            imageData,
+            directory: directory,
+            completion: completion
+        )
     }
 
-    static func downloadImage(id: String, link: String, completion: @escaping (UIImage?) -> Void) {
+    static func downloadImage(
+        id: String,
+        link: String,
+        completion: @escaping (UIImage?) -> Void
+    ) {
         let fileName = "\(id).jpg"
         if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: fileName)) {
             completion(contentsOfFile)
-        } else {
-            if let url = URL(string: link) {
-                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
-                downloadQueue.async {
-                    if let data = NSData(contentsOf: url) {
-                        FileStorage.saveFileLocally(fileData: data, fileName: fileName)
-                        DispatchQueue.main.async {
-                            completion(UIImage(data: data as Data))
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            completion(nil)
-                        }
+        } else if let url = URL(string: link) {
+            let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+            downloadQueue.async {
+                if let data = NSData(contentsOf: url) {
+                    FileStorage.saveFileLocally(fileData: data, fileName: fileName)
+                    DispatchQueue.main.async {
+                        completion(UIImage(data: data as Data))
                     }
-                }
-            } else {
-                completion(nil)
-            }
-        }
-    }
-
-    // MARK: - Video
-    static func uploadVideo(
-        _ video: Data,
-        directory: String,
-        completion: @escaping (String?) -> Void
-    ) {
-        let storageRef = Storage
-            .storage()
-            .reference()
-            .child(directory)
-        var task: StorageUploadTask!
-        task = storageRef.putData(video) { metadata, error in
-            task.removeAllObservers()
-            ProgressHUD.dismiss()
-            if let error {
-                print("DEBUG: error uploading video", error.localizedDescription)
-            } else {
-                storageRef.downloadURL { url, error in
-                    if let url {
-                        completion(url.absoluteString)
-                    } else {
+                } else {
+                    DispatchQueue.main.async {
                         completion(nil)
                     }
                 }
             }
+        } else {
+            completion(nil)
         }
-        task.observe(StorageTaskStatus.progress) { snapshot in
-            if let snapshotProgress = snapshot.progress {
-                let progress = snapshotProgress.completedUnitCount / snapshotProgress.totalUnitCount
-                ProgressHUD.progress(CGFloat(progress))
+    }
+
+    // MARK: - Video
+    static func downloadVideo(
+        id: String,
+        link: String,
+        completion: @escaping (Bool, String) -> Void
+    ) {
+        let fileName = "\(id).mov"
+        if fileExistsAtPath(fileName) {
+            completion(true, fileName)
+        } else if let url = URL(string: link) {
+            let downloadQueue = DispatchQueue(label: "videoDownloadQueue")
+            downloadQueue.async {
+                if let data = NSData(contentsOf: url) {
+                    FileStorage.saveFileLocally(fileData: data, fileName: fileName)
+                    DispatchQueue.main.async {
+                        completion(true, fileName)
+                    }
+                }
             }
         }
     }
