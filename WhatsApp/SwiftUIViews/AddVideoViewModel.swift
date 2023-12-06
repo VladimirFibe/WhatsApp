@@ -7,6 +7,13 @@ final class AddVideoViewModel: ObservableObject {
     @Published var selectedItem: PhotosPickerItem? {
         didSet { Task { try await uploadVideo() } }
     }
+    init() {
+        FileStorage.downloadVideo(id: "video", link: "https://firebasestorage.googleapis.com:443/v0/b/whatsappclone-78758.appspot.com/o/videos%2FCinema?alt=media&token=8a8e7a08-a8ce-434f-bf04-183e94978748") { name in
+            if let name {
+                print("DEBUG: file name:", name)
+            }
+        }
+    }
 
     func uploadVideo() async throws {
         guard let item = selectedItem,

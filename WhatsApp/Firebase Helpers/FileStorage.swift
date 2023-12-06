@@ -49,18 +49,18 @@ class FileStorage {
     static func downloadVideo(
         id: String,
         link: String,
-        completion: @escaping (Bool, String) -> Void
+        completion: @escaping (String?) -> Void
     ) {
         let fileName = "\(id).mov"
         if fileExistsAtPath(fileName) {
-            completion(true, fileName)
+            completion(fileName)
         } else if let url = URL(string: link) {
             let downloadQueue = DispatchQueue(label: "videoDownloadQueue")
             downloadQueue.async {
                 if let data = NSData(contentsOf: url) {
                     FileStorage.saveFileLocally(fileData: data, fileName: fileName)
                     DispatchQueue.main.async {
-                        completion(true, fileName)
+                        completion(fileName)
                     }
                 }
             }

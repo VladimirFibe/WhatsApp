@@ -12,7 +12,7 @@ class OutgoingMessage {
         recent: Recent,
         text: String?,
         photo: UIImage?,
-        video: String?,
+        videoUrl: URL?,
         audio: String?,
         audioDuration: Float = 0.0,
         location: String?,
@@ -45,9 +45,22 @@ class OutgoingMessage {
                     save(message: message, recent: recent)
                 }
             }
+        } else if let videoUrl {
+            message.text = "Video Message"
+            message.type = kVIDEO
+            guard let nsData = NSData(contentsOfFile: videoUrl.path) else { return }
+            let videoDirectory = "MediaMessages/Video/\(message.chatRoomId)/\(message.id).mov"
+            FileStorage.saveFileLocally(fileData: nsData, fileName: "\(message.id).mov")
+            FileStorage.uploadData(nsData as Data, directory: videoDirectory) { videoUrl in
+                if let videoUrl {
+                    message.videoUrl = videoUrl
+                    save(message: message, recent: recent)
+                }
+            }
         }
         // TODO: Send push notifition
         // TODO: update recent
+
     }
 
 }
