@@ -28,5 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window?.makeKeyAndVisible()
     }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        print(#function)
+        LocationManager.shared.startUpdating()
+    }
+    func applicationWillResignActive(_ application: UIApplication) {
+        print(#function)
+        LocationManager.shared.stopUpdating()
+    }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print(#function)
+        LocationManager.shared.stopUpdating()
+    }
 }
 

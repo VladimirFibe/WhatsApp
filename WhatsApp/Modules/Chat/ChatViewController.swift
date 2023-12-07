@@ -176,7 +176,9 @@ extension ChatViewController {
             self.presentPicker()
         }
         let location = UIAlertAction(title: "Location", style: .default) { alert in
-            print("Location")
+            if LocationManager.shared.currentLocation != nil {
+                self.messageSend(location: kLOCATION)
+            }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         camera.setValue(UIImage(systemName: "camera"), forKey: "image")

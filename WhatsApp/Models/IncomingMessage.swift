@@ -36,9 +36,14 @@ class IncomingMessage {
                 }
 
             }
-//            FileStorage.downloadImage(id: message.id, link: message.pictureUrl) { thumbNail in
-//
-//            }
+        }
+        if message.type == kLOCATION {
+            let locationItem = LocationMessage(location: CLLocation(
+                latitude: message.latitude,
+                longitude: message.longitude
+            ))
+            mkMessage.kind = MessageKind.location(locationItem)
+            mkMessage.locationItem = locationItem
         }
         return mkMessage
     }

@@ -57,6 +57,13 @@ class OutgoingMessage {
                     save(message: message, recent: recent)
                 }
             }
+        } else if location != nil {
+            guard let currentLocation = LocationManager.shared.currentLocation else { return }
+            message.text = "Location message"
+            message.type = kLOCATION
+            message.latitude = currentLocation.latitude
+            message.longitude = currentLocation.longitude
+            save(message: message, recent: recent)
         }
         // TODO: Send push notifition
         // TODO: update recent

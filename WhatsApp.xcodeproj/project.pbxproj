@@ -45,6 +45,8 @@
 		022DEA0D2B0479FF00A840B5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */; };
 		022DEA112B0482A100A840B5 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DEA102B0482A100A840B5 /* AppFont.swift */; };
 		024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */; };
+		024FF4F62B213BE00033DDFB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F52B213BE00033DDFB /* LocationManager.swift */; };
+		024FF4F82B2147250033DDFB /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F72B2147250033DDFB /* LocationMessage.swift */; };
 		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
 		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
 		025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA82B0B29CA002A7E7F /* UsersService.swift */; };
@@ -131,6 +133,8 @@
 		022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		022DEA102B0482A100A840B5 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewController.swift; sourceTree = "<group>"; };
+		024FF4F52B213BE00033DDFB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		024FF4F72B2147250033DDFB /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
 		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		025EDBA82B0B29CA002A7E7F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -305,7 +309,6 @@
 				02ABFF932B08DECF0073F47C /* Status */,
 				025EDBA52B0B0FFA002A7E7F /* Users */,
 				025EDBB62B0B7AA9002A7E7F /* Chats */,
-				024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -369,9 +372,11 @@
 				026A2A172B1C702600770D96 /* Message.swift */,
 				02A571F22B1462270042B782 /* MKMessage.swift */,
 				02C0B8032B14B97C008B44E1 /* IncomingMessage.swift */,
+				024FF4F52B213BE00033DDFB /* LocationManager.swift */,
 				02A571FD2B14794F0042B782 /* OutgoingMessage.swift */,
 				02A4B3412B1F3101004A3E4B /* PhotoMessage.swift */,
 				02B4C8672B203B0500F4EB9C /* VideoMessage.swift */,
+				024FF4F72B2147250033DDFB /* LocationMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				02A571E12B1437170042B782 /* ChatViewController.swift */,
+				024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */,
 				02A571E62B1457B40042B782 /* MessagesDataSource+ChatViewController.swift */,
 				02A571E82B1458DD0042B782 /* MessageCellDelegate+ChatViewController.swift */,
 				02A571EA2B1459690042B782 /* MessagesDisplayDelegate+ChatViewController.swift */,
@@ -568,6 +574,7 @@
 				02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */,
 				02A571E22B1437170042B782 /* ChatViewController.swift in Sources */,
 				024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */,
+				024FF4F82B2147250033DDFB /* LocationMessage.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				02C80A052B11D678009B46E6 /* FCollectionReference.swift in Sources */,
 				021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */,
@@ -585,6 +592,7 @@
 				021726DD2B06167900C37B32 /* SettingsViewController.swift in Sources */,
 				021727012B06E7AA00C37B32 /* ProfileStatusViewController.swift in Sources */,
 				021726F52B06647E00C37B32 /* PhotoTableViewCell.swift in Sources */,
+				024FF4F62B213BE00033DDFB /* LocationManager.swift in Sources */,
 				021726FB2B0664E600C37B32 /* EditProfileService.swift in Sources */,
 				021726E82B061DB700C37B32 /* SettingsStore.swift in Sources */,
 				025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */,
@@ -771,9 +779,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) would like to use your media library";
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) would like to use your camera";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) would like to use your photo library";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "WhatsApp would like to use your media library";
+				INFOPLIST_KEY_NSCameraUsageDescription = "WhatsApp would like to use your camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WhatsApp would like to use your location";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "WhatsApp would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -807,9 +816,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) would like to use your media library";
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) would like to use your camera";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) would like to use your photo library";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "WhatsApp would like to use your media library";
+				INFOPLIST_KEY_NSCameraUsageDescription = "WhatsApp would like to use your camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WhatsApp would like to use your location";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "WhatsApp would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
