@@ -49,6 +49,7 @@
 		024FF4F82B2147250033DDFB /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F72B2147250033DDFB /* LocationMessage.swift */; };
 		024FF4FA2B2156A20033DDFB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F92B2156A20033DDFB /* MapViewController.swift */; };
 		02568C832B21A55800C9C8F5 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02568C822B21A55800C9C8F5 /* MapAnnotation.swift */; };
+		02568C852B21C8F900C9C8F5 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02568C842B21C8F900C9C8F5 /* AudioRecorder.swift */; };
 		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
 		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
 		025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA82B0B29CA002A7E7F /* UsersService.swift */; };
@@ -139,6 +140,7 @@
 		024FF4F72B2147250033DDFB /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
 		024FF4F92B2156A20033DDFB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		02568C822B21A55800C9C8F5 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		02568C842B21C8F900C9C8F5 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		025EDBA82B0B29CA002A7E7F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				02B4C8672B203B0500F4EB9C /* VideoMessage.swift */,
 				024FF4F72B2147250033DDFB /* LocationMessage.swift */,
 				02568C822B21A55800C9C8F5 /* MapAnnotation.swift */,
+				02568C842B21C8F900C9C8F5 /* AudioRecorder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				02A571F32B1462270042B782 /* MKMessage.swift in Sources */,
 				02A571EB2B1459690042B782 /* MessagesDisplayDelegate+ChatViewController.swift in Sources */,
 				028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */,
+				02568C852B21C8F900C9C8F5 /* AudioRecorder.swift in Sources */,
 				025EDBB12B0B7796002A7E7F /* RecentChat.swift in Sources */,
 				02C80A0F2B11D6A3009B46E6 /* StartChat.swift in Sources */,
 				021726E62B06181E00C37B32 /* SettingsRowModel.swift in Sources */,
@@ -790,6 +794,7 @@
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "WhatsApp would like to use your media library";
 				INFOPLIST_KEY_NSCameraUsageDescription = "WhatsApp would like to use your camera";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WhatsApp would like to use your location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "WhatsApp would like to use your microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "WhatsApp would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -827,6 +832,7 @@
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "WhatsApp would like to use your media library";
 				INFOPLIST_KEY_NSCameraUsageDescription = "WhatsApp would like to use your camera";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WhatsApp would like to use your location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "WhatsApp would like to use your microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "WhatsApp would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

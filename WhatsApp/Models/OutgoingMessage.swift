@@ -64,6 +64,20 @@ class OutgoingMessage {
             message.latitude = currentLocation.latitude
             message.longitude = currentLocation.longitude
             save(message: message, recent: recent)
+        } else if let audio {
+            message.text = "Audio message"
+            message.type = kAUDIO
+            message.audioDuration = Double(audioDuration)
+            print("DEBUG: \(audio).m4a")
+            guard let data = NSData(contentsOfFile: getDocumentsURL().appendingPathComponent("\(audio).m4a").path) as? Data else { return }
+            let audioDirectory = "MediaMessages/Audio/\(message.chatRoomId)/\(audio).m4a"
+            print("DEBUG: ", audioDirectory)
+            FileStorage.uploadData(data, directory: audioDirectory) { audioUrl in
+                if let audioUrl {
+                    message.audioUrl = audioUrl
+                    save(message: message, recent: recent)
+                }
+            }
         }
         // TODO: Send push notifition
         // TODO: update recent

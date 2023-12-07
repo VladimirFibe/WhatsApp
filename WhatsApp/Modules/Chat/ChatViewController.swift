@@ -29,6 +29,10 @@ final class ChatViewController: MessagesViewController {
 
     var notificationToken: NotificationToken?
 
+    var longPressGesture: UILongPressGestureRecognizer!
+    var audioFileName = ""
+    var audioDuration: Date!
+
     //MARK: - Views
     let leftBarButtonView: UIView = {
         return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -63,6 +67,7 @@ final class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         confugureMessageCollectionView()
+        configureGestureRecognizer()
         configureMesssageInputBar()
         configureNavBar()
         updateMicButtonStatus(show: true)
@@ -136,6 +141,7 @@ extension ChatViewController {
         micButton.onTouchUpInside { item in
             print("Mic button pressed")
         }
+        micButton.addGestureRecognizer(longPressGesture)
 
         messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
@@ -153,9 +159,38 @@ extension ChatViewController {
             messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
         }
     }
+
+    private func configureGestureRecognizer() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAudio))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delaysTouchesBegan = true
+    }
 }
 // MARK: Actions
 extension ChatViewController {
+    @objc private func recordAudio() {
+        switch longPressGesture.state {
+        case .began: 
+            audioDuration = Date()
+            audioFileName = audioDuration.stringDate()
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
+        case .ended:
+            AudioRecorder.shared.finishRecording()
+
+            if fileExistsAtPath(audioFileName + ".m4a") {
+                print("DEBUG: File Exists!")
+                let interval = audioDuration.interval(ofComponent: .second, from: Date())
+                print("DEBUG: interval = \(interval)")
+                messageSend(audio: audioFileName, audioDuration: interval)
+            } else {
+                print("DEBUG: no audio file", audioFileName)
+            }
+            audioFileName = "" // ?
+        default: print("Other longPressState")
+        }
+
+    }
+
     @objc private func backButtonPressed() {
         FirebaseClient.shared.removeListeners()
         FirebaseClient.shared.resetUnreadCounter(recent: recent)
