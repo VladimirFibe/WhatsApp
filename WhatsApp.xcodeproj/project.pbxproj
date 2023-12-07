@@ -47,6 +47,7 @@
 		024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */; };
 		024FF4F62B213BE00033DDFB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F52B213BE00033DDFB /* LocationManager.swift */; };
 		024FF4F82B2147250033DDFB /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F72B2147250033DDFB /* LocationMessage.swift */; };
+		024FF4FA2B2156A20033DDFB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F92B2156A20033DDFB /* MapViewController.swift */; };
 		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
 		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
 		025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA82B0B29CA002A7E7F /* UsersService.swift */; };
@@ -135,6 +136,7 @@
 		024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewController.swift; sourceTree = "<group>"; };
 		024FF4F52B213BE00033DDFB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		024FF4F72B2147250033DDFB /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
+		024FF4F92B2156A20033DDFB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		025EDBA82B0B29CA002A7E7F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 			children = (
 				02A571E12B1437170042B782 /* ChatViewController.swift */,
 				024FF4F32B2134650033DDFB /* PhotoItemViewController.swift */,
+				024FF4F92B2156A20033DDFB /* MapViewController.swift */,
 				02A571E62B1457B40042B782 /* MessagesDataSource+ChatViewController.swift */,
 				02A571E82B1458DD0042B782 /* MessageCellDelegate+ChatViewController.swift */,
 				02A571EA2B1459690042B782 /* MessagesDisplayDelegate+ChatViewController.swift */,
@@ -574,6 +577,7 @@
 				02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */,
 				02A571E22B1437170042B782 /* ChatViewController.swift in Sources */,
 				024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */,
+				024FF4FA2B2156A20033DDFB /* MapViewController.swift in Sources */,
 				024FF4F82B2147250033DDFB /* LocationMessage.swift in Sources */,
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				02C80A052B11D678009B46E6 /* FCollectionReference.swift in Sources */,

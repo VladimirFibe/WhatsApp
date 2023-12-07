@@ -14,7 +14,6 @@ class IncomingMessage {
     
     func createMessage(_ message: Message) -> MKMessage? {
         let mkMessage = MKMessage(message: message)
-        print(message.text)
         if message.type == kPHOTO {
             let url = URL(fileURLWithPath: message.pictureUrl)
             let photoItem = PhotoMessage(url: url)

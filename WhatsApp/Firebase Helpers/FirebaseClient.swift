@@ -122,14 +122,9 @@ final class FirebaseClient {
                 .document(message.id)
                 .setData(from: message)
         } catch { print(error.localizedDescription) }
-        let text: String
-        switch message.type {
-        case kTEXT: text = message.text
-        case kPHOTO: text = "Picture Message"
-        default: text = "Message"
-        }
+
         var data: [String: Any] = [
-            "text":             text,
+            "text":             message.text,
             "name":             recent.name,
             "date":             message.date,
             "avatarLink":       recent.avatarLink,

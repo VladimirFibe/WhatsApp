@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 import AVKit
 import MessageKit
 import AVFoundation
@@ -23,6 +24,12 @@ extension ChatViewController: MessageCellDelegate {
                 self.present(moviePlayer, animated: true) {
                     moviePlayer.player?.play()
                 }
+            }
+            if let locationItem = mkMessage.locationItem {
+                print("Open Map")
+                let controller = MapViewController()
+                controller.location = CLLocation(latitude: locationItem.location.coordinate.latitude, longitude: locationItem.location.coordinate.longitude)
+                present(controller, animated: true)
             }
         }
     }
