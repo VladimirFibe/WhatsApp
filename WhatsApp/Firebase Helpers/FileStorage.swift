@@ -101,6 +101,28 @@ class FileStorage {
         }
     }
 
+    // MARK: Audio
+    static func downloadAudio(
+        id: String,
+        link: String,
+        completion: @escaping (String?) -> Void
+    ) {
+        let fileName = "\(id).m4a"
+        if fileExistsAtPath(fileName) {
+            completion(fileName)
+        } else if let url = URL(string: link) {
+            let downloadQueue = DispatchQueue(label: "audioDownloadQueue")
+            downloadQueue.async {
+                if let data = NSData(contentsOf: url) {
+                    FileStorage.saveFileLocally(fileData: data, fileName: fileName)
+                    DispatchQueue.main.async {
+                        completion(fileName)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Save Locally
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)

@@ -6,6 +6,7 @@ import PhotosUI
 import ProgressHUD
 
 final class ChatViewController: MessagesViewController {
+    lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
     private var selection = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
@@ -62,6 +63,7 @@ final class ChatViewController: MessagesViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        audioController.stopAnyOngoingPlaying()
     }
 
     override func viewDidLoad() {
@@ -178,12 +180,10 @@ extension ChatViewController {
             AudioRecorder.shared.finishRecording()
 
             if fileExistsAtPath(audioFileName + ".m4a") {
-                print("DEBUG: File Exists!")
                 let interval = audioDuration.interval(ofComponent: .second, from: Date())
-                print("DEBUG: interval = \(interval)")
                 messageSend(audio: audioFileName, audioDuration: interval)
             } else {
-                print("DEBUG: no audio file", audioFileName)
+                print("DEBUG: no audio file", audioFileName + ".m4a")
             }
             audioFileName = "" // ?
         default: print("Other longPressState")

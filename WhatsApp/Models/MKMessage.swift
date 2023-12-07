@@ -16,6 +16,7 @@ class MKMessage: NSObject, MessageType {
     var photoItem: PhotoMessage?
     var videoItem: VideoMessage?
     var locationItem: LocationMessage?
+    var audioItem: AudioMessage?
 
     init(message: Message) {
         self.messageId = message.id
@@ -26,6 +27,10 @@ class MKMessage: NSObject, MessageType {
         self.readDate = message.readDate
         self.incoming = Person.currentId != message.uid
         switch message.type {
+        case kAUDIO:
+            let audioItem = AudioMessage(duration: 2)
+            self.kind = MessageKind.audio(audioItem)
+            self.audioItem = audioItem
         case kLOCATION:
             let locationItem = LocationMessage(location: CLLocation(
                 latitude: message.latitude,

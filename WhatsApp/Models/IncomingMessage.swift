@@ -33,7 +33,6 @@ class IncomingMessage {
                     mkMessage.kind = MessageKind.video(videoItem)
                     self.controller.messagesCollectionView.reloadData()
                 }
-
             }
         }
         if message.type == kLOCATION {
@@ -43,28 +42,22 @@ class IncomingMessage {
             ))
             mkMessage.kind = MessageKind.location(locationItem)
             mkMessage.locationItem = locationItem
+            self.controller.messagesCollectionView.reloadData()
+        }
+        if message.type == kAUDIO {
+            FileStorage.downloadAudio(id: message.id, link: message.audioUrl) { filename in
+                if let filename {
+                    let audioItem = AudioMessage(duration: message.audioDuration)
+                    mkMessage.audioItem = audioItem
+                    mkMessage.kind = MessageKind.audio(audioItem)
+                    let url = URL(fileURLWithPath: fileInDocumetsDirectory(fileName: filename))
+                    mkMessage.audioItem?.url = url
+                    mkMessage.audioItem?.duration = Float(message.audioDuration)
+                    self.controller.messagesCollectionView.reloadData()
+                }
+            }
         }
         return mkMessage
     }
-/*
-    if localMessage.type == kVIDEO {
-
-        FileStorage.downloadImage(imageUrl: localMessage.pictureUrl) { (thumbNail) in
-
-            FileStorage.downloadVideo(videoLink: localMessage.videoUrl) { (readyToPlay, fileName) in
-
-                let videoURL = URL(fileURLWithPath: fileInDocumentsDirectory(fileName: fileName))
-
-                let videoItem = VideoMessage(url: videoURL)
-
-                mkMessage.videoItem = videoItem
-                mkMessage.kind = MessageKind.video(videoItem)
-            }
-
-            mkMessage.videoItem?.image = thumbNail
-            self.messageCollectionView.messagesCollectionView.reloadData()
-        }
-    }
- */
 }
 

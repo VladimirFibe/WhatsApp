@@ -50,6 +50,8 @@
 		024FF4FA2B2156A20033DDFB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024FF4F92B2156A20033DDFB /* MapViewController.swift */; };
 		02568C832B21A55800C9C8F5 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02568C822B21A55800C9C8F5 /* MapAnnotation.swift */; };
 		02568C852B21C8F900C9C8F5 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02568C842B21C8F900C9C8F5 /* AudioRecorder.swift */; };
+		02568C872B2200C800C9C8F5 /* AudioMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02568C862B2200C800C9C8F5 /* AudioMessage.swift */; };
+		02568C892B220A6200C9C8F5 /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02568C882B220A6200C9C8F5 /* BasicAudioController.swift */; };
 		025EDBA42B0B0F85002A7E7F /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */; };
 		025EDBA72B0B1041002A7E7F /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */; };
 		025EDBA92B0B29CA002A7E7F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBA82B0B29CA002A7E7F /* UsersService.swift */; };
@@ -141,6 +143,8 @@
 		024FF4F92B2156A20033DDFB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		02568C822B21A55800C9C8F5 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		02568C842B21C8F900C9C8F5 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		02568C862B2200C800C9C8F5 /* AudioMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessage.swift; sourceTree = "<group>"; };
+		02568C882B220A6200C9C8F5 /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		025EDBA32B0B0F85002A7E7F /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		025EDBA62B0B1041002A7E7F /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		025EDBA82B0B29CA002A7E7F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -382,6 +386,7 @@
 				02A571FD2B14794F0042B782 /* OutgoingMessage.swift */,
 				02A4B3412B1F3101004A3E4B /* PhotoMessage.swift */,
 				02B4C8672B203B0500F4EB9C /* VideoMessage.swift */,
+				02568C862B2200C800C9C8F5 /* AudioMessage.swift */,
 				024FF4F72B2147250033DDFB /* LocationMessage.swift */,
 				02568C822B21A55800C9C8F5 /* MapAnnotation.swift */,
 				02568C842B21C8F900C9C8F5 /* AudioRecorder.swift */,
@@ -417,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				022DEA082B04767E00A840B5 /* BaseViewController.swift */,
+				02568C882B220A6200C9C8F5 /* BasicAudioController.swift */,
 				025EDBB42B0B79F5002A7E7F /* BaseTableViewController.swift */,
 				022DEA0A2B04774200A840B5 /* BaseView.swift */,
 				021726E32B06173300C37B32 /* BaseTableViewCell.swift */,
@@ -591,6 +597,7 @@
 				021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */,
 				021726FF2B06E75400C37B32 /* Status.swift in Sources */,
 				02A571F12B145B600042B782 /* MessageKitDefaults.swift in Sources */,
+				02568C892B220A6200C9C8F5 /* BasicAudioController.swift in Sources */,
 				02ABFF972B08E32D0073F47C /* ProfileStatusUseCase.swift in Sources */,
 				021726EE2B06612D00C37B32 /* EditProfileViewController.swift in Sources */,
 				02A571FE2B14794F0042B782 /* OutgoingMessage.swift in Sources */,
@@ -619,6 +626,7 @@
 				02A571EB2B1459690042B782 /* MessagesDisplayDelegate+ChatViewController.swift in Sources */,
 				028B32AC2B0507C100C9F71A /* AuthModuleService.swift in Sources */,
 				02568C852B21C8F900C9C8F5 /* AudioRecorder.swift in Sources */,
+				02568C872B2200C800C9C8F5 /* AudioMessage.swift in Sources */,
 				025EDBB12B0B7796002A7E7F /* RecentChat.swift in Sources */,
 				02C80A0F2B11D6A3009B46E6 /* StartChat.swift in Sources */,
 				021726E62B06181E00C37B32 /* SettingsRowModel.swift in Sources */,
