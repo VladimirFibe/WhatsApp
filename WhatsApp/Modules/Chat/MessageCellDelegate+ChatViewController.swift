@@ -7,7 +7,6 @@ import AVFoundation
 extension ChatViewController: MessageCellDelegate {
     func didTapImage(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
-            print("indexPath", indexPath)
             let mkMessage = mkMessages[indexPath.section]
             if let image = mkMessage.photoItem?.image {
                 let controller = PhotoItemViewController()
@@ -25,11 +24,16 @@ extension ChatViewController: MessageCellDelegate {
                     moviePlayer.player?.play()
                 }
             }
+        }
+    }
+
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        if let indexPath = messagesCollectionView.indexPath(for: cell) {
+            let mkMessage = mkMessages[indexPath.section]
             if let locationItem = mkMessage.locationItem {
-                print("Open Map")
                 let controller = MapViewController()
-                controller.location = CLLocation(latitude: locationItem.location.coordinate.latitude, longitude: locationItem.location.coordinate.longitude)
-                present(controller, animated: true)
+                controller.location = locationItem.location
+                navigationController?.pushViewController(controller, animated: true)
             }
         }
     }
