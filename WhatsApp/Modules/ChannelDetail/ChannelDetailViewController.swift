@@ -1,7 +1,6 @@
 import UIKit
 
 final class ChannelDetailViewController: BaseTableViewController {
-
     private var channel: Channel
 
     private lazy var photoCell: DetailPhotoChannelCell = {
@@ -11,6 +10,7 @@ final class ChannelDetailViewController: BaseTableViewController {
     private lazy var aboutCell: DetailAboutChannelCell = {
         return $0
     }(DetailAboutChannelCell())
+
     init(channel: Channel) {
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
@@ -24,11 +24,10 @@ final class ChannelDetailViewController: BaseTableViewController {
         channel.memberIds.append(Person.currentId)
         do {
             try FirebaseClient.shared.save(channel: channel)
+            navigationController?.popViewController(animated: true)
         } catch {
             print(error.localizedDescription)
         }
-//        delegate?.didClickFollow()
-        self.navigationController?.popViewController(animated: true)
     }
 }
 // MARK: - Setup Views

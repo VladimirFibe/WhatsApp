@@ -92,6 +92,23 @@ extension ChannelsViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        var channel = channels[indexPath.row]
+        if editingStyle == .delete {
+            guard let index = channel.memberIds.firstIndex(of: Person.currentId) else { return }
+            channel.memberIds.remove(at: index)
+            do {
+                try FirebaseClient.shared.save(channel: channel)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        segmentedControl.selectedSegmentIndex == 0 && (channels[indexPath.row].adminId != Person.currentId)
+    }
 }
 // MARK: - UIScrollViewDelegate
 extension ChannelsViewController {
@@ -101,5 +118,4 @@ extension ChannelsViewController {
         }
         refreshControl?.endRefreshing()
     }
-
 }
