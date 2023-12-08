@@ -11,6 +11,8 @@ final class ChannelsViewController: BaseTableViewController {
 
 extension ChannelsViewController {
     override func setupViews() {
+        refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
         tableView.register(
             ChannelsCell.self,
             forCellReuseIdentifier: ChannelsCell.identifier
@@ -76,10 +78,20 @@ extension ChannelsViewController {
         return cell
     }
 }
-
+// MARK: - TableView Delegate
 extension ChannelsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath)
     }
+}
+// MARK: - UIScrollViewDelegate
+extension ChannelsViewController {
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl?.isRefreshing == true {
+            print("Refresh")
+        }
+        refreshControl?.endRefreshing()
+    }
+
 }

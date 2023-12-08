@@ -274,7 +274,7 @@ final class FirebaseClient {
                     completion([])
                     return
                 }
-                var channels = documents.compactMap { try? $0.data(as: Channel.self)}
+                var channels = documents.compactMap { try? $0.data(as: Channel.self)}.filter({ !$0.memberIds.contains(Person.currentId)})
                 channels.sort(by: {$0.memberIds.count > $1.memberIds.count})
                 completion(channels)
             }
