@@ -13,7 +13,9 @@ extension MyChannelsViewController {
         )
         navigationItem.title = "My Channels"
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: UIAction(handler: { _ in
-            self.navigationController?.pushViewController(AddChannelViewController(), animated: true)
+            let channel = Channel()
+            let controller = AddChannelViewController(channel: channel)
+            self.navigationController?.pushViewController(controller, animated: true)
         }))
         downloadChannels()
     }
@@ -49,8 +51,9 @@ extension MyChannelsViewController {
 extension MyChannelsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(channels[indexPath.row].name)
-        // show channel info
+        let channel = channels[indexPath.row]
+        let controller = AddChannelViewController(channel: channel)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

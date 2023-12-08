@@ -33,6 +33,19 @@ class AddPhotoChannelCell: BaseTableViewCell {
     func configure(with image: UIImage?) {
         photoImageView.image = image
     }
+
+    func configure(with channel: Channel) {
+        textField.text = channel.name
+        setAvatar(id: channel.id, link: channel.avatarLink)
+    }
+
+    private func setAvatar(id: String, link: String) {
+        FileStorage.downloadImage(id: id, link: link) { image in
+            if let image {
+                self.photoImageView.image = image.circleMasked
+            }
+        }
+    }
 }
 // MARK: - Setup
 extension AddPhotoChannelCell {

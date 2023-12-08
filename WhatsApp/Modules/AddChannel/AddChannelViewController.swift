@@ -12,7 +12,7 @@ final class AddChannelViewController: BaseTableViewController {
     private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
     private var currentAssetIdentifier: String?
 
-    private var channel = Channel()
+    private var channel: Channel
 
     private lazy var photoCell: AddPhotoChannelCell = {
         return $0
@@ -33,6 +33,15 @@ final class AddChannelViewController: BaseTableViewController {
         primaryAction: UIAction(handler: { _ in
         self.save()
     }))
+
+    init(channel: Channel) {
+        self.channel = channel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 // MARK: - Actions
 extension AddChannelViewController {
@@ -56,6 +65,8 @@ extension AddChannelViewController {
 extension AddChannelViewController {
     override func setupViews() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(addPhoto))
+        photoCell.configure(with: channel)
+        aboutCell.configure(with: channel)
         photoCell.configure(tap)
         setupNavigationBar()
         setupObservers()

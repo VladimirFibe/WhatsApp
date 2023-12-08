@@ -14,6 +14,10 @@ final class AddAboutChannelCell: BaseTableViewCell {
     var text: String {
         textView.text ?? ""
     }
+
+    func configure(with channel: Channel) {
+        textView.text = channel.aboutChannel
+    }
 }
 // MARK: - Setup Views
 extension AddAboutChannelCell {
