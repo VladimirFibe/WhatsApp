@@ -3,13 +3,18 @@ import UIKit
 import FirebaseFirestoreSwift
 
 class OutgoingMessage {
-    static func save(message: Message, recent: Recent) {
+    static func save(message: Message, recent: Recent?) {
         RealmManager.shared.saveToRealm(message)
-        FirebaseClient.shared.sendMessage(message, recent: recent)
+        if let recent {
+            FirebaseClient.shared.sendMessage(message, recent: recent)
+        } else {
+            FirebaseClient.shared.sendMessage(message)
+        }
     }
 
     static func send(
-        recent: Recent,
+        chatRoomId: String,
+        recent: Recent?,
         text: String?,
         photo: UIImage?,
         videoUrl: URL?,
@@ -21,7 +26,7 @@ class OutgoingMessage {
         guard let currentUser = FirebaseClient.shared.person else { return }
         let message = Message()
         message.id = UUID().uuidString
-        message.chatRoomId = Person.chatRoomIdFrom(id: recent.chatRoomId)
+        message.chatRoomId = chatRoomId
         message.uid = Person.currentId
         message.name = currentUser.username
         message.initials = String(currentUser.username.first ?? "?")

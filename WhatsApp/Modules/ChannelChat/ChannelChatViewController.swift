@@ -171,7 +171,8 @@ extension ChannelChatViewController {
     }
 
     private func loadChats() {
-        let predicate = NSPredicate(format: "chatRoomId = %@", Person.chatRoomIdFrom(id: "recent.chatRoomId"))
+        print("channel.id", channel.id)
+        let predicate = NSPredicate(format: "chatRoomId = %@", channel.id)
         allLocalMessages = realm
             .objects(Message.self)
             .filter(predicate)
@@ -270,9 +271,17 @@ extension ChannelChatViewController {
         location: String? = nil,
         audioDuration: Float = 0.0
     ) {
-        if let text {
-            print(text)
-        }
+        OutgoingMessage.send(
+            chatRoomId: channel.id,
+            recent: nil,
+            text: text,
+            photo: photo,
+            videoUrl: videoUrl,
+            audio: audio,
+            audioDuration: audioDuration,
+            location: location,
+            memberIds: channel.memberIds
+        )
     }
 
     // MARK: - UIScrollViewDelegate

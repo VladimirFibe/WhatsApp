@@ -11,6 +11,7 @@ extension ChannelChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         for component in inputBar.inputTextView.components {
             if let text = component as? String {
+                print(text)
                 messageSend(text: text)
             }
         }

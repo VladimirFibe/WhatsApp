@@ -322,6 +322,7 @@ extension ChatViewController {
         audioDuration: Float = 0.0
     ) {
         OutgoingMessage.send(
+            chatRoomId: Person.chatRoomIdFrom(id: recent.chatRoomId),
             recent: recent,
             text: text,
             photo: photo,

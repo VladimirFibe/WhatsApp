@@ -109,7 +109,18 @@ final class FirebaseClient {
             .document(recent.chatRoomId)
             .updateData(["unreadCounter": 0])
     }
-    
+    func sendMessage(_ message: Message) {
+        do {
+            try reference(.messages)
+                .document(message.chatRoomId)
+                .collection(message.chatRoomId)
+                .document(message.id)
+                .setData(from: message)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
     func sendMessage(_ message: Message, recent: Recent) {
         do {
             try reference(.messages)
