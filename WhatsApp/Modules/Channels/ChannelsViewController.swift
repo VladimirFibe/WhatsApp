@@ -1,8 +1,10 @@
 import UIKit
 
 final class ChannelsViewController: BaseTableViewController {
-    private let segmentedControl: UISegmentedControl = {
+    private var channels: [Channel] = []
+    private lazy var segmentedControl: UISegmentedControl = {
         $0.selectedSegmentIndex = 0
+        $0.addTarget(self, action: #selector(channelsSegmentChanged), for: .valueChanged)
         return $0
     }(UISegmentedControl(items: ["Subscribed", "All Channels"]))
 }
@@ -16,24 +18,48 @@ extension ChannelsViewController {
         navigationItem.title = "Channels"
         navigationItem.titleView = segmentedControl
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.2.square.stack"), style: .plain, target: self, action: #selector(rightButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "person.2.square.stack"),
+            style: .plain,
+            target: self,
+            action: #selector(rightButtonTapped)
+        )
     }
 
+}
+// MARK: - Actions
+extension ChannelsViewController {
     @objc private func rightButtonTapped() {
-        print(#function)
+        navigationController?.pushViewController(MyChannelsViewController(), animated: true)
+    }
+
+    @objc private func channelsSegmentChanged() {
+        print(segmentedControl.selectedSegmentIndex)
     }
 }
-
+// MARK: - Data Source
 extension ChannelsViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        channels.count
     }
 
     override func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChannelsCell.identifier, for: indexPath) as? ChannelsCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: ChannelsCell.identifier,
+            for: indexPath
+        ) as? ChannelsCell else { fatalError() }
+        let channel = channels[indexPath.row]
+        cell.configure(with: channel)
         return cell
+    }
+}
+
+extension ChannelsViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(indexPath)
     }
 }

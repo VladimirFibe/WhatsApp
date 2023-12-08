@@ -79,6 +79,7 @@ extension ChatsCell {
         usernameLabel.snp.makeConstraints {
             $0.top.equalTo(avatarImageView)
             $0.leading.equalTo(avatarImageView.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview().inset(16)
         }
 
         dateLabel.snp.makeConstraints {
