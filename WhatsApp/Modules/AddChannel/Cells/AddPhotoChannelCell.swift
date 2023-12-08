@@ -17,30 +17,9 @@ class AddPhotoChannelCell: BaseTableViewCell {
         return $0
     }(UITextField())
 
-//    private let editButton: UIButton = {
-//        $0.setTitle("Edit", for: [])
-//        return $0
-//    }(UIButton(type: .system))
-//
-//    private let titleLabel: UILabel = {
-//        $0.text = "Enter your name and add an optional profile picture"
-//        $0.numberOfLines = 0
-//        $0.font = .systemFont(ofSize: 12)
-//        $0.textColor = .secondaryLabel
-//        return $0
-//    }(UILabel())
-//
-//    public func configure(_ target: Any?, action: Selector) {
-//        editButton.addTarget(
-//            target, action:
-//                action,
-//            for: .primaryActionTriggered
-//        )
-//    }
-//
-//    public func configrure(with image: UIImage?) {
-//        photoImageView.image = image
-//    }
+    var text: String {
+        textField.text ?? ""
+    }
 }
 // MARK: - Setup
 extension AddPhotoChannelCell {
