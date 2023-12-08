@@ -78,6 +78,11 @@
 		027A1DC82B2360B90091EBC7 /* DetailPhotoChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC72B2360B90091EBC7 /* DetailPhotoChannelCell.swift */; };
 		027A1DCA2B2362A60091EBC7 /* DetailAboutChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC92B2362A60091EBC7 /* DetailAboutChannelCell.swift */; };
 		027A1DCC2B23830F0091EBC7 /* ChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DCB2B23830E0091EBC7 /* ChannelChatViewController.swift */; };
+		027A1DCF2B238B900091EBC7 /* MessagesDataSource+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DCE2B238B900091EBC7 /* MessagesDataSource+Channel.swift */; };
+		027A1DD12B238D4B0091EBC7 /* MessageCellDelegate+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DD02B238D4B0091EBC7 /* MessageCellDelegate+Channel.swift */; };
+		027A1DD32B23904F0091EBC7 /* MessagesDisplayDelegate+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DD22B23904F0091EBC7 /* MessagesDisplayDelegate+Channel.swift */; };
+		027A1DD52B2390AA0091EBC7 /* MessagesLayoutDelegate+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DD42B2390AA0091EBC7 /* MessagesLayoutDelegate+Channel.swift */; };
+		027A1DD72B2390EA0091EBC7 /* InputBarAccessoryViewDelegate+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DD62B2390EA0091EBC7 /* InputBarAccessoryViewDelegate+Channel.swift */; };
 		0281D3652B1BDDEA007F1082 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281D3642B1BDDEA007F1082 /* Recent.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
@@ -185,6 +190,11 @@
 		027A1DC72B2360B90091EBC7 /* DetailPhotoChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoChannelCell.swift; sourceTree = "<group>"; };
 		027A1DC92B2362A60091EBC7 /* DetailAboutChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAboutChannelCell.swift; sourceTree = "<group>"; };
 		027A1DCB2B23830E0091EBC7 /* ChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatViewController.swift; sourceTree = "<group>"; };
+		027A1DCE2B238B900091EBC7 /* MessagesDataSource+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesDataSource+Channel.swift"; sourceTree = "<group>"; };
+		027A1DD02B238D4B0091EBC7 /* MessageCellDelegate+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageCellDelegate+Channel.swift"; sourceTree = "<group>"; };
+		027A1DD22B23904F0091EBC7 /* MessagesDisplayDelegate+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesDisplayDelegate+Channel.swift"; sourceTree = "<group>"; };
+		027A1DD42B2390AA0091EBC7 /* MessagesLayoutDelegate+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesLayoutDelegate+Channel.swift"; sourceTree = "<group>"; };
+		027A1DD62B2390EA0091EBC7 /* InputBarAccessoryViewDelegate+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputBarAccessoryViewDelegate+Channel.swift"; sourceTree = "<group>"; };
 		0281D3642B1BDDEA007F1082 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -458,6 +468,11 @@
 			isa = PBXGroup;
 			children = (
 				027A1DCB2B23830E0091EBC7 /* ChannelChatViewController.swift */,
+				027A1DCE2B238B900091EBC7 /* MessagesDataSource+Channel.swift */,
+				027A1DD02B238D4B0091EBC7 /* MessageCellDelegate+Channel.swift */,
+				027A1DD22B23904F0091EBC7 /* MessagesDisplayDelegate+Channel.swift */,
+				027A1DD42B2390AA0091EBC7 /* MessagesLayoutDelegate+Channel.swift */,
+				027A1DD62B2390EA0091EBC7 /* InputBarAccessoryViewDelegate+Channel.swift */,
 			);
 			path = ChannelChat;
 			sourceTree = "<group>";
@@ -670,6 +685,7 @@
 				022DEA112B0482A100A840B5 /* AppFont.swift in Sources */,
 				021726FD2B06C9D700C37B32 /* FileStorage.swift in Sources */,
 				021726E42B06173300C37B32 /* BaseTableViewCell.swift in Sources */,
+				027A1DCF2B238B900091EBC7 /* MessagesDataSource+Channel.swift in Sources */,
 				02C80A092B11D694009B46E6 /* FirebaseRecentListener.swift in Sources */,
 				02A571F52B1464170042B782 /* LocalMessage.swift in Sources */,
 				02C80A0D2B11D6A3009B46E6 /* Constants.swift in Sources */,
@@ -745,7 +761,9 @@
 				02B4C8682B203B0500F4EB9C /* VideoMessage.swift in Sources */,
 				02ABFF992B08E3D80073F47C /* ProfileStatusStore.swift in Sources */,
 				02C0B8042B14B97C008B44E1 /* IncomingMessage.swift in Sources */,
+				027A1DD12B238D4B0091EBC7 /* MessageCellDelegate+Channel.swift in Sources */,
 				02A571ED2B1459A40042B782 /* MessagesLayoutDelegate+ChatViewController.swift in Sources */,
+				027A1DD32B23904F0091EBC7 /* MessagesDisplayDelegate+Channel.swift in Sources */,
 				0281D3652B1BDDEA007F1082 /* Recent.swift in Sources */,
 				025EDBAD2B0B2C62002A7E7F /* UsersStore.swift in Sources */,
 				02A571EF2B1459D10042B782 /* InputBarAccessoryViewDelegate+ChatViewController.swift in Sources */,
@@ -753,8 +771,10 @@
 				021726D92B06138A00C37B32 /* Tab.swift in Sources */,
 				027A1DB72B22D7BE0091EBC7 /* AddChannelViewController.swift in Sources */,
 				025EDBBB2B0B9EFB002A7E7F /* Date+Extension.swift in Sources */,
+				027A1DD52B2390AA0091EBC7 /* MessagesLayoutDelegate+Channel.swift in Sources */,
 				02A571E92B1458DD0042B782 /* MessageCellDelegate+ChatViewController.swift in Sources */,
 				021726E02B0616F600C37B32 /* SettingsNameTableViewCell.swift in Sources */,
+				027A1DD72B2390EA0091EBC7 /* InputBarAccessoryViewDelegate+Channel.swift in Sources */,
 				02C80A072B11D68D009B46E6 /* FirebaseUserListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

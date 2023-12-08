@@ -185,10 +185,8 @@ extension ChatViewController {
             } else {
                 print("DEBUG: no audio file", audioFileName + ".m4a")
             }
-            audioFileName = "" // ?
         default: print("Other longPressState")
         }
-
     }
 
     @objc private func backButtonPressed() {

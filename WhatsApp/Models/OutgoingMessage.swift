@@ -18,9 +18,7 @@ class OutgoingMessage {
         location: String?,
         memberIds: [String]
     ) {
-
         guard let currentUser = FirebaseClient.shared.person else { return }
-
         let message = Message()
         message.id = UUID().uuidString
         message.chatRoomId = Person.chatRoomIdFrom(id: recent.chatRoomId)
