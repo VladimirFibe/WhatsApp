@@ -85,7 +85,8 @@ extension ChannelsViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath)
         if segmentedControl.selectedSegmentIndex == 0 {
-            ProgressHUD.succeed("Go to chat")
+            let controller = ChannelChatViewController(channel: channels[indexPath.row])
+            navigationController?.pushViewController(controller, animated: true)
         } else {
             let channel = channels[indexPath.row]
             let controller = ChannelDetailViewController(channel: channel)
