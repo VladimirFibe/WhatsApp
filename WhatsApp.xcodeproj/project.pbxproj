@@ -64,6 +64,8 @@
 		025EDBB82B0B7AC2002A7E7F /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */; };
 		025EDBBB2B0B9EFB002A7E7F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025EDBBA2B0B9EFB002A7E7F /* Date+Extension.swift */; };
 		026A2A182B1C702600770D96 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A2A172B1C702600770D96 /* Message.swift */; };
+		027A1DAD2B22BAB00091EBC7 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DAC2B22BAB00091EBC7 /* ChannelsViewController.swift */; };
+		027A1DB02B22BFB90091EBC7 /* ChannelsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DAF2B22BFB90091EBC7 /* ChannelsCell.swift */; };
 		0281D3652B1BDDEA007F1082 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281D3642B1BDDEA007F1082 /* Recent.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
@@ -157,6 +159,8 @@
 		025EDBB72B0B7AC2002A7E7F /* ChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
 		025EDBBA2B0B9EFB002A7E7F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		026A2A172B1C702600770D96 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		027A1DAC2B22BAB00091EBC7 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
+		027A1DAF2B22BFB90091EBC7 /* ChannelsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCell.swift; sourceTree = "<group>"; };
 		0281D3642B1BDDEA007F1082 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 				02ABFF932B08DECF0073F47C /* Status */,
 				025EDBA52B0B0FFA002A7E7F /* Users */,
 				025EDBB62B0B7AA9002A7E7F /* Chats */,
+				027A1DAE2B22BAB70091EBC7 /* Channels */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -371,6 +376,15 @@
 				025EDBBA2B0B9EFB002A7E7F /* Date+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		027A1DAE2B22BAB70091EBC7 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				027A1DAC2B22BAB00091EBC7 /* ChannelsViewController.swift */,
+				027A1DAF2B22BFB90091EBC7 /* ChannelsCell.swift */,
+			);
+			path = Channels;
 			sourceTree = "<group>";
 		};
 		028B329F2B04FCC200C9F71A /* Models */ = {
@@ -571,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02B4C8622B20130300F4EB9C /* AddVideoView.swift in Sources */,
+				027A1DB02B22BFB90091EBC7 /* ChannelsCell.swift in Sources */,
 				025EDBAB2B0B2BE1002A7E7F /* UsersUseCase.swift in Sources */,
 				021726DB2B06143D00C37B32 /* MainTabBarViewController.swift in Sources */,
 				021726E22B06171000C37B32 /* SettingRowTableViewCell.swift in Sources */,
@@ -595,6 +610,7 @@
 				022DEA0B2B04774200A840B5 /* BaseView.swift in Sources */,
 				02C80A052B11D678009B46E6 /* FCollectionReference.swift in Sources */,
 				021726F32B06646800C37B32 /* StatusTableViewCell.swift in Sources */,
+				027A1DAD2B22BAB00091EBC7 /* ChannelsViewController.swift in Sources */,
 				021726FF2B06E75400C37B32 /* Status.swift in Sources */,
 				02A571F12B145B600042B782 /* MessageKitDefaults.swift in Sources */,
 				02568C892B220A6200C9C8F5 /* BasicAudioController.swift in Sources */,
