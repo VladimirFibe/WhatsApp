@@ -74,6 +74,9 @@
 		027A1DBE2B22F5470091EBC7 /* AddChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DBD2B22F5470091EBC7 /* AddChannelService.swift */; };
 		027A1DC12B22F74A0091EBC7 /* AddChannelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC02B22F74A0091EBC7 /* AddChannelUseCase.swift */; };
 		027A1DC32B22F7540091EBC7 /* AddChannelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC22B22F7540091EBC7 /* AddChannelStore.swift */; };
+		027A1DC52B235E240091EBC7 /* ChannelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC42B235E240091EBC7 /* ChannelDetailViewController.swift */; };
+		027A1DC82B2360B90091EBC7 /* DetailPhotoChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC72B2360B90091EBC7 /* DetailPhotoChannelCell.swift */; };
+		027A1DCA2B2362A60091EBC7 /* DetailAboutChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1DC92B2362A60091EBC7 /* DetailAboutChannelCell.swift */; };
 		0281D3652B1BDDEA007F1082 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281D3642B1BDDEA007F1082 /* Recent.swift */; };
 		028391BD2AC1386F00299AA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */; };
 		028B32A12B04FCD200C9F71A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B32A02B04FCD200C9F71A /* Person.swift */; };
@@ -177,6 +180,9 @@
 		027A1DBD2B22F5470091EBC7 /* AddChannelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelService.swift; sourceTree = "<group>"; };
 		027A1DC02B22F74A0091EBC7 /* AddChannelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelUseCase.swift; sourceTree = "<group>"; };
 		027A1DC22B22F7540091EBC7 /* AddChannelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelStore.swift; sourceTree = "<group>"; };
+		027A1DC42B235E240091EBC7 /* ChannelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewController.swift; sourceTree = "<group>"; };
+		027A1DC72B2360B90091EBC7 /* DetailPhotoChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoChannelCell.swift; sourceTree = "<group>"; };
+		027A1DC92B2362A60091EBC7 /* DetailAboutChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAboutChannelCell.swift; sourceTree = "<group>"; };
 		0281D3642B1BDDEA007F1082 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		028391BC2AC1386F00299AA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		028B32A02B04FCD200C9F71A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -342,6 +348,7 @@
 				027A1DB52B22D6AF0091EBC7 /* MyChannels */,
 				027A1DAE2B22BAB70091EBC7 /* Channels */,
 				027A1DB82B22D7C40091EBC7 /* AddChannel */,
+				027A1DC62B235E2B0091EBC7 /* ChannelDetail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -432,6 +439,16 @@
 				027A1DBB2B22E6FF0091EBC7 /* AddAboutChannelCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		027A1DC62B235E2B0091EBC7 /* ChannelDetail */ = {
+			isa = PBXGroup;
+			children = (
+				027A1DC42B235E240091EBC7 /* ChannelDetailViewController.swift */,
+				027A1DC72B2360B90091EBC7 /* DetailPhotoChannelCell.swift */,
+				027A1DC92B2362A60091EBC7 /* DetailAboutChannelCell.swift */,
+			);
+			path = ChannelDetail;
 			sourceTree = "<group>";
 		};
 		028B329F2B04FCC200C9F71A /* Models */ = {
@@ -637,6 +654,8 @@
 				025EDBAB2B0B2BE1002A7E7F /* UsersUseCase.swift in Sources */,
 				021726DB2B06143D00C37B32 /* MainTabBarViewController.swift in Sources */,
 				021726E22B06171000C37B32 /* SettingRowTableViewCell.swift in Sources */,
+				027A1DC52B235E240091EBC7 /* ChannelDetailViewController.swift in Sources */,
+				027A1DCA2B2362A60091EBC7 /* DetailAboutChannelCell.swift in Sources */,
 				022DEA112B0482A100A840B5 /* AppFont.swift in Sources */,
 				021726FD2B06C9D700C37B32 /* FileStorage.swift in Sources */,
 				021726E42B06173300C37B32 /* BaseTableViewCell.swift in Sources */,
@@ -652,6 +671,7 @@
 				02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */,
 				02A571E22B1437170042B782 /* ChatViewController.swift in Sources */,
 				02568C832B21A55800C9C8F5 /* MapAnnotation.swift in Sources */,
+				027A1DC82B2360B90091EBC7 /* DetailPhotoChannelCell.swift in Sources */,
 				024FF4F42B2134650033DDFB /* PhotoItemViewController.swift in Sources */,
 				027A1DB22B22CC620091EBC7 /* Channel.swift in Sources */,
 				027A1DC12B22F74A0091EBC7 /* AddChannelUseCase.swift in Sources */,

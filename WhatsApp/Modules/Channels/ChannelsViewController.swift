@@ -1,4 +1,5 @@
 import UIKit
+import ProgressHUD
 
 final class ChannelsViewController: BaseTableViewController {
     private var channels: [Channel] = []
@@ -83,6 +84,13 @@ extension ChannelsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath)
+        if segmentedControl.selectedSegmentIndex == 0 {
+            ProgressHUD.succeed("Go to chat")
+        } else {
+            let channel = channels[indexPath.row]
+            let controller = ChannelDetailViewController(channel: channel)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 // MARK: - UIScrollViewDelegate
