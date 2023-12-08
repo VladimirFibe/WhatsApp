@@ -2,11 +2,11 @@ import UIKit
 
 enum AddChannelEvent {
     case done
+    case error
 }
 
 enum AddChannelAction {
-    case uploadImage(UIImage, String)
-    case createChannel(String, String)
+    case save(UIImage, Channel)
 }
 
 final class AddChannelStore: Store<AddChannelEvent, AddChannelAction> {
@@ -18,26 +18,24 @@ final class AddChannelStore: Store<AddChannelEvent, AddChannelAction> {
 
     override func handleActions(action: AddChannelAction) {
         switch action {
-        case .createChannel(let name, let about):
+        case .save(let image, let channel):
             statefulCall {
                 weak var wSelf = self
-                try await wSelf?.createChannel(with: name, about: about)
-            }
-        case .uploadImage(let image, let id):
-            statefulCall {
-                weak var wSelf = self
-                try await wSelf?.uploadImage(image, id: id)
+                do {
+                    try await wSelf?.save(image, channel: channel)
+                } catch {
+                    wSelf?.sendEvent(.error)
+                }
             }
         }
-    }
-    
-    private func createChannel(with name: String, about: String) async throws {
-        try await useCase.createChannel(with: name, about: about)
     }
 
-    private func uploadImage(_ image: UIImage, id: String) async throws {
-        if let url = try await useCase.uploadImage(image, id: id) {
-            print(url)
+    private func save(_ image: UIImage, channel: Channel) async throws {
+        var modifiedChannel = channel
+        if let link = try await useCase.uploadImage(image, id: channel.id) {
+            modifiedChannel.avatarLink = link
         }
+        try useCase.save(channel: modifiedChannel)
+        sendEvent(.done)
     }
 }

@@ -1,13 +1,13 @@
 import UIKit
 
 protocol AddChannelUseCaseProtocol {
-    func createChannel(with name: String, about: String) async throws
+    func save(channel: Channel) throws
     func uploadImage(_ image: UIImage, id: String) async throws -> String?
 }
 
 final class AddChannelUseCase: AddChannelUseCaseProtocol {
-    func createChannel(with name: String, about: String) async throws {
-        try await apiService.createChannel(with: name, about: about)
+    func save(channel: Channel) throws {
+        try apiService.save(channel: channel)
     }
     
     func uploadImage(_ image: UIImage, id: String) async throws -> String? {

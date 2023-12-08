@@ -7,6 +7,7 @@ final class FirebaseClient {
     var newChatListener: ListenerRegistration?
     var updatedChatListener: ListenerRegistration?
     var typingListener: ListenerRegistration?
+    var channelsListener: ListenerRegistration?
 
     var person: Person? = nil
     
@@ -24,6 +25,7 @@ final class FirebaseClient {
     enum FCollectionReference: String {
         case persons
         case messages
+        case channels
     }
     
     func listenForNewChats(
@@ -211,22 +213,36 @@ final class FirebaseClient {
 
     func createTypingObserver(
         chatRoomId: String,
-        completion: @escaping (Bool) -> Void) {
-            typingListener = reference(.messages)
-                .document(Person.currentId)
-                .collection("typing")
-                .document(chatRoomId)
-                .addSnapshotListener { snapshot, error in
-                    guard let snapshot,
-                          let data = snapshot.data(),
-                          let typing = data["typing"] as? Bool
-                    else {
-                        completion(false)
-                        return }
-                    completion(typing)
-                }
-        }
+        completion: @escaping (Bool) -> Void
+    ) {
+        typingListener = reference(.messages)
+            .document(Person.currentId)
+            .collection("typing")
+            .document(chatRoomId)
+            .addSnapshotListener { snapshot, error in
+                guard let snapshot,
+                      let data = snapshot.data(),
+                      let typing = data["typing"] as? Bool
+                else {
+                    completion(false)
+                    return }
+                completion(typing)
+            }
+    }
 
+    func downloadUserChannelsFromFirebase(completion: @escaping ([Channel]) -> Void) {
+        channelsListener = reference(.channels)
+            .whereField(kADMINID, isEqualTo: Person.currentId)
+            .addSnapshotListener{ querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    completion([])
+                    return
+                }
+                var channels = documents.compactMap { try? $0.data(as: Channel.self)}
+                channels.sort(by: {$0.memberIds.count > $1.memberIds.count})
+                completion(channels)
+            }
+    }
     func removeListeners() {
         newChatListener?.remove()
         typingListener?.remove()

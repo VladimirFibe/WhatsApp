@@ -3,7 +3,7 @@ import FirebaseFirestoreSwift
 import Firebase
 
 struct Channel: Codable {
-    @DocumentID var id: String?
+    var id = UUID().uuidString
     var name = ""
     var adminId = ""
     var memberIds = [""]

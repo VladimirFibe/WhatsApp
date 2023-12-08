@@ -3,13 +3,15 @@ import UIKit
 import FirebaseStorage
 
 protocol AddChannelServiceProtocol {
-    func createChannel(with name: String, about: String) async throws
+    func save(channel: Channel) throws
     func uploadChannelAvatar(_ image: UIImage, id: String) async throws -> String?
 }
 
 extension FirebaseClient: AddChannelServiceProtocol {
-    func createChannel(with name: String, about: String) async throws {
-        print("Save to firebase", name, about)
+    func save(channel: Channel) throws {
+        try reference(.channels)
+            .document(channel.id)
+            .setData(from: channel)
     }
     func uploadChannelAvatar(_ image: UIImage, id: String) async throws -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.6)

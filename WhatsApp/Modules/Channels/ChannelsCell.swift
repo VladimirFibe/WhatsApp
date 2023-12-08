@@ -20,7 +20,7 @@ final class ChannelsCell: BaseTableViewCell {
         $0.text = "Last Message"
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.9
-        $0.numberOfLines = 2
+        $0.numberOfLines = 1
         return $0
     }(UILabel())
 
@@ -43,9 +43,7 @@ final class ChannelsCell: BaseTableViewCell {
         aboutChannelLabel.text = channel.aboutChannel
         membersLabel.text = "\(channel.memberIds.count) members"
         dateLabel.text = timeElapsed(channel.lastMessageDate ?? Date())
-        if let id = channel.id {
-            setAvatar(id: id, link: channel.avatarLink)
-        }
+        setAvatar(id: channel.id, link: channel.avatarLink)
     }
 
     private func setAvatar(id: String, link: String) {

@@ -15,6 +15,12 @@ extension ChannelsViewController {
             ChannelsCell.self,
             forCellReuseIdentifier: ChannelsCell.identifier
         )
+        FirebaseClient.shared.downloadUserChannelsFromFirebase { channels in
+            DispatchQueue.main.async {
+                self.channels = channels
+                self.tableView.reloadData()
+            }
+        }
         navigationItem.title = "Channels"
         navigationItem.titleView = segmentedControl
         navigationController?.navigationBar.prefersLargeTitles = true
