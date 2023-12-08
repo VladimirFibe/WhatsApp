@@ -19,6 +19,17 @@ final class ChannelDetailViewController: BaseTableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    @objc func followChannel() {
+        guard !channel.memberIds.contains(Person.currentId) else { return }
+        channel.memberIds.append(Person.currentId)
+        do {
+            try FirebaseClient.shared.save(channel: channel)
+        } catch {
+            print(error.localizedDescription)
+        }
+//        delegate?.didClickFollow()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 // MARK: - Setup Views
 extension ChannelDetailViewController {
@@ -26,6 +37,13 @@ extension ChannelDetailViewController {
         super.setupViews()
         photoCell.configure(with: channel)
         aboutCell.configure(with: channel)
+        navigationItem.title = channel.name
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Follow",
+            style: .plain,
+            target: self,
+            action: #selector(followChannel)
+        )
     }
 }
 
