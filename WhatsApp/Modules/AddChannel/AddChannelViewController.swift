@@ -75,7 +75,7 @@ extension AddChannelViewController {
 
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.title = "My Channel"
+        navigationItem.title = channel.name.isEmpty ? "Add Channel" : "Edit Channel"
     }
     private func setupObservers() {
         store

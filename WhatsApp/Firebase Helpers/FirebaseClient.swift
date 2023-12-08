@@ -8,7 +8,7 @@ final class FirebaseClient {
     var updatedChatListener: ListenerRegistration?
     var typingListener: ListenerRegistration?
     var channelsListener: ListenerRegistration?
-
+    var myChannelsListener: ListenerRegistration?
     var person: Person? = nil
     
     private init() {}
@@ -231,8 +231,44 @@ final class FirebaseClient {
     }
 
     func downloadUserChannelsFromFirebase(completion: @escaping ([Channel]) -> Void) {
-        channelsListener = reference(.channels)
+        if myChannelsListener != nil {
+            myChannelsListener?.remove()
+        }
+        myChannelsListener = reference(.channels)
             .whereField(kADMINID, isEqualTo: Person.currentId)
+            .addSnapshotListener{ querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    completion([])
+                    return
+                }
+                var channels = documents.compactMap { try? $0.data(as: Channel.self)}
+                channels.sort(by: {$0.memberIds.count > $1.memberIds.count})
+                completion(channels)
+            }
+    }
+
+    func downloadSubscribedChannelsFromFirebase(completion: @escaping ([Channel]) -> Void) {
+        if channelsListener != nil {
+            channelsListener?.remove()
+        }
+        channelsListener = reference(.channels)
+            .whereField(kMEMBERIDS, arrayContains: Person.currentId)
+            .addSnapshotListener{ querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    completion([])
+                    return
+                }
+                var channels = documents.compactMap { try? $0.data(as: Channel.self)}
+                channels.sort(by: {$0.memberIds.count > $1.memberIds.count})
+                completion(channels)
+            }
+    }
+
+    func downloadAllChannelsFromFirebase(completion: @escaping ([Channel]) -> Void) {
+        if channelsListener != nil {
+            channelsListener?.remove()
+        }
+        channelsListener = reference(.channels)
             .addSnapshotListener{ querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
                     completion([])

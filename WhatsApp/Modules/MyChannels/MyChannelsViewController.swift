@@ -12,8 +12,9 @@ extension MyChannelsViewController {
             forCellReuseIdentifier: ChannelsCell.identifier
         )
         navigationItem.title = "My Channels"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: UIAction(handler: { _ in
-            let channel = Channel()
+            let channel = Channel(memberIds: [Person.currentId])
             let controller = AddChannelViewController(channel: channel)
             self.navigationController?.pushViewController(controller, animated: true)
         }))
@@ -22,6 +23,10 @@ extension MyChannelsViewController {
 }
 // MARK: - Actions
 extension MyChannelsViewController {
+    @objc private func backButtonTapped() {
+        FirebaseClient.shared.myChannelsListener?.remove()
+        navigationController?.popViewController(animated: true)
+    }
     private func downloadChannels() {
         FirebaseClient.shared.downloadUserChannelsFromFirebase { channels in
             DispatchQueue.main.async {

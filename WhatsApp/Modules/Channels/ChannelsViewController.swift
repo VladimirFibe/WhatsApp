@@ -15,7 +15,7 @@ extension ChannelsViewController {
             ChannelsCell.self,
             forCellReuseIdentifier: ChannelsCell.identifier
         )
-        FirebaseClient.shared.downloadUserChannelsFromFirebase { channels in
+        FirebaseClient.shared.downloadSubscribedChannelsFromFirebase { channels in
             DispatchQueue.main.async {
                 self.channels = channels
                 self.tableView.reloadData()
@@ -40,7 +40,21 @@ extension ChannelsViewController {
     }
 
     @objc private func channelsSegmentChanged() {
-        print(segmentedControl.selectedSegmentIndex)
+        if segmentedControl.selectedSegmentIndex == 0 {
+            FirebaseClient.shared.downloadSubscribedChannelsFromFirebase { channels in
+                DispatchQueue.main.async {
+                    self.channels = channels
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            FirebaseClient.shared.downloadAllChannelsFromFirebase { channels in
+                DispatchQueue.main.async {
+                    self.channels = channels
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 }
 // MARK: - Data Source
