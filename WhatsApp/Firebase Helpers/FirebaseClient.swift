@@ -243,6 +243,11 @@ final class FirebaseClient {
                 completion(channels)
             }
     }
+
+    func deleteChannel(_ channel: Channel) {
+        reference(.channels).document(channel.id).delete()
+    }
+    
     func removeListeners() {
         newChatListener?.remove()
         typingListener?.remove()
