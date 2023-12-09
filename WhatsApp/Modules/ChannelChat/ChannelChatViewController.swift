@@ -53,12 +53,15 @@ final class ChannelChatViewController: MessagesViewController {
         super.viewDidLoad()
         confugureMessageCollectionView()
         configureGestureRecognizer()
-        configureMesssageInputBar()
         configureNavBar()
         updateMicButtonStatus(show: true)
         loadChats()
         listenForNewChats()
-        listenForReadStatusChange()
+        if channel.adminId == Person.currentId {
+            configureMesssageInputBar()
+        } else {
+            messageInputBar.isHidden = true
+        }
     }
 }
 // MARK: - Configurations
@@ -201,19 +204,13 @@ extension ChannelChatViewController {
     }
 
     private func listenForNewChats() {
-//        var lastMessageDate = allLocalMessages.last?.date ?? Date()
-//        lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
-//        FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
-    }
-
-    private func listenForReadStatusChange() {
-//        FirebaseClient.shared.listenForReadStatusChanges(Person.currentId, friendUid: recent.chatRoomId) { message in
-//            self.updateMessage(message)
-//        }
+        var lastMessageDate = allLocalMessages.last?.date ?? Date()
+        lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
+        FirebaseClient.shared.listenForNewChats("channels", friendUid: channel.id, lastMessageDate: lastMessageDate)
     }
 
     private func checkForOldChats() {
-//        FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
+        FirebaseClient.shared.checkForOldChats("channels", friendUid: channel.id)
     }
 
     private func insertMessages() {
