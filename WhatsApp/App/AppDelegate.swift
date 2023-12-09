@@ -13,6 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
+        if let person = FirebaseClient.shared.person {
+            print("DEBUG: person", person.username)
+        } else {
+            print("DEBUG: person nil")
+        }
         setRootViewController()
         return true
     }
@@ -30,15 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        print(#function)
         LocationManager.shared.startUpdating()
     }
     func applicationWillResignActive(_ application: UIApplication) {
-        print(#function)
         LocationManager.shared.stopUpdating()
     }
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print(#function)
         LocationManager.shared.stopUpdating()
     }
 }

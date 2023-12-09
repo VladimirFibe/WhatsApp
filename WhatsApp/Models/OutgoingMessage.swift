@@ -1,9 +1,11 @@
 import Foundation
 import UIKit
+import Firebase
 import FirebaseFirestoreSwift
 
 class OutgoingMessage {
     static func save(message: Message, recent: Recent?) {
+        print(message.id, message.text)
         RealmManager.shared.saveToRealm(message)
         if let recent {
             FirebaseClient.shared.sendMessage(message, recent: recent)
@@ -24,7 +26,7 @@ class OutgoingMessage {
         memberIds: [String]
     ) {
         guard let currentUser = FirebaseClient.shared.person else {
-            print("DEBUG: currenUser nil")
+            print("DEBUG: currenUser", Auth.auth().currentUser?.uid ?? "nil")
             return
         }
         let message = Message()
