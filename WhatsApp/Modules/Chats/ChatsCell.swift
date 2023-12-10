@@ -65,7 +65,13 @@ class ChatsCell: BaseTableViewCell {
 extension ChatsCell {
     override func setupViews() {
         super.setupViews()
-        [avatarImageView, usernameLabel, lastMessageLabel, dateLabel, unreadCounterLabel].forEach { contentView.addSubview($0)}
+        [avatarImageView, 
+         usernameLabel,
+         lastMessageLabel,
+         dateLabel,
+         unreadCounterLabel
+        ].forEach { contentView.addSubview($0)}
+        dateLabel.setContentHuggingPriority(.init(251), for: .horizontal)
     }
 
     override func setupConstraints() {
@@ -79,7 +85,6 @@ extension ChatsCell {
         usernameLabel.snp.makeConstraints {
             $0.top.equalTo(avatarImageView)
             $0.leading.equalTo(avatarImageView.snp.trailing).offset(8)
-            $0.trailing.equalToSuperview().inset(16)
         }
 
         dateLabel.snp.makeConstraints {
@@ -92,7 +97,6 @@ extension ChatsCell {
         lastMessageLabel.snp.makeConstraints {
             $0.top.equalTo(usernameLabel.snp.bottom).offset(8)
             $0.leading.equalTo(usernameLabel)
-            $0.bottom.equalToSuperview().inset(8)
         }
 
         unreadCounterLabel.snp.makeConstraints {

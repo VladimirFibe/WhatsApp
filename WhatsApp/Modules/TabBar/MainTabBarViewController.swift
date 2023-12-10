@@ -14,6 +14,17 @@ final class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
+        fetchPerson()
+    }
+
+    private func fetchPerson() {
+        Task {
+            do {
+                try await FirebaseClient.shared.fetchPerson()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 
     private func setupTabBar() {
@@ -27,7 +38,7 @@ final class MainTabBarViewController: UITabBarController {
         users.tabBarItem = tabItem(for: .users)
         settings.tabBarItem = tabItem(for: .settings)
         setViewControllers([chats, channels, users, settings], animated: true)
-        selectedIndex = 3
+        selectedIndex = 0
     }
 
     private func tabItem(for tab: Tab) -> UITabBarItem {

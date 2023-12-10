@@ -83,9 +83,9 @@ extension ChannelsViewController {
 extension ChannelsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath)
         if segmentedControl.selectedSegmentIndex == 0 {
-            let controller = ChannelChatViewController(channel: channels[indexPath.row])
+            let channel = channels[indexPath.row]
+            let controller = ChannelChatViewController(channel: channel)
             navigationController?.pushViewController(controller, animated: true)
         } else {
             let channel = channels[indexPath.row]

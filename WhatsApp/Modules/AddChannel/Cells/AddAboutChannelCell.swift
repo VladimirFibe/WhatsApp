@@ -25,6 +25,7 @@ extension AddAboutChannelCell {
         super.setupViews()
         contentView.addSubview(titleLabel)
         contentView.addSubview(textView)
+        selectionStyle = .none
     }
 
     override func setupConstraints() {
