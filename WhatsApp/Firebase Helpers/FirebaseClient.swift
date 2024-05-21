@@ -9,10 +9,15 @@ final class FirebaseClient {
     var typingListener: ListenerRegistration?
     var channelsListener: ListenerRegistration?
     var myChannelsListener: ListenerRegistration?
-    var person: Person? = nil
-    
+    var person: Person? = nil { didSet { Person.localPerson = person}}
+
     private init() {}
-    
+
+    func checkCurrentPerson() {
+        if let person = Person.localPerson { print("DEBUG: !!!!", person)}
+        if person == nil { Task {try? await FirebaseClient.shared.fetchPerson()}}
+    }
+
     func createPerson(withEmail email: String, uid: String) throws {
         let person = Person(username: email, email: email, fullname: "")
         try reference(.persons).document(uid).setData(from: person)
