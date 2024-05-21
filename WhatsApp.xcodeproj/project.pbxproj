@@ -275,15 +275,15 @@
 		021027392ABF43730017990B /* WhatsApp */ = {
 			isa = PBXGroup;
 			children = (
+				0210274E2ABF439D0017990B /* App */,
+				02A86BCF2B039FE4008C159F /* Base */,
+				022DEA012B04761200A840B5 /* Modules */,
 				02B4C8602B2012E600F4EB9C /* SwiftUIViews */,
 				02C80A012B11D632009B46E6 /* Kababyan */,
 				025EDBB92B0B9EEA002A7E7F /* Extensions */,
 				028B32A22B0500AD00C9F71A /* Firebase Helpers */,
 				028B329F2B04FCC200C9F71A /* Models */,
-				022DEA012B04761200A840B5 /* Modules */,
-				02A86BCF2B039FE4008C159F /* Base */,
 				0210274F2ABF452C0017990B /* Supporting Files */,
-				0210274E2ABF439D0017990B /* App */,
 			);
 			path = WhatsApp;
 			sourceTree = "<group>";
@@ -348,9 +348,9 @@
 		022DEA012B04761200A840B5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				022DEA052B04763400A840B5 /* Auth */,
 				02A571E02B1437070042B782 /* Chat */,
 				021726D72B06137D00C37B32 /* TabBar */,
-				022DEA052B04763400A840B5 /* Auth */,
 				022DEA022B04761200A840B5 /* Profile */,
 				021726DE2B06168700C37B32 /* Settings */,
 				021726EF2B06614C00C37B32 /* EditProfile */,
@@ -932,7 +932,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -970,7 +970,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

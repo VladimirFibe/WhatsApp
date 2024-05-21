@@ -7,20 +7,12 @@ class AuthViewController: BaseViewController {
         case register
         case forgot
     }
+
     var callback: Callback?
-    init(callback: Callback? = nil) {
-        self.callback = callback
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private let authUseCase = AuthUseCase(apiService: FirebaseClient.shared)
-    private lazy var store = AuthStore(authUseCase: authUseCase)
-    private var show = true
+
+    private let store: AuthStore
     private var isLogin = true { didSet { updateUI() }}
+
     private lazy var titleLabel: UILabel = {
         $0.text = isLogin ? "Login" : "Register"
         $0.font = AppFont.book.s35()
@@ -29,18 +21,9 @@ class AuthViewController: BaseViewController {
         return $0
     }(UILabel())
 
-    private lazy var emailTextField = AuthTextField(
-        placeholder: "Email",
-        isSecureTextEntry: false
-    )
-
-    private lazy var passwordTextField = AuthTextField(
-        placeholder: "Password", rightButton: showPassword
-    )
-
-    private lazy var repeatTextField = AuthTextField(
-        placeholder: "Repeat Password", rightButton: showRepeat
-    )
+    private lazy var emailTextField = AuthTextField(placeholder: "Email")
+    private lazy var passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
+    private lazy var repeatTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
 
     private let middleView = UIView()
 
@@ -90,18 +73,6 @@ class AuthViewController: BaseViewController {
         return $0
     }(UIButton(type: .system))
 
-    private lazy var showPassword: UIButton = {
-        $0.addTarget(self, action: #selector(showChanged), for: .primaryActionTriggered)
-        $0.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
-        return $0
-    }(UIButton(type: .system))
-
-    private lazy var showRepeat: UIButton = {
-        $0.addTarget(self, action: #selector(showChanged), for: .primaryActionTriggered)
-        $0.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
-        return $0
-    }(UIButton(type: .system))
-
     private lazy var stackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = 10
@@ -114,6 +85,16 @@ class AuthViewController: BaseViewController {
         $0.spacing = 10
         return $0
     }(UIStackView(arrangedSubviews: [bottomLabel, bottomButton]))
+
+    init(store: AuthStore, callback: Callback? = nil) {
+        self.callback = callback
+        self.store = store
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension AuthViewController {
@@ -166,18 +147,13 @@ extension AuthViewController {
         view.endEditing(false)
     }
 
-    @objc func showChanged() {
-        show.toggle()
-        showPassword.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
-        showRepeat.setImage(UIImage(systemName: show ? "eye" : "eye.slash"), for: [])
-        passwordTextField.updateSecure(show)
-        repeatTextField.updateSecure(show)
-    }
-
     private func isDataInputedFor(_ flow: Flow) -> Bool {
         switch flow {
-        case .login: return !emailTextField.text.isEmpty && !passwordTextField.text.isEmpty
-        case .register: return !emailTextField.text.isEmpty && !passwordTextField.text.isEmpty && passwordTextField.text == repeatTextField.text
+        case .login: return !emailTextField.text.isEmpty && 
+            !passwordTextField.text.isEmpty
+        case .register: return !emailTextField.text.isEmpty && 
+            !passwordTextField.text.isEmpty &&
+            passwordTextField.text == repeatTextField.text
         case .forgot: return !emailTextField.text.isEmpty
         }
     }
@@ -186,9 +162,8 @@ extension AuthViewController {
 extension AuthViewController {
     override func setupViews() {
         super.setupViews()
-        [
-            titleLabel, stackView, bottomStackView
-        ].forEach { view.addSubview($0)}
+        [titleLabel, stackView, bottomStackView]
+            .forEach { view.addSubview($0)}
         middleView.addSubview(forgotButton)
         middleView.addSubview(resendButton)
         repeatTextField.isHidden = isLogin
@@ -201,18 +176,18 @@ extension AuthViewController {
         store
             .events
             .receive(on: DispatchQueue.main)
-            .sink { event in
-                weak var wSelf = self
+            .sink {[weak self] event in
+                guard let self else { return }
                 switch event {
                 case .done:
-                    wSelf?.callback?()
+                    self.callback?()
                 case .registered:
                     ProgressHUD.success("Verification email send")
-                    wSelf?.resendButton.isHidden = false
-                    wSelf?.isLogin = true
+                    self.resendButton.isHidden = false
+                    self.isLogin = true
                 case .notVerified:
                     ProgressHUD.failed("Not verified")
-                    wSelf?.resendButton.isHidden = false
+                    self.resendButton.isHidden = false
                 case .error(let text):
                     ProgressHUD.failed(text)
                 }
@@ -255,7 +230,3 @@ extension AuthViewController {
         }
     }
 }
-//
-//#Preview {
-//    AuthViewController()
-//}

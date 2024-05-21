@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.setRootViewController()
         }
         if Auth.auth().currentUser == nil {
-            window?.rootViewController = AuthViewController(callback: callback)
+            let authUseCase = AuthUseCase(apiService: FirebaseClient.shared)
+            let store = AuthStore(authUseCase: authUseCase)
+            window?.rootViewController = AuthViewController(store: store, callback: callback)
         } else {
             window?.rootViewController = MainTabBarViewController(callback: callback)
         }

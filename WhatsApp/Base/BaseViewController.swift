@@ -7,6 +7,10 @@ class BaseViewController: UIViewController {
         setupViews()
         setupConstraints()
     }
+
+    deinit {
+        print("\(String(describing: self)) dealloc" )
+    }
 }
 
 @objc extension BaseViewController {

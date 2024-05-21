@@ -7,6 +7,10 @@ class BaseTableViewController: UITableViewController {
         setupViews()
         setupConstraints()
     }
+
+    deinit {
+        print("\(String(describing: self)) dealloc" )
+    }
 }
 
 @objc extension BaseTableViewController {

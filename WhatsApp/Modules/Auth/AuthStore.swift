@@ -15,38 +15,28 @@ enum AuthAction {
 }
 
 final class AuthStore: Store<AuthEvent, AuthAction> {
-    private let authUseCase: AuthUseCase
+    private let authUseCase: AuthUseCaseProtocol
 
-    init(authUseCase: AuthUseCase) {
+    init(authUseCase: AuthUseCaseProtocol) {
         self.authUseCase = authUseCase
     }
 
     override func handleActions(action: AuthAction) {
         switch action {
         case .register(let email, let password):
-            statefulCall {
-                weak var wSelf = self
-                try await wSelf?.register(
-                    withEmail: email,
-                    password: password
-                )
+            statefulCall { [weak self] in
+                try await self?.register(withEmail: email, password: password)
             }
         case .login(let email, let password):
-            statefulCall {
-                weak var wSelf = self
-                try await wSelf?.login(
-                    withEmail: email,
-                    password: password
-                )
+            statefulCall { [weak self] in
+                try await self?.login(withEmail: email, password: password)
             }
         case .sendEmailVerification:
             statefulCall(sendEmailVerification)
         case .resetPassword(let email):
-            statefulCall {
-                weak var wSelf = self
-                try await wSelf?.resetPassword(for: email)
+            statefulCall { [weak self] in
+                try await self?.resetPassword(for: email)
             }
-
         }
     }
 

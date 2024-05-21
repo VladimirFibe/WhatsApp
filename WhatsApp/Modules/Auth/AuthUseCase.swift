@@ -8,6 +8,12 @@ protocol AuthUseCaseProtocol {
 }
 
 final class AuthUseCase: AuthUseCaseProtocol {
+    private let apiService: AuthModuleServiceProtocol
+
+    init(apiService: AuthModuleServiceProtocol) {
+        self.apiService = apiService
+    }
+
     func resetPassword(for email: String) async throws {
         try await apiService.resetPassword(for: email)
     }
@@ -22,11 +28,5 @@ final class AuthUseCase: AuthUseCaseProtocol {
 
     func login(withEmail email: String, password: String) async throws -> Bool {
         try await apiService.login(withEmail: email, password: password)
-    }
-
-    private let apiService: AuthModuleServiceProtocol
-
-    init(apiService: AuthModuleServiceProtocol) {
-        self.apiService = apiService
     }
 }

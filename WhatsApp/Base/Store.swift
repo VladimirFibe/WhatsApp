@@ -3,42 +3,10 @@ import SwiftUI
 
 typealias Bag = Set<AnyCancellable>
 typealias Callback = () -> Void
-typealias StatusCode = Int
 
-enum AppErrorType {
-    case generic
-}
-
-class AppError: Error {
-    var statusCode: StatusCode?
-    var isRetryable: Bool { false }
-    var message: String { "Ошибка" }
-    var type: AppErrorType { .generic }
-}
-
-protocol ErrorObservable {
-    var errorViewModel: ErrorViewModel { get set }
-}
-
-protocol LoadingObservable {
-    var loadingViewModel: LoadingViewModel { get set }
-}
-
-class ErrorViewModel: ObservableObject {
-    @Published var error: AppError?
-    var onRetry: Callback = {}
-}
-
-class LoadingViewModel: ObservableObject {
-    @Published var isLoading: Bool = true
-}
-
-class Store<Event, Action>: ErrorObservable, LoadingObservable {
+class Store<Event, Action> {
     private(set) var events = PassthroughSubject<Event, Never>()
     private(set) var actions = PassthroughSubject<Action, Never>()
-
-    var errorViewModel = ErrorViewModel()
-    var loadingViewModel = LoadingViewModel()
 
     var bag = Bag()
 
@@ -63,36 +31,7 @@ class Store<Event, Action>: ErrorObservable, LoadingObservable {
 
     func handleActions(action: Action) {}
 
-    func statefulCall(
-        _ action: @MainActor @escaping () async throws -> (),
-        retry: (@MainActor () async -> ())? = nil
-    ) {
-        Task {
-            await stateful(action: action, retry: retry)
-        }
-    }
-
-    @MainActor
-    func stateful(
-        action: @MainActor @escaping () async throws -> (),
-        retry: (@MainActor () async -> ())? = nil
-    ) async {
-        self.loadingViewModel.isLoading = true
-        self.errorViewModel.error = nil
-        do {
-            defer { self.loadingViewModel.isLoading = false }
-            try await action()
-        } catch {
-            self.errorViewModel.error = error as? AppError
-            self.errorViewModel.onRetry = {
-                Task {
-                    if let retry = retry {
-                        await retry()
-                    } else {
-                        await self.stateful(action: action)
-                    }
-                }
-            }
-        }
+    func statefulCall(_ action: @MainActor @escaping () async throws -> ()) {
+        Task { try await action() }
     }
 }
