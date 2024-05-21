@@ -137,7 +137,7 @@ extension ChannelChatViewController {
         case .ended:
             AudioRecorder.shared.finishRecording()
 
-            if fileExistsAtPath(audioFileName + ".m4a") {
+            if FileStorage.fileExistsAtPath(audioFileName + ".m4a") {
                 let interval = audioDuration.interval(ofComponent: .second, from: Date())
                 messageSend(audio: audioFileName, audioDuration: interval)
             } else {

@@ -110,9 +110,6 @@
 		02ABFF972B08E32D0073F47C /* ProfileStatusUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF962B08E32D0073F47C /* ProfileStatusUseCase.swift */; };
 		02ABFF992B08E3D80073F47C /* ProfileStatusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF982B08E3D80073F47C /* ProfileStatusStore.swift */; };
 		02B1835A2B17621C00091EA4 /* MKSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B183592B17621C00091EA4 /* MKSender.swift */; };
-		02B4C8622B20130300F4EB9C /* AddVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4C8612B20130300F4EB9C /* AddVideoView.swift */; };
-		02B4C8642B20131F00F4EB9C /* AddVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4C8632B20131F00F4EB9C /* AddVideoViewModel.swift */; };
-		02B4C8662B2013BC00F4EB9C /* VideoUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4C8652B2013BC00F4EB9C /* VideoUploader.swift */; };
 		02B4C8682B203B0500F4EB9C /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4C8672B203B0500F4EB9C /* VideoMessage.swift */; };
 		02C0B8042B14B97C008B44E1 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C0B8032B14B97C008B44E1 /* IncomingMessage.swift */; };
 		02C80A032B11D649009B46E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A022B11D649009B46E6 /* User.swift */; };
@@ -220,9 +217,6 @@
 		02ABFF962B08E32D0073F47C /* ProfileStatusUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusUseCase.swift; sourceTree = "<group>"; };
 		02ABFF982B08E3D80073F47C /* ProfileStatusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusStore.swift; sourceTree = "<group>"; };
 		02B183592B17621C00091EA4 /* MKSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKSender.swift; sourceTree = "<group>"; };
-		02B4C8612B20130300F4EB9C /* AddVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoView.swift; sourceTree = "<group>"; };
-		02B4C8632B20131F00F4EB9C /* AddVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoViewModel.swift; sourceTree = "<group>"; };
-		02B4C8652B2013BC00F4EB9C /* VideoUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoUploader.swift; sourceTree = "<group>"; };
 		02B4C8672B203B0500F4EB9C /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		02C0B8032B14B97C008B44E1 /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		02C80A022B11D649009B46E6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -280,7 +274,6 @@
 				0210274E2ABF439D0017990B /* App */,
 				02A86BCF2B039FE4008C159F /* Base */,
 				022DEA012B04761200A840B5 /* Modules */,
-				02B4C8602B2012E600F4EB9C /* SwiftUIViews */,
 				02C80A012B11D632009B46E6 /* Kababyan */,
 				025EDBB92B0B9EEA002A7E7F /* Extensions */,
 				028B32A22B0500AD00C9F71A /* Firebase Helpers */,
@@ -551,16 +544,6 @@
 			path = Status;
 			sourceTree = "<group>";
 		};
-		02B4C8602B2012E600F4EB9C /* SwiftUIViews */ = {
-			isa = PBXGroup;
-			children = (
-				02B4C8612B20130300F4EB9C /* AddVideoView.swift */,
-				02B4C8632B20131F00F4EB9C /* AddVideoViewModel.swift */,
-				02B4C8652B2013BC00F4EB9C /* VideoUploader.swift */,
-			);
-			path = SwiftUIViews;
-			sourceTree = "<group>";
-		};
 		02C80A012B11D632009B46E6 /* Kababyan */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,7 +661,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02B4C8622B20130300F4EB9C /* AddVideoView.swift in Sources */,
 				027A1DB02B22BFB90091EBC7 /* ChannelsCell.swift in Sources */,
 				025EDBAB2B0B2BE1002A7E7F /* UsersUseCase.swift in Sources */,
 				021726DB2B06143D00C37B32 /* MainTabBarViewController.swift in Sources */,
@@ -755,11 +737,9 @@
 				027A1DBA2B22E4560091EBC7 /* AddPhotoChannelCell.swift in Sources */,
 				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				02A4B3422B1F3101004A3E4B /* PhotoMessage.swift in Sources */,
-				02B4C8642B20131F00F4EB9C /* AddVideoViewModel.swift in Sources */,
 				0210273B2ABF43730017990B /* AppDelegate.swift in Sources */,
 				021726EC2B061F7900C37B32 /* SettingsService.swift in Sources */,
 				02C80A0E2B11D6A3009B46E6 /* GlobalFunctions.swift in Sources */,
-				02B4C8662B2013BC00F4EB9C /* VideoUploader.swift in Sources */,
 				021726F92B0664C600C37B32 /* EditProfileUseCase.swift in Sources */,
 				025EDBB32B0B798E002A7E7F /* ChatsTableViewController.swift in Sources */,
 				02B4C8682B203B0500F4EB9C /* VideoMessage.swift in Sources */,

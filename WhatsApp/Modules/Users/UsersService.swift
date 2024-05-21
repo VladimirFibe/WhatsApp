@@ -8,11 +8,11 @@ protocol UsersServiceProtocol {
 
 extension FirebaseClient: UsersServiceProtocol {
     func fetchPersons() async throws -> [Person] {
+        let id = Person.currentId
         let query = try await reference(.persons)
             .limit(to: 10)
+            .whereField("id", isNotEqualTo: id)
             .getDocuments()
-        var persons = query.documents.compactMap { try? $0.data(as: Person.self)}
-        persons = persons.filter({$0.id != Person.currentId})
-        return persons
+        return query.documents.compactMap { try? $0.data(as: Person.self)}
     }
 }

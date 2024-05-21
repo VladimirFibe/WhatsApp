@@ -22,8 +22,7 @@ class UsersTableViewCell: BaseTableViewCell {
     public func configure(with person: Person) {
         usernameLabel.text = person.username
         statusLabel.text = person.status
-        guard let id = person.id else { return }
-        FileStorage.downloadImage(id: id, link: person.avatarLink) { image in
+        FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
             self.avatarImageView.image = image?.circleMasked
         }
     }

@@ -27,7 +27,7 @@ class IncomingMessage {
         if message.type == kVIDEO {
             FileStorage.downloadVideo(id: message.id, link: message.videoUrl) { filename in
                 if let filename {
-                    let videoURL = URL(fileURLWithPath: fileInDocumetsDirectory(fileName: filename))
+                    let videoURL = URL(fileURLWithPath: FileStorage.fileInDocumetsDirectory(fileName: filename))
                     let videoItem = VideoMessage(url: videoURL)
                     mkMessage.videoItem = videoItem
                     mkMessage.kind = MessageKind.video(videoItem)
@@ -50,7 +50,7 @@ class IncomingMessage {
                     let audioItem = AudioMessage(duration: message.audioDuration)
                     mkMessage.audioItem = audioItem
                     mkMessage.kind = MessageKind.audio(audioItem)
-                    let url = URL(fileURLWithPath: fileInDocumetsDirectory(fileName: filename))
+                    let url = URL(fileURLWithPath: FileStorage.fileInDocumetsDirectory(fileName: filename))
                     mkMessage.audioItem?.url = url
                     mkMessage.audioItem?.duration = Float(message.audioDuration)
                     self.controller.messagesCollectionView.reloadData()

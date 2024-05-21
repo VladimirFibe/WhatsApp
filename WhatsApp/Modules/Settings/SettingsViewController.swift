@@ -16,14 +16,14 @@ final class SettingsViewController: BaseViewController {
     }
     private let rows: [[SettingsRowModel]] = [
         [.init(title: "", image: nil)],
-        [.init(title: "Starred Message", image: #imageLiteral(resourceName: "settingStar.pdf")),
-         .init(title: "WhatsApp Web/Desktop", image: #imageLiteral(resourceName: "settingDesktop.pdf"))],
-        [.init(title: "Account", image: #imageLiteral(resourceName: "settingAccount.pdf")),
-         .init(title: "Chats", image: #imageLiteral(resourceName: "settingChats.pdf")),
-         .init(title: "Notifications", image: #imageLiteral(resourceName: "settingNotification.pdf")),
+        [.init(title: "Starred Message",        image: #imageLiteral(resourceName: "settingStar.pdf")),
+         .init(title: "WhatsApp Web/Desktop",   image: #imageLiteral(resourceName: "settingDesktop.pdf"))],
+        [.init(title: "Account",                image: #imageLiteral(resourceName: "settingAccount.pdf")),
+         .init(title: "Chats",                  image: #imageLiteral(resourceName: "settingChats.pdf")),
+         .init(title: "Notifications",          image: #imageLiteral(resourceName: "settingNotification.pdf")),
          .init(title: "Data and Storage Usage", image: #imageLiteral(resourceName: "settingData.pdf"))],
-        [.init(title: "Help", image: #imageLiteral(resourceName: "settingHelp.pdf")),
-         .init(title: "Tell a Fiend", image: #imageLiteral(resourceName: "settingShare.pdf"))]
+        [.init(title: "Help",                   image: #imageLiteral(resourceName: "settingHelp.pdf")),
+         .init(title: "Tell a Fiend",           image: #imageLiteral(resourceName: "settingShare.pdf"))]
     ]
 
     private let userInfoCell = SettingsNameTableViewCell()
@@ -51,6 +51,7 @@ final class SettingsViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         store.sendAction(.fetch)
     }
 }
@@ -68,6 +69,7 @@ extension SettingsViewController {
         )
         tableview.tableFooterView = footerLabel
         setupObservers()
+        showUserInfo()
     }
 
     private func setupObservers() {
@@ -96,8 +98,7 @@ extension SettingsViewController {
     private func showUserInfo() {
         if let person = FirebaseClient.shared.person {
             userInfoCell.configure(with: person)
-            guard let id = person.id else { return }
-            FileStorage.downloadImage(id: id, link: person.avatarLink) { image in
+            FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
                 self.userInfoCell.configure(with: image?.circleMasked)
             }
         }

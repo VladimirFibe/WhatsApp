@@ -35,7 +35,7 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate {
     }
 
     func startRecording(fileName: String) {
-        let audioFileName = getDocumentsURL().appendingPathComponent(fileName + ".m4a", isDirectory: false)
+        let audioFileName = FileStorage.getDocumentsURL().appendingPathComponent(fileName + ".m4a", isDirectory: false)
 
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
