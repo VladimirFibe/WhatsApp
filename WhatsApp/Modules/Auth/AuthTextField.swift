@@ -88,8 +88,3 @@ final class AuthTextField: UIView {
         }
     }
 }
-
-@available (iOS 17.0, *)
-#Preview {
-    AuthTextField(placeholder: "Email")
-}

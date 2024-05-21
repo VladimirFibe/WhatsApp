@@ -2,93 +2,55 @@ import UIKit
 import ProgressHUD
 
 class AuthViewController: BaseViewController {
+    private var store: AuthStore
+    private var isLogin = true { didSet { updateUI() }}
+
     enum Flow {
         case login
         case register
         case forgot
     }
 
-    var callback: Callback?
-
-    private let store: AuthStore
-    private var isLogin = true { didSet { updateUI() }}
-
-    private lazy var titleLabel: UILabel = {
-        $0.text = isLogin ? "Login" : "Register"
-        $0.font = AppFont.book.s35()
-        $0.textAlignment = .center
-        $0.numberOfLines = 0
-        return $0
-    }(UILabel())
-
-    private lazy var emailTextField = AuthTextField(placeholder: "Email")
-    private lazy var passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
-    private lazy var repeatTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
-
-    private let middleView = UIView()
-
-    private lazy var forgotButton: UIButton = {
+    private var callback: Callback?
+    private let emailTextField = AuthTextField(placeholder: "Email")
+    private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
+    private let repeatTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
+    
+    private let forgotButton: UIButton = {
         $0.contentHorizontalAlignment = .leading
         $0.setTitle("Forgot Password?", for: [])
-        $0.addTarget(
-            self,
-            action: #selector(forgotButtonTapped),
-            for: .primaryActionTriggered
-        )
         return $0
     }(UIButton(type: .system))
 
-    private lazy var resendButton: UIButton = {
+    private let resendButton: UIButton = {
         $0.contentHorizontalAlignment = .trailing
         $0.isHidden = true
         $0.setTitle("Resend Email", for: [])
-        $0.addTarget(self, action: #selector(resendButtonTapped), for: .primaryActionTriggered)
         return $0
     }(UIButton(type: .system))
 
-    private lazy var loginButton: UIButton = {
-        $0.setTitle(isLogin ? "Login" : "Register", for: [])
-        $0.addTarget(
-            self,
-            action: #selector(loginButtonTapped),
-            for: .primaryActionTriggered
-        )
+    private let middleView = UIView()
+
+    private let actionButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.title = "Login"
+        config.cornerStyle = .medium
+        config.imagePadding = 8
+        $0.configuration = config
         return $0
     }(UIButton(type: .system))
 
-    private let bottomLabel: UILabel = {
-        $0.text = "Don't have an account?"
-        $0.font = AppFont.book.s16()
-        return $0
-    }(UILabel())
-
-    private lazy var bottomButton: UIButton = {
-        $0.contentHorizontalAlignment = .trailing
-        $0.setTitle("Register", for: [])
-        $0.addTarget(
-            self,
-            action: #selector(bottomButtonTapped),
-            for: .primaryActionTriggered
-        )
-        return $0
-    }(UIButton(type: .system))
-
-    private lazy var stackView: UIStackView = {
+    private let rootStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = 10
         return $0
-    }(UIStackView(arrangedSubviews: [
-        emailTextField, passwordTextField, repeatTextField, middleView, loginButton
-    ]))
+    }(UIStackView())
 
-    private lazy var bottomStackView: UIStackView = {
-        $0.spacing = 10
-        return $0
-    }(UIStackView(arrangedSubviews: [bottomLabel, bottomButton]))
+    private let authStatusSwitch = AuthStatusSwitch()
 
     init(store: AuthStore, callback: Callback? = nil) {
-        self.callback = callback
         self.store = store
+        self.callback = callback
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -96,100 +58,141 @@ class AuthViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
+// MARK: - Actions
 extension AuthViewController {
-    private func updateUI() {
-        titleLabel.text = isLogin ? "Login" : "Register"
-        bottomButton.setTitle(isLogin ? "Register" : "Login", for: [])
-        loginButton.setTitle(isLogin ? "Login" : "Register", for: [])
-        bottomLabel.text = isLogin ? "Don't have an account?" : "Already have an account?"
+    @objc private func authSwitchTapped() {
+        isLogin.toggle()
+    }
 
-        UIView.animate(withDuration: 0.5) {
-            self.repeatTextField.isHidden = self.isLogin
-            self.repeatTextField.alpha = self.isLogin ? 0 : 1
+    @objc private func actionButtonTapped() {
+        if let error = errorMessage(isLogin ? .login : .register) {
+            ProgressHUD.failed(error)
+        } else {
+            let email = emailTextField.text
+            let password = passwordTextField.text
+            actionButton.configuration?.showsActivityIndicator = true
+            resendButton.isHidden = true
+            isLogin ? store.sendAction(.signIn(email, password))
+            : store.sendAction(.createUser(email, password))
         }
     }
 
     @objc private func forgotButtonTapped() {
-        if isDataInputedFor(.forgot) {
-            let email = emailTextField.text
-            store.sendAction(.resetPassword(email))
+        if let error = errorMessage(.forgot) {
+            ProgressHUD.failed(error)
         } else {
-            ProgressHUD.failed("Email is required")
+            let email = emailTextField.text
+            store.sendAction(.sendPasswordReset(email))
         }
     }
 
     @objc private func resendButtonTapped() {
-        if isDataInputedFor(.forgot) {
-            store.sendAction(.sendEmailVerification)
-            resendButton.isHidden = true
+        if let error = errorMessage(.forgot) {
+            ProgressHUD.failed(error)
         } else {
-            ProgressHUD.failed("Email is required")
-        }
-    }
-
-    @objc private func loginButtonTapped() {
-        if isDataInputedFor(isLogin ? .login : .register) {
             let email = emailTextField.text
-            let password = passwordTextField.text
-            isLogin ? store.sendAction(.login(email, password))
-            : store.sendAction(.register(email, password))
-        } else {
-            ProgressHUD.failed("All Fields are required")
+            store.sendAction(.sendEmail(email))
         }
-    }
-
-    @objc private func bottomButtonTapped() {
-        isLogin.toggle()
     }
 
     @objc private func backgroundTapped() {
         view.endEditing(false)
     }
 
-    private func isDataInputedFor(_ flow: Flow) -> Bool {
-        switch flow {
-        case .login: return !emailTextField.text.isEmpty && 
-            !passwordTextField.text.isEmpty
-        case .register: return !emailTextField.text.isEmpty && 
-            !passwordTextField.text.isEmpty &&
-            passwordTextField.text == repeatTextField.text
-        case .forgot: return !emailTextField.text.isEmpty
+    private func login() {
+        callback?()
+    }
+
+    private func notVerified() {
+        ProgressHUD.failed("Please verify email")
+        resendButton.isHidden = false
+    }
+
+    private func registered() {
+        isLogin = true
+        ProgressHUD.succeed("Отправлен email")
+        resendButton.isHidden = false
+    }
+
+    private func emailSended() {
+        resendButton.isHidden = true
+    }
+
+    private func linkSended() {
+        ProgressHUD.succeed("Ссылка отправлена")
+    }
+
+    private func showError(_ message: String) {
+        ProgressHUD.failed(message)
+    }
+
+    private func errorMessage(_ flow: Flow) -> String? {
+        if emailTextField.text.isEmpty {
+            return "Email is empty"
+        } else if flow == .forgot {
+            return nil
+        } else if passwordTextField.text.isEmpty {
+            return "Password is empty"
+        } else if flow == .login {
+            return nil
+        } else if passwordTextField.text == repeatTextField.text {
+            return nil
+        } else {
+            return "Password not equal"
         }
     }
 }
-
+// MARK: - Setup Views
 extension AuthViewController {
     override func setupViews() {
         super.setupViews()
-        [titleLabel, stackView, bottomStackView]
-            .forEach { view.addSubview($0)}
+        [rootStackView, actionButton, authStatusSwitch].forEach {
+            view.addSubview($0)
+        }
+        authStatusSwitch.configure(self, action: #selector(authSwitchTapped))
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .primaryActionTriggered)
+        forgotButton.addTarget(self, action: #selector(forgotButtonTapped), for: .primaryActionTriggered)
+        resendButton.addTarget(self, action: #selector(resendButtonTapped), for: .primaryActionTriggered)
+        setupRootStackView()
+        setupBackgroundTap()
+        updateUI()
+        setupObservers()
+    }
+
+    private func setupRootStackView() {
+        [emailTextField, passwordTextField, repeatTextField, middleView].forEach {
+            rootStackView.addArrangedSubview($0)
+        }
         middleView.addSubview(forgotButton)
         middleView.addSubview(resendButton)
-        repeatTextField.isHidden = isLogin
-        setupBackgroundTap()
-        repeatTextField.alpha = isLogin ? 0 : 1
-        setupObservers()
+    }
+
+    private func updateUI() {
+        authStatusSwitch.configure(with: isLogin)
+        actionButton.configuration?.title = isLogin ? "Login" : "Register"
+        navigationItem.title = isLogin ? "Login" : "Register"
+        UIView.animate(withDuration: 0.5) {
+            self.repeatTextField.isHidden = self.isLogin
+            self.repeatTextField.alpha = self.isLogin ? 0 : 1
+            self.middleView.isHidden = !self.isLogin
+            self.middleView.alpha = self.isLogin ? 1 : 0
+        }
     }
 
     private func setupObservers() {
         store
             .events
             .receive(on: DispatchQueue.main)
-            .sink {[weak self] event in
+            .sink { [weak self] event in
                 guard let self else { return }
+                self.actionButton.configuration?.showsActivityIndicator = false
                 switch event {
-                case .done:
-                    self.callback?()
-                case .registered:
-                    ProgressHUD.success("Verification email send")
-                    self.resendButton.isHidden = false
-                    self.isLogin = true
-                case .notVerified:
-                    ProgressHUD.failed("Not verified")
-                    self.resendButton.isHidden = false
-                case .error(let text):
-                    ProgressHUD.failed(text)
+                case .login:            self.login()
+                case .notVerified:      self.notVerified()
+                case .registered:       self.registered()
+                case .emailSended:      self.emailSended()
+                case .linkSended:       self.linkSended()
+                case .error(let error): self.showError(error)
                 }
             }.store(in: &bag)
     }
@@ -203,15 +206,22 @@ extension AuthViewController {
     }
 
     override func setupConstraints() {
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(48)
+        let padding = 20.0
+
+        rootStackView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(50)
+            $0.leading.trailing.equalToSuperview().inset(padding)
         }
 
-        stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(100)
-            $0.leading.trailing.equalTo(titleLabel)
+        actionButton.snp.makeConstraints {
+            $0.top.equalTo(rootStackView.snp.bottom).offset(50)
+            $0.leading.trailing.equalToSuperview().inset(padding)
+            $0.height.equalTo(50)
+        }
+
+        authStatusSwitch.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(50)
         }
 
         forgotButton.snp.makeConstraints {
@@ -222,11 +232,7 @@ extension AuthViewController {
             $0.top.bottom.equalTo(forgotButton)
             $0.trailing.equalToSuperview()
             $0.leading.equalTo(forgotButton.snp.trailing)
-        }
-
-        bottomStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.width.equalTo(forgotButton.snp.width)
         }
     }
 }

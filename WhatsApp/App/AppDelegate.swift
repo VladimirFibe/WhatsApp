@@ -18,17 +18,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setRootViewController() {
+        if Auth.auth().currentUser == nil {
+            window?.rootViewController = makeAuth()
+        } else {
+            window?.rootViewController = makeTabbar()
+        }
+        window?.makeKeyAndVisible()
+    }
+
+    private func makeTabbar() -> UIViewController {
         let callback: Callback = { [weak self] in
             self?.setRootViewController()
         }
-        if Auth.auth().currentUser == nil {
-            let authUseCase = AuthUseCase(apiService: FirebaseClient.shared)
-            let store = AuthStore(authUseCase: authUseCase)
-            window?.rootViewController = AuthViewController(store: store, callback: callback)
-        } else {
-            window?.rootViewController = MainTabBarViewController(callback: callback)
+        return MainTabBarViewController(callback: callback)
+    }
+
+    private func makeAuth() -> UIViewController {
+        let useCase = AuthUseCase(apiService: FirebaseClient.shared)
+        let store = AuthStore(useCase: useCase)
+        let callback: Callback = { [weak self] in
+            self?.setRootViewController()
         }
-        window?.makeKeyAndVisible()
+        let controller = AuthViewController(store: store, callback: callback)
+        return UINavigationController(rootViewController: controller)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

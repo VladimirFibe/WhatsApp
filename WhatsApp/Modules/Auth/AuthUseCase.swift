@@ -1,32 +1,35 @@
 import Foundation
 
 protocol AuthUseCaseProtocol {
-    func register(withEmail email: String, password: String) async throws
-    func login(withEmail email: String, password: String) async throws -> Bool
-    func sendEmailVerification() async throws
-    func resetPassword(for email: String) async throws
+    var isEmailVerified: Bool? { get }
+    func createUser(withEmail email: String, password: String) async throws
+    func signIn(withEmail email: String, password: String) async throws -> Bool
+    func sendPasswordReset(withEmail email: String) async throws
+    func sendEmail(_ email: String) async throws
 }
 
 final class AuthUseCase: AuthUseCaseProtocol {
-    private let apiService: AuthModuleServiceProtocol
+    private let apiService: AuthServiceProtocol
 
-    init(apiService: AuthModuleServiceProtocol) {
+    init(apiService: AuthServiceProtocol) {
         self.apiService = apiService
     }
 
-    func resetPassword(for email: String) async throws {
-        try await apiService.resetPassword(for: email)
+    var isEmailVerified: Bool? { apiService.isEmailVerified }
+
+    func createUser(withEmail email: String, password: String) async throws {
+        try await apiService.createUser(withEmail: email, password: password)
     }
 
-    func sendEmailVerification() async throws {
-        try await apiService.sendEmailVerification()
+    func signIn(withEmail email: String, password: String) async throws -> Bool {
+        try await apiService.signIn(withEmail: email, password: password)
     }
 
-    func register(withEmail email: String, password: String) async throws {
-        try await apiService.register(withEmail: email, password: password)
+    func sendPasswordReset(withEmail email: String) async throws {
+        try await apiService.sendPasswordReset(withEmail: email)
     }
 
-    func login(withEmail email: String, password: String) async throws -> Bool {
-        try await apiService.login(withEmail: email, password: password)
+    func sendEmail(_ email: String) async throws {
+        try await apiService.sendEmail(email)
     }
 }

@@ -13,7 +13,7 @@ final class FirebaseClient {
     
     private init() {}
     
-    func createPerson(with email: String, uid: String) throws {
+    func createPerson(withEmail email: String, uid: String) throws {
         let person = Person(username: email, email: email, fullname: "")
         try reference(.persons).document(uid).setData(from: person)
     }

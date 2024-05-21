@@ -8,7 +8,7 @@ struct Person: Identifiable, Hashable, Codable {
     let email: String
     var pushId = ""
     var avatarLink = ""
-    var fullname: String
+    var fullname = ""
     var status = ""
 
     static var currentId: String {

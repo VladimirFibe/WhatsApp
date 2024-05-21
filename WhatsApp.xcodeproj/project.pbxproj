@@ -122,6 +122,7 @@
 		02C80A0D2B11D6A3009B46E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A0A2B11D6A3009B46E6 /* Constants.swift */; };
 		02C80A0E2B11D6A3009B46E6 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A0B2B11D6A3009B46E6 /* GlobalFunctions.swift */; };
 		02C80A0F2B11D6A3009B46E6 /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A0C2B11D6A3009B46E6 /* StartChat.swift */; };
+		E8D93D932BFC6FBE00FC6FCC /* AuthStatusSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D93D922BFC6FBE00FC6FCC /* AuthStatusSwitch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -231,6 +232,7 @@
 		02C80A0A2B11D6A3009B46E6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		02C80A0B2B11D6A3009B46E6 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		02C80A0C2B11D6A3009B46E6 /* StartChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
+		E8D93D922BFC6FBE00FC6FCC /* AuthStatusSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStatusSwitch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 			children = (
 				022DEA062B04764B00A840B5 /* AuthViewController.swift */,
 				022DEA0C2B0479FF00A840B5 /* AuthTextField.swift */,
+				E8D93D922BFC6FBE00FC6FCC /* AuthStatusSwitch.swift */,
 				028B32A72B05074600C9F71A /* AuthStore.swift */,
 				028B32A92B05076700C9F71A /* AuthUseCase.swift */,
 				028B32AB2B0507C100C9F71A /* AuthModuleService.swift */,
@@ -748,6 +751,7 @@
 				025EDBB12B0B7796002A7E7F /* RecentChat.swift in Sources */,
 				02C80A0F2B11D6A3009B46E6 /* StartChat.swift in Sources */,
 				021726E62B06181E00C37B32 /* SettingsRowModel.swift in Sources */,
+				E8D93D932BFC6FBE00FC6FCC /* AuthStatusSwitch.swift in Sources */,
 				027A1DBA2B22E4560091EBC7 /* AddPhotoChannelCell.swift in Sources */,
 				028B32A12B04FCD200C9F71A /* Person.swift in Sources */,
 				02A4B3422B1F3101004A3E4B /* PhotoMessage.swift in Sources */,

@@ -1,78 +1,78 @@
 import Foundation
 
 enum AuthEvent {
-    case done
+    case login
     case notVerified
     case registered
+    case emailSended
+    case linkSended
     case error(String)
 }
 
 enum AuthAction {
-    case register(String, String)
-    case login(String, String)
-    case sendEmailVerification
-    case resetPassword(String)
+    case createUser(String, String)
+    case signIn(String, String)
+    case sendPasswordReset(String)
+    case sendEmail(String)
 }
 
 final class AuthStore: Store<AuthEvent, AuthAction> {
-    private let authUseCase: AuthUseCaseProtocol
+    private let useCase: AuthUseCaseProtocol
 
-    init(authUseCase: AuthUseCaseProtocol) {
-        self.authUseCase = authUseCase
+    init(useCase: AuthUseCaseProtocol) {
+        self.useCase = useCase
     }
 
     override func handleActions(action: AuthAction) {
         switch action {
-        case .register(let email, let password):
+        case .createUser(let email, let password):
             statefulCall { [weak self] in
-                try await self?.register(withEmail: email, password: password)
+                try await self?.register(
+                    withEmail: email,
+                    password: password
+                )
             }
-        case .login(let email, let password):
+        case .signIn(let email, let password):
             statefulCall { [weak self] in
-                try await self?.login(withEmail: email, password: password)
+                try await self?.signIn(withEmail: email, password: password)
             }
-        case .sendEmailVerification:
-            statefulCall(sendEmailVerification)
-        case .resetPassword(let email):
+        case .sendPasswordReset(let email):
             statefulCall { [weak self] in
-                try await self?.resetPassword(for: email)
+                try await self?.sendPasswordReset(withEmail: email)
+            }
+
+        case .sendEmail(let email):
+            statefulCall { [weak self] in
+                try await self?.sendEmail(email)
             }
         }
+    }
+
+    private func sendEmail(_ email: String) async throws {
+        try await useCase.sendEmail(email)
+        sendEvent(.emailSended)
     }
 
     private func register(withEmail email: String, password: String) async throws {
         do {
-            try await authUseCase.register(
-                withEmail: email,
-                password: password
-            )
+            try await useCase.createUser(withEmail: email, password: password)
             sendEvent(.registered)
         } catch {
-            sendEvent(.error("Что то не так с регистацией"))
+            sendEvent(.error(error.localizedDescription))
         }
     }
 
-    private func login(withEmail email: String, password: String) async throws {
+    private func signIn(withEmail email: String, password: String) async throws {
         do {
-            let result = try await authUseCase.login(
-                withEmail: email,
-                password: password
-            )
-            result ? sendEvent(.done): sendEvent(.notVerified)
+            let response = try await useCase.signIn(withEmail: email, password: password)
+            response ? sendEvent(.login) : sendEvent(.notVerified)
         } catch {
-            sendEvent(.error("Что то не так с авторизацией"))
+            sendEvent(.error(error.localizedDescription))
         }
     }
 
-    private func sendEmailVerification() async throws {
-        try await authUseCase.sendEmailVerification()
-    }
-
-    private func resetPassword(for email: String) async throws {
-        do {
-            try await authUseCase.resetPassword(for: email)
-        } catch {
-            sendEvent(.error("Что то не так со сбросом пароля"))
-        }
+    private func sendPasswordReset(withEmail email: String) async throws {
+        try await useCase.sendPasswordReset(withEmail: email)
+        sendEvent(.linkSended)
     }
 }
