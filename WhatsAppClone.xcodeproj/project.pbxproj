@@ -12,6 +12,15 @@
 		E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808557C2BFE0FD100080804 /* ChannelsViewController.swift */; };
 		E808557F2BFE0FEA00080804 /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */; };
 		E80855812BFE106D00080804 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855802BFE106D00080804 /* SettingsViewController.swift */; };
+		E80855842BFE1C2C00080804 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855832BFE1C2C00080804 /* SettingsStore.swift */; };
+		E80855862BFE287800080804 /* SettingsNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855852BFE287800080804 /* SettingsNameTableViewCell.swift */; };
+		E80855882BFE2A0000080804 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855872BFE2A0000080804 /* FileStorage.swift */; };
+		E808558B2BFE2CD900080804 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808558A2BFE2CD900080804 /* EditProfileViewController.swift */; };
+		E808558D2BFE2D2000080804 /* EditProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808558C2BFE2D2000080804 /* EditProfileStore.swift */; };
+		E80855902BFE2EE600080804 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808558F2BFE2EE600080804 /* PhotoTableViewCell.swift */; };
+		E80855922BFE379B00080804 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */; };
+		E80855942BFE3D8700080804 /* ProfileStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855932BFE3D8700080804 /* ProfileStatusViewController.swift */; };
+		E80855972BFE3DCC00080804 /* ProfileStatusAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855962BFE3DCC00080804 /* ProfileStatusAction.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -23,7 +32,6 @@
 		E8AD98452BFDA1EF00CB6D13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98442BFDA1EF00CB6D13 /* Assets.xcassets */; };
 		E8AD98482BFDA1EF00CB6D13 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98472BFDA1EF00CB6D13 /* Base */; };
 		E8AD98532BFDADD300CB6D13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98522BFDADD300CB6D13 /* GoogleService-Info.plist */; };
-		E8AD98562BFDAE3600CB6D13 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98552BFDAE3600CB6D13 /* RealmSwift */; };
 		E8AD985A2BFDAFA000CB6D13 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */; };
 		E8AD985C2BFDAFA700CB6D13 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD985B2BFDAFA700CB6D13 /* FirebaseFirestore */; };
 		E8AD985E2BFDAFB100CB6D13 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD985D2BFDAFB100CB6D13 /* FirebaseFirestoreSwift */; };
@@ -40,6 +48,15 @@
 		E808557C2BFE0FD100080804 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
 		E80855802BFE106D00080804 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E80855832BFE1C2C00080804 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		E80855852BFE287800080804 /* SettingsNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameTableViewCell.swift; sourceTree = "<group>"; };
+		E80855872BFE2A0000080804 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		E808558A2BFE2CD900080804 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E808558C2BFE2D2000080804 /* EditProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileStore.swift; sourceTree = "<group>"; };
+		E808558F2BFE2EE600080804 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		E80855932BFE3D8700080804 /* ProfileStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusViewController.swift; sourceTree = "<group>"; };
+		E80855962BFE3DCC00080804 /* ProfileStatusAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusAction.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -61,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8AD98562BFDAE3600CB6D13 /* RealmSwift in Frameworks */,
 				E8AD98692BFDB14D00CB6D13 /* SnapKit in Frameworks */,
 				E8AD985A2BFDAFA000CB6D13 /* FirebaseAuth in Frameworks */,
 				E8AD986C2BFDB16D00CB6D13 /* ProgressHUD in Frameworks */,
@@ -83,9 +99,48 @@
 				E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */,
 				E808557C2BFE0FD100080804 /* ChannelsViewController.swift */,
 				E808557A2BFE0FA700080804 /* ChatsTableViewController.swift */,
-				E80855802BFE106D00080804 /* SettingsViewController.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		E80855822BFE187300080804 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E80855892BFE2CC200080804 /* Settings */,
+				E808558E2BFE2EDB00080804 /* EditProfile */,
+				E80855952BFE3DA400080804 /* ProfileStatus */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E80855892BFE2CC200080804 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E80855802BFE106D00080804 /* SettingsViewController.swift */,
+				E80855832BFE1C2C00080804 /* SettingsStore.swift */,
+				E80855852BFE287800080804 /* SettingsNameTableViewCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E808558E2BFE2EDB00080804 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E808558A2BFE2CD900080804 /* EditProfileViewController.swift */,
+				E808558C2BFE2D2000080804 /* EditProfileStore.swift */,
+				E808558F2BFE2EE600080804 /* PhotoTableViewCell.swift */,
+				E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		E80855952BFE3DA400080804 /* ProfileStatus */ = {
+			isa = PBXGroup;
+			children = (
+				E80855932BFE3D8700080804 /* ProfileStatusViewController.swift */,
+				E80855962BFE3DCC00080804 /* ProfileStatusAction.swift */,
+			);
+			path = ProfileStatus;
 			sourceTree = "<group>";
 		};
 		E8A430822BFDF0BB0065981A /* Core */ = {
@@ -100,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				E8A430862BFDF1800065981A /* FirebaseClient.swift */,
+				E80855872BFE2A0000080804 /* FileStorage.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -115,6 +171,7 @@
 		E8A4308B2BFE096E0065981A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E80855822BFE187300080804 /* Settings */,
 				E8AD98702BFDB2C200CB6D13 /* Auth */,
 				E80855792BFE0EB800080804 /* Tabbar */,
 			);
@@ -206,7 +263,6 @@
 			);
 			name = WhatsAppClone;
 			packageProductDependencies = (
-				E8AD98552BFDAE3600CB6D13 /* RealmSwift */,
 				E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */,
 				E8AD985B2BFDAFA700CB6D13 /* FirebaseFirestore */,
 				E8AD985D2BFDAFB100CB6D13 /* FirebaseFirestoreSwift */,
@@ -245,7 +301,6 @@
 			);
 			mainGroup = E8AD982F2BFDA1EE00CB6D13;
 			packageReferences = (
-				E8AD98542BFDAE3600CB6D13 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E8AD98612BFDB0A000CB6D13 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				E8AD98642BFDB0B700CB6D13 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -280,18 +335,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A430812BFDF02D0065981A /* Store.swift in Sources */,
+				E80855882BFE2A0000080804 /* FileStorage.swift in Sources */,
 				E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */,
 				E8A4308D2BFE099D0065981A /* MainTabBarController.swift in Sources */,
 				E808557B2BFE0FA700080804 /* ChatsTableViewController.swift in Sources */,
 				E8AD98402BFDA1EE00CB6D13 /* AuthViewController.swift in Sources */,
 				E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */,
+				E80855972BFE3DCC00080804 /* ProfileStatusAction.swift in Sources */,
+				E80855902BFE2EE600080804 /* PhotoTableViewCell.swift in Sources */,
+				E808558D2BFE2D2000080804 /* EditProfileStore.swift in Sources */,
 				E808557F2BFE0FEA00080804 /* UsersViewControlller.swift in Sources */,
 				E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */,
 				E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */,
+				E808558B2BFE2CD900080804 /* EditProfileViewController.swift in Sources */,
+				E80855942BFE3D8700080804 /* ProfileStatusViewController.swift in Sources */,
 				E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */,
+				E80855862BFE287800080804 /* SettingsNameTableViewCell.swift in Sources */,
+				E80855842BFE1C2C00080804 /* SettingsStore.swift in Sources */,
 				E80855812BFE106D00080804 /* SettingsViewController.swift in Sources */,
 				E8A4308A2BFDF1DE0065981A /* Person.swift in Sources */,
 				E8AD983E2BFDA1EE00CB6D13 /* SceneDelegate.swift in Sources */,
+				E80855922BFE379B00080804 /* TextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
@@ -463,7 +527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
@@ -510,14 +574,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E8AD98542BFDAE3600CB6D13 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -561,11 +617,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E8AD98552BFDAE3600CB6D13 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E8AD98542BFDAE3600CB6D13 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -9,7 +9,7 @@ struct Person: Identifiable, Hashable, Codable {
     var pushId = ""
     var avatarLink = ""
     var fullname = ""
-    var status = ""
+    var status = Status()
 }
 // MARK: - Save to UserDefaults
 extension Person {
@@ -44,4 +44,14 @@ extension Person {
     }
 
     static func createRecentItems(chatRoomId: String, persons: [Person]) {}
+}
+
+extension Person {
+    struct Status: Codable, Hashable {
+        var index = 0
+        var statuses = ["Available", "Busy", "At School"]
+        var text: String {
+            index < statuses.count ? statuses[index] : "No status"
+        }
+    }
 }

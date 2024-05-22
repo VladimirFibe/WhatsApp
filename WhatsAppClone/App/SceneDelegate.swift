@@ -52,9 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let callback: Callback = { [weak self] in
             self?.start()
         }
-        let controller = MainTabBarController()
-        controller.callback = callback
-        return controller
+        return MainTabBarController(callback: callback)
     }
 }
 
