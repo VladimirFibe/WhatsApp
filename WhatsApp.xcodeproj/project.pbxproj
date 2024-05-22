@@ -358,9 +358,7 @@
 			children = (
 				022DEA052B04763400A840B5 /* Auth */,
 				021726D72B06137D00C37B32 /* TabBar */,
-				021726DE2B06168700C37B32 /* Settings */,
-				021726EF2B06614C00C37B32 /* EditProfile */,
-				02ABFF932B08DECF0073F47C /* Status */,
+				E8C1C8502BFD77E90050ADB7 /* Settings */,
 				02A571E02B1437070042B782 /* Chat */,
 				022DEA022B04761200A840B5 /* Profile */,
 				025EDBA52B0B0FFA002A7E7F /* Users */,
@@ -580,6 +578,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8C1C8502BFD77E90050ADB7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				021726DE2B06168700C37B32 /* Settings */,
+				021726EF2B06614C00C37B32 /* EditProfile */,
+				02ABFF932B08DECF0073F47C /* Status */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -915,7 +923,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsApp/Info.plist;
@@ -953,7 +961,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsApp/Info.plist;
