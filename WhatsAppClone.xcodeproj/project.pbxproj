@@ -37,6 +37,7 @@
 		E80855B82BFEA3D700080804 /* InputBarAccessoryViewDelegate+Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855B72BFEA3D700080804 /* InputBarAccessoryViewDelegate+Chat.swift */; };
 		E80855BA2BFEABC400080804 /* MKMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855B92BFEABC400080804 /* MKMessage.swift */; };
 		E80855BC2BFEADC500080804 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855BB2BFEADC500080804 /* Message.swift */; };
+		E80855BE2BFEB7C800080804 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855BD2BFEB7C800080804 /* RealmManager.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -88,6 +89,7 @@
 		E80855B72BFEA3D700080804 /* InputBarAccessoryViewDelegate+Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputBarAccessoryViewDelegate+Chat.swift"; sourceTree = "<group>"; };
 		E80855B92BFEABC400080804 /* MKMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMessage.swift; sourceTree = "<group>"; };
 		E80855BB2BFEADC500080804 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		E80855BD2BFEB7C800080804 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				E80855A52BFE588F00080804 /* Recent.swift */,
 				E80855B92BFEABC400080804 /* MKMessage.swift */,
 				E80855BB2BFEADC500080804 /* Message.swift */,
+				E80855BD2BFEB7C800080804 /* RealmManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				E80855A12BFE557D00080804 /* ProfileHeaderCell.swift in Sources */,
 				E8AD98402BFDA1EE00CB6D13 /* AuthViewController.swift in Sources */,
 				E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */,
+				E80855BE2BFEB7C800080804 /* RealmManager.swift in Sources */,
 				E80855972BFE3DCC00080804 /* ProfileStatusAction.swift in Sources */,
 				E80855902BFE2EE600080804 /* PhotoTableViewCell.swift in Sources */,
 				E808558D2BFE2D2000080804 /* EditProfileStore.swift in Sources */,
