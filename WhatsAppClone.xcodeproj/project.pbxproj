@@ -10,7 +10,6 @@
 		E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD983B2BFDA1EE00CB6D13 /* AppDelegate.swift */; };
 		E8AD983E2BFDA1EE00CB6D13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD983D2BFDA1EE00CB6D13 /* SceneDelegate.swift */; };
 		E8AD98402BFDA1EE00CB6D13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD983F2BFDA1EE00CB6D13 /* ViewController.swift */; };
-		E8AD98432BFDA1EE00CB6D13 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98422BFDA1EE00CB6D13 /* Base */; };
 		E8AD98452BFDA1EF00CB6D13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98442BFDA1EF00CB6D13 /* Assets.xcassets */; };
 		E8AD98482BFDA1EF00CB6D13 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98472BFDA1EF00CB6D13 /* Base */; };
 /* End PBXBuildFile section */
@@ -20,10 +19,11 @@
 		E8AD983B2BFDA1EE00CB6D13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8AD983D2BFDA1EE00CB6D13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E8AD983F2BFDA1EE00CB6D13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E8AD98422BFDA1EE00CB6D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8AD98442BFDA1EF00CB6D13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8AD98472BFDA1EF00CB6D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8AD98492BFDA1EF00CB6D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8AD984F2BFDA51D00CB6D13 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E8AD98512BFDA54800CB6D13 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +40,8 @@
 		E8AD982F2BFDA1EE00CB6D13 = {
 			isa = PBXGroup;
 			children = (
+				E8AD984F2BFDA51D00CB6D13 /* README.md */,
+				E8AD98502BFDA52E00CB6D13 /* img */,
 				E8AD983A2BFDA1EE00CB6D13 /* WhatsAppClone */,
 				E8AD98392BFDA1EE00CB6D13 /* Products */,
 			);
@@ -59,12 +61,19 @@
 				E8AD983B2BFDA1EE00CB6D13 /* AppDelegate.swift */,
 				E8AD983D2BFDA1EE00CB6D13 /* SceneDelegate.swift */,
 				E8AD983F2BFDA1EE00CB6D13 /* ViewController.swift */,
-				E8AD98412BFDA1EE00CB6D13 /* Main.storyboard */,
 				E8AD98442BFDA1EF00CB6D13 /* Assets.xcassets */,
 				E8AD98462BFDA1EF00CB6D13 /* LaunchScreen.storyboard */,
 				E8AD98492BFDA1EF00CB6D13 /* Info.plist */,
 			);
 			path = WhatsAppClone;
+			sourceTree = "<group>";
+		};
+		E8AD98502BFDA52E00CB6D13 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				E8AD98512BFDA54800CB6D13 /* icon.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +136,6 @@
 			files = (
 				E8AD98452BFDA1EF00CB6D13 /* Assets.xcassets in Resources */,
 				E8AD98482BFDA1EF00CB6D13 /* Base in Resources */,
-				E8AD98432BFDA1EE00CB6D13 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +155,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E8AD98412BFDA1EE00CB6D13 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E8AD98422BFDA1EE00CB6D13 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E8AD98462BFDA1EF00CB6D13 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,15 +291,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -320,15 +319,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
