@@ -111,9 +111,9 @@
 		E8AD983A2BFDA1EE00CB6D13 /* WhatsAppClone */ = {
 			isa = PBXGroup;
 			children = (
+				E8AD986F2BFDB2B000CB6D13 /* App */,
 				E8A430882BFDF1D50065981A /* Models */,
 				E8A430852BFDF16F0065981A /* Network */,
-				E8AD986F2BFDB2B000CB6D13 /* App */,
 				E8AD986D2BFDB26100CB6D13 /* Supporting Files */,
 				E8AD98702BFDB2C200CB6D13 /* Auth */,
 				E8A430822BFDF0BB0065981A /* Core */,
@@ -142,8 +142,8 @@
 		E8AD986F2BFDB2B000CB6D13 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E8AD983D2BFDA1EE00CB6D13 /* SceneDelegate.swift */,
 				E8AD983B2BFDA1EE00CB6D13 /* AppDelegate.swift */,
+				E8AD983D2BFDA1EE00CB6D13 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -398,10 +398,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -426,10 +427,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
