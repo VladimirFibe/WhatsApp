@@ -32,7 +32,32 @@ class AuthViewController: UIViewController {
                      for: .primaryActionTriggered)
         return $0
     }(UIButton(type: .system))
-    
+
+    private let statusSwitchLabel: UILabel = {
+        $0.text = "Don't have an account?"
+        return $0
+    }(UILabel())
+
+    private lazy var statusSwitchButton: UIButton = {
+        var config = UIButton.Configuration.plain()
+        $0.configuration = config
+        $0.configurationUpdateHandler = { [weak self] button in
+            guard let self else { return }
+            var conig = button.configuration
+            config.title = self.isLogin ? "Register" : "Login"
+            button.configuration = config
+        }
+        $0.addAction(UIAction { _ in
+            self.isLogin.toggle()
+        },
+                     for: .primaryActionTriggered)
+        return $0
+    }(UIButton(type: .system))
+
+    private lazy var statusSwitchStack: UIStackView = {
+        return $0
+    }(UIStackView(arrangedSubviews: [statusSwitchLabel, statusSwitchButton]))
+
     private lazy var buttonStackView: UIStackView = {
         $0.distribution = .equalCentering
         return $0
@@ -51,21 +76,29 @@ class AuthViewController: UIViewController {
 
     func setupRootStackView() {
         view.addSubview(rootStackView)
-        [emailTextField, passwordTextField, repeatTextField, buttonStackView, actionButton, UIView()].forEach{ rootStackView.addArrangedSubview($0)}
+        let statusSwitchView = UIView()
+        statusSwitchView.addSubview(statusSwitchStack)
+        [emailTextField, passwordTextField, repeatTextField, buttonStackView, actionButton, statusSwitchView].forEach{ rootStackView.addArrangedSubview($0)}
         repeatTextField.isHidden = true
         repeatTextField.alpha = 0
         rootStackView.snp.makeConstraints {
             $0.edges.equalTo(view.layoutMarginsGuide)
         }
+
+        statusSwitchStack.snp.makeConstraints {
+            $0.bottom.centerX.equalToSuperview()
+        }
     }
 
     private func updateUI() {
         actionButton.setNeedsUpdateConfiguration()
+//        statusSwitchLabel.text = isLogin ? "Don't have an account?" : "Already have an account?"
         UIView.animate(withDuration: 1.0) {
             self.repeatTextField.isHidden = self.isLogin
             self.repeatTextField.alpha = self.isLogin ? 0 : 1
             self.buttonStackView.isHidden = !self.isLogin
             self.buttonStackView.alpha = self.isLogin ? 1 : 0
+            self.statusSwitchLabel.text = self.isLogin ? "Don't have an account?" : "Already have an account?"
         }
     }
 }
