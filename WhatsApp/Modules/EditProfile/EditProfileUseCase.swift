@@ -4,6 +4,7 @@ protocol EditProfileUseCaseProtocol {
     func updateUsername(_ username: String) throws
     func updateAvatar(_ url: String) throws
     func uploadImage(_ image: UIImage) async throws -> String?
+    func fetch() async throws
 }
 
 final class EditProfileUseCase: EditProfileUseCaseProtocol {
@@ -18,7 +19,11 @@ final class EditProfileUseCase: EditProfileUseCaseProtocol {
     func updateUsername(_ username: String) throws {
         try apiService.updateUsername(username)
     }
-    
+
+    func fetch() async throws {
+        try await apiService.fetchPerson()
+    }
+
     private let apiService: EditProfileServiceProtocol
 
     init(apiService: EditProfileServiceProtocol) {

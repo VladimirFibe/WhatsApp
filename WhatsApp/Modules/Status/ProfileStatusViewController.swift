@@ -43,7 +43,6 @@ extension ProfileStatusViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let status = allStatuses[indexPath.row]
         cell.textLabel?.text = status
-        cell.backgroundColor = .secondarySystemBackground
         cell.accessoryType = currentStatus == status ? .checkmark : .none
         return cell
     }
@@ -53,8 +52,8 @@ extension ProfileStatusViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         currentStatus = allStatuses[indexPath.row]
-        tableView.reloadData()
         store.sendAction(.updateStatus(currentStatus))
+        navigationController?.popViewController(animated: true)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

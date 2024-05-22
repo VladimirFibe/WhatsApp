@@ -103,8 +103,6 @@
 		02A571F32B1462270042B782 /* MKMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A571F22B1462270042B782 /* MKMessage.swift */; };
 		02A571F52B1464170042B782 /* LocalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A571F42B1464170042B782 /* LocalMessage.swift */; };
 		02A571F72B14641F0042B782 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A571F62B14641F0042B782 /* RealmManager.swift */; };
-		02A571FA2B1464D50042B782 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 02A571F92B1464D50042B782 /* Realm */; };
-		02A571FC2B1464D50042B782 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02A571FB2B1464D50042B782 /* RealmSwift */; };
 		02A571FE2B14794F0042B782 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A571FD2B14794F0042B782 /* OutgoingMessage.swift */; };
 		02ABFF952B08E2AB0073F47C /* ProfileStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF942B08E2AB0073F47C /* ProfileStatusService.swift */; };
 		02ABFF972B08E32D0073F47C /* ProfileStatusUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ABFF962B08E32D0073F47C /* ProfileStatusUseCase.swift */; };
@@ -119,8 +117,24 @@
 		02C80A0D2B11D6A3009B46E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A0A2B11D6A3009B46E6 /* Constants.swift */; };
 		02C80A0E2B11D6A3009B46E6 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A0B2B11D6A3009B46E6 /* GlobalFunctions.swift */; };
 		02C80A0F2B11D6A3009B46E6 /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C80A0C2B11D6A3009B46E6 /* StartChat.swift */; };
+		E8C1C84E2BFD6FAA0050ADB7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8C1C84D2BFD6FAA0050ADB7 /* RealmSwift */; };
+		E8C1C84F2BFD6FAA0050ADB7 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E8C1C84D2BFD6FAA0050ADB7 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E8D93D932BFC6FBE00FC6FCC /* AuthStatusSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D93D922BFC6FBE00FC6FCC /* AuthStatusSwitch.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8C1C84C2BFD6F9B0050ADB7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E8C1C84F2BFD6FAA0050ADB7 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		021027372ABF43730017990B /* WhatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,12 +252,11 @@
 				022DE9FD2B04686D00A840B5 /* FirebaseStorage in Frameworks */,
 				022DE9E32B04686D00A840B5 /* FirebaseFirestore in Frameworks */,
 				02A571E52B143D7A0042B782 /* MessageKit in Frameworks */,
-				02A571FA2B1464D50042B782 /* Realm in Frameworks */,
 				022DE9C82B04675500A840B5 /* Kingfisher in Frameworks */,
 				022DE9C22B04671900A840B5 /* SnapKit in Frameworks */,
 				022DE9CB2B04686D00A840B5 /* FirebaseAnalytics in Frameworks */,
-				02A571FC2B1464D50042B782 /* RealmSwift in Frameworks */,
 				022DE9C52B04673300A840B5 /* ProgressHUD in Frameworks */,
+				E8C1C84E2BFD6FAA0050ADB7 /* RealmSwift in Frameworks */,
 				022DE9E72B04686D00A840B5 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,11 +358,11 @@
 			children = (
 				022DEA052B04763400A840B5 /* Auth */,
 				021726D72B06137D00C37B32 /* TabBar */,
-				02A571E02B1437070042B782 /* Chat */,
-				022DEA022B04761200A840B5 /* Profile */,
 				021726DE2B06168700C37B32 /* Settings */,
 				021726EF2B06614C00C37B32 /* EditProfile */,
 				02ABFF932B08DECF0073F47C /* Status */,
+				02A571E02B1437070042B782 /* Chat */,
+				022DEA022B04761200A840B5 /* Profile */,
 				025EDBA52B0B0FFA002A7E7F /* Users */,
 				025EDBB62B0B7AA9002A7E7F /* Chats */,
 				027A1DB52B22D6AF0091EBC7 /* MyChannels */,
@@ -579,6 +592,7 @@
 				021027332ABF43730017990B /* Sources */,
 				021027342ABF43730017990B /* Frameworks */,
 				021027352ABF43730017990B /* Resources */,
+				E8C1C84C2BFD6F9B0050ADB7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -595,8 +609,7 @@
 				022DE9E62B04686D00A840B5 /* FirebaseFirestoreSwift */,
 				022DE9FC2B04686D00A840B5 /* FirebaseStorage */,
 				02A571E42B143D7A0042B782 /* MessageKit */,
-				02A571F92B1464D50042B782 /* Realm */,
-				02A571FB2B1464D50042B782 /* RealmSwift */,
+				E8C1C84D2BFD6FAA0050ADB7 /* RealmSwift */,
 			);
 			productName = WhatsApp;
 			productReference = 021027372ABF43730017990B /* WhatsApp.app */;
@@ -632,7 +645,7 @@
 				022DE9C62B04675500A840B5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				022DE9C92B04686D00A840B5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				02A571E32B143D7A0042B782 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				02A571F82B1464D50042B782 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E8C1C8462BFD6F610050ADB7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 021027382ABF43730017990B /* Products */;
 			projectDirPath = "";
@@ -1032,7 +1045,7 @@
 				minimumVersion = 4.2.0;
 			};
 		};
-		02A571F82B1464D50042B782 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		E8C1C8462BFD6F610050ADB7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -1088,14 +1101,9 @@
 			package = 02A571E32B143D7A0042B782 /* XCRemoteSwiftPackageReference "MessageKit" */;
 			productName = MessageKit;
 		};
-		02A571F92B1464D50042B782 /* Realm */ = {
+		E8C1C84D2BFD6FAA0050ADB7 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 02A571F82B1464D50042B782 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		02A571FB2B1464D50042B782 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02A571F82B1464D50042B782 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = E8C1C8462BFD6F610050ADB7 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

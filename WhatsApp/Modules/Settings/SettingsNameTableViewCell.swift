@@ -22,8 +22,6 @@ class SettingsNameTableViewCell: BaseTableViewCell {
     }(UILabel())
 
     public func configure(with person: Person) {
-//        let url = URL(string: person.avatarLink)
-//        photoImageView.kf.setImage(with: url)
         titleLabel.text = person.username
         subtitleLabel.text = person.status
     }
@@ -35,6 +33,7 @@ class SettingsNameTableViewCell: BaseTableViewCell {
 // MARK: - Setup
 extension SettingsNameTableViewCell {
     override func setupViews() {
+        selectionStyle = .none
         accessoryType = .disclosureIndicator
         [photoImageView, titleLabel, subtitleLabel]
             .forEach { contentView.addSubview($0)}

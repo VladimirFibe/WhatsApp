@@ -3,8 +3,8 @@ import ProgressHUD
 import FirebaseAuth
 
 final class SettingsViewController: BaseViewController {
-    private let settingsUseCase = SettingsUseCase(apiService: FirebaseClient.shared)
-    private lazy var store = SettingsStore(settingsUseCase: settingsUseCase)
+    private let useCase = SettingsUseCase(apiService: FirebaseClient.shared)
+    private lazy var store = SettingsStore(useCase: useCase)
     var callback: Callback?
     init(callback: Callback? = nil) {
         self.callback = callback
@@ -69,20 +69,17 @@ extension SettingsViewController {
         )
         tableview.tableFooterView = footerLabel
         setupObservers()
-        showUserInfo()
+        showUserInfo(Person.localPerson)
     }
 
     private func setupObservers() {
         store
             .events
             .receive(on: DispatchQueue.main)
-            .sink { event in
-                weak var wSelf = self
+            .sink {[weak self] event in
                 switch event {
-                case .done:
-                    wSelf?.showUserInfo()
-                case .signOut:
-                    wSelf?.callback?()
+                case .done: self?.showUserInfo(FirebaseClient.shared.person)
+                case .signOut: self?.callback?()
                 }
             }.store(in: &bag)
     }
@@ -95,8 +92,8 @@ extension SettingsViewController {
         store.sendAction(.signOut)
     }
 
-    private func showUserInfo() {
-        if let person = FirebaseClient.shared.person {
+    private func showUserInfo(_ person: Person?) {
+        if let person {
             userInfoCell.configure(with: person)
             FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
                 self.userInfoCell.configure(with: image?.circleMasked)
@@ -104,7 +101,7 @@ extension SettingsViewController {
         }
     }
 }
-// MARK: -
+// MARK: - UITableViewDataSource
 extension SettingsViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -130,7 +127,7 @@ extension SettingsViewController: UITableViewDataSource {
         }
     }
 }
-// MARK: -
+// MARK: - UITableViewDelegate
 extension SettingsViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,

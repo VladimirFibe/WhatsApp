@@ -108,7 +108,6 @@ class FileStorage {
     }
     // MARK: - Save Locally
     static func saveFileLocally(_ fileData: NSData, fileName: String) {
-        print("DEBUG: ", "|\(fileName)|")
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
         print(docUrl)
         fileData.write(to: docUrl, atomically: true)

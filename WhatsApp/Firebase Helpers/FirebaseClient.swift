@@ -13,11 +13,8 @@ final class FirebaseClient {
 
     private init() {}
 
-    func checkCurrentPerson() {
-        if person == nil {
-//            person = Person.localPerson
-            Task {try? await FirebaseClient.shared.fetchPerson()}
-        }
+    func firstFetchPerson() {
+        Task {try? await FirebaseClient.shared.fetchPerson()}
     }
 
     func createPerson(withEmail email: String, uid: String) throws {

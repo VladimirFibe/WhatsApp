@@ -6,6 +6,7 @@ protocol EditProfileServiceProtocol {
     func updateUsername(_ username: String) throws
     func updateAvatar(_ url: String) throws
     func uploadImage(_ image: UIImage) async throws -> String?
+    func fetchPerson() async throws
 }
 
 extension FirebaseClient: EditProfileServiceProtocol {
