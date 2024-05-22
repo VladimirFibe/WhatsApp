@@ -1,10 +1,3 @@
-//
-//  SettingsViewController.swift
-//  WhatsAppClone
-//
-//  Created by MacService on 22.05.2024.
-//
-
 import UIKit
 
 class SettingsViewController: UITableViewController {
@@ -82,7 +75,14 @@ extension SettingsViewController {
             FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
                 self.userInfoCell.configure(with: image?.circleMasked)
             }
-            print(person)
         }
+    }
+}
+
+extension SettingsViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let controller = EditProfileViewController(style: .grouped)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

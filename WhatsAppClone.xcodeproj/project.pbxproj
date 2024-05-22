@@ -15,6 +15,10 @@
 		E80855842BFE1C2C00080804 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855832BFE1C2C00080804 /* SettingsStore.swift */; };
 		E80855862BFE287800080804 /* SettingsNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855852BFE287800080804 /* SettingsNameTableViewCell.swift */; };
 		E80855882BFE2A0000080804 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855872BFE2A0000080804 /* FileStorage.swift */; };
+		E808558B2BFE2CD900080804 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808558A2BFE2CD900080804 /* EditProfileViewController.swift */; };
+		E808558D2BFE2D2000080804 /* EditProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808558C2BFE2D2000080804 /* EditProfileStore.swift */; };
+		E80855902BFE2EE600080804 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808558F2BFE2EE600080804 /* PhotoTableViewCell.swift */; };
+		E80855922BFE379B00080804 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -46,6 +50,10 @@
 		E80855832BFE1C2C00080804 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		E80855852BFE287800080804 /* SettingsNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameTableViewCell.swift; sourceTree = "<group>"; };
 		E80855872BFE2A0000080804 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		E808558A2BFE2CD900080804 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E808558C2BFE2D2000080804 /* EditProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileStore.swift; sourceTree = "<group>"; };
+		E808558F2BFE2EE600080804 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -96,11 +104,31 @@
 		E80855822BFE187300080804 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E80855892BFE2CC200080804 /* Settings */,
+				E808558E2BFE2EDB00080804 /* EditProfile */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E80855892BFE2CC200080804 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
 				E80855802BFE106D00080804 /* SettingsViewController.swift */,
 				E80855832BFE1C2C00080804 /* SettingsStore.swift */,
 				E80855852BFE287800080804 /* SettingsNameTableViewCell.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		E808558E2BFE2EDB00080804 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E808558A2BFE2CD900080804 /* EditProfileViewController.swift */,
+				E808558C2BFE2D2000080804 /* EditProfileStore.swift */,
+				E808558F2BFE2EE600080804 /* PhotoTableViewCell.swift */,
+				E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */,
+			);
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 		E8A430822BFDF0BB0065981A /* Core */ = {
@@ -303,15 +331,19 @@
 				E808557B2BFE0FA700080804 /* ChatsTableViewController.swift in Sources */,
 				E8AD98402BFDA1EE00CB6D13 /* AuthViewController.swift in Sources */,
 				E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */,
+				E80855902BFE2EE600080804 /* PhotoTableViewCell.swift in Sources */,
+				E808558D2BFE2D2000080804 /* EditProfileStore.swift in Sources */,
 				E808557F2BFE0FEA00080804 /* UsersViewControlller.swift in Sources */,
 				E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */,
 				E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */,
+				E808558B2BFE2CD900080804 /* EditProfileViewController.swift in Sources */,
 				E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */,
 				E80855862BFE287800080804 /* SettingsNameTableViewCell.swift in Sources */,
 				E80855842BFE1C2C00080804 /* SettingsStore.swift in Sources */,
 				E80855812BFE106D00080804 /* SettingsViewController.swift in Sources */,
 				E8A4308A2BFDF1DE0065981A /* Person.swift in Sources */,
 				E8AD983E2BFDA1EE00CB6D13 /* SceneDelegate.swift in Sources */,
+				E80855922BFE379B00080804 /* TextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

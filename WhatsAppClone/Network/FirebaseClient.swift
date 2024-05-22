@@ -1,6 +1,7 @@
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
@@ -71,5 +72,31 @@ extension FirebaseClient {
         if let result = try? querySnapshot.data(as: Person.self) {
             person = result
         }
+    }
+
+    func updateAvatar(_ url: String) throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        person?.avatarLink = url
+        try reference(.persons)
+            .document(uid)
+            .setData(from: person)
+    }
+
+    func updateUsername(_ username: String) throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        person?.username = username
+        try reference(.persons)
+            .document(uid)
+            .setData(from: person)
+    }
+
+    func uploadImage(_ image: UIImage) async throws -> String? {
+        guard let imageData = image.jpegData(compressionQuality: 0.6)
+        else { return nil }
+        let path = "/profile/\(Person.currentId).jpg"
+        let ref = Storage.storage().reference(withPath: path)
+        let _ = try await ref.putDataAsync(imageData)
+        let url = try await ref.downloadURL()
+        return url.absoluteString
     }
 }
