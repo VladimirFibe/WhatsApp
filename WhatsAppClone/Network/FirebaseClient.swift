@@ -116,3 +116,28 @@ extension FirebaseClient {
         return url.absoluteString
     }
 }
+// MARK: - Chats
+extension FirebaseClient {
+
+    func deleteRecent(_ recent: Recent) {
+        guard let currentId = person?.id else { return }
+        reference(.messages)
+            .document(currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .updateData(["isHidden": true])
+    }
+
+    func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
+        guard let currentId = person?.id else { return }
+        reference(.messages)
+            .document(currentId)
+            .collection("recents")
+            .whereField("isHidden", isEqualTo: false)
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else { return }
+                let recents = documents.compactMap {try? $0.data(as: Recent.self)}
+                completion(recents)
+            }
+    }
+}
