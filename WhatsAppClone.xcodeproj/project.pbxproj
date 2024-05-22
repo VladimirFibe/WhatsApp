@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855772BFE0CA100080804 /* AuthTextField.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -27,10 +28,10 @@
 		E8AD98662BFDB0B700CB6D13 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98652BFDB0B700CB6D13 /* Kingfisher */; };
 		E8AD98692BFDB14D00CB6D13 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98682BFDB14D00CB6D13 /* SnapKit */; };
 		E8AD986C2BFDB16D00CB6D13 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD986B2BFDB16D00CB6D13 /* ProgressHUD */; };
-		E8AD98722BFDB32200CB6D13 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD98712BFDB32200CB6D13 /* AuthTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E80855772BFE0CA100080804 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		E8AD98492BFDA1EF00CB6D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8AD984F2BFDA51D00CB6D13 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8AD98522BFDADD300CB6D13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E8AD98712BFDB32200CB6D13 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthTextField.swift; path = ../../../../Desktop/AuthTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				E8AD983F2BFDA1EE00CB6D13 /* AuthViewController.swift */,
-				E8AD98712BFDB32200CB6D13 /* AuthTextField.swift */,
+				E80855772BFE0CA100080804 /* AuthTextField.swift */,
 				E8A430832BFDF0EB0065981A /* AuthStore.swift */,
 			);
 			path = Auth;
@@ -263,9 +263,9 @@
 				E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */,
 				E8A4308D2BFE099D0065981A /* MainTabBarController.swift in Sources */,
 				E8AD98402BFDA1EE00CB6D13 /* AuthViewController.swift in Sources */,
-				E8AD98722BFDB32200CB6D13 /* AuthTextField.swift in Sources */,
 				E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */,
 				E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */,
+				E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */,
 				E8A4308A2BFDF1DE0065981A /* Person.swift in Sources */,
 				E8AD983E2BFDA1EE00CB6D13 /* SceneDelegate.swift in Sources */,
 			);

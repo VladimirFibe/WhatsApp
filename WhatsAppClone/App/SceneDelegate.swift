@@ -49,8 +49,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func makeTabbar() -> UIViewController {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .green
+        let callback: Callback = { [weak self] in
+            self?.start()
+        }
+        let controller = MainTabBarController()
+        controller.callback = callback
         try? FirebaseClient.shared.signOut()
         return controller
     }
