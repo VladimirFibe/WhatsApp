@@ -54,7 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         let controller = MainTabBarController()
         controller.callback = callback
-        try? FirebaseClient.shared.signOut()
         return controller
     }
 }

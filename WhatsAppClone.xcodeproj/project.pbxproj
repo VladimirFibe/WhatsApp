@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855772BFE0CA100080804 /* AuthTextField.swift */; };
+		E808557B2BFE0FA700080804 /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808557A2BFE0FA700080804 /* ChatsTableViewController.swift */; };
+		E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808557C2BFE0FD100080804 /* ChannelsViewController.swift */; };
+		E808557F2BFE0FEA00080804 /* UsersViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */; };
+		E80855812BFE106D00080804 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855802BFE106D00080804 /* SettingsViewController.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -32,6 +36,10 @@
 
 /* Begin PBXFileReference section */
 		E80855772BFE0CA100080804 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		E808557A2BFE0FA700080804 /* ChatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
+		E808557C2BFE0FD100080804 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
+		E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewControlller.swift; sourceTree = "<group>"; };
+		E80855802BFE106D00080804 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -68,6 +76,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E80855792BFE0EB800080804 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				E8A4308C2BFE099D0065981A /* MainTabBarController.swift */,
+				E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */,
+				E808557C2BFE0FD100080804 /* ChannelsViewController.swift */,
+				E808557A2BFE0FA700080804 /* ChatsTableViewController.swift */,
+				E80855802BFE106D00080804 /* SettingsViewController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
 		E8A430822BFDF0BB0065981A /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				E8AD98702BFDB2C200CB6D13 /* Auth */,
-				E8A4308C2BFE099D0065981A /* MainTabBarController.swift */,
+				E80855792BFE0EB800080804 /* Tabbar */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -262,10 +282,14 @@
 				E8A430812BFDF02D0065981A /* Store.swift in Sources */,
 				E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */,
 				E8A4308D2BFE099D0065981A /* MainTabBarController.swift in Sources */,
+				E808557B2BFE0FA700080804 /* ChatsTableViewController.swift in Sources */,
 				E8AD98402BFDA1EE00CB6D13 /* AuthViewController.swift in Sources */,
+				E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */,
+				E808557F2BFE0FEA00080804 /* UsersViewControlller.swift in Sources */,
 				E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */,
 				E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */,
 				E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */,
+				E80855812BFE106D00080804 /* SettingsViewController.swift in Sources */,
 				E8A4308A2BFDF1DE0065981A /* Person.swift in Sources */,
 				E8AD983E2BFDA1EE00CB6D13 /* SceneDelegate.swift in Sources */,
 			);
