@@ -21,6 +21,10 @@
 		E80855922BFE379B00080804 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */; };
 		E80855942BFE3D8700080804 /* ProfileStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855932BFE3D8700080804 /* ProfileStatusViewController.swift */; };
 		E80855972BFE3DCC00080804 /* ProfileStatusAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855962BFE3DCC00080804 /* ProfileStatusAction.swift */; };
+		E808559A2BFE516C00080804 /* UsersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855992BFE516C00080804 /* UsersStore.swift */; };
+		E808559C2BFE525900080804 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808559B2BFE525900080804 /* UsersTableViewCell.swift */; };
+		E808559E2BFE554000080804 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E808559D2BFE554000080804 /* ProfileViewController.swift */; };
+		E80855A12BFE557D00080804 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855A02BFE557D00080804 /* ProfileHeaderCell.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -57,6 +61,10 @@
 		E80855912BFE379B00080804 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		E80855932BFE3D8700080804 /* ProfileStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusViewController.swift; sourceTree = "<group>"; };
 		E80855962BFE3DCC00080804 /* ProfileStatusAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatusAction.swift; sourceTree = "<group>"; };
+		E80855992BFE516C00080804 /* UsersStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersStore.swift; sourceTree = "<group>"; };
+		E808559B2BFE525900080804 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
+		E808559D2BFE554000080804 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E80855A02BFE557D00080804 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -96,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				E8A4308C2BFE099D0065981A /* MainTabBarController.swift */,
-				E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */,
 				E808557C2BFE0FD100080804 /* ChannelsViewController.swift */,
 				E808557A2BFE0FA700080804 /* ChatsTableViewController.swift */,
 			);
@@ -143,6 +150,25 @@
 			path = ProfileStatus;
 			sourceTree = "<group>";
 		};
+		E80855982BFE4F4F00080804 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				E808557E2BFE0FEA00080804 /* UsersViewControlller.swift */,
+				E808559B2BFE525900080804 /* UsersTableViewCell.swift */,
+				E80855992BFE516C00080804 /* UsersStore.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		E808559F2BFE554700080804 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E808559D2BFE554000080804 /* ProfileViewController.swift */,
+				E80855A02BFE557D00080804 /* ProfileHeaderCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		E8A430822BFDF0BB0065981A /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,9 +197,11 @@
 		E8A4308B2BFE096E0065981A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E80855982BFE4F4F00080804 /* Users */,
 				E80855822BFE187300080804 /* Settings */,
 				E8AD98702BFDB2C200CB6D13 /* Auth */,
 				E80855792BFE0EB800080804 /* Tabbar */,
+				E808559F2BFE554700080804 /* Profile */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -335,10 +363,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A430812BFDF02D0065981A /* Store.swift in Sources */,
+				E808559A2BFE516C00080804 /* UsersStore.swift in Sources */,
 				E80855882BFE2A0000080804 /* FileStorage.swift in Sources */,
 				E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */,
 				E8A4308D2BFE099D0065981A /* MainTabBarController.swift in Sources */,
 				E808557B2BFE0FA700080804 /* ChatsTableViewController.swift in Sources */,
+				E80855A12BFE557D00080804 /* ProfileHeaderCell.swift in Sources */,
 				E8AD98402BFDA1EE00CB6D13 /* AuthViewController.swift in Sources */,
 				E808557D2BFE0FD100080804 /* ChannelsViewController.swift in Sources */,
 				E80855972BFE3DCC00080804 /* ProfileStatusAction.swift in Sources */,
@@ -349,11 +379,13 @@
 				E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */,
 				E808558B2BFE2CD900080804 /* EditProfileViewController.swift in Sources */,
 				E80855942BFE3D8700080804 /* ProfileStatusViewController.swift in Sources */,
+				E808559C2BFE525900080804 /* UsersTableViewCell.swift in Sources */,
 				E80855782BFE0CA100080804 /* AuthTextField.swift in Sources */,
 				E80855862BFE287800080804 /* SettingsNameTableViewCell.swift in Sources */,
 				E80855842BFE1C2C00080804 /* SettingsStore.swift in Sources */,
 				E80855812BFE106D00080804 /* SettingsViewController.swift in Sources */,
 				E8A4308A2BFDF1DE0065981A /* Person.swift in Sources */,
+				E808559E2BFE554000080804 /* ProfileViewController.swift in Sources */,
 				E8AD983E2BFDA1EE00CB6D13 /* SceneDelegate.swift in Sources */,
 				E80855922BFE379B00080804 /* TextFieldTableViewCell.swift in Sources */,
 			);
