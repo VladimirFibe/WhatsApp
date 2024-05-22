@@ -17,6 +17,7 @@ enum AuthAction {
 }
 
 final class AuthStore: Store<AuthEvent, AuthAction> {
+    let useCase = FirebaseClient.shared
     override func handleActions(action: AuthAction) {
         switch action {
         case .createUser(let email, let password):
@@ -39,30 +40,30 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
     }
 
     private func sendEmail(_ email: String) async throws {
-//        try await useCase.sendEmail(email)
+        try await useCase.sendEmail(email)
         sendEvent(.emailSended)
     }
 
     private func register(withEmail email: String, password: String) async throws {
-//        do {
-//            try await useCase.createUser(withEmail: email, password: password)
-//            sendEvent(.registered)
-//        } catch {
-//            sendEvent(.error(error.localizedDescription))
-//        }
+        do {
+            try await useCase.createUser(withEmail: email, password: password)
+            sendEvent(.registered)
+        } catch {
+            sendEvent(.error(error.localizedDescription))
+        }
     }
 
     private func signIn(withEmail email: String, password: String) async throws {
-//        do {
-//            let response = try await useCase.signIn(withEmail: email, password: password)
-//            response ? sendEvent(.login) : sendEvent(.notVerified)
-//        } catch {
-//            sendEvent(.error(error.localizedDescription))
-//        }
+        do {
+            let response = try await useCase.signIn(withEmail: email, password: password)
+            response ? sendEvent(.login) : sendEvent(.notVerified)
+        } catch {
+            sendEvent(.error(error.localizedDescription))
+        }
     }
 
     private func sendPasswordReset(withEmail email: String) async throws {
-//        try await useCase.sendPasswordReset(withEmail: email)
-//        sendEvent(.linkSended)
+        try await useCase.sendPasswordReset(withEmail: email)
+        sendEvent(.linkSended)
     }
 }
