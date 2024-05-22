@@ -129,15 +129,18 @@ extension FirebaseClient {
     }
 
     func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
-        guard let currentId = person?.id else { return }
         reference(.messages)
-            .document(currentId)
+            .document(Person.currentId)
             .collection("recents")
-            .whereField("isHidden", isEqualTo: false)
             .addSnapshotListener { querySnapshot, error in
-                guard let documents = querySnapshot?.documents else { return }
-                let recents = documents.compactMap {try? $0.data(as: Recent.self)}
-                completion(recents)
+
+                guard let documents = querySnapshot?.documents else {
+                    print("no documents for recent chats")
+                    return
+                }
+
+                let allRecents = documents.compactMap {  try? $0.data(as: Recent.self)}
+                completion(allRecents)
             }
     }
 }

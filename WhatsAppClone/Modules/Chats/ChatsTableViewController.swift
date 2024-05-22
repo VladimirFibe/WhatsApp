@@ -31,7 +31,8 @@ extension ChatsTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatsCell.identifier, for: indexPath) as? ChatsCell else { fatalError("kapets")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatsCell.identifier, for: indexPath) as? ChatsCell 
+        else { fatalError("kapets")}
         let recent = searchController.isActive ? filtered[indexPath.row] : recents[indexPath.row]
         cell.configure(with: recent)
         return cell
@@ -88,7 +89,7 @@ extension ChatsTableViewController {
 extension ChatsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        filtered = text.isEmpty ? recents : recents.filter { $0.username.lowercased().contains(text)}
+        filtered = text.isEmpty ? recents : recents.filter { $0.name.lowercased().contains(text)}
         tableView.reloadData()
     }
 }
@@ -102,7 +103,6 @@ extension ChatsTableViewController {
     private func pushChat(_ recent: Recent) {
         let controller = UIViewController() // ChatViewController(recent: recent)
         controller.hidesBottomBarWhenPushed = true
-        view.backgroundColor = .systemPink
         navigationController?.pushViewController(controller, animated: true)
     }
 }

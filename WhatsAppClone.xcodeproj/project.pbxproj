@@ -28,6 +28,7 @@
 		E80855A42BFE582600080804 /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855A32BFE582600080804 /* ChatsCell.swift */; };
 		E80855A62BFE588F00080804 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855A52BFE588F00080804 /* Recent.swift */; };
 		E80855A82BFE58E900080804 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855A72BFE58E900080804 /* Date+Extension.swift */; };
+		E80855AB2BFE67EA00080804 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E80855AA2BFE67EA00080804 /* RealmSwift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -95,6 +96,7 @@
 				E8AD98692BFDB14D00CB6D13 /* SnapKit in Frameworks */,
 				E8AD985A2BFDAFA000CB6D13 /* FirebaseAuth in Frameworks */,
 				E8AD986C2BFDB16D00CB6D13 /* ProgressHUD in Frameworks */,
+				E80855AB2BFE67EA00080804 /* RealmSwift in Frameworks */,
 				E8AD98662BFDB0B700CB6D13 /* Kingfisher in Frameworks */,
 				E8AD985C2BFDAFA700CB6D13 /* FirebaseFirestore in Frameworks */,
 				E8AD98632BFDB0A000CB6D13 /* MessageKit in Frameworks */,
@@ -316,6 +318,7 @@
 				E8AD98652BFDB0B700CB6D13 /* Kingfisher */,
 				E8AD98682BFDB14D00CB6D13 /* SnapKit */,
 				E8AD986B2BFDB16D00CB6D13 /* ProgressHUD */,
+				E80855AA2BFE67EA00080804 /* RealmSwift */,
 			);
 			productName = WhatsAppClone;
 			productReference = E8AD98382BFDA1EE00CB6D13 /* WhatsAppClone.app */;
@@ -351,6 +354,7 @@
 				E8AD98642BFDB0B700CB6D13 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E8AD98672BFDB14D00CB6D13 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E8AD986A2BFDB16D00CB6D13 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				E80855A92BFE67EA00080804 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = E8AD98392BFDA1EE00CB6D13 /* Products */;
 			projectDirPath = "";
@@ -626,6 +630,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E80855A92BFE67EA00080804 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -669,6 +681,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E80855AA2BFE67EA00080804 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E80855A92BFE67EA00080804 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

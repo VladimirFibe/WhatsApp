@@ -29,7 +29,7 @@ final class ChatsCell: UITableViewCell {
     }(UILabel())
 
     public func configure(with recent: Recent) {
-        usernameLabel.text = recent.username
+        usernameLabel.text = recent.name
         lastMessageLabel.text = recent.text
         dateLabel.text = recent.date?.timeElapsed
         unreadCounterLabel.text = "\(recent.unreadCounter)"

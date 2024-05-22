@@ -1,5 +1,5 @@
 {
-  "originHash" : "2318b31b549d248b1df6bee162a5d3dc39cd03c3dab7507830db747ed3d0e83e",
+  "originHash" : "a61be05578233613245714c22ef297df43dd33c20b1f46eb7bc354bee9d5b97a",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -143,6 +143,24 @@
       "state" : {
         "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
         "version" : "2.4.0"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "9cf7ef4ad8e2f4c7a519c9a395ca3d253bb87aa8",
+        "version" : "14.6.2"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "21ac01d5ae30dcc156e0e43e47c4afe39cc0367f"
       }
     },
     {
