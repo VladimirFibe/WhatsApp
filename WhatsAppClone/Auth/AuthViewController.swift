@@ -47,9 +47,7 @@ class AuthViewController: UIViewController {
             config.title = self.isLogin ? "Register" : "Login"
             button.configuration = config
         }
-        $0.addAction(UIAction { _ in
-            self.isLogin.toggle()
-        },
+        $0.addAction(UIAction { _ in self.isLogin.toggle()},
                      for: .primaryActionTriggered)
         return $0
     }(UIButton(type: .system))
@@ -92,13 +90,13 @@ class AuthViewController: UIViewController {
 
     private func updateUI() {
         actionButton.setNeedsUpdateConfiguration()
-//        statusSwitchLabel.text = isLogin ? "Don't have an account?" : "Already have an account?"
+        statusSwitchButton.setNeedsUpdateConfiguration()
+        statusSwitchLabel.text = isLogin ? "Don't have an account?" : "Already have an account?"
         UIView.animate(withDuration: 1.0) {
             self.repeatTextField.isHidden = self.isLogin
             self.repeatTextField.alpha = self.isLogin ? 0 : 1
             self.buttonStackView.isHidden = !self.isLogin
             self.buttonStackView.alpha = self.isLogin ? 1 : 0
-            self.statusSwitchLabel.text = self.isLogin ? "Don't have an account?" : "Already have an account?"
         }
     }
 }
