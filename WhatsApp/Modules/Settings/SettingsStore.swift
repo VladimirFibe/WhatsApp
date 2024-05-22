@@ -11,34 +11,32 @@ enum SettingsAction {
 }
 
 final class SettingsStore: Store<SettingsEvent, SettingsAction> {
-    private let settingsUseCase: SettingsUseCase
+    private let useCase: SettingsUseCaseProtocol
 
-    init(settingsUseCase: SettingsUseCase) {
-        self.settingsUseCase = settingsUseCase
+    init(useCase: SettingsUseCaseProtocol) {
+        self.useCase = useCase
     }
 
     override func handleActions(action: SettingsAction) {
         switch action {
         case .fetch:
-            statefulCall {
-                weak var wSelf = self
-                try await wSelf?.fetchPerson()
+            statefulCall { [weak self] in
+                try await self?.fetchPerson()
             }
         case .signOut:
-            statefulCall {
-                weak var wSelf = self
-                try wSelf?.signOut()
+            statefulCall { [weak self] in
+                try self?.signOut()
             }
         }
     }
     
     private func signOut() throws {
-        try settingsUseCase.signOut()
+        try useCase.signOut()
         sendEvent(.signOut)
     }
     private func fetchPerson() async throws {
         do {
-            try await settingsUseCase.fetch()
+            try await useCase.fetch()
             sendEvent(.done)
         } catch {}
     }

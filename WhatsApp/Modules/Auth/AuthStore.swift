@@ -27,10 +27,7 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
         switch action {
         case .createUser(let email, let password):
             statefulCall { [weak self] in
-                try await self?.register(
-                    withEmail: email,
-                    password: password
-                )
+                try await self?.register(withEmail: email, password: password)
             }
         case .signIn(let email, let password):
             statefulCall { [weak self] in
@@ -40,7 +37,6 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
             statefulCall { [weak self] in
                 try await self?.sendPasswordReset(withEmail: email)
             }
-
         case .sendEmail(let email):
             statefulCall { [weak self] in
                 try await self?.sendEmail(email)

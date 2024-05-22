@@ -8,31 +8,33 @@ enum EditProfileAction {
     case updateUsername(String)
     case uploadImage(UIImage)
     case updateAvatarLink(String)
+    case fetch
 }
 
 final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
-    private let useCase: EditProfileUseCase
+    private let useCase: EditProfileUseCaseProtocol
 
-    init(useCase: EditProfileUseCase) {
+    init(useCase: EditProfileUseCaseProtocol) {
         self.useCase = useCase
     }
 
     override func handleActions(action: EditProfileAction) {
         switch action {
         case .updateUsername(let username):
-            statefulCall {
-                weak var wSelf = self
-                try wSelf?.updateUsername(username)
+            statefulCall { [weak self] in
+                try self?.updateUsername(username)
             }
         case .uploadImage(let image):
-            statefulCall {
-                weak var wSelf = self
-                try await wSelf?.uploadImage(image)
+            statefulCall { [weak self] in
+                try await self?.uploadImage(image)
             }
         case .updateAvatarLink(let link):
-            statefulCall {
-                weak var wSelf = self
-                try wSelf?.updateAvatarLink(link)
+            statefulCall { [weak self] in
+                try self?.updateAvatarLink(link)
+            }
+        case .fetch:
+            statefulCall { [weak self] in
+                try await self?.fetchPerson()
             }
         }
     }
@@ -49,5 +51,12 @@ final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
         if let url = try await useCase.uploadImage(image) {
             try useCase.updateAvatar(url)
         }
+    }
+
+    private func fetchPerson() async throws {
+        do {
+            try await useCase.fetch()
+            sendEvent(.done)
+        } catch {}
     }
 }

@@ -30,7 +30,7 @@ final class EditProfileViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showUserInfo()
+        store.sendAction(.fetch)
         self.tabBarController?.tabBar.isHidden = true
     }
 
@@ -46,6 +46,20 @@ extension EditProfileViewController {
         tableView.dataSource = self
         tableView.delegate = self
         navigationItem.title = "Edit Profile"
+        setupObservers()
+        showUserInfo(Person.localPerson)
+    }
+
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] event in
+                switch event {
+                case .done:
+                    self?.showUserInfo(FirebaseClient.shared.person)
+                }
+            }.store(in: &bag)
     }
 
     override func setupConstraints() {
@@ -54,8 +68,8 @@ extension EditProfileViewController {
         }
     }
 
-    private func showUserInfo() {
-        if let person = FirebaseClient.shared.person {
+    private func showUserInfo(_ person: Person?) {
+        if let person {
             textFieldCell.configure(person.username)
             statusCell.textLabel?.text = person.status
             FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
@@ -94,13 +108,12 @@ extension EditProfileViewController {
 
     private func uploadAvatarImage(_ image: UIImage) {
         guard let id = FirebaseClient.shared.person?.id else { return }
-        let path = "/profile/\(id).jpg"
-        FileStorage.uploadImage(image, directory: path) { avatarLink in
+        FileStorage.uploadImage(image, directory: "/profile/\(id).jpg") { avatarLink in
             if let avatarLink {
                 self.store.sendAction(.updateAvatarLink(avatarLink))
                 ProgressHUD.succeed("Аватар сохранен")
                 guard let data = image.jpegData(compressionQuality: 1.0) as? NSData else { return }
-                FileStorage.saveFileLocally(data, fileName: id)
+                FileStorage.saveFileLocally(data, fileName: "\(id).jpg")
             } else {
                 ProgressHUD.failed("Аватар не сохранен")
             }
