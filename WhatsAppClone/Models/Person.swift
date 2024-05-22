@@ -34,6 +34,10 @@ extension Person {
         Auth.auth().currentUser?.uid ?? ""
     }
 
+    static var currentName: String {
+        FirebaseClient.shared.person?.username ?? "Current Name"
+    }
+
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id
     }

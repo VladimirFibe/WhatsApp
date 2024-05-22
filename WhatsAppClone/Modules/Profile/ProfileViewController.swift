@@ -46,11 +46,10 @@ extension ProfileViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-//            guard let id = person.id else { return }
-//            let recent = Recent(id: id, username: person.username, avatarLink: person.avatarLink, unreadCounter: 7)
-//            let controller = ChatViewController(recent: recent)
-//            controller.hidesBottomBarWhenPushed = true
-//            navigationController?.pushViewController(controller, animated: true)
+            let recent = Recent(name: person.username, avatarLink: person.avatarLink)//(id: person.id, username: person.username, avatarLink: person.avatarLink, unreadCounter: 7)
+            let controller = ChatViewController(recent: recent)
+            controller.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
