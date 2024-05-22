@@ -32,7 +32,6 @@
 		E8AD98452BFDA1EF00CB6D13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98442BFDA1EF00CB6D13 /* Assets.xcassets */; };
 		E8AD98482BFDA1EF00CB6D13 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98472BFDA1EF00CB6D13 /* Base */; };
 		E8AD98532BFDADD300CB6D13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8AD98522BFDADD300CB6D13 /* GoogleService-Info.plist */; };
-		E8AD98562BFDAE3600CB6D13 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98552BFDAE3600CB6D13 /* RealmSwift */; };
 		E8AD985A2BFDAFA000CB6D13 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */; };
 		E8AD985C2BFDAFA700CB6D13 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD985B2BFDAFA700CB6D13 /* FirebaseFirestore */; };
 		E8AD985E2BFDAFB100CB6D13 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD985D2BFDAFB100CB6D13 /* FirebaseFirestoreSwift */; };
@@ -79,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8AD98562BFDAE3600CB6D13 /* RealmSwift in Frameworks */,
 				E8AD98692BFDB14D00CB6D13 /* SnapKit in Frameworks */,
 				E8AD985A2BFDAFA000CB6D13 /* FirebaseAuth in Frameworks */,
 				E8AD986C2BFDB16D00CB6D13 /* ProgressHUD in Frameworks */,
@@ -265,7 +263,6 @@
 			);
 			name = WhatsAppClone;
 			packageProductDependencies = (
-				E8AD98552BFDAE3600CB6D13 /* RealmSwift */,
 				E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */,
 				E8AD985B2BFDAFA700CB6D13 /* FirebaseFirestore */,
 				E8AD985D2BFDAFB100CB6D13 /* FirebaseFirestoreSwift */,
@@ -304,7 +301,6 @@
 			);
 			mainGroup = E8AD982F2BFDA1EE00CB6D13;
 			packageReferences = (
-				E8AD98542BFDAE3600CB6D13 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E8AD98612BFDB0A000CB6D13 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				E8AD98642BFDB0B700CB6D13 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -502,7 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
@@ -531,7 +527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
@@ -578,14 +574,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E8AD98542BFDAE3600CB6D13 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -629,11 +617,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E8AD98552BFDAE3600CB6D13 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E8AD98542BFDAE3600CB6D13 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		E8AD98592BFDAFA000CB6D13 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8AD98572BFDAF5700CB6D13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
