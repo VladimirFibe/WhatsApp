@@ -90,6 +90,14 @@ extension FirebaseClient {
             .setData(from: person)
     }
 
+    func updateStatus(_ status: Person.Status) throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        person?.status = status
+        reference(.persons)
+            .document(uid)
+            .updateData(["status": ["index": status.index, "statuses": status.statuses]])
+    }
+
     func uploadImage(_ image: UIImage) async throws -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.6)
         else { return nil }

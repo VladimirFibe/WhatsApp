@@ -41,7 +41,7 @@ final class EditProfileViewController: UITableViewController {
     private func showUserInfo(_ person: Person?) {
         if let person {
             textFieldCell.configure(person.username)
-            statusCell.textLabel?.text = person.status
+            statusCell.textLabel?.text = person.status.text
             FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
                 self.photoCell.configrure(with: image?.circleMasked)
             }
@@ -91,7 +91,7 @@ extension EditProfileViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            let controller = UIViewController() // ProfileStatusViewController()
+            let controller = ProfileStatusViewController()
             navigationController?.pushViewController(controller, animated: true)
         }
     }

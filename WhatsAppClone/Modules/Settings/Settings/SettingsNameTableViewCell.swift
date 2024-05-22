@@ -23,7 +23,7 @@ class SettingsNameTableViewCell: UITableViewCell {
 
     public func configure(with person: Person) {
         titleLabel.text = person.username
-        subtitleLabel.text = person.status
+        subtitleLabel.text = person.status.text
     }
 
     public func configure(with image: UIImage?) {
