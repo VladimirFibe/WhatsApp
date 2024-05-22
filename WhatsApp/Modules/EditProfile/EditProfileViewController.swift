@@ -58,8 +58,7 @@ extension EditProfileViewController {
         if let person = FirebaseClient.shared.person {
             textFieldCell.configure(person.username)
             statusCell.textLabel?.text = person.status
-            guard let id = person.id else { return }
-            FileStorage.downloadImage(id: id, link: person.avatarLink) { image in
+            FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
                 self.photoCell.configrure(with: image?.circleMasked)
             }
         }
@@ -101,7 +100,7 @@ extension EditProfileViewController {
                 self.store.sendAction(.updateAvatarLink(avatarLink))
                 ProgressHUD.succeed("Аватар сохранен")
                 guard let data = image.jpegData(compressionQuality: 1.0) as? NSData else { return }
-                FileStorage.saveFileLocally(fileData: data, fileName: id)
+                FileStorage.saveFileLocally(data, fileName: id)
             } else {
                 ProgressHUD.failed("Аватар не сохранен")
             }

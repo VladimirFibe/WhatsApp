@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if Auth.auth().currentUser == nil {
             window?.rootViewController = makeAuth()
         } else {
+            FirebaseClient.shared.checkCurrentPerson()
             window?.rootViewController = makeTabbar()
         }
         window?.makeKeyAndVisible()

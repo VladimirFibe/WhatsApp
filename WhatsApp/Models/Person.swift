@@ -3,14 +3,33 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct Person: Identifiable, Hashable, Codable {
-    @DocumentID var id: String?
+    let id: String
     var username: String
     let email: String
     var pushId = ""
     var avatarLink = ""
     var fullname = ""
     var status = ""
+}
+// MARK: - Save to UserDefaults
+extension Person {
+    static var localPerson: Person? {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: "localPerson") else { return nil }
+            return try? JSONDecoder().decode(Person.self, from: data)
+        }
+        set {
+            if let person = newValue {
+                guard let data = try? JSONEncoder().encode(person) else { return }
+                UserDefaults.standard.set(data, forKey: "localPerson")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "localPerson")
+            }
+        }
+    }
+}
 
+extension Person {
     static var currentId: String {
         Auth.auth().currentUser?.uid ?? ""
     }
@@ -19,25 +38,10 @@ struct Person: Identifiable, Hashable, Codable {
         lhs.id == rhs.id
     }
 
-//    static func startChat(first: Person, second: Person) -> String {
-//        guard let firstId = first.id, let secondId = second.id else { return "" }
-//        let chatRoomId = chatRoomIdFrom(firstId: firstId, secondId: secondId)
-//        createRecentItems(chatRoomId: chatRoomId, persons: [first, second])
-//        return chatRoomId
-//    }
-
-    static func createRecentItems(chatRoomId: String, persons: [Person]) {
-//        var membersIdsToCreateRecent = persons.compactMap {$0.id}
-//        Firestore.firestore()
-//            .collection("recent")
-//            .whereField("chatRoomId", isEqualTo: chatRoomId)
-//            .getDocuments { snapshot, error in
-//                guard let snapshot else { return }
-//            }
-    }
-
     static func chatRoomIdFrom(id: String) -> String {
         let value = id.compare(currentId).rawValue
         return value < 0 ? id + currentId : currentId + id
     }
+
+    static func createRecentItems(chatRoomId: String, persons: [Person]) {}
 }

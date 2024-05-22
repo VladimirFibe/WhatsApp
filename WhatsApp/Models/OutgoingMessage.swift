@@ -46,7 +46,7 @@ class OutgoingMessage {
             message.type = kPHOTO
             let fileDirectory = "MediaMessages/Photo/\(message.chatRoomId)/\(message.id).jpg"
             guard let data = photo.jpegData(compressionQuality: 0.6) as? NSData else {return}
-            FileStorage.saveFileLocally(fileData: data, fileName: "\(message.id).jpg")
+            FileStorage.saveFileLocally(data, fileName: "\(message.id).jpg")
             FileStorage.uploadImage(photo, directory: fileDirectory) { pictureUrl in
                 if let pictureUrl {
                     message.pictureUrl = pictureUrl
@@ -58,7 +58,7 @@ class OutgoingMessage {
             message.type = kVIDEO
             guard let nsData = NSData(contentsOfFile: videoUrl.path) else { return }
             let videoDirectory = "MediaMessages/Video/\(message.chatRoomId)/\(message.id).mov"
-            FileStorage.saveFileLocally(fileData: nsData, fileName: "\(message.id).mov")
+            FileStorage.saveFileLocally(nsData, fileName: "\(message.id).mov")
             FileStorage.uploadData(nsData as Data, directory: videoDirectory) { videoUrl in
                 if let videoUrl {
                     message.videoUrl = videoUrl
@@ -76,7 +76,7 @@ class OutgoingMessage {
             message.text = "Audio message"
             message.type = kAUDIO
             message.audioDuration = Double(audioDuration)
-            guard let data = NSData(contentsOfFile: getDocumentsURL().appendingPathComponent("\(audio).m4a").path) as? Data 
+            guard let data = NSData(contentsOfFile: FileStorage.getDocumentsURL().appendingPathComponent("\(audio).m4a").path) as? Data 
             else { return }
             let audioDirectory = "MediaMessages/Audio/\(message.chatRoomId)/\(message.id).m4a"
             FileStorage.uploadData(data, directory: audioDirectory) { audioUrl in

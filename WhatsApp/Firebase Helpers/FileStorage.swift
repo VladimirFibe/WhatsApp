@@ -3,19 +3,54 @@ import FirebaseStorage
 import ProgressHUD
 
 class FileStorage {
-    // MARK: - Images
-    static func uploadImage(
-        _ image: UIImage,
-        directory: String,
+    // MARK: Audio
+    static func downloadAudio(
+        id: String,
+        link: String,
         completion: @escaping (String?) -> Void
     ) {
-        guard let imageData = image.jpegData(compressionQuality: 0.6)
-        else { return }
-        uploadData(
-            imageData,
-            directory: directory,
-            completion: completion
-        )
+        let fileName = "\(id).m4a"
+        if fileExistsAtPath(fileName) {
+            completion(fileName)
+        } else if let url = URL(string: link) {
+            let downloadQueue = DispatchQueue(label: "audioDownloadQueue")
+            downloadQueue.async {
+                if let data = NSData(contentsOf: url) {
+                    FileStorage.saveFileLocally(data, fileName: fileName)
+                    DispatchQueue.main.async {
+                        completion(fileName)
+                    }
+                }
+            }
+        }
+    }
+    // MARK: - Video
+    static func downloadVideo(
+        id: String,
+        link: String,
+        completion: @escaping (String?) -> Void
+    ) {
+        let fileName = "\(id).mov"
+        if fileExistsAtPath(fileName) {
+            completion(fileName)
+        } else if let url = URL(string: link) {
+            let downloadQueue = DispatchQueue(label: "videoDownloadQueue")
+            downloadQueue.async {
+                if let data = NSData(contentsOf: url) {
+                    FileStorage.saveFileLocally(data, fileName: fileName)
+                    DispatchQueue.main.async {
+                        completion(fileName)
+                    }
+                }
+            }
+        }
+    }
+
+    static func uploadImage(_ image: UIImage,
+                            directory: String,
+                            completion: @escaping (String?) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.6) else { return }
+        uploadData(imageData, directory: directory, completion: completion)
     }
 
     static func downloadImage(
@@ -23,14 +58,14 @@ class FileStorage {
         link: String,
         completion: @escaping (UIImage?) -> Void
     ) {
-        let fileName = "\(id).jpg"
-        if let contentsOfFile = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: fileName)) {
-            completion(contentsOfFile)
+        let filename = "\(id).jpg"
+        if let image = UIImage(contentsOfFile: fileInDocumetsDirectory(fileName: filename)) {
+            completion(image)
         } else if let url = URL(string: link) {
             let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
             downloadQueue.async {
                 if let data = NSData(contentsOf: url) {
-                    FileStorage.saveFileLocally(fileData: data, fileName: fileName)
+                    saveFileLocally(data, fileName: filename)
                     DispatchQueue.main.async {
                         completion(UIImage(data: data as Data))
                     }
@@ -45,112 +80,61 @@ class FileStorage {
         }
     }
 
-    // MARK: - Video
-    static func downloadVideo(
-        id: String,
-        link: String,
-        completion: @escaping (String?) -> Void
-    ) {
-        let fileName = "\(id).mov"
-        if fileExistsAtPath(fileName) {
-            completion(fileName)
-        } else if let url = URL(string: link) {
-            let downloadQueue = DispatchQueue(label: "videoDownloadQueue")
-            downloadQueue.async {
-                if let data = NSData(contentsOf: url) {
-                    FileStorage.saveFileLocally(fileData: data, fileName: fileName)
-                    DispatchQueue.main.async {
-                        completion(fileName)
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - Data
-    static func uploadData(
-        _ data: Data,
-        directory: String,
-        completion: @escaping (String?) -> Void
-    ) {
-        let storageRef = Storage
-            .storage()
+    static func uploadData(_ data: Data,
+                           directory: String,
+                           completion: @escaping (String?) -> Void) {
+        let storageRef = Storage.storage()
             .reference()
             .child(directory)
+
         var task: StorageUploadTask!
         task = storageRef.putData(data) { metadata, error in
             task.removeAllObservers()
             ProgressHUD.dismiss()
             if let error {
-                print("DEBUG: error uploading data", error.localizedDescription)
+                print("DEBUG: ", error.localizedDescription)
             } else {
                 storageRef.downloadURL { url, error in
-                    if let url {
-                        completion(url.absoluteString)
-                    } else {
-                        completion(nil)
-                    }
+                    completion(url?.absoluteString)
                 }
             }
         }
         task.observe(StorageTaskStatus.progress) { snapshot in
-            if let snapshotProgress = snapshot.progress {
-                let progress = snapshotProgress.completedUnitCount / snapshotProgress.totalUnitCount
-                ProgressHUD.progress(CGFloat(progress))
+            if let progress = snapshot.progress {
+                let value = CGFloat(progress.completedUnitCount) / CGFloat(progress.totalUnitCount)
+                ProgressHUD.progress(value)
             }
         }
     }
-
-    // MARK: Audio
-    static func downloadAudio(
-        id: String,
-        link: String,
-        completion: @escaping (String?) -> Void
-    ) {
-        let fileName = "\(id).m4a"
-        if fileExistsAtPath(fileName) {
-            completion(fileName)
-        } else if let url = URL(string: link) {
-            let downloadQueue = DispatchQueue(label: "audioDownloadQueue")
-            downloadQueue.async {
-                if let data = NSData(contentsOf: url) {
-                    FileStorage.saveFileLocally(fileData: data, fileName: fileName)
-                    DispatchQueue.main.async {
-                        completion(fileName)
-                    }
-                }
-            }
-        }
-    }
-
     // MARK: - Save Locally
-    class func saveFileLocally(fileData: NSData, fileName: String) {
+    static func saveFileLocally(_ fileData: NSData, fileName: String) {
+        print("DEBUG: ", "|\(fileName)|")
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
+        print(docUrl)
         fileData.write(to: docUrl, atomically: true)
     }
 
-}
-
-// Helpers
-
-func getDocumentsURL() -> URL {
-    FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
-}
-
-func fileInDocumetsDirectory(fileName: String) -> String {
-    getDocumentsURL().appendingPathComponent(fileName).path
-}
-
-func fileExistsAtPath(_ path: String) -> Bool {
-    FileManager.default.fileExists(atPath: fileInDocumetsDirectory(fileName: path))
-}
-// https://firebasestorage.googleapis.com:443/v0/b/whatsappclone-78758.appspot.com/o/profile%2FYMlCL7QPVNb03OehkAYdxZEh43s2.jpg?alt=media&token=c3648d99-05e2-432a-9a8c-5ab91335cd33
-func fileNameFrom(fileUrl: String) -> String? {
-    if let name = fileUrl.components(separatedBy: "profile%2F").last {
-        return name.components(separatedBy: ".jpg?").first
-    } else {
-        return nil
+    static func saveImageLocally(_ image: UIImage, fileName: String) {
+        guard let data = image.jpegData(compressionQuality: 1.0) as? NSData else { return }
+        saveFileLocally(data, fileName: fileName)
     }
+
+    // Helpers
+    static func getDocumentsURL() -> URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+    }
+
+    static func fileInDocumetsDirectory(fileName: String) -> String {
+        getDocumentsURL().appendingPathComponent(fileName).path
+    }
+
+    static func fileExistsAtPath(_ path: String) -> Bool {
+        FileManager.default.fileExists(atPath: fileInDocumetsDirectory(fileName: path))
+    }
+//
+//    static func fileNameFrom(fileUrl: String) -> String? {
+//        fileUrl.components(separatedBy: "profile%2F").last?.components(separatedBy: ".jpg?").first
+//    }
 }
 
 extension UIImage {
@@ -161,11 +145,12 @@ extension UIImage {
     var breadthPoint: CGPoint { CGPoint(
         x: isPortrait ? 0 : floor((size.width - size.height) / 2),
         y: isPortrait ? floor((size.height - size.width) / 2) : 0)}
+
     var circleMasked: UIImage? {
         UIGraphicsBeginImageContextWithOptions(breadthSize, false, scale)
         defer { UIGraphicsEndImageContext() }
-        guard let cgImage = cgImage?.cropping(to: CGRect(
-            origin: breadthPoint, size: breadthSize)) else { return nil }
+        let rect = CGRect(origin: breadthPoint, size: breadthSize)
+        guard let cgImage = cgImage?.cropping(to: rect) else { return nil }
         UIBezierPath(ovalIn: breadthRect).addClip()
         UIImage(cgImage: cgImage).draw(in: breadthRect)
         return UIGraphicsGetImageFromCurrentImageContext()
