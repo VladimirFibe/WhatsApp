@@ -20,7 +20,6 @@ final class ChatViewController: MessagesViewController {
 
     init(recent: Recent) {
         self.recent = recent
-        print(recent)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -70,6 +69,12 @@ final class ChatViewController: MessagesViewController {
         // add gesutre recognizer
     }
 
+
+
+
+}
+// MARK: - Load Chats
+extension ChatViewController {
     private func loadChats() {
         let predicate = NSPredicate(format: "chatRoomId = %@", recent.chatRoomId)
         messages = realm.objects(Message.self).filter(predicate).sorted(byKeyPath: kDATE, ascending: true)

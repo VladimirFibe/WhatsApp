@@ -33,7 +33,6 @@ final class SettingsStore: Store<SettingsEvent, SettingsAction> {
 
     private func fetchPerson() async throws {
         try await useCase.fetchPerson()
-        print("fetched")
         sendEvent(.done)
     }
 }
