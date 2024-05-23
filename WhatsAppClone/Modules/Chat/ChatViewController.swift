@@ -9,7 +9,7 @@ final class ChatViewController: MessagesViewController {
     let refreshControl = UIRefreshControl()
     private lazy var chatTitleView = ChatTitleView(name: recent.name,
                                          frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-    private let micButton = InputBarButtonItem()
+    let micButton = InputBarButtonItem()
     var mkMessages: [MKMessage] = [] {
         didSet {
             self.messagesCollectionView.reloadData()
@@ -82,6 +82,7 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
 
+        updateMicButtonStatus(show: true)
         // add gesutre recognizer
     }
 
