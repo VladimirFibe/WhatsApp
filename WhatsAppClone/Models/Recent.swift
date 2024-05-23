@@ -6,6 +6,6 @@ struct Recent: Codable, Hashable {
     var avatarLink = ""
     var text = ""
     var unreadCounter = 0
-    @ServerTimestamp var date = Date()
+    var date = Date()
     var chatRoomId: String
 }

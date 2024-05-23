@@ -31,7 +31,7 @@ final class ChatsCell: UITableViewCell {
     public func configure(with recent: Recent) {
         usernameLabel.text = recent.name
         lastMessageLabel.text = recent.text
-        dateLabel.text = recent.date?.timeElapsed
+        dateLabel.text = recent.date.timeElapsed
         unreadCounterLabel.text = "\(recent.unreadCounter)"
         unreadCounterLabel.isHidden = recent.unreadCounter == 0
         FileStorage.downloadImage(id: recent.chatRoomId, link: recent.avatarLink) { image in

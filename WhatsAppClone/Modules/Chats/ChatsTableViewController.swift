@@ -7,6 +7,7 @@ class ChatsTableViewController: UITableViewController {
     //MARK: - Download Chats
     private func downloadRecentChats() {
         FirebaseClient.shared.downloadRecentChatsFromFireStore { recents in
+            print("DEBUG: ", recents.count)
             self.recents = recents
             DispatchQueue.main.async {
                 self.tableView.reloadData()

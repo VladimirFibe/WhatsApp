@@ -100,7 +100,7 @@ final class ChatViewController: MessagesViewController {
     private func insertMessage(_ message: Message) {
         let incoming = IncomingMessage(self)
         if let mkMessage = incoming.createMessage(message) {
-            mkMessages.insert(mkMessage, at: 0)
+            mkMessages.append(mkMessage)
 //            markMessageAsRead(message)
         }
     }

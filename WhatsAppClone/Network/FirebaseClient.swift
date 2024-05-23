@@ -133,12 +133,7 @@ extension FirebaseClient {
             .document(Person.currentId)
             .collection("recents")
             .addSnapshotListener { querySnapshot, error in
-
-                guard let documents = querySnapshot?.documents else {
-                    print("no documents for recent chats")
-                    return
-                }
-
+                guard let documents = querySnapshot?.documents else { return }
                 let allRecents = documents.compactMap {  try? $0.data(as: Recent.self)}
                 completion(allRecents)
             }
@@ -192,7 +187,8 @@ extension FirebaseClient {
             "name":             recent.name,
             "date":             message.date,
             "avatarLink":       recent.avatarLink,
-            "unreadCounter":    0
+            "unreadCounter":    0,
+            "chatRoomId":       recent.chatRoomId
         ]
 
         reference(.messages)
@@ -200,9 +196,10 @@ extension FirebaseClient {
             .collection("recents")
             .document(recent.chatRoomId)
             .setData(data)
-
-        data["name"] = person?.username ?? ""
-        data["avatarLink"] = person?.avatarLink ?? ""
+        guard let person else { return }
+        data["name"] = person.username
+        data["avatarLink"] = person.avatarLink
+        data["chatRoomId"] = person.id
         reference(.messages)
             .document(recent.chatRoomId)
             .collection("recents")
