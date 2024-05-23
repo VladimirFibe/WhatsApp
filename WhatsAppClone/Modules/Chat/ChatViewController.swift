@@ -3,7 +3,7 @@ import MessageKit
 import InputBarAccessoryView
 
 final class ChatViewController: MessagesViewController {
-    private let recent: Recent
+    let recent: Recent
     let currentUser = MKSender(senderId: Person.currentId, displayName: Person.currentName)
     let refreshControl = UIRefreshControl()
     private let micButton = InputBarButtonItem()

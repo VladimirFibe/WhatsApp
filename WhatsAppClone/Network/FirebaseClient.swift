@@ -144,3 +144,82 @@ extension FirebaseClient {
             }
     }
 }
+// MARK: - Messages
+extension FirebaseClient {
+    func sendMessage(_ message: Message) {
+        do {
+            try reference(.messages)
+                .document("channels")
+                .collection(message.chatRoomId)
+                .document(message.id)
+                .setData(from: message)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func sendMessage(_ message: Message, recent: Recent) {
+        do {
+            try reference(.messages)
+                .document(Person.currentId)
+                .collection(recent.chatRoomId)
+                .document(message.id)
+                .setData(from: message)
+
+            try reference(.messages)
+                .document(recent.chatRoomId)
+                .collection(Person.currentId)
+                .document(message.id)
+                .setData(from: message)
+        } catch { print(error.localizedDescription) }
+
+        var data: [String: Any] = [
+            "text":             message.text,
+            "name":             recent.name,
+            "date":             message.date,
+            "avatarLink":       recent.avatarLink,
+            "unreadCounter":    0
+        ]
+
+        reference(.messages)
+            .document(Person.currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .setData(data)
+
+        data["name"] = person?.username ?? ""
+        data["avatarLink"] = person?.avatarLink ?? ""
+        reference(.messages)
+            .document(recent.chatRoomId)
+            .collection("recents")
+            .document(Person.currentId)
+            .getDocument { snapshot, error in
+                guard let snapshot,
+                      let old = snapshot.data(),
+                      let unreadCounter = old["unreadCounter"] as? Int
+                else {
+                    data["unreadCounter"] = 1
+                    self.saveRecent(
+                        firstId: recent.chatRoomId,
+                        secondId: Person.currentId,
+                        data: data
+                    )
+                    return
+                }
+                data["unreadCounter"] = unreadCounter + 1
+                self.saveRecent(
+                    firstId: recent.chatRoomId,
+                    secondId: Person.currentId,
+                    data: data
+                )
+            }
+    }
+
+    func saveRecent(firstId: String, secondId: String, data: [String: Any]) {
+        reference(.messages)
+            .document(firstId)
+            .collection("recents")
+            .document(secondId)
+            .setData(data)
+    }
+}
