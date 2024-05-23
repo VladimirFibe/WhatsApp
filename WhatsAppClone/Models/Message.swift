@@ -12,6 +12,7 @@ class Message: Object, Codable {
     @objc dynamic var readDate = Date()
     @objc dynamic var type = ""
     @objc dynamic var status = ""
+    @objc dynamic var incoming = false
     @objc dynamic var text = ""
     @objc dynamic var audioUrl = ""
     @objc dynamic var videoUrl = ""

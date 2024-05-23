@@ -159,21 +159,39 @@ extension FirebaseClient {
     }
 
     func sendMessage(_ message: Message, recent: Recent) {
-        do {
-            try reference(.messages)
-                .document(Person.currentId)
-                .collection(recent.chatRoomId)
-                .document(message.id)
-                .setData(from: message)
+        var data: [String: Any] = [
+            "id": message.id,
+            "chatRoomId": message.chatRoomId,
+            "date": message.date,
+            "name": message.name,
+            "uid": message.uid,
+            "initials": message.initials,
+            "readDate": message.readDate,
+            "type": message.type,
+            "status": message.status,
+            "incoming": false,
+            "text": message.text,
+            "audioUrl": message.audioUrl,
+            "videoUrl": message.videoUrl,
+            "pictureUrl": message.pictureUrl,
+            "latitude": message.latitude,
+            "longitude": message.longitude,
+            "audioDuration": message.audioDuration
+        ]
+        reference(.messages)
+            .document(Person.currentId)
+            .collection(recent.chatRoomId)
+            .document(message.id)
+            .setData(data)
 
-            try reference(.messages)
+        data["incoming"] = true
+        reference(.messages)
                 .document(recent.chatRoomId)
                 .collection(Person.currentId)
                 .document(message.id)
-                .setData(from: message)
-        } catch { print(error.localizedDescription) }
+                .setData(data)
 
-        var data: [String: Any] = [
+        data = [
             "text":             message.text,
             "name":             recent.name,
             "date":             message.date,
