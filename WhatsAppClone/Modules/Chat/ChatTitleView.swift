@@ -9,7 +9,6 @@ final class ChatTitleView: UIView {
     }(UILabel(frame: CGRect(x: 5, y: 0, width: 180, height: 25)))
 
     let subTitleLabel: UILabel = {
-        $0.text = "typing ..."
         $0.textAlignment = .left
         $0.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         $0.adjustsFontSizeToFitWidth = true
@@ -27,7 +26,7 @@ final class ChatTitleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with text: String) {
-        subTitleLabel.text = text
+    func configure(with show: Bool) {
+        subTitleLabel.text = show ? "Typing..." : ""
     }
 }

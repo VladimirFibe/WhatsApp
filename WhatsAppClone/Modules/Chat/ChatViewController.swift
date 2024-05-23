@@ -126,4 +126,32 @@ extension ChatViewController {
         }
     }
 }
+// MARK: - Typing
+extension ChatViewController {
+    func updateTypingIndicator(_ show: Bool) {
+        chatTitleView.configure(with: show)
+    }
 
+    func typingIndicatorUpdate() {
+//        typingCounter += 1
+//        FirebaseClient.shared.saveTyping(typing: true, chatRoomId: recent.chatRoomId)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//            self.typingCounterStop()
+//        }
+    }
+
+    func typingCounterStop() {
+//        typingCounter -= 1
+//        if typingCounter == 0 {
+//            FirebaseClient.shared.saveTyping(typing: false, chatRoomId: recent.chatRoomId)
+//        }
+    }
+
+    func createTypingObserver() {
+//        FirebaseClient.shared.createTypingObserver(chatRoomId: recent.chatRoomId) { typing in
+//            DispatchQueue.main.async {
+//                self.updateTypingIndicator(typing)
+//            }
+//        }
+    }
+}
