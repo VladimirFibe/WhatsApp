@@ -40,6 +40,7 @@
 		E80855BE2BFEB7C800080804 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855BD2BFEB7C800080804 /* RealmManager.swift */; };
 		E80855C02BFEBD1000080804 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */; };
 		E80855C22BFEBEB700080804 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855C12BFEBEB700080804 /* Constants.swift */; };
+		E876CA3D2BFF10950035F1D1 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
 		E8A430842BFDF0EB0065981A /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430832BFDF0EB0065981A /* AuthStore.swift */; };
 		E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430862BFDF1800065981A /* FirebaseClient.swift */; };
@@ -94,6 +95,7 @@
 		E80855BD2BFEB7C800080804 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		E80855C12BFEBEB700080804 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E8A430832BFDF0EB0065981A /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		E8A430862BFDF1800065981A /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				E80855B92BFEABC400080804 /* MKMessage.swift */,
 				E80855BB2BFEADC500080804 /* Message.swift */,
 				E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */,
+				E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */,
 				E80855BD2BFEB7C800080804 /* RealmManager.swift */,
 				E80855C12BFEBEB700080804 /* Constants.swift */,
 			);
@@ -456,6 +459,7 @@
 				E80855B62BFEA3B000080804 /* MessagesLayoutDelegate+Chat.swift in Sources */,
 				E80855BC2BFEADC500080804 /* Message.swift in Sources */,
 				E8A4308A2BFDF1DE0065981A /* Person.swift in Sources */,
+				E876CA3D2BFF10950035F1D1 /* IncomingMessage.swift in Sources */,
 				E80855A62BFE588F00080804 /* Recent.swift in Sources */,
 				E80855B02BFEA25800080804 /* MessagesDataSource+Chat.swift in Sources */,
 				E808559E2BFE554000080804 /* ProfileViewController.swift in Sources */,

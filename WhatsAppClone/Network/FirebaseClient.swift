@@ -147,15 +147,11 @@ extension FirebaseClient {
 // MARK: - Messages
 extension FirebaseClient {
     func sendMessage(_ message: Message) {
-        do {
-            try reference(.messages)
-                .document("channels")
-                .collection(message.chatRoomId)
-                .document(message.id)
-                .setData(from: message)
-        } catch {
-            print(error.localizedDescription)
-        }
+        try? reference(.messages)
+            .document("channels")
+            .collection(message.chatRoomId)
+            .document(message.id)
+            .setData(from: message)
     }
 
     func sendMessage(_ message: Message, recent: Recent) {

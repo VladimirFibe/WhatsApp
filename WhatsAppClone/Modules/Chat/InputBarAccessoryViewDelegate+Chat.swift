@@ -4,7 +4,6 @@ import InputBarAccessoryView
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
         if !text.isEmpty {
-            print("typing...")
         }
     }
 
