@@ -7,6 +7,8 @@ final class ChatViewController: MessagesViewController {
     let recent: Recent
     let currentUser = MKSender(senderId: Person.currentId, displayName: Person.currentName)
     let refreshControl = UIRefreshControl()
+    private lazy var chatTitleView = ChatTitleView(name: recent.name,
+                                         frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     private let micButton = InputBarButtonItem()
     var mkMessages: [MKMessage] = [] {
         didSet {
@@ -33,7 +35,21 @@ final class ChatViewController: MessagesViewController {
         view.backgroundColor = .systemBackground
         configureMessageInputBar()
         configureMessageCollectionView()
+        configureLeftBarButton()
         loadChats()
+    }
+
+    private func configureLeftBarButton() {
+        let leftButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                         primaryAction: UIAction {[weak self] _ in self?.backButtonPressed()})
+        let leftView = UIBarButtonItem(customView: chatTitleView)
+        navigationItem.leftBarButtonItems = [leftButton, leftView]
+    }
+
+    private func backButtonPressed() {
+//        FirebaseClient.shared.removeListeners()
+//        FirebaseClient.shared.resetUnreadCounter(recent: recent)
+        navigationController?.popViewController(animated: true)
     }
 
     private func configureMessageCollectionView() {

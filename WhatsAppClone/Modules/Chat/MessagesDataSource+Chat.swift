@@ -35,8 +35,9 @@ extension ChatViewController: MessagesDataSource {
                                         .font: UIFont.systemFont(ofSize: 10),
                                         .foregroundColor: UIColor.darkGray
                                       ])
+        } else {
+            return nil
         }
-        return nil
     }
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {

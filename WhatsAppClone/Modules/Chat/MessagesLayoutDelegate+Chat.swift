@@ -19,7 +19,6 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     func configureAvatarView(_ avatarView: AvatarView, for message: any MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        let initials = mkMessages[indexPath.section].senderInitials
-        avatarView.set(avatar: Avatar(image: .avatar))
+        avatarView.initials = mkMessages[indexPath.section].senderInitials
     }
 }
