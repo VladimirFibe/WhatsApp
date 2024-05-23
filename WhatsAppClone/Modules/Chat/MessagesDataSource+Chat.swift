@@ -42,13 +42,13 @@ extension ChatViewController: MessagesDataSource {
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         if indexPath.section == mkMessages.count - 1 {
             return nil
+        } else {
+            return NSAttributedString(string: message.sentDate.time, 
+                                      attributes: [
+                                        .font: UIFont.systemFont(ofSize: 10),
+                                        .foregroundColor: UIColor.darkGray
+                                      ])
         }
-
-//        return NSAttributedString(string: message.sentDate.time(), attributes: [
-//            .font: UIFont.systemFont(ofSize: 10),
-//            .foregroundColor: UIColor.darkGray
-//        ])
-        return nil
     }
 }
 
