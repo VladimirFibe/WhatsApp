@@ -41,11 +41,13 @@ final class AuthTextField: UIView {
         textField.text ?? ""
     }
 
-    init(placeholder: String, isSecureTextEntry: Bool = false) {
+    init(placeholder: String, 
+         isSecureTextEntry: Bool = false,
+         keyboardType: UIKeyboardType = .default) {
         self.placeholder = placeholder
         super.init(frame: .zero)
         setupLabel()
-        setupTextField(isSecureTextEntry)
+        setupTextField(isSecureTextEntry, keyboardType: keyboardType)
         setupSeparatorView()
     }
 
@@ -61,9 +63,10 @@ final class AuthTextField: UIView {
         }
     }
 
-    private func setupTextField(_ isSecureTextEntry: Bool) {
+    private func setupTextField(_ isSecureTextEntry: Bool, keyboardType: UIKeyboardType) {
         addSubview(textField)
         textField.placeholder = placeholder
+        textField.keyboardType = keyboardType
         if isSecureTextEntry {
             textField.isSecureTextEntry = true
             textField.rightView = showPasswordButton

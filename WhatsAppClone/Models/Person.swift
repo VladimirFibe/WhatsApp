@@ -10,6 +10,9 @@ struct Person: Identifiable, Hashable, Codable {
     var avatarLink = ""
     var fullname = ""
     var status = Status()
+    var initials: String {
+        String(username.first ?? "?")
+    }
 }
 // MARK: - Save to UserDefaults
 extension Person {
@@ -32,6 +35,10 @@ extension Person {
 extension Person {
     static var currentId: String {
         Auth.auth().currentUser?.uid ?? ""
+    }
+
+    static var currentName: String {
+        FirebaseClient.shared.person?.username ?? "Current Name"
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {

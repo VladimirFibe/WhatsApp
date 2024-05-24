@@ -133,14 +133,190 @@ extension FirebaseClient {
             .document(Person.currentId)
             .collection("recents")
             .addSnapshotListener { querySnapshot, error in
-
-                guard let documents = querySnapshot?.documents else {
-                    print("no documents for recent chats")
-                    return
-                }
-
+                guard let documents = querySnapshot?.documents else { return }
                 let allRecents = documents.compactMap {  try? $0.data(as: Recent.self)}
                 completion(allRecents)
             }
+    }
+}
+// MARK: - Messages
+extension FirebaseClient {
+    func sendMessage(_ message: Message) {
+        try? reference(.messages)
+            .document("channels")
+            .collection(message.chatRoomId)
+            .document(message.id)
+            .setData(from: message)
+    }
+
+    func sendMessage(_ message: Message, recent: Recent) {
+        var data: [String: Any] = [
+            "id": message.id,
+            "chatRoomId": message.chatRoomId,
+            "date": message.date,
+            "name": message.name,
+            "uid": message.uid,
+            "initials": message.initials,
+            "readDate": message.readDate,
+            "type": message.type,
+            "status": message.status,
+            "incoming": false,
+            "text": message.text,
+            "audioUrl": message.audioUrl,
+            "videoUrl": message.videoUrl,
+            "pictureUrl": message.pictureUrl,
+            "latitude": message.latitude,
+            "longitude": message.longitude,
+            "audioDuration": message.audioDuration
+        ]
+        reference(.messages)
+            .document(Person.currentId)
+            .collection(recent.chatRoomId)
+            .document(message.id)
+            .setData(data)
+
+        data["incoming"] = true
+        data["chatRoomId"] = Person.currentId
+        reference(.messages)
+                .document(recent.chatRoomId)
+                .collection(Person.currentId)
+                .document(message.id)
+                .setData(data)
+
+        data = [
+            "text":             message.text,
+            "name":             recent.name,
+            "date":             message.date,
+            "avatarLink":       recent.avatarLink,
+            "unreadCounter":    0,
+            "chatRoomId":       recent.chatRoomId
+        ]
+
+        reference(.messages)
+            .document(Person.currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .setData(data)
+        guard let person else { return }
+        data["name"] = person.username
+        data["avatarLink"] = person.avatarLink
+        data["chatRoomId"] = person.id
+        
+        reference(.messages)
+            .document(recent.chatRoomId)
+            .collection("recents")
+            .document(Person.currentId)
+            .getDocument { snapshot, error in
+                guard let snapshot,
+                      let old = snapshot.data(),
+                      let unreadCounter = old["unreadCounter"] as? Int
+                else {
+                    data["unreadCounter"] = 1
+                    self.saveRecent(
+                        firstId: recent.chatRoomId,
+                        secondId: Person.currentId,
+                        data: data
+                    )
+                    return
+                }
+                data["unreadCounter"] = unreadCounter + 1
+                self.saveRecent(
+                    firstId: recent.chatRoomId,
+                    secondId: Person.currentId,
+                    data: data
+                )
+            }
+    }
+
+    func saveRecent(firstId: String, secondId: String, data: [String: Any]) {
+        reference(.messages)
+            .document(firstId)
+            .collection("recents")
+            .document(secondId)
+            .setData(data)
+    }
+}
+
+extension FirebaseClient {
+    func listenForNewChats(
+        _ currentId: String,
+        friendUid: String,
+        lastMessageDate: Date
+    ) {
+        newChatListener = reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .whereField(kDATE, isGreaterThan: lastMessageDate)
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else { return }
+                snapshot.documentChanges.forEach { change in
+                    if change.type == .added {
+                        let result = Result {
+                            try? change.document.data(as: Message.self)
+                        }
+                        switch result {
+                        case .success(let message):
+                            if let message {
+                                print(message.text)
+                                RealmManager.shared.saveToRealm(message)
+                            }
+                        case .failure(let error):
+                            print("DEBUG: Error decoding local message: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+    }
+
+    func listenForReadStatusChanges(
+        _ currentId: String,
+        friendUid: String,
+        completion: @escaping (Message) -> Void
+    ) {
+        updatedChatListener = reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .addSnapshotListener{ querySnapshot, error in
+                guard let snapshot = querySnapshot else { return }
+                snapshot.documentChanges.forEach { change in
+                    if change.type == .modified {
+                        let result = Result {
+                            try? change.document.data(as: Message.self)
+                        }
+                        switch result {
+                        case .success(let message):
+                            if let message, message.status != kSENT {
+                                completion(message)
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+    }
+
+    func checkForOldChats(_ currentId: String, friendUid: String) {
+        reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .order(by: "date")
+            .getDocuments { querySnapshot, _ in
+                guard let documents = querySnapshot?.documents else { return }
+                print("documents.count", documents.count)
+                let messages = documents.compactMap { try? $0.data(as: Message.self)}
+                print("messages.count", messages.count)
+                messages.forEach {
+                    RealmManager.shared.saveToRealm($0)
+                }
+            }
+    }
+
+    func resetUnreadCounter(recent: Recent) {
+        reference(.messages)
+            .document(Person.currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .updateData(["unreadCounter": 0])
     }
 }

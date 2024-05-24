@@ -101,7 +101,7 @@ extension ChatsTableViewController {
     }
 
     private func pushChat(_ recent: Recent) {
-        let controller = UIViewController() // ChatViewController(recent: recent)
+        let controller = ChatViewController(recent: recent)
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }
