@@ -1,6 +1,5 @@
 import Foundation
 import RealmSwift
-
 class Message: Object, Codable {
 
     @objc dynamic var id = ""

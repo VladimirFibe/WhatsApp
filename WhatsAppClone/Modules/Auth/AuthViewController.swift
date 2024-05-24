@@ -7,7 +7,7 @@ class AuthViewController: UIViewController {
     private var bag = Bag()
     private var isLoading = false { didSet { self.actionButton.setNeedsUpdateConfiguration() }}
     private var isLogin = true { didSet { self.updateUI()}}
-    private let emailTextField = AuthTextField(placeholder: "Email")
+    private let emailTextField = AuthTextField(placeholder: "Email", keyboardType: .emailAddress)
     private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
     private let repeatTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
 
@@ -17,8 +17,8 @@ class AuthViewController: UIViewController {
     }(UIButton(type: .system))
 
     private let resendButton: UIButton = {
-        $0.isHidden = true
         $0.setTitle("Resend Email", for: [])
+        $0.isHidden = true
         return $0
     }(UIButton(type: .system))
 
@@ -32,6 +32,7 @@ class AuthViewController: UIViewController {
             config.showsActivityIndicator = self.isLoading
             config.title = self.isLogin ? "Login" : "Sign In"
             button.configuration = config
+            button.isEnabled = !self.isLoading
         }
         $0.addAction(UIAction { _ in
             self.actionButtonTapped()
@@ -66,7 +67,7 @@ class AuthViewController: UIViewController {
     private lazy var buttonStackView: UIStackView = {
         $0.distribution = .equalCentering
         return $0
-    }(UIStackView(arrangedSubviews: [forgotButton, resendButton]))
+    }(UIStackView(arrangedSubviews: [forgotButton, UIView(), resendButton]))
 
     private let rootStackView: UIStackView = {
         $0.axis = .vertical

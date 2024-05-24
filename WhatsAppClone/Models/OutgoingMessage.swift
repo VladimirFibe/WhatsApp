@@ -27,7 +27,7 @@ class OutgoingMessage {
         let message = Message()
         message.id = UUID().uuidString
         message.chatRoomId = chatRoomId
-        message.uid = Person.currentId
+        message.uid = currentUser.id
         message.name = currentUser.username
         message.initials = String(currentUser.username.first ?? "?")
         message.date = Date()

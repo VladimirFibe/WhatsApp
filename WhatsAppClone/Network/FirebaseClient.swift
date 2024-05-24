@@ -246,7 +246,6 @@ extension FirebaseClient {
         newChatListener = reference(.messages)
             .document(currentId)
             .collection(friendUid)
-            .whereField("uid", isNotEqualTo: currentId)
             .whereField(kDATE, isGreaterThan: lastMessageDate)
             .addSnapshotListener { querySnapshot, error in
                 guard let snapshot = querySnapshot else { return }
@@ -258,6 +257,7 @@ extension FirebaseClient {
                         switch result {
                         case .success(let message):
                             if let message {
+                                print(message.text)
                                 RealmManager.shared.saveToRealm(message)
                             }
                         case .failure(let error):
@@ -300,7 +300,7 @@ extension FirebaseClient {
         reference(.messages)
             .document(currentId)
             .collection(friendUid)
-//            .order(by: "date")
+            .order(by: "date")
             .getDocuments { querySnapshot, _ in
                 guard let documents = querySnapshot?.documents else { return }
                 print("documents.count", documents.count)

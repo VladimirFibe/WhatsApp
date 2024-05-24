@@ -10,6 +10,9 @@ struct Person: Identifiable, Hashable, Codable {
     var avatarLink = ""
     var fullname = ""
     var status = Status()
+    var initials: String {
+        String(username.first ?? "?")
+    }
 }
 // MARK: - Save to UserDefaults
 extension Person {

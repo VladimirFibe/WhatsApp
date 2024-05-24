@@ -37,6 +37,7 @@ final class ChatViewController: MessagesViewController {
         configureMessageCollectionView()
         configureLeftBarButton()
         loadChats()
+        listenForNewChats()
     }
 
     private func configureLeftBarButton() {
@@ -71,7 +72,6 @@ final class ChatViewController: MessagesViewController {
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachButton.onTouchUpInside { _ in
             print("Attach Button")
-            print("mkMessages.count", self.mkMessages.count)
         }
 
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
@@ -103,7 +103,6 @@ extension ChatViewController {
                 self.insertMessages()
 
             case .update(_, _, let insertions, _):
-                print("insertions", insertions.count)
                 for index in insertions {
                     self.insertMessage(self.messages[index])
                 }
