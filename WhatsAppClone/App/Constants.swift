@@ -1,11 +1,11 @@
 import Foundation
 
-let userDefaults = UserDefaults.standard
-public let kFILEREFERENCE = "gs://messanger-649e2.appspot.com"
-public let kSERVERKEY = "AAAAYaDnss0:APA91bHFwsxb0AaUaSYCVBQ3Lf8xquN1GHfOy6am4CvpeCA3efHs_vNeVm1byY_lKbJFF-q2Cv5h7Glm6KNgsdnPexOlVlZwaLPCyf6oahNh0rSkKu01Net-aU3ZT-rx1E0e7wWkWwOj"
-
-
-
+//let userDefaults = UserDefaults.standard
+//public let kFILEREFERENCE = "gs://messanger-649e2.appspot.com"
+//public let kSERVERKEY = "AAAAYaDnss0:APA91bHFwsxb0AaUaSYCVBQ3Lf8xquN1GHfOy6am4CvpeCA3efHs_vNeVm1byY_lKbJFF-q2Cv5h7Glm6KNgsdnPexOlVlZwaLPCyf6oahNh0rSkKu01Net-aU3ZT-rx1E0e7wWkWwOj"
+//
+//
+//
 public let kNUMBEROFMESSAGES = 12
 
 
@@ -31,3 +31,5 @@ public let kREADDATE = "readDate"
 
 public let kADMINID = "adminId"
 public let kMEMBERIDS = "memberIds"
+public let kTYPING = "typing"
+

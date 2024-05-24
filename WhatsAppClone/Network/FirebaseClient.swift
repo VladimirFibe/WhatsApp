@@ -11,7 +11,7 @@ final class FirebaseClient {
     var channelsListener: ListenerRegistration?
     var myChannelsListener: ListenerRegistration?
     var person: Person? = nil { didSet { Person.localPerson = person}}
-
+    
     private init() {}
 
     func reference(_ collectionReference: FCollectionReference) -> CollectionReference {
@@ -22,6 +22,12 @@ final class FirebaseClient {
         case persons
         case messages
         case channels
+    }
+
+    func removeListeners() {
+        newChatListener?.remove()
+        typingListener?.remove()
+        updatedChatListener?.remove()
     }
 }
 // MARK: - Auth
@@ -257,7 +263,6 @@ extension FirebaseClient {
                         switch result {
                         case .success(let message):
                             if let message {
-                                print(message.text)
                                 RealmManager.shared.saveToRealm(message)
                             }
                         case .failure(let error):
@@ -318,5 +323,34 @@ extension FirebaseClient {
             .collection("recents")
             .document(recent.chatRoomId)
             .updateData(["unreadCounter": 0])
+    }
+}
+// MARK: - Typing
+extension FirebaseClient {
+    func saveTyping(typing: Bool, chatRoomId: String) {
+        reference(.messages)
+            .document(chatRoomId)
+            .collection(kTYPING)
+            .document(Person.currentId)
+            .setData([kTYPING: typing])
+    }
+
+    func createTypingObserver(
+        chatRoomId: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        typingListener = reference(.messages)
+            .document(Person.currentId)
+            .collection(kTYPING)
+            .document(chatRoomId)
+            .addSnapshotListener { snapshot, _ in
+                if let snapshot,
+                      let data = snapshot.data(),
+                   let typing = data[kTYPING] as? Bool {
+                    completion(typing)
+                } else {
+                    completion(false)
+                }
+            }
     }
 }

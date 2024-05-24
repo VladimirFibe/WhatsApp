@@ -267,7 +267,6 @@
 				E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */,
 				E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */,
 				E80855BD2BFEB7C800080804 /* RealmManager.swift */,
-				E80855C12BFEBEB700080804 /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -340,6 +339,7 @@
 			children = (
 				E8AD983B2BFDA1EE00CB6D13 /* AppDelegate.swift */,
 				E8AD983D2BFDA1EE00CB6D13 /* SceneDelegate.swift */,
+				E80855C12BFEBEB700080804 /* Constants.swift */,
 				E80855A72BFE58E900080804 /* Date+Extension.swift */,
 			);
 			path = App;
