@@ -19,6 +19,7 @@ final class ChatViewController: MessagesViewController {
     var messages: Results<Message>!
     let realm = try! Realm()
     var notificationToken: NotificationToken?
+    var isTyping = false
 
     init(recent: Recent) {
         self.recent = recent
@@ -38,6 +39,7 @@ final class ChatViewController: MessagesViewController {
         configureLeftBarButton()
         loadChats()
         listenForNewChats()
+        createTypingObserver()
     }
 
     private func configureLeftBarButton() {
@@ -48,8 +50,8 @@ final class ChatViewController: MessagesViewController {
     }
 
     private func backButtonPressed() {
-//        FirebaseClient.shared.removeListeners()
-//        FirebaseClient.shared.resetUnreadCounter(recent: recent)
+        FirebaseClient.shared.removeListeners()
+        FirebaseClient.shared.resetUnreadCounter(recent: recent)
         navigationController?.popViewController(animated: true)
     }
 
@@ -167,25 +169,25 @@ extension ChatViewController {
     }
 
     func typingIndicatorUpdate() {
-//        typingCounter += 1
-//        FirebaseClient.shared.saveTyping(typing: true, chatRoomId: recent.chatRoomId)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//            self.typingCounterStop()
-//        }
+        if !isTyping {
+            isTyping = true
+            FirebaseClient.shared.saveTyping(typing: true, chatRoomId: recent.chatRoomId)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.typingCounterStop()
+            }
+        }
     }
 
     func typingCounterStop() {
-//        typingCounter -= 1
-//        if typingCounter == 0 {
-//            FirebaseClient.shared.saveTyping(typing: false, chatRoomId: recent.chatRoomId)
-//        }
+        isTyping = false
+        FirebaseClient.shared.saveTyping(typing: false, chatRoomId: recent.chatRoomId)
     }
 
     func createTypingObserver() {
-//        FirebaseClient.shared.createTypingObserver(chatRoomId: recent.chatRoomId) { typing in
-//            DispatchQueue.main.async {
-//                self.updateTypingIndicator(typing)
-//            }
-//        }
+        FirebaseClient.shared.createTypingObserver(chatRoomId: recent.chatRoomId) { typing in
+            DispatchQueue.main.async {
+                self.updateTypingIndicator(typing)
+            }
+        }
     }
 }
