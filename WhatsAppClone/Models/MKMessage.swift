@@ -23,5 +23,6 @@ class MKMessage: NSObject, MessageType {
         self.readDate = message.readDate
         self.incoming = message.incoming
         self.kind = MessageKind.text(message.text)
+        print("init", message.incoming)
     }
 }

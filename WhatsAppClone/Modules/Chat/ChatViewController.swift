@@ -71,6 +71,7 @@ final class ChatViewController: MessagesViewController {
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachButton.onTouchUpInside { _ in
             print("Attach Button")
+            print("mkMessages.count", self.mkMessages.count)
         }
 
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
@@ -95,12 +96,14 @@ extension ChatViewController {
     private func loadChats() {
         let predicate = NSPredicate(format: "chatRoomId = %@", recent.chatRoomId)
         messages = realm.objects(Message.self).filter(predicate).sorted(byKeyPath: kDATE, ascending: true)
+        if messages.isEmpty { checkForOldChats() }
         notificationToken = messages.observe({ changes in
             switch changes {
             case .initial:
                 self.insertMessages()
 
             case .update(_, _, let insertions, _):
+                print("insertions", insertions.count)
                 for index in insertions {
                     self.insertMessage(self.messages[index])
                 }
@@ -121,9 +124,40 @@ extension ChatViewController {
 
     private func insertMessage(_ message: Message) {
         let incoming = IncomingMessage(self)
+
         if let mkMessage = incoming.createMessage(message) {
+
             mkMessages.append(mkMessage)
 //            markMessageAsRead(message)
+        }
+    }
+}
+// MARK: - Firebase chats
+extension ChatViewController {
+    private func listenForNewChats() {
+        var lastMessageDate = messages.last?.date ?? Date()
+        lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
+        FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
+    }
+
+    private func listenForReadStatusChange() {
+        FirebaseClient.shared.listenForReadStatusChanges(Person.currentId, friendUid: recent.chatRoomId) { message in
+            self.updateMessage(message)
+        }
+    }
+
+    private func checkForOldChats() {
+        FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
+    }
+
+    private func updateMessage(_ message: Message) {
+        for index in mkMessages.indices {
+            if message.id == mkMessages[index].messageId {
+                mkMessages[index].status = message.status
+                mkMessages[index].readDate = message.readDate
+                RealmManager.shared.saveToRealm(message)
+                messagesCollectionView.reloadData()
+            }
         }
     }
 }
