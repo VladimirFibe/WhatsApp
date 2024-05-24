@@ -129,7 +129,7 @@ extension FirebaseClient {
         guard let currentId = person?.id else { return }
         reference(.messages)
             .document(currentId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(recent.chatRoomId)
             .updateData(["isHidden": true])
     }
@@ -137,11 +137,11 @@ extension FirebaseClient {
     func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
         reference(.messages)
             .document(Person.currentId)
-            .collection("recents")
+            .collection(kRECENTS)
             .addSnapshotListener { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else { return }
-                let allRecents = documents.compactMap {  try? $0.data(as: Recent.self)}
-                completion(allRecents)
+                let recents = documents.compactMap {  try? $0.data(as: Recent.self)}
+                completion(recents)
             }
     }
 }
@@ -200,32 +200,27 @@ extension FirebaseClient {
 
         reference(.messages)
             .document(Person.currentId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(recent.chatRoomId)
             .setData(data)
         guard let person else { return }
-        data["name"] = person.username
+        data[kNAME] = person.username
         data["avatarLink"] = person.avatarLink
         data["chatRoomId"] = person.id
         
         reference(.messages)
             .document(recent.chatRoomId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(Person.currentId)
             .getDocument { snapshot, error in
-                guard let snapshot,
-                      let old = snapshot.data(),
-                      let unreadCounter = old["unreadCounter"] as? Int
-                else {
-                    data["unreadCounter"] = 1
-                    self.saveRecent(
-                        firstId: recent.chatRoomId,
-                        secondId: Person.currentId,
-                        data: data
-                    )
-                    return
+                if let snapshot,
+                   let old = snapshot.data(),
+                   let unreadCounter = old[kUNREADCOUNTER] as? Int {
+                    data[kUNREADCOUNTER] = unreadCounter + 1
+                } else {
+                    data[kUNREADCOUNTER] = 1
                 }
-                data["unreadCounter"] = unreadCounter + 1
+
                 self.saveRecent(
                     firstId: recent.chatRoomId,
                     secondId: Person.currentId,
@@ -237,7 +232,7 @@ extension FirebaseClient {
     func saveRecent(firstId: String, secondId: String, data: [String: Any]) {
         reference(.messages)
             .document(firstId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(secondId)
             .setData(data)
     }
