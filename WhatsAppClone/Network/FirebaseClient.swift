@@ -129,7 +129,7 @@ extension FirebaseClient {
         guard let currentId = person?.id else { return }
         reference(.messages)
             .document(currentId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(recent.chatRoomId)
             .updateData(["isHidden": true])
     }
@@ -137,16 +137,25 @@ extension FirebaseClient {
     func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
         reference(.messages)
             .document(Person.currentId)
-            .collection("recents")
+            .collection(kRECENTS)
             .addSnapshotListener { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else { return }
-                let allRecents = documents.compactMap {  try? $0.data(as: Recent.self)}
-                completion(allRecents)
+                let recents = documents.compactMap {  try? $0.data(as: Recent.self)}
+                completion(recents)
             }
     }
 }
 // MARK: - Messages
 extension FirebaseClient {
+    func updateMessageInFireStore(_ message: Message) {
+        let data: [String: Any] = [kSTATUS: kREAD, kREADDATE: Date()]
+        reference(.messages)
+            .document(message.uid)
+            .collection(Person.currentId)
+            .document(message.id)
+            .updateData(data)
+    }
+
     func sendMessage(_ message: Message) {
         try? reference(.messages)
             .document("channels")
@@ -163,9 +172,9 @@ extension FirebaseClient {
             "name": message.name,
             "uid": message.uid,
             "initials": message.initials,
-            "readDate": message.readDate,
+            kREADDATE: message.readDate,
             "type": message.type,
-            "status": message.status,
+            kSTATUS: message.status,
             "incoming": false,
             "text": message.text,
             "audioUrl": message.audioUrl,
@@ -200,32 +209,27 @@ extension FirebaseClient {
 
         reference(.messages)
             .document(Person.currentId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(recent.chatRoomId)
             .setData(data)
         guard let person else { return }
-        data["name"] = person.username
+        data[kNAME] = person.username
         data["avatarLink"] = person.avatarLink
         data["chatRoomId"] = person.id
         
         reference(.messages)
             .document(recent.chatRoomId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(Person.currentId)
             .getDocument { snapshot, error in
-                guard let snapshot,
-                      let old = snapshot.data(),
-                      let unreadCounter = old["unreadCounter"] as? Int
-                else {
-                    data["unreadCounter"] = 1
-                    self.saveRecent(
-                        firstId: recent.chatRoomId,
-                        secondId: Person.currentId,
-                        data: data
-                    )
-                    return
+                if let snapshot,
+                   let old = snapshot.data(),
+                   let unreadCounter = old[kUNREADCOUNTER] as? Int {
+                    data[kUNREADCOUNTER] = unreadCounter + 1
+                } else {
+                    data[kUNREADCOUNTER] = 1
                 }
-                data["unreadCounter"] = unreadCounter + 1
+
                 self.saveRecent(
                     firstId: recent.chatRoomId,
                     secondId: Person.currentId,
@@ -237,7 +241,7 @@ extension FirebaseClient {
     func saveRecent(firstId: String, secondId: String, data: [String: Any]) {
         reference(.messages)
             .document(firstId)
-            .collection("recents")
+            .collection(kRECENTS)
             .document(secondId)
             .setData(data)
     }
@@ -308,9 +312,7 @@ extension FirebaseClient {
             .order(by: "date")
             .getDocuments { querySnapshot, _ in
                 guard let documents = querySnapshot?.documents else { return }
-                print("documents.count", documents.count)
                 let messages = documents.compactMap { try? $0.data(as: Message.self)}
-                print("messages.count", messages.count)
                 messages.forEach {
                     RealmManager.shared.saveToRealm($0)
                 }
