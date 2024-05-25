@@ -20,6 +20,7 @@ final class ChatViewController: MessagesViewController {
     let realm = try! Realm()
     var notificationToken: NotificationToken?
     var isTyping = false
+    var displayingMessagesCount = 0
 
     init(recent: Recent) {
         self.recent = recent
@@ -37,8 +38,10 @@ final class ChatViewController: MessagesViewController {
         configureMessageInputBar()
         configureMessageCollectionView()
         configureLeftBarButton()
+
         loadChats()
         listenForNewChats()
+        listenForReadStatusChange()
         createTypingObserver()
     }
 
@@ -114,9 +117,6 @@ extension ChatViewController {
         })
     }
 
-    private func appendMessage(_ message: Message) {
-    }
-
     private func insertMessages() {
         messages.forEach {
             insertMessage($0)
@@ -127,9 +127,15 @@ extension ChatViewController {
         let incoming = IncomingMessage(self)
 
         if let mkMessage = incoming.createMessage(message) {
-
             mkMessages.append(mkMessage)
-//            markMessageAsRead(message)
+            markMessageAsRead(message)
+        }
+    }
+
+    private func markMessageAsRead(_ message: Message) {
+        displayingMessagesCount += 1
+        if message.uid != Person.currentId, message.status != kREAD {
+            FirebaseClient.shared.updateMessageInFireStore(message)
         }
     }
 }
@@ -158,6 +164,7 @@ extension ChatViewController {
                 mkMessages[index].readDate = message.readDate
                 RealmManager.shared.saveToRealm(message)
                 messagesCollectionView.reloadData()
+                return
             }
         }
     }

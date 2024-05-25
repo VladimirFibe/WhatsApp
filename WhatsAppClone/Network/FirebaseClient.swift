@@ -147,6 +147,15 @@ extension FirebaseClient {
 }
 // MARK: - Messages
 extension FirebaseClient {
+    func updateMessageInFireStore(_ message: Message) {
+        let data: [String: Any] = [kSTATUS: kREAD, kREADDATE: Date()]
+        reference(.messages)
+            .document(message.uid)
+            .collection(Person.currentId)
+            .document(message.id)
+            .updateData(data)
+    }
+
     func sendMessage(_ message: Message) {
         try? reference(.messages)
             .document("channels")
@@ -163,9 +172,9 @@ extension FirebaseClient {
             "name": message.name,
             "uid": message.uid,
             "initials": message.initials,
-            "readDate": message.readDate,
+            kREADDATE: message.readDate,
             "type": message.type,
-            "status": message.status,
+            kSTATUS: message.status,
             "incoming": false,
             "text": message.text,
             "audioUrl": message.audioUrl,
@@ -303,9 +312,7 @@ extension FirebaseClient {
             .order(by: "date")
             .getDocuments { querySnapshot, _ in
                 guard let documents = querySnapshot?.documents else { return }
-                print("documents.count", documents.count)
                 let messages = documents.compactMap { try? $0.data(as: Message.self)}
-                print("messages.count", messages.count)
                 messages.forEach {
                     RealmManager.shared.saveToRealm($0)
                 }
