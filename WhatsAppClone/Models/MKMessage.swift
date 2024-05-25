@@ -13,7 +13,8 @@ class MKMessage: NSObject, MessageType {
     var senderInitials: String
     var status: String
     var readDate: Date
-
+    var photoItem: PhotoMessage?
+    
     init(message: Message) {
         self.messageId = message.id
         self.mkSender = MKSender(senderId: message.uid, displayName: message.name)
@@ -22,6 +23,14 @@ class MKMessage: NSObject, MessageType {
         self.sentDate = message.date
         self.readDate = message.readDate
         self.incoming = message.incoming
-        self.kind = MessageKind.text(message.text)
+        switch message.type {
+        case kPHOTO:
+            let url = URL(fileURLWithPath: message.pictureUrl)
+            let photoItem = PhotoMessage(url: url)
+            self.kind = MessageKind.photo(photoItem)
+            self.photoItem = photoItem
+        default: self.kind = MessageKind.text(message.text)
+        }
+
     }
 }
