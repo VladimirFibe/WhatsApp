@@ -1,10 +1,16 @@
 import UIKit
+import PhotosUI
 import MessageKit
 import InputBarAccessoryView
 import RealmSwift
 
 final class ChatViewController: MessagesViewController {
     let recent: Recent
+    private var selection = [String: PHPickerResult]()
+    private var selectedAssetIdentifiers = [String]()
+    private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
+    private var currentAssetIdentifier: String?
+
     let currentUser = MKSender(senderId: Person.currentId, displayName: Person.currentName)
     let refreshControl = UIRefreshControl()
     private lazy var chatTitleView = ChatTitleView(name: recent.name,
@@ -94,10 +100,10 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.resignFirstResponder()
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default) { alert in
-//            self.showImageGallery(.camera)
+            self.showImageGallery(.camera)
         }
         let library = UIAlertAction(title: "Library", style: .default) { alert in
-//            self.presentPicker()
+            self.presentPicker()
         }
         let location = UIAlertAction(title: "Location", style: .default) { alert in
 //            if LocationManager.shared.currentLocation != nil {
@@ -214,3 +220,120 @@ extension ChatViewController {
         }
     }
 }
+// MARK: - Image Picker
+extension ChatViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    private func showImageGallery(_ sourceType: UIImagePickerController.SourceType) {
+        let picker = UIImagePickerController()
+        picker.sourceType = sourceType
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let image = info[.editedImage] as? UIImage  {
+            messageSend(photo: image)
+        }
+        picker.dismiss(animated: true)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}
+// MARK: - PHPickerViewControllerDelegate
+extension ChatViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController,
+                didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+
+        let existingSelection = self.selection
+        var newSelection = [String: PHPickerResult]()
+        for result in results {
+            let identifier = result.assetIdentifier!
+            newSelection[identifier] = existingSelection[identifier] ?? result
+        }
+
+        // Track the selection in case the user deselects it later.
+        selection = newSelection
+        selectedAssetIdentifiers = results.map(\.assetIdentifier!)
+        selectedAssetIdentifierIterator = selectedAssetIdentifiers.makeIterator()
+
+        if !selection.isEmpty {
+            saveAsset()
+        }
+    }
+
+
+    private func presentPicker(filter: PHPickerFilter? = nil) {
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+
+        // Set the filter type according to the user’s selection.
+        configuration.filter = filter
+        // Set the mode to avoid transcoding, if possible, if your app supports arbitrary image/video encodings.
+        configuration.preferredAssetRepresentationMode = .current
+        // Set the selection behavior to respect the user’s selection order.
+        configuration.selection = .ordered
+        // Set the selection limit to enable multiselection.
+        configuration.selectionLimit = 1
+        // Set the preselected asset identifiers with the identifiers that the app tracks.
+        configuration.preselectedAssetIdentifiers = selectedAssetIdentifiers
+
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+
+    func saveAsset() {
+        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+        currentAssetIdentifier = assetIdentifier
+
+        let progress: Progress?
+        let itemProvider = selection[assetIdentifier]!.itemProvider
+        if itemProvider.canLoadObject(ofClass: PHLivePhoto.self) {
+            progress = itemProvider.loadObject(ofClass: PHLivePhoto.self) { [weak self] livePhoto, error in
+                DispatchQueue.main.async {
+                    self?.handleCompletion(assetIdentifier: assetIdentifier, object: livePhoto, error: error)
+                }
+            }
+        }
+        else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            progress = itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                DispatchQueue.main.async {
+                    self?.handleCompletion(assetIdentifier: assetIdentifier, object: image, error: error)
+                }
+            }
+        } else if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+            progress = itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+                do {
+                    guard let url = url, error == nil else {
+                        throw error ?? NSError(domain: NSFileProviderErrorDomain, code: -1, userInfo: nil)
+                    }
+                    self?.messageSend(videoUrl: url)
+                } catch let catchedError {
+                    DispatchQueue.main.async {
+                        self?.handleCompletion(
+                            assetIdentifier: assetIdentifier,
+                            object: nil,
+                            error: catchedError
+                        )
+                    }
+                }
+            }
+        } else {
+            progress = nil
+        }
+        print(progress?.fractionCompleted ?? 0.0)
+    }
+
+    func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
+        guard currentAssetIdentifier == assetIdentifier else { return }
+        if let image = object as? UIImage {
+            messageSend(photo: image)
+        }
+    }
+}
+
