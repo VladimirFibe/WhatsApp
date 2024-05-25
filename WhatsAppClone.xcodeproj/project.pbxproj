@@ -41,6 +41,7 @@
 		E80855C22BFEBEB700080804 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80855C12BFEBEB700080804 /* Constants.swift */; };
 		E81BB6E82C0081B9002F9FDD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E81BB6E72C0081B9002F9FDD /* RealmSwift */; };
 		E81BB6E92C0081B9002F9FDD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E81BB6E72C0081B9002F9FDD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E8764A302C01A23B00994687 /* PhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8764A2F2C01A23B00994687 /* PhotoMessage.swift */; };
 		E876CA3D2BFF10950035F1D1 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */; };
 		E876CA3F2BFF89A10035F1D1 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876CA3E2BFF89A10035F1D1 /* ChatTitleView.swift */; };
 		E8A430812BFDF02D0065981A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A430802BFDF02D0065981A /* Store.swift */; };
@@ -111,6 +112,7 @@
 		E80855BD2BFEB7C800080804 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		E80855C12BFEBEB700080804 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E8764A2F2C01A23B00994687 /* PhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessage.swift; sourceTree = "<group>"; };
 		E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		E876CA3E2BFF89A10035F1D1 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
 		E8A430802BFDF02D0065981A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				E80855BB2BFEADC500080804 /* Message.swift */,
 				E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */,
 				E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */,
+				E8764A2F2C01A23B00994687 /* PhotoMessage.swift */,
 				E80855BD2BFEB7C800080804 /* RealmManager.swift */,
 			);
 			path = Models;
@@ -446,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8764A302C01A23B00994687 /* PhotoMessage.swift in Sources */,
 				E8A430812BFDF02D0065981A /* Store.swift in Sources */,
 				E808559A2BFE516C00080804 /* UsersStore.swift in Sources */,
 				E80855A42BFE582600080804 /* ChatsCell.swift in Sources */,
