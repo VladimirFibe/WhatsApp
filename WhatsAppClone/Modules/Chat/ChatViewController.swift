@@ -75,9 +75,7 @@ final class ChatViewController: MessagesViewController {
         let attachButton = InputBarButtonItem()
         attachButton.image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
-        attachButton.onTouchUpInside { _ in
-            print("Attach Button")
-        }
+        attachButton.onTouchUpInside { _ in self.actionAttachMessage()}
 
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
@@ -92,9 +90,27 @@ final class ChatViewController: MessagesViewController {
         // add gesutre recognizer
     }
 
-
-
-
+    private func actionAttachMessage() {
+        messageInputBar.inputTextView.resignFirstResponder()
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default) { alert in
+//            self.showImageGallery(.camera)
+        }
+        let library = UIAlertAction(title: "Library", style: .default) { alert in
+//            self.presentPicker()
+        }
+        let location = UIAlertAction(title: "Location", style: .default) { alert in
+//            if LocationManager.shared.currentLocation != nil {
+//                self.messageSend(location: kLOCATION)
+//            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        camera.setValue(UIImage(systemName: "camera"), forKey: "image")
+        library.setValue(UIImage(systemName: "photo.fill"), forKey: "image")
+        location.setValue(UIImage(systemName: "mappin.and.ellipse"), forKey: "image")
+        [camera, library, location, cancel].forEach { optionMenu.addAction($0)}
+        self.present(optionMenu, animated: true)
+    }
 }
 // MARK: - Load Chats
 extension ChatViewController {
