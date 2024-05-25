@@ -25,7 +25,7 @@ class IncomingMessage {
                 self.controller.messagesCollectionView.reloadData()
             }
         case kVIDEO:
-            FileStorage.downloadVideo(id: message.id, link: message.videoUrl) { filename in
+            FileStorage.downloadFile(fileName: "\(message.id).mov", link: message.videoUrl) { filename in
                 if let filename {
                     let videoURL = URL(fileURLWithPath: FileStorage.fileInDocumetsDirectory(fileName: filename))
                     let videoItem = VideoMessage(url: videoURL)

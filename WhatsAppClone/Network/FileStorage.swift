@@ -3,38 +3,11 @@ import FirebaseStorage
 import ProgressHUD
 
 class FileStorage {
-    // MARK: Audio
-    static func downloadAudio(
-        id: String,
-        link: String,
-        completion: @escaping (String?) -> Void
-    ) {
-        let fileName = "\(id).m4a"
+    static func downloadFile(fileName: String, link: String, completion: @escaping (String?) -> Void) {
         if fileExistsAtPath(fileName) {
             completion(fileName)
         } else if let url = URL(string: link) {
-            let downloadQueue = DispatchQueue(label: "audioDownloadQueue")
-            downloadQueue.async {
-                if let data = NSData(contentsOf: url) {
-                    FileStorage.saveFileLocally(data, fileName: fileName)
-                    DispatchQueue.main.async {
-                        completion(fileName)
-                    }
-                }
-            }
-        }
-    }
-    // MARK: - Video
-    static func downloadVideo(
-        id: String,
-        link: String,
-        completion: @escaping (String?) -> Void
-    ) {
-        let fileName = "\(id).mov"
-        if fileExistsAtPath(fileName) {
-            completion(fileName)
-        } else if let url = URL(string: link) {
-            let downloadQueue = DispatchQueue(label: "videoDownloadQueue")
+            let downloadQueue = DispatchQueue(label: "fileDownloadQueue")
             downloadQueue.async {
                 if let data = NSData(contentsOf: url) {
                     FileStorage.saveFileLocally(data, fileName: fileName)
@@ -109,6 +82,7 @@ class FileStorage {
     // MARK: - Save Locally
     static func saveFileLocally(_ fileData: NSData, fileName: String) {
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
+        print(docUrl)
         fileData.write(to: docUrl, atomically: true)
     }
 
