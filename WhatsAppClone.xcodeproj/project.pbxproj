@@ -63,6 +63,8 @@
 		E8AD98662BFDB0B700CB6D13 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98652BFDB0B700CB6D13 /* Kingfisher */; };
 		E8AD98692BFDB14D00CB6D13 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD98682BFDB14D00CB6D13 /* SnapKit */; };
 		E8AD986C2BFDB16D00CB6D13 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD986B2BFDB16D00CB6D13 /* ProgressHUD */; };
+		E8CB30EC2C01D11D000C984E /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = E8CB30EB2C01D11D000C984E /* YPImagePicker */; };
+		E8CB30EE2C01D443000C984E /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CB30ED2C01D443000C984E /* VideoMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,6 +131,7 @@
 		E8AD98492BFDA1EF00CB6D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8AD984F2BFDA51D00CB6D13 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8AD98522BFDADD300CB6D13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E8CB30ED2C01D443000C984E /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8AD98692BFDB14D00CB6D13 /* SnapKit in Frameworks */,
+				E8CB30EC2C01D11D000C984E /* YPImagePicker in Frameworks */,
 				E8AD985A2BFDAFA000CB6D13 /* FirebaseAuth in Frameworks */,
 				E8AD986C2BFDB16D00CB6D13 /* ProgressHUD in Frameworks */,
 				E8AD98662BFDB0B700CB6D13 /* Kingfisher in Frameworks */,
@@ -268,7 +272,7 @@
 				E80855BB2BFEADC500080804 /* Message.swift */,
 				E80855BF2BFEBD1000080804 /* OutgoingMessage.swift */,
 				E876CA3C2BFF10950035F1D1 /* IncomingMessage.swift */,
-				E8764A2F2C01A23B00994687 /* PhotoMessage.swift */,
+				E8CB30EF2C01D754000C984E /* MediaMessages */,
 				E80855BD2BFEB7C800080804 /* RealmManager.swift */,
 			);
 			path = Models;
@@ -358,6 +362,15 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		E8CB30EF2C01D754000C984E /* MediaMessages */ = {
+			isa = PBXGroup;
+			children = (
+				E8764A2F2C01A23B00994687 /* PhotoMessage.swift */,
+				E8CB30ED2C01D443000C984E /* VideoMessage.swift */,
+			);
+			path = MediaMessages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -385,6 +398,7 @@
 				E8AD98682BFDB14D00CB6D13 /* SnapKit */,
 				E8AD986B2BFDB16D00CB6D13 /* ProgressHUD */,
 				E81BB6E72C0081B9002F9FDD /* RealmSwift */,
+				E8CB30EB2C01D11D000C984E /* YPImagePicker */,
 			);
 			productName = WhatsAppClone;
 			productReference = E8AD98382BFDA1EE00CB6D13 /* WhatsAppClone.app */;
@@ -421,6 +435,7 @@
 				E8AD98672BFDB14D00CB6D13 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E8AD986A2BFDB16D00CB6D13 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 				E88F223A2C0080DD003D2F4E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E8CB30EA2C01D11D000C984E /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = E8AD98392BFDA1EE00CB6D13 /* Products */;
 			projectDirPath = "";
@@ -470,6 +485,7 @@
 				E808557F2BFE0FEA00080804 /* UsersViewControlller.swift in Sources */,
 				E8A430872BFDF1800065981A /* FirebaseClient.swift in Sources */,
 				E8AD983C2BFDA1EE00CB6D13 /* AppDelegate.swift in Sources */,
+				E8CB30EE2C01D443000C984E /* VideoMessage.swift in Sources */,
 				E80855A82BFE58E900080804 /* Date+Extension.swift in Sources */,
 				E808558B2BFE2CD900080804 /* EditProfileViewController.swift in Sources */,
 				E80855942BFE3D8700080804 /* ProfileStatusViewController.swift in Sources */,
@@ -641,6 +657,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "WhatsApp would like to use your media library";
 				INFOPLIST_KEY_NSCameraUsageDescription = "WhatsApp would like to use your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "WhatsApp would like to use your microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "WhatsApp would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -673,6 +690,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "WhatsApp would like to use your media library";
 				INFOPLIST_KEY_NSCameraUsageDescription = "WhatsApp would like to use your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "WhatsApp would like to use your microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "WhatsApp would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -764,6 +782,14 @@
 				minimumVersion = 14.1.3;
 			};
 		};
+		E8CB30EA2C01D11D000C984E /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -811,6 +837,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E8AD986A2BFDB16D00CB6D13 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
 			productName = ProgressHUD;
+		};
+		E8CB30EB2C01D11D000C984E /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CB30EA2C01D11D000C984E /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

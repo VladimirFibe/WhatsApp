@@ -24,19 +24,19 @@ class IncomingMessage {
                 mkMessage.photoItem?.image = image
                 self.controller.messagesCollectionView.reloadData()
             }
-        default: print(#function)
+        case kVIDEO:
+            FileStorage.downloadVideo(id: message.id, link: message.videoUrl) { filename in
+                if let filename {
+                    let videoURL = URL(fileURLWithPath: FileStorage.fileInDocumetsDirectory(fileName: filename))
+                    let videoItem = VideoMessage(url: videoURL)
+                    mkMessage.videoItem = videoItem
+                    mkMessage.kind = MessageKind.video(videoItem)
+                    self.controller.messagesCollectionView.reloadData()
+                }
+            }
+        default: break
         }
-        if message.type == kVIDEO {
-//            FileStorage.downloadVideo(id: message.id, link: message.videoUrl) { filename in
-//                if let filename {
-//                    let videoURL = URL(fileURLWithPath: FileStorage.fileInDocumetsDirectory(fileName: filename))
-//                    let videoItem = VideoMessage(url: videoURL)
-//                    mkMessage.videoItem = videoItem
-//                    mkMessage.kind = MessageKind.video(videoItem)
-//                    self.controller.messagesCollectionView.reloadData()
-//                }
-//            }
-        }
+
         if message.type == kLOCATION {
 //            let locationItem = LocationMessage(location: CLLocation(
 //                latitude: message.latitude,

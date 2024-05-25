@@ -225,6 +225,8 @@ extension ChatViewController: UIImagePickerControllerDelegate & UINavigationCont
     private func showImageGallery(_ sourceType: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
         picker.sourceType = sourceType
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? []
+        print(picker.mediaTypes)
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
