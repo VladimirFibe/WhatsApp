@@ -17,12 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func start() {
         if Auth.auth().currentUser == nil {
-            print("login")
-            Auth.auth().signIn(withEmail: "motiw@icloud.com", password: "123456") { result, error in
-                if let error {
-                    print(error.localizedDescription)
-                }
-            }
+            setRootViewController(makeAuth())
         } else {
             try? Auth.auth().signOut()
             print("logout")
@@ -43,6 +38,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                           options: .transitionCrossDissolve,
                           animations: nil,
                           completion: nil)
+    }
+    
+    private func makeAuth() -> UIViewController {
+        return UINavigationController(rootViewController: ViewController())
     }
 }
 
