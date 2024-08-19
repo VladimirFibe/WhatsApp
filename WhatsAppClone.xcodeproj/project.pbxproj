@@ -3,8 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 74;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		04DB8F562C73A88D0073DC3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 04DB8F552C73A88D0073DC3E /* FirebaseAuth */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04D762FD2C73A51F000EE42D /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DB8F562C73A88D0073DC3E /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +89,7 @@
 			);
 			name = WhatsAppClone;
 			packageProductDependencies = (
+				04DB8F552C73A88D0073DC3E /* FirebaseAuth */,
 			);
 			productName = WhatsAppClone;
 			productReference = 04D762FD2C73A51F000EE42D /* WhatsAppClone.app */;
@@ -105,7 +111,6 @@
 				};
 			};
 			buildConfigurationList = 04D762F82C73A51F000EE42D /* Build configuration list for PBXProject "WhatsAppClone" */;
-			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -113,6 +118,10 @@
 				Base,
 			);
 			mainGroup = 04D762F42C73A51F000EE42D;
+			packageReferences = (
+				04DB8F542C73A88C0073DC3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 60;
 			productRefGroup = 04D762FE2C73A51F000EE42D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -340,6 +349,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		04DB8F542C73A88C0073DC3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		04DB8F552C73A88D0073DC3E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04DB8F542C73A88C0073DC3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 04D762F52C73A51F000EE42D /* Project object */;
 }
