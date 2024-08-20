@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04DB8F562C73A88D0073DC3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 04DB8F552C73A88D0073DC3E /* FirebaseAuth */; };
+		04DB8F622C7422960073DC3E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 04DB8F612C7422960073DC3E /* ProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DB8F562C73A88D0073DC3E /* FirebaseAuth in Frameworks */,
+				04DB8F622C7422960073DC3E /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +90,7 @@
 			name = WhatsAppClone;
 			packageProductDependencies = (
 				04DB8F552C73A88D0073DC3E /* FirebaseAuth */,
+				04DB8F612C7422960073DC3E /* ProgressHUD */,
 			);
 			productName = WhatsAppClone;
 			productReference = 04D762FD2C73A51F000EE42D /* WhatsAppClone.app */;
@@ -118,6 +121,7 @@
 			mainGroup = 04D762F42C73A51F000EE42D;
 			packageReferences = (
 				04DB8F542C73A88C0073DC3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				04DB8F602C7422960073DC3E /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 60;
 			productRefGroup = 04D762FE2C73A51F000EE42D /* Products */;
@@ -355,6 +359,14 @@
 				minimumVersion = 11.1.0;
 			};
 		};
+		04DB8F602C7422960073DC3E /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -362,6 +374,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04DB8F542C73A88C0073DC3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		04DB8F612C7422960073DC3E /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04DB8F602C7422960073DC3E /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

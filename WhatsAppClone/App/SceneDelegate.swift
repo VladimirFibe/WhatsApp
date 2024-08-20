@@ -19,8 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if Auth.auth().currentUser == nil {
             setRootViewController(makeAuth())
         } else {
-            try? Auth.auth().signOut()
-            print("logout")
+            setRootViewController(makeTabbar())
         }
     }
     
@@ -42,6 +41,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeAuth() -> UIViewController {
         return UINavigationController(rootViewController: ViewController(callback: {[weak self] in self?.start()}))
+    }
+    
+    private func makeTabbar() -> UIViewController {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .green
+        try? Auth.auth().signOut()
+        return controller
     }
 }
 
