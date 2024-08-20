@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeAuth() -> UIViewController {
-        return UINavigationController(rootViewController: ViewController())
+        return UINavigationController(rootViewController: ViewController(callback: {[weak self] in self?.start()}))
     }
 }
 
