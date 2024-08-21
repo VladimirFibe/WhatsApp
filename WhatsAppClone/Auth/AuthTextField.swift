@@ -88,7 +88,6 @@ final class AuthTextField: UIView {
             textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
             textField.leadingAnchor.constraint(equalTo: label.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: label.trailingAnchor),
-            
             separatorView.leadingAnchor.constraint(equalTo: label.leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: label.trailingAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1),

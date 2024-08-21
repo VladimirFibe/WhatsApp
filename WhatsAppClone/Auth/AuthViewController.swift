@@ -6,7 +6,9 @@ class AuthViewController: UIViewController {
     private let store = AuthStore()
     private var bag = Bag()
 
-    private let emailTextField = AuthTextField(placeholder: "Email")
+    private let emailTextField = AuthTextField(placeholder: "Email", keyboardType: .emailAddress)
+    private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
+    private let repeatTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
     private let rootStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = 20
@@ -26,8 +28,6 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "SignUp", style: .plain, target: self, action: #selector(signUpAction))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SignIn", style: .plain, target: self, action: #selector(signInAction))
         setupObservers()
         setupRootStackView()
     }
@@ -89,8 +89,7 @@ class AuthViewController: UIViewController {
 private extension AuthViewController {
     func setupRootStackView() {
         view.addSubview(rootStackView)
-        rootStackView.addArrangedSubview(emailTextField)
-        rootStackView.addArrangedSubview(UIView())
+        [emailTextField, passwordTextField, repeatTextField, UIView()].forEach { rootStackView.addArrangedSubview($0)}
         NSLayoutConstraint.activate([
             rootStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             rootStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),

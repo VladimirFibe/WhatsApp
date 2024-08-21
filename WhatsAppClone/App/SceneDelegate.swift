@@ -46,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func makeTabbar() -> UIViewController {
         let controller = UIViewController()
         controller.view.backgroundColor = .green
-        try? Auth.auth().signOut()
         return controller
     }
 }
