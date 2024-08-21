@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeAuth() -> UIViewController {
-        return UINavigationController(rootViewController: ViewController(callback: {[weak self] in self?.start()}))
+        return UINavigationController(rootViewController: AuthViewController(callback: {[weak self] in self?.start()}))
     }
     
     private func makeTabbar() -> UIViewController {

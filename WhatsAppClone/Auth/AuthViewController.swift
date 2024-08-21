@@ -1,11 +1,19 @@
 import UIKit
 import ProgressHUD
 
-class ViewController: UIViewController {
+class AuthViewController: UIViewController {
     private var callback: Callback
     private let store = AuthStore()
     private var bag = Bag()
 
+    private let emailTextField = AuthTextField(placeholder: "Email")
+    private let rootStackView: UIStackView = {
+        $0.axis = .vertical
+        $0.spacing = 20
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIStackView())
+    
     init(callback: @escaping Callback) {
         self.callback = callback
         super.init(nibName: nil, bundle: nil)
@@ -21,6 +29,7 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "SignUp", style: .plain, target: self, action: #selector(signUpAction))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SignIn", style: .plain, target: self, action: #selector(signInAction))
         setupObservers()
+        setupRootStackView()
     }
     
     @objc private func signInAction() {
@@ -76,7 +85,21 @@ class ViewController: UIViewController {
         ProgressHUD.failed(message)
     }
 }
+// MARK: - Setup Views
+private extension AuthViewController {
+    func setupRootStackView() {
+        view.addSubview(rootStackView)
+        rootStackView.addArrangedSubview(emailTextField)
+        rootStackView.addArrangedSubview(UIView())
+        NSLayoutConstraint.activate([
+            rootStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            rootStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            rootStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            rootStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+        ])
+    }
+}
 
 #Preview {
-    UINavigationController(rootViewController: ViewController(callback: {}))
+    UINavigationController(rootViewController: AuthViewController(callback: {}))
 }
