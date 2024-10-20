@@ -10,6 +10,7 @@
 		45BDAC412CC4D46B00C96F98 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC402CC4D46B00C96F98 /* FirebaseAuth */; };
 		45BDAC432CC4D46B00C96F98 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC422CC4D46B00C96F98 /* FirebaseFirestore */; };
 		45BDAC452CC4D46B00C96F98 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC442CC4D46B00C96F98 /* FirebaseStorage */; };
+		45BDAC792CC4E34400C96F98 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC782CC4E34400C96F98 /* ProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45BDAC412CC4D46B00C96F98 /* FirebaseAuth in Frameworks */,
+				45BDAC792CC4E34400C96F98 /* ProgressHUD in Frameworks */,
 				45BDAC432CC4D46B00C96F98 /* FirebaseFirestore in Frameworks */,
 				45BDAC452CC4D46B00C96F98 /* FirebaseStorage in Frameworks */,
 			);
@@ -90,6 +92,7 @@
 				45BDAC402CC4D46B00C96F98 /* FirebaseAuth */,
 				45BDAC422CC4D46B00C96F98 /* FirebaseFirestore */,
 				45BDAC442CC4D46B00C96F98 /* FirebaseStorage */,
+				45BDAC782CC4E34400C96F98 /* ProgressHUD */,
 			);
 			productName = WhatsAppClone;
 			productReference = 45BDABFF2CC4CEF100C96F98 /* WhatsAppClone.app */;
@@ -121,6 +124,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				45BDAC772CC4E34400C96F98 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 45BDAC002CC4CEF100C96F98 /* Products */;
@@ -159,20 +163,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.fibe.WhatsAppClone;
+				MARKETING_VERSION = 0.5.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.WhatsAppClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -186,20 +191,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.fibe.WhatsAppClone;
+				MARKETING_VERSION = 0.5.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.WhatsAppClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -358,6 +364,14 @@
 				minimumVersion = 11.3.0;
 			};
 		};
+		45BDAC772CC4E34400C96F98 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -375,6 +389,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		45BDAC782CC4E34400C96F98 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45BDAC772CC4E34400C96F98 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
