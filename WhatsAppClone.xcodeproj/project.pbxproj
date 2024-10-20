@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		45BDAC412CC4D46B00C96F98 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC402CC4D46B00C96F98 /* FirebaseAuth */; };
+		45BDAC432CC4D46B00C96F98 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC422CC4D46B00C96F98 /* FirebaseFirestore */; };
+		45BDAC452CC4D46B00C96F98 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 45BDAC442CC4D46B00C96F98 /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		45BDABFF2CC4CEF100C96F98 /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45BDAC412CC4D46B00C96F98 /* FirebaseAuth in Frameworks */,
+				45BDAC432CC4D46B00C96F98 /* FirebaseFirestore in Frameworks */,
+				45BDAC452CC4D46B00C96F98 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 			);
 			name = WhatsAppClone;
 			packageProductDependencies = (
+				45BDAC402CC4D46B00C96F98 /* FirebaseAuth */,
+				45BDAC422CC4D46B00C96F98 /* FirebaseFirestore */,
+				45BDAC442CC4D46B00C96F98 /* FirebaseStorage */,
 			);
 			productName = WhatsAppClone;
 			productReference = 45BDABFF2CC4CEF100C96F98 /* WhatsAppClone.app */;
@@ -107,6 +119,9 @@
 			);
 			mainGroup = 45BDABF62CC4CEF100C96F98;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 45BDAC002CC4CEF100C96F98 /* Products */;
 			projectDirPath = "";
@@ -333,6 +348,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		45BDAC402CC4D46B00C96F98 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		45BDAC422CC4D46B00C96F98 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		45BDAC442CC4D46B00C96F98 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45BDAC3F2CC4D46B00C96F98 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 45BDABF72CC4CEF100C96F98 /* Project object */;
 }
