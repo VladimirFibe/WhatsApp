@@ -5,11 +5,31 @@ class AuthViewController: UIViewController {
     private var callback: Callback
     private let store = AuthStore()
     private var bag = Bag()
+    private var isLoading = false { didSet { self.actionButton.setNeedsUpdateConfiguration() }}
+    private var isLogin = true { didSet { self.updateUI()}}
 
     private let emailTextField = AuthTextField(placeholder: "Email", keyboardType: .emailAddress)
     private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
     private let repeatTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
-    
+    private lazy var actionButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.imagePadding = 8
+        $0.configuration = config
+        $0.configurationUpdateHandler = { [weak self] button in
+            guard let self else { return }
+            var conig = button.configuration
+            config.showsActivityIndicator = self.isLoading
+            config.title = self.isLogin ? "Login" : "Sign In"
+            button.configuration = config
+            button.isEnabled = !self.isLoading
+        }
+        $0.addAction(UIAction { _ in
+            self.actionButtonTapped()
+        },
+                     for: .primaryActionTriggered)
+        return $0
+    }(UIButton(type: .system))
+
     private let rootStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = 20
@@ -31,6 +51,14 @@ class AuthViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupObservers()
         setupRootStackView()
+    }
+    
+    private func actionButtonTapped() {
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        isLoading = true
+        isLogin ? store.sendAction(.signIn(email, password))
+        : store.sendAction(.createUser(email, password))
     }
     
     @objc private func signInAction() {
@@ -80,12 +108,21 @@ class AuthViewController: UIViewController {
     private func showError(_ message: String) {
         ProgressHUD.failed(message)
     }
+    
+    private func updateUI() {
+        actionButton.setNeedsUpdateConfiguration()
+        UIView.animate(withDuration: 1.0) {
+            self.repeatTextField.isHidden = self.isLogin
+            self.repeatTextField.alpha = self.isLogin ? 0 : 1
+        }
+    }
+
 }
 // MARK: - Setup Views
 private extension AuthViewController {
     func setupRootStackView() {
         view.addSubview(rootStackView)
-        [emailTextField, passwordTextField, repeatTextField, UIView()].forEach { rootStackView.addArrangedSubview($0)}
+        [emailTextField, passwordTextField, repeatTextField, actionButton, UIView()].forEach { rootStackView.addArrangedSubview($0)}
         NSLayoutConstraint.activate([
             rootStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             rootStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
