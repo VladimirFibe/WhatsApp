@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		45C852E82CFC6E3D00610B76 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 45C852E72CFC6E3D00610B76 /* FirebaseAuth */; };
+		45C852EA2CFC6E3D00610B76 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 45C852E92CFC6E3D00610B76 /* FirebaseFirestore */; };
+		45C852EC2CFC6E3D00610B76 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 45C852EB2CFC6E3D00610B76 /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		45F8AEB92CFC63A00087BF88 /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C852E82CFC6E3D00610B76 /* FirebaseAuth in Frameworks */,
+				45C852EA2CFC6E3D00610B76 /* FirebaseFirestore in Frameworks */,
+				45C852EC2CFC6E3D00610B76 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 			);
 			name = WhatsAppClone;
 			packageProductDependencies = (
+				45C852E72CFC6E3D00610B76 /* FirebaseAuth */,
+				45C852E92CFC6E3D00610B76 /* FirebaseFirestore */,
+				45C852EB2CFC6E3D00610B76 /* FirebaseStorage */,
 			);
 			productName = WhatsAppClone;
 			productReference = 45F8AEB92CFC63A00087BF88 /* WhatsAppClone.app */;
@@ -107,6 +119,9 @@
 			);
 			mainGroup = 45F8AEB02CFC63A00087BF88;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				45C852E62CFC6E3D00610B76 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 45F8AEBA2CFC63A00087BF88 /* Products */;
 			projectDirPath = "";
@@ -144,7 +159,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
@@ -156,7 +171,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4.1;
+				MARKETING_VERSION = 0.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.WhatsAppClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -171,7 +186,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatsAppClone/Info.plist;
@@ -183,7 +198,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4.1;
+				MARKETING_VERSION = 0.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.WhatsAppClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -333,6 +348,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		45C852E62CFC6E3D00610B76 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		45C852E72CFC6E3D00610B76 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45C852E62CFC6E3D00610B76 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		45C852E92CFC6E3D00610B76 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45C852E62CFC6E3D00610B76 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		45C852EB2CFC6E3D00610B76 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45C852E62CFC6E3D00610B76 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 45F8AEB12CFC63A00087BF88 /* Project object */;
 }
