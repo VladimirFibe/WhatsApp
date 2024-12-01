@@ -1,19 +1,13 @@
-//
-//  ViewController.swift
-//  WhatsAppClone
-//
-//  Created by Vladimir Fibe on 01.12.2024.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
     }
-
-
 }
 
+#Preview {
+    ViewController()
+}
