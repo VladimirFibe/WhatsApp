@@ -6,6 +6,8 @@ import GoogleSignInSwift
 
 final class AuthViewController: UIViewController {
     var callback: Callback?
+    
+    private let emailTextField = AuthTextField()
     init(callback: Callback? = nil) {
         self.callback = callback
         super.init(nibName: nil, bundle: nil)
@@ -18,14 +20,7 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        navigationItem.title = "Auth"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "bell"),
-            style: .done,
-            target: self,
-            action: #selector(googleLogin)
-        )
+        setupViews()
     }
     
     @objc private func login() {
@@ -37,19 +32,14 @@ final class AuthViewController: UIViewController {
     }
     
     @objc private func googleLogin() {
-        print("google login")
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        print(clientID)
-        
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first,
-              let rootViewController = window.rootViewController
-        else { return }
-        GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) {[weak self] userAuth, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) {[weak self] userAuth, error in
             guard let idToken = userAuth?.user.idToken,
-                  let accessToken = userAuth?.user.accessToken  else { return }
+                  let accessToken = userAuth?.user.accessToken,
+                  error == nil
+            else { return }
             let credential = GoogleAuthProvider.credential(
                 withIDToken: idToken.tokenString,
                 accessToken: accessToken.tokenString
@@ -57,7 +47,34 @@ final class AuthViewController: UIViewController {
             Auth.auth().signIn(with: credential) { result, error in
                 self?.callback?()
             }
-            
         }
     }
+}
+// MARK: - Setup Views
+private extension AuthViewController {
+    func setupViews() {
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Auth"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "bell"),
+            style: .done,
+            target: self,
+            action: #selector(googleLogin)
+        )
+        setupEmailTextField()
+    }
+    
+    func setupEmailTextField() {
+        view.addSubview(emailTextField)
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            emailTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            emailTextField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+        ])
+    }
+}
+
+#Preview {
+    UINavigationController(rootViewController: AuthViewController())
 }
