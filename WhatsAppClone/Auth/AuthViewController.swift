@@ -7,7 +7,7 @@ import GoogleSignInSwift
 final class AuthViewController: UIViewController {
     var callback: Callback?
     
-    private let emailTextField = AuthTextField()
+    private let emailTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
     init(callback: Callback? = nil) {
         self.callback = callback
         super.init(nibName: nil, bundle: nil)

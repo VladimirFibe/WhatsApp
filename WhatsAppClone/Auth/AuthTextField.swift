@@ -2,18 +2,28 @@ import UIKit
 
 final class AuthTextField: UIView {
     private var placeholder: String
+    
     private let label = UILabel()
     private let textField = UITextField()
     private let separatorView = UIView()
     public var text: String { textField.text ?? "" }
+    private let showPasswordButton = UIButton(type: .system)
     
     init(placeholder: String = "Email",
          isSecureTextEntry: Bool = false,
          keyboardType: UIKeyboardType = .default) {
         self.placeholder = placeholder
         super.init(frame: .zero)
+        textField.placeholder = placeholder
+        textField.keyboardType = keyboardType
+        if isSecureTextEntry {
+            textField.isSecureTextEntry = true
+            textField.rightView = showPasswordButton
+            textField.rightViewMode = .always
+        }
         setupLabel()
         setupTextField(isSecureTextEntry, keyboardType: keyboardType)
+        setupShowPasswordButton()
         setupSeparatorView()
     }
 
@@ -43,7 +53,6 @@ private extension AuthTextField {
         addSubview(textField)
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
-        
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .none
         textField.autocorrectionType = .no
@@ -57,6 +66,20 @@ private extension AuthTextField {
             textField.leadingAnchor.constraint(equalTo: leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+    
+    func setupShowPasswordButton() {
+        let configuration = UIButton.Configuration.plain()
+        showPasswordButton.configuration = configuration
+        showPasswordButton.configurationUpdateHandler = { [weak self] button in
+            var config = button.configuration
+            let isSecure = self?.textField.isSecureTextEntry ?? false
+            config?.image = isSecure ? UIImage(systemName: "eye") : UIImage(systemName: "eye.slash")
+            button.configuration = config
+        }
+        showPasswordButton.addAction(
+            UIAction {[weak self] _ in self?.toggleSecure()},
+            for: .primaryActionTriggered)
     }
     
     func setupSeparatorView() {
@@ -75,6 +98,11 @@ private extension AuthTextField {
     func configureLabel() {
         label.text = text.isEmpty ? "" : placeholder
         print(label.text ?? "label.text is nil")
+    }
+    
+    func toggleSecure() {
+        textField.isSecureTextEntry.toggle()
+        showPasswordButton.setNeedsUpdateConfiguration()
     }
 }
 
