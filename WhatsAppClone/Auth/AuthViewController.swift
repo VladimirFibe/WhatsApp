@@ -10,9 +10,14 @@ final class AuthViewController: UIViewController {
     private let store = AuthStore()
     private var bag = Bag()
     
+    private var isLoading = false { didSet { self.actionButton.setNeedsUpdateConfiguration()}}
+    private var isLogin = true { didSet { self.updateUI()}}
+    
     private let emailTextField = AuthTextField(placeholder: "Email", keyboardType: .emailAddress)
     private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
     private let repeatPasswordTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
+    private let actionButton = UIButton(type: .system)
+    
     private let rootStackView = UIStackView()
     
     init(callback: Callback? = nil) {
@@ -30,12 +35,12 @@ final class AuthViewController: UIViewController {
         setupViews()
     }
     
-    @objc private func login() {
-        print("login", emailTextField.text, passwordTextField.text, repeatPasswordTextField.text)
-//        Auth.auth().signIn(withEmail: "motiw@icloud.com", password: "123456") {[weak self] _, _ in
-//            print("login complete", self?.callback == nil, self == nil)
-//            self?.callback?()
-//        }
+    private func actionButtonTapped() {
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        isLoading = true
+        isLogin ? store.sendAction(.signIn(email, password))
+        : store.sendAction(.createUser(email, password))
     }
     
     @objc private func googleLogin() {
@@ -61,19 +66,47 @@ final class AuthViewController: UIViewController {
 private extension AuthViewController {
     func setupViews() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = "Auth"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Login",
-            style: .done,
-            target: self,
-            action: #selector (login)
-        )
+        navigationItem.title = "Login"
+        setupActionButton()
         setupRootStackView()
+        setupObservers()
+    }
+    
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self else { return }
+                self.isLoading = false
+                switch event {
+                case .login:            self.login()
+                case .notVerified:      self.notVerified()
+                case .registered:       self.registered()
+                case .emailSended:      self.emailSended()
+                case .linkSended:       self.linkSended()
+                case .error(let error): self.showError(error)
+                }
+            }.store(in: &bag)
+    }
+    
+    func setupActionButton() {
+        var configuration = UIButton.Configuration.filled()
+        actionButton.configuration = configuration
+        actionButton.configurationUpdateHandler = { [weak self] button in
+            guard let self else { return }
+            var config = button.configuration
+            config?.showsActivityIndicator = self.isLoading
+            config?.title = self.isLogin ? "Login" : "Register"
+            button.configuration = config
+            button.isEnabled = !self.isLoading
+        }
+        actionButton.addAction(UIAction {[weak self] _ in self?.actionButtonTapped() }, for: .primaryActionTriggered)
     }
     
     func setupRootStackView() {
         view.addSubview(rootStackView)
-        [emailTextField, passwordTextField, repeatPasswordTextField, UIView()].forEach { rootStackView.addArrangedSubview($0) }
+        [emailTextField, passwordTextField, repeatPasswordTextField, actionButton, UIView()].forEach { rootStackView.addArrangedSubview($0) }
         rootStackView.axis = .vertical
         rootStackView.spacing = 20
         rootStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +117,44 @@ private extension AuthViewController {
             rootStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
     }
+    
+    func updateUI() {
+        actionButton.setNeedsUpdateConfiguration()
+        UIView.animate(withDuration: 1.0) {
+            self.repeatPasswordTextField.isHidden = self.isLogin
+            self.repeatPasswordTextField.alpha = self.isLogin ? 0 : 1
+//            self.buttonStackView.isHidden = !self.isLogin
+//            self.buttonStackView.alpha = self.isLogin ? 1 : 0
+        }
+    }
+    
+    private func login() {
+        callback?()
+    }
+
+    private func notVerified() {
+        ProgressHUD.failed("Please verify email")
+//        resendButton.isHidden = false
+    }
+
+    private func registered() {
+        isLogin = true
+        ProgressHUD.succeed("Отправлен email")
+//        resendButton.isHidden = false
+    }
+
+    private func emailSended() {
+//        resendButton.isHidden = true
+    }
+
+    private func linkSended() {
+        ProgressHUD.succeed("Ссылка отправлена")
+    }
+
+    private func showError(_ message: String) {
+        ProgressHUD.failed(message)
+    }
+
 }
 
 #Preview {
