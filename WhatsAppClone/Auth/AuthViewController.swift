@@ -17,6 +17,8 @@ final class AuthViewController: UIViewController {
     private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
     private let repeatPasswordTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
     private let actionButton = UIButton(type: .system)
+    private let appleButton = UIButton(type: .system)
+    private let googleButton = UIButton(type: .system)
     
     private let rootStackView = UIStackView()
     
@@ -34,33 +36,6 @@ final class AuthViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
-    
-    private func actionButtonTapped() {
-        let email = emailTextField.text
-        let password = passwordTextField.text
-        isLoading = true
-        isLogin ? store.sendAction(.signIn(email, password))
-        : store.sendAction(.createUser(email, password))
-    }
-    
-    @objc private func googleLogin() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) {[weak self] userAuth, error in
-            guard let idToken = userAuth?.user.idToken,
-                  let accessToken = userAuth?.user.accessToken,
-                  error == nil
-            else { return }
-            let credential = GoogleAuthProvider.credential(
-                withIDToken: idToken.tokenString,
-                accessToken: accessToken.tokenString
-            )
-            Auth.auth().signIn(with: credential) { result, error in
-                self?.callback?()
-            }
-        }
-    }
 }
 // MARK: - Setup Views
 private extension AuthViewController {
@@ -68,6 +43,8 @@ private extension AuthViewController {
         view.backgroundColor = .systemBackground
         navigationItem.title = "Login"
         setupActionButton()
+        setupAppleButton()
+        setupGoogleButton()
         setupRootStackView()
         setupObservers()
     }
@@ -91,7 +68,7 @@ private extension AuthViewController {
     }
     
     func setupActionButton() {
-        var configuration = UIButton.Configuration.filled()
+        let configuration = UIButton.Configuration.filled()
         actionButton.configuration = configuration
         actionButton.configurationUpdateHandler = { [weak self] button in
             guard let self else { return }
@@ -104,9 +81,30 @@ private extension AuthViewController {
         actionButton.addAction(UIAction {[weak self] _ in self?.actionButtonTapped() }, for: .primaryActionTriggered)
     }
     
+    func setupAppleButton() {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "Login with Apple"
+        appleButton.configuration = configuration
+    }
+    
+    func setupGoogleButton() {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "Login with Google"
+        googleButton.configuration = configuration
+        googleButton.addAction(UIAction {[weak self] _ in self?.googleButtonTapped() }, for: .primaryActionTriggered)
+    }
+    
     func setupRootStackView() {
         view.addSubview(rootStackView)
-        [emailTextField, passwordTextField, repeatPasswordTextField, actionButton, UIView()].forEach { rootStackView.addArrangedSubview($0) }
+        [
+            emailTextField,
+            passwordTextField,
+            repeatPasswordTextField,
+            actionButton,
+            appleButton,
+            googleButton,
+            UIView()
+        ].forEach { rootStackView.addArrangedSubview($0) }
         rootStackView.axis = .vertical
         rootStackView.spacing = 20
         rootStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -127,34 +125,67 @@ private extension AuthViewController {
 //            self.buttonStackView.alpha = self.isLogin ? 1 : 0
         }
     }
-    
-    private func login() {
+}
+// MARK: - Actions
+private extension AuthViewController {
+    func login() {
         callback?()
     }
 
-    private func notVerified() {
+    func notVerified() {
         ProgressHUD.failed("Please verify email")
 //        resendButton.isHidden = false
     }
 
-    private func registered() {
+    func registered() {
         isLogin = true
         ProgressHUD.succeed("Отправлен email")
 //        resendButton.isHidden = false
     }
 
-    private func emailSended() {
+    func emailSended() {
 //        resendButton.isHidden = true
     }
 
-    private func linkSended() {
+    func linkSended() {
         ProgressHUD.succeed("Ссылка отправлена")
     }
 
-    private func showError(_ message: String) {
+    func showError(_ message: String) {
         ProgressHUD.failed(message)
     }
-
+    
+    func actionButtonTapped() {
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        isLoading = true
+        isLogin ? store.sendAction(.signIn(email, password))
+        : store.sendAction(.createUser(email, password))
+    }
+    
+    func appleButtonTapped() {
+        
+    }
+    
+    func googleButtonTapped() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) {
+            [weak self] userAuth,
+            error in
+            guard let idToken = userAuth?.user.idToken,
+                  let accessToken = userAuth?.user.accessToken,
+                  error == nil
+            else { return }
+            self?.store.sendAction(
+                .googleSignIn(
+                    idToken.tokenString,
+                    accessToken.tokenString
+                )
+            )
+        }
+    }
 }
 
 #Preview {

@@ -35,6 +35,30 @@ extension FirebaseClient {
         try Auth.auth().signOut()
 //        person = nil
     }
+    
+    func googleSignIn(_ idToken: String, _ accessToken: String) async throws {
+        let credential = GoogleAuthProvider.credential(
+            withIDToken: idToken,
+            accessToken: accessToken
+        )
+        let authResult = try await Auth.auth().signIn(with: credential)
+        if let isNewUser = authResult.additionalUserInfo?.isNewUser, isNewUser {
+            let uid = authResult.user.uid
+            let name = authResult.user.displayName ?? ""
+            let email = authResult.user.email ?? ""
+            let person = Person(id: uid, username: name, email: email)
+            print("User created: \(person)")
+            try await Firestore.firestore()
+                .collection("persons")
+                .document(uid)
+                .setData(["id": uid,
+                          "username": name,
+                          "email": email,
+                          "about": "",
+                          "avatarLink": "",
+                          "fullName": name])
+        }
+    }
 }
 // MARK: - Person
 extension FirebaseClient {
