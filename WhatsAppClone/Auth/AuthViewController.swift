@@ -1,4 +1,5 @@
 import UIKit
+import ProgressHUD
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
@@ -6,8 +7,14 @@ import GoogleSignInSwift
 
 final class AuthViewController: UIViewController {
     var callback: Callback?
+    private let store = AuthStore()
+    private var bag = Bag()
     
-    private let emailTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
+    private let emailTextField = AuthTextField(placeholder: "Email", keyboardType: .emailAddress)
+    private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
+    private let repeatPasswordTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
+    private let rootStackView = UIStackView()
+    
     init(callback: Callback? = nil) {
         self.callback = callback
         super.init(nibName: nil, bundle: nil)
@@ -24,11 +31,11 @@ final class AuthViewController: UIViewController {
     }
     
     @objc private func login() {
-        print("login")
-        Auth.auth().signIn(withEmail: "motiw@icloud.com", password: "123456") {[weak self] _, _ in
-            print("login complete", self?.callback == nil, self == nil)
-            self?.callback?()
-        }
+        print("login", emailTextField.text, passwordTextField.text, repeatPasswordTextField.text)
+//        Auth.auth().signIn(withEmail: "motiw@icloud.com", password: "123456") {[weak self] _, _ in
+//            print("login complete", self?.callback == nil, self == nil)
+//            self?.callback?()
+//        }
     }
     
     @objc private func googleLogin() {
@@ -56,21 +63,25 @@ private extension AuthViewController {
         view.backgroundColor = .systemBackground
         navigationItem.title = "Auth"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "bell"),
+            title: "Login",
             style: .done,
             target: self,
-            action: #selector(googleLogin)
+            action: #selector (login)
         )
-        setupEmailTextField()
+        setupRootStackView()
     }
     
-    func setupEmailTextField() {
-        view.addSubview(emailTextField)
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+    func setupRootStackView() {
+        view.addSubview(rootStackView)
+        [emailTextField, passwordTextField, repeatPasswordTextField, UIView()].forEach { rootStackView.addArrangedSubview($0) }
+        rootStackView.axis = .vertical
+        rootStackView.spacing = 20
+        rootStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            emailTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            emailTextField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            rootStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            rootStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            rootStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            rootStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
     }
 }

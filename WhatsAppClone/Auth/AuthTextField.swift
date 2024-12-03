@@ -6,8 +6,9 @@ final class AuthTextField: UIView {
     private let label = UILabel()
     private let textField = UITextField()
     private let separatorView = UIView()
-    public var text: String { textField.text ?? "" }
     private let showPasswordButton = UIButton(type: .system)
+    
+    public var text: String { textField.text ?? "" }
     
     init(placeholder: String = "Email",
          isSecureTextEntry: Bool = false,
