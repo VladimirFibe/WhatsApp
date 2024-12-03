@@ -16,10 +16,13 @@ final class AuthViewController: UIViewController {
     private let emailTextField = AuthTextField(placeholder: "Email", keyboardType: .emailAddress)
     private let passwordTextField = AuthTextField(placeholder: "Password", isSecureTextEntry: true)
     private let repeatPasswordTextField = AuthTextField(placeholder: "Repeat Password", isSecureTextEntry: true)
+    private let forgotButton = UIButton(type: .system)
+    private let resendButton = UIButton(type: .system)
     private let actionButton = UIButton(type: .system)
     private let appleButton = UIButton(type: .system)
     private let googleButton = UIButton(type: .system)
-    
+    private let statusSwitchLabel = UILabel()
+    private let statusSwitchButton = UIButton(type: .system)
     private let rootStackView = UIStackView()
     
     init(callback: Callback? = nil) {
@@ -42,9 +45,13 @@ private extension AuthViewController {
     func setupViews() {
         view.backgroundColor = .systemBackground
         navigationItem.title = "Login"
+        setupForgotButton()
+        setupResendButton()
         setupActionButton()
         setupAppleButton()
         setupGoogleButton()
+        setupStatusSwitchLabel()
+        setupStatusSwitchButton()
         setupRootStackView()
         setupObservers()
     }
@@ -65,6 +72,18 @@ private extension AuthViewController {
                 case .error(let error): self.showError(error)
                 }
             }.store(in: &bag)
+    }
+    
+    func setupForgotButton() {
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = "Forgot Password?"
+        forgotButton.configuration = configuration
+    }
+    
+    func setupResendButton() {
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = "Resend Email"
+        resendButton.configuration = configuration
     }
     
     func setupActionButton() {
@@ -94,6 +113,22 @@ private extension AuthViewController {
         googleButton.addAction(UIAction {[weak self] _ in self?.googleButtonTapped() }, for: .primaryActionTriggered)
     }
     
+    private func setupStatusSwitchLabel() {
+        statusSwitchLabel.text = "Don't have an account?"
+    }
+    
+    private func setupStatusSwitchButton() {
+        let configuration = UIButton.Configuration.plain()
+        statusSwitchButton.configuration = configuration
+        statusSwitchButton.configurationUpdateHandler = { [weak self] button in
+            guard let self else { return }
+            var config = button.configuration
+            config?.title = self.isLogin ? "Sign Up" : "Login"
+            button.configuration = config
+        }
+        statusSwitchButton.addAction(UIAction { [weak self] _ in self?.isLogin.toggle() }, for: .primaryActionTriggered)
+    }
+    
     func setupRootStackView() {
         view.addSubview(rootStackView)
         [
@@ -103,6 +138,8 @@ private extension AuthViewController {
             actionButton,
             appleButton,
             googleButton,
+            statusSwitchLabel,
+            statusSwitchButton,
             UIView()
         ].forEach { rootStackView.addArrangedSubview($0) }
         rootStackView.axis = .vertical
