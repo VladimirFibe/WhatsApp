@@ -1,7 +1,6 @@
 import UIKit
 import ProgressHUD
 import FirebaseCore
-import FirebaseAuth
 import GoogleSignIn
 import GoogleSignInSwift
 
@@ -74,6 +73,7 @@ private extension AuthViewController {
     }
     
     func setupForgotButton() {
+        buttonStackView.addArrangedSubview(forgotButton)
         var configuration = UIButton.Configuration.plain()
         configuration.title = "Forgot Password?"
         configuration.titleAlignment = .leading
@@ -87,11 +87,13 @@ private extension AuthViewController {
     }
     
     func setupResendButton() {
+        buttonStackView.addArrangedSubview(resendButton)
         var configuration = UIButton.Configuration.plain()
         configuration.titleAlignment = .trailing
         configuration.title = "Resend Email"
         configuration.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         resendButton.configuration = configuration
+        resendButton.isEnabled = false
         resendButton.addAction(UIAction {[weak self] _ in
             let email = self?.emailTextField.text ?? ""
             self?.store.sendAction(.sendEmail(email))
@@ -141,6 +143,7 @@ private extension AuthViewController {
     
     func setupRootStackView() {
         view.addSubview(rootStackView)
+        buttonStackView.distribution = .equalSpacing
         [
             emailTextField,
             passwordTextField,
@@ -183,18 +186,19 @@ private extension AuthViewController {
     }
 
     func notVerified() {
-        ProgressHUD.failed("Please verify email")
-//        resendButton.isHidden = false
+        ProgressHUD.failed("Пожалуйста, подтвердите почту")
+        resendButton.isHidden = false
     }
 
     func registered() {
         isLogin = true
         ProgressHUD.succeed("Отправлен email")
-//        resendButton.isHidden = false
+        resendButton.isEnabled = true
     }
 
     func emailSended() {
-//        resendButton.isHidden = true
+        ProgressHUD.succeed("Отправлен email")
+        resendButton.isEnabled = true
     }
 
     func linkSended() {
