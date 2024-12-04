@@ -21,10 +21,8 @@ final class AuthViewController: UIViewController {
     private let actionButton = UIButton(type: .system)
     private let appleButton = UIButton(type: .system)
     private let googleButton = UIButton(type: .system)
-    private let statusSwitchLabel = UILabel()
     private let statusSwitchButton = UIButton(type: .system)
     private let buttonStackView = UIStackView()
-    private let statusSwitchStackView = UIStackView()
     private let rootStackView = UIStackView()
     
     init(callback: Callback? = nil) {
@@ -52,9 +50,7 @@ private extension AuthViewController {
         setupActionButton()
         setupAppleButton()
         setupGoogleButton()
-        setupStatusSwitchLabel()
         setupStatusSwitchButton()
-        setupButtonStackView()
         setupRootStackView()
         setupObservers()
     }
@@ -130,32 +126,21 @@ private extension AuthViewController {
         googleButton.addAction(UIAction {[weak self] _ in self?.googleButtonTapped() }, for: .primaryActionTriggered)
     }
     
-    private func setupStatusSwitchLabel() {
-        statusSwitchLabel.text = "Don't have an account?"
-    }
-    
     private func setupStatusSwitchButton() {
-        let configuration = UIButton.Configuration.plain()
+        var configuration = UIButton.Configuration.plain()
+        configuration.titleAlignment = .leading
         statusSwitchButton.configuration = configuration
         statusSwitchButton.configurationUpdateHandler = { [weak self] button in
             guard let self else { return }
             var config = button.configuration
-            config?.title = self.isLogin ? "Sign Up" : "Login"
+            config?.title = self.isLogin ? "Don't have an account? Sign Up" : "Already have an account? Login"
             button.configuration = config
         }
         statusSwitchButton.addAction(UIAction { [weak self] _ in self?.isLogin.toggle() }, for: .primaryActionTriggered)
     }
     
-    func setupButtonStackView() {
-        buttonStackView.distribution = .equalCentering
-        buttonStackView.addArrangedSubview(forgotButton)
-        buttonStackView.addArrangedSubview(resendButton)
-    }
-    
     func setupRootStackView() {
         view.addSubview(rootStackView)
-        statusSwitchStackView.addArrangedSubview(statusSwitchLabel)
-        statusSwitchStackView.addArrangedSubview(statusSwitchButton)
         [
             emailTextField,
             passwordTextField,
@@ -165,16 +150,19 @@ private extension AuthViewController {
             appleButton,
             googleButton,
             UIView(),
-            statusSwitchStackView
+            statusSwitchButton
         ].forEach { rootStackView.addArrangedSubview($0) }
         rootStackView.axis = .vertical
         rootStackView.spacing = 20
         rootStackView.translatesAutoresizingMaskIntoConstraints = false
+        repeatPasswordTextField.isHidden = true
+        repeatPasswordTextField.alpha = 0
+        
         NSLayoutConstraint.activate([
             rootStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             rootStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             rootStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            rootStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+            rootStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
         ])
     }
     
