@@ -23,6 +23,8 @@ final class AuthViewController: UIViewController {
     private let googleButton = UIButton(type: .system)
     private let statusSwitchLabel = UILabel()
     private let statusSwitchButton = UIButton(type: .system)
+    private let buttonStackView = UIStackView()
+    private let statusSwitchStackView = UIStackView()
     private let rootStackView = UIStackView()
     
     init(callback: Callback? = nil) {
@@ -52,6 +54,7 @@ private extension AuthViewController {
         setupGoogleButton()
         setupStatusSwitchLabel()
         setupStatusSwitchButton()
+        setupButtonStackView()
         setupRootStackView()
         setupObservers()
     }
@@ -77,13 +80,27 @@ private extension AuthViewController {
     func setupForgotButton() {
         var configuration = UIButton.Configuration.plain()
         configuration.title = "Forgot Password?"
+        configuration.titleAlignment = .leading
+        configuration.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         forgotButton.configuration = configuration
+        forgotButton.addAction(UIAction {[weak self] _ in
+            let email = self?.emailTextField.text ?? ""
+            self?.store.sendAction(.sendPasswordReset(email))
+        },
+        for: .touchUpInside)
     }
     
     func setupResendButton() {
         var configuration = UIButton.Configuration.plain()
+        configuration.titleAlignment = .trailing
         configuration.title = "Resend Email"
+        configuration.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         resendButton.configuration = configuration
+        resendButton.addAction(UIAction {[weak self] _ in
+            let email = self?.emailTextField.text ?? ""
+            self?.store.sendAction(.sendEmail(email))
+        },
+        for: .touchUpInside)
     }
     
     func setupActionButton() {
@@ -129,18 +146,26 @@ private extension AuthViewController {
         statusSwitchButton.addAction(UIAction { [weak self] _ in self?.isLogin.toggle() }, for: .primaryActionTriggered)
     }
     
+    func setupButtonStackView() {
+        buttonStackView.distribution = .equalCentering
+        buttonStackView.addArrangedSubview(forgotButton)
+        buttonStackView.addArrangedSubview(resendButton)
+    }
+    
     func setupRootStackView() {
         view.addSubview(rootStackView)
+        statusSwitchStackView.addArrangedSubview(statusSwitchLabel)
+        statusSwitchStackView.addArrangedSubview(statusSwitchButton)
         [
             emailTextField,
             passwordTextField,
             repeatPasswordTextField,
+            buttonStackView,
             actionButton,
             appleButton,
             googleButton,
-            statusSwitchLabel,
-            statusSwitchButton,
-            UIView()
+            UIView(),
+            statusSwitchStackView
         ].forEach { rootStackView.addArrangedSubview($0) }
         rootStackView.axis = .vertical
         rootStackView.spacing = 20
@@ -158,8 +183,8 @@ private extension AuthViewController {
         UIView.animate(withDuration: 1.0) {
             self.repeatPasswordTextField.isHidden = self.isLogin
             self.repeatPasswordTextField.alpha = self.isLogin ? 0 : 1
-//            self.buttonStackView.isHidden = !self.isLogin
-//            self.buttonStackView.alpha = self.isLogin ? 1 : 0
+            self.buttonStackView.isHidden = !self.isLogin
+            self.buttonStackView.alpha = self.isLogin ? 1 : 0
         }
     }
 }
