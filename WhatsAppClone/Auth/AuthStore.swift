@@ -14,6 +14,7 @@ enum AuthAction {
     case signIn(String, String)
     case sendPasswordReset(String)
     case sendEmail(String)
+    case googleSignIn(String, String)
 }
 
 final class AuthStore: Store<AuthEvent, AuthAction> {
@@ -36,7 +37,16 @@ final class AuthStore: Store<AuthEvent, AuthAction> {
             statefulCall { [weak self] in
                 try await self?.sendEmail(email)
             }
+        case .googleSignIn(let idToken, let accessToken):
+            statefulCall { [weak self] in
+                try await self?.googleSignIn(idToken, accessToken)
+            }
         }
+    }
+    
+    private func googleSignIn(_ idToken: String, _ accessToken: String) async throws {
+        try await useCase.googleSignIn(idToken, accessToken)
+        sendEvent(.login)
     }
 
     private func sendEmail(_ email: String) async throws {

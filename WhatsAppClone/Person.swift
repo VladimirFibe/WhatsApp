@@ -4,12 +4,26 @@ struct Person: Identifiable, Hashable, Codable {
     let id: String
     var username: String
     let email: String
+    var about = ""
     var pushId = ""
     var avatarLink = ""
     var fullname = ""
     var status = Status()
     var initials: String {
         String(username.first ?? "?")
+    }
+    
+    var data: [String: Any] {
+        ["id": id,
+         "username": username,
+         "email": email,
+         "about": about,
+         "avatarLink": avatarLink,
+         "status": [
+            "index": status.index,
+            "statuses": status.statuses
+         ],
+         "fullName": fullname]
     }
 }
 // MARK: - Save to UserDefaults
