@@ -1,15 +1,11 @@
-//
-//  SettingsViewController.swift
-//  WhatsAppClone
-//
-//  Created by Vladimir Fibe on 05.12.2024.
-//
-
 import UIKit
-import FirebaseAuth
 
-final class SettingsViewController: UIViewController {
-    var callback: Callback?
+final class SettingsViewController: UITableViewController {
+    private var callback: Callback?
+    private let store = SettingsStore()
+    private var bag = Bag()
+    private let userInfoCell = SettingsNameTableViewCell()
+    private var person: Person?
     
     init(callback: Callback? = nil) {
         self.callback = callback
@@ -22,13 +18,21 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        store.sendAction(.fetch)
         view.backgroundColor = .systemBackground
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
     }
     
     @objc private func done() {
-        try? Auth.auth().signOut()
-        callback?()
+        store.sendAction(.signOut)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        userInfoCell
     }
 }

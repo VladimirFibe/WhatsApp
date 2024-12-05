@@ -60,6 +60,12 @@ extension FirebaseClient {
         let person = Person(id: uid, username: email, email: email)
         try reference(.persons).document(uid).setData(from: person)
     }
+    
+    func fetchPerson() async throws -> Person? {
+        guard let uid = Auth.auth().currentUser?.uid else { return nil}
+        let querySnapshot = try await reference(.persons).document(uid).getDocument()
+        return try? querySnapshot.data(as: Person.self)
+    }
 }
 // MARK: - Helpers
 extension FirebaseClient {
