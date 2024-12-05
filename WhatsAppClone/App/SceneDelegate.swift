@@ -49,7 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func makeTabbar() -> UIViewController {
-        try? Auth.auth().signOut()
         return MainTabBarController(callback: { [weak self] in
             self?.start()
         })
