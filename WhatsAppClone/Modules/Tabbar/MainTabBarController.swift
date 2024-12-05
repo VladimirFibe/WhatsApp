@@ -1,0 +1,35 @@
+import UIKit
+import FirebaseAuth
+
+final class MainTabBarController: UITabBarController {
+    var callback: Callback?
+    
+    init(callback: Callback? = nil) {
+        self.callback = callback
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        let chats = ChatsTableViewController()
+        let channels = ChannelsViewController()
+        let users = UsersViewControlller()
+        let settings = SettingsViewController(callback: callback)
+        chats.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "message"), tag: 0)
+        channels.tabBarItem = UITabBarItem(title: "Channels", image: UIImage(systemName: "quote.bubble"), tag: 1)
+        users.tabBarItem = UITabBarItem(title: "Users", image: UIImage(systemName: "person.2"), tag: 2)
+        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 3)
+        setViewControllers([
+            UINavigationController(rootViewController: chats),
+            UINavigationController(rootViewController: channels),
+            UINavigationController(rootViewController: users),
+            UINavigationController(rootViewController: settings)
+        ], animated: true)
+    }
+}
+
