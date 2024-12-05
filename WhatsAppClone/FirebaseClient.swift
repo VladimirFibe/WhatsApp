@@ -33,7 +33,6 @@ extension FirebaseClient {
 
     func signOut() throws {
         try Auth.auth().signOut()
-//        person = nil
     }
     
     func googleSignIn(_ idToken: String, _ accessToken: String) async throws {
@@ -46,17 +45,11 @@ extension FirebaseClient {
             let uid = authResult.user.uid
             let name = authResult.user.displayName ?? ""
             let email = authResult.user.email ?? ""
-            let person = Person(id: uid, username: name, email: email)
-            print("User created: \(person)")
+            let person = Person(id: uid, username: name, email: email, fullname: name)
             try await Firestore.firestore()
                 .collection("persons")
                 .document(uid)
-                .setData(["id": uid,
-                          "username": name,
-                          "email": email,
-                          "about": "",
-                          "avatarLink": "",
-                          "fullName": name])
+                .setData(person.data)
         }
     }
 }

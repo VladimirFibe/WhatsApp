@@ -12,6 +12,19 @@ struct Person: Identifiable, Hashable, Codable {
     var initials: String {
         String(username.first ?? "?")
     }
+    
+    var data: [String: Any] {
+        ["id": id,
+         "username": username,
+         "email": email,
+         "about": about,
+         "avatarLink": avatarLink,
+         "status": [
+            "index": status.index,
+            "statuses": status.statuses
+         ],
+         "fullName": fullname]
+    }
 }
 // MARK: - Save to UserDefaults
 extension Person {
