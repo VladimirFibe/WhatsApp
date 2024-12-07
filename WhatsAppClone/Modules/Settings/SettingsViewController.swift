@@ -44,12 +44,10 @@ final class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let controller = UIViewController()
+        let controller = EditProfileViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
-}
 
-extension SettingsViewController {
     private func setupObservers() {
         store
             .events

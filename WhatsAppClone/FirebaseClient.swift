@@ -1,8 +1,10 @@
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
+    private(set) var person: Person? { didSet { Person.localPerson = person }}
     private init() {}
 }
 // MARK: - Atuh
@@ -33,6 +35,7 @@ extension FirebaseClient {
 
     func signOut() throws {
         try Auth.auth().signOut()
+        self.person = nil
     }
     
     func googleSignIn(_ idToken: String, _ accessToken: String) async throws {
@@ -46,6 +49,7 @@ extension FirebaseClient {
             let name = authResult.user.displayName ?? ""
             let email = authResult.user.email ?? ""
             let person = Person(id: uid, username: name, email: email, fullname: name)
+            self.person = person
             try await Firestore.firestore()
                 .collection("persons")
                 .document(uid)
@@ -58,13 +62,50 @@ extension FirebaseClient {
     
     func createPerson(withEmail email: String, uid: String) throws {
         let person = Person(id: uid, username: email, email: email)
+        self.person = person
         try reference(.persons).document(uid).setData(from: person)
     }
     
     func fetchPerson() async throws -> Person? {
         guard let uid = Auth.auth().currentUser?.uid else { return nil}
         let querySnapshot = try await reference(.persons).document(uid).getDocument()
-        return try? querySnapshot.data(as: Person.self)
+        let person = try? querySnapshot.data(as: Person.self)
+        self.person = person
+        return person
+    }
+    
+    func updateAvatar(_ url: String) throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        person?.avatarLink = url
+        try reference(.persons)
+            .document(uid)
+            .setData(from: person)
+    }
+
+    func updateUsername(_ username: String) throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        person?.username = username
+        try reference(.persons)
+            .document(uid)
+            .setData(from: person)
+    }
+
+    func updateStatus(_ status: Person.Status) throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        person?.status = status
+        reference(.persons)
+            .document(uid)
+            .updateData(["status": ["index": status.index, "statuses": status.statuses]])
+    }
+    
+    func uploadImage(_ image: UIImage) async throws -> String? {
+        guard let imageData = image.jpegData(compressionQuality: 0.6)
+        else { return nil }
+        let path = "/profile/\(Person.currentId).jpg"
+        let ref = Storage.storage().reference(withPath: path)
+        let _ = try await ref.putDataAsync(imageData)
+        let url = try await ref.downloadURL()
+        return url.absoluteString
     }
 }
 // MARK: - Helpers
