@@ -48,7 +48,6 @@ extension EditProfileViewController: PHPickerViewControllerDelegate {
     private func presentPhotoPicker() {
         var config = PHPickerConfiguration()
         config.selectionLimit = 1
-        
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true)
