@@ -8,18 +8,26 @@ final class EditProfileViewController: UITableViewController {
     private let store = EditProfileStore()
     private let photoCell = PhotoTableViewCell()
     private let textFieldCell = TextFieldTableViewCell()
-    private var person: Person? { didSet { showUserInfo() }}
+    private let statusCell = UITableViewCell()
+    private var person: Person
+    
+    init(person: Person) {
+        self.person = person
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Edit Profile"
+        statusCell.selectionStyle = .none
+        statusCell.accessoryType = .disclosureIndicator
         setupPhotoTableViewCell()
         setupTextFieldCell()
-        setupObservers()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        store.sendAction(.fetch)
+        showUserInfo()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,7 +42,15 @@ final class EditProfileViewController: UITableViewController {
         if indexPath.section == 0 {
             return indexPath.row == 0 ? photoCell : textFieldCell
         } else {
-            return UITableViewCell()
+            return statusCell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
+            let controller = UIViewController()
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
     
@@ -49,23 +65,14 @@ final class EditProfileViewController: UITableViewController {
     }
     
     private func showUserInfo() {
-        if let person {
-            textFieldCell.configure(with: person.username)
-            FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
-                self.photoCell.configure(with: image)
-            }
+        textFieldCell.configure(with: person.username)
+        var config = statusCell.defaultContentConfiguration()
+        config.text = person.status.text
+        statusCell.contentConfiguration = config
+
+        FileStorage.downloadImage(id: person.id, link: person.avatarLink) { image in
+            self.photoCell.configure(with: image)
         }
-    }
-    
-    private func setupObservers() {
-        store
-            .events
-            .receive(on: DispatchQueue.main)
-            .sink {[weak self] event in
-                switch event {
-                case .done(let person): self?.person = person
-                }
-            }.store(in: &bag)
     }
 }
 
@@ -97,13 +104,13 @@ extension EditProfileViewController: PHPickerViewControllerDelegate {
     }
     
     private func uploadAvatarImage(_ image: UIImage) {
-        guard let person else { return }
-        FileStorage.uploadImage(image, directory: "/profile/\(person.id).jpg") { avatarLink in
+        let id = person.id
+        FileStorage.uploadImage(image, directory: "/profile/\(id).jpg") { avatarLink in
             if let avatarLink {
                 self.store.sendAction(.updateAvatarLink(avatarLink))
                 ProgressHUD.succeed("Аватар сохранен")
                 guard let data = image.jpegData(compressionQuality: 1.0) as? NSData else { return }
-                FileStorage.saveFileLocally(data, fileName: "\(person.id).jpg")
+                FileStorage.saveFileLocally(data, fileName: "\(id).jpg")
             } else {
                 ProgressHUD.failed("Аватар не сохранен")
             }

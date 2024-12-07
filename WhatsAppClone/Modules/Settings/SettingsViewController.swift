@@ -41,7 +41,8 @@ final class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let controller = EditProfileViewController()
+        guard let person else { return }
+        let controller = EditProfileViewController(person: person)
         navigationController?.pushViewController(controller, animated: true)
     }
 
