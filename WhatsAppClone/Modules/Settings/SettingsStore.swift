@@ -2,7 +2,6 @@ import Foundation
 
 enum SettingsEvent {
     case done(Person)
-    case signOut
 }
 
 enum SettingsAction {
@@ -28,12 +27,10 @@ final class SettingsStore: Store<SettingsEvent, SettingsAction> {
 
     private func signOut() throws {
         try useCase.signOut()
-        sendEvent(.signOut)
     }
 
     private func fetchPerson() async throws {
         if let person = try await useCase.fetchPerson() {
-            print(person)
             sendEvent(.done(person))
         }
     }

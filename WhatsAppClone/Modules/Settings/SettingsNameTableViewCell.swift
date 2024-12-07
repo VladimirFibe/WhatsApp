@@ -20,7 +20,7 @@ final class SettingsNameTableViewCell: UITableViewCell {
         subtitleLabel.text = person.status.text
     }
     
-    public func configure(with image: UIImage) {
+    public func configure(with image: UIImage?) {
         photoImageView.image = image
     }
     
@@ -71,8 +71,4 @@ final class SettingsNameTableViewCell: UITableViewCell {
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor)
         ])
     }
-}
-
-#Preview {
-    SettingsViewController()
 }

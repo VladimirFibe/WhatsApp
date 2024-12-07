@@ -4,7 +4,8 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var authListener: AuthStateDidChangeListenerHandle?
+    
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -12,20 +13,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        start()
+        autoLogin()
     }
     
-    func start() {
-        if Auth.auth().currentUser == nil {
-            print("not logged in")
-            setRootViewController(makeAuth())
-        } else {
-            print("login")
+    private func autoLogin() {
+        authListener = Auth.auth().addStateDidChangeListener{[weak self] auth, user in
+            let result = user?.isEmailVerified ?? false
+            self?.start(login: result)
+        }
+    }
+    
+    private func start(login: Bool) {
+        if login {
             setRootViewController(makeTabbar())
+        } else {
+            setRootViewController(makeAuth())
         }
     }
 
-    func setRootViewController(_ controller: UIViewController, animated: Bool = true) {
+    private func setRootViewController(_ controller: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = controller
             self.window?.makeKeyAndVisible()
@@ -42,16 +48,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func makeAuth() -> UIViewController {
-        let controller = AuthViewController(callback: { [weak self] in
-            self?.start()
-        })
-        return UINavigationController(rootViewController: controller)
+        UINavigationController(rootViewController: AuthViewController())
     }
 
     private func makeTabbar() -> UIViewController {
-        return MainTabBarController(callback: { [weak self] in
-            self?.start()
-        })
+        MainTabBarController()
     }
 }
 

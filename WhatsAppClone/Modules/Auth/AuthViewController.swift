@@ -5,7 +5,6 @@ import GoogleSignIn
 import GoogleSignInSwift
 
 final class AuthViewController: UIViewController {
-    var callback: Callback?
     private let store = AuthStore()
     private var bag = Bag()
     
@@ -23,16 +22,6 @@ final class AuthViewController: UIViewController {
     private let statusSwitchButton = UIButton(type: .system)
     private let buttonStackView = UIStackView()
     private let rootStackView = UIStackView()
-    
-    init(callback: Callback? = nil) {
-        self.callback = callback
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -181,9 +170,7 @@ private extension AuthViewController {
 }
 // MARK: - Actions
 private extension AuthViewController {
-    func login() {
-        callback?()
-    }
+    func login() {}
 
     func notVerified() {
         ProgressHUD.failed("Пожалуйста, подтвердите почту")
@@ -217,9 +204,7 @@ private extension AuthViewController {
         : store.sendAction(.createUser(email, password))
     }
     
-    func appleButtonTapped() {
-        
-    }
+    func appleButtonTapped() {}
     
     func googleButtonTapped() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }

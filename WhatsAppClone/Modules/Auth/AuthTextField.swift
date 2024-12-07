@@ -98,7 +98,6 @@ private extension AuthTextField {
     
     func configureLabel() {
         label.text = text.isEmpty ? "" : placeholder
-        print(label.text ?? "label.text is nil")
     }
     
     func toggleSecure() {
