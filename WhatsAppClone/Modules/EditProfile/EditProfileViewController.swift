@@ -42,7 +42,6 @@ extension EditProfileViewController: PHPickerViewControllerDelegate {
         didFinishPicking results: [PHPickerResult]
     ) {
         picker.dismiss(animated: true)
-        print("Finish")
     }
     
     private func presentPhotoPicker() {
