@@ -40,6 +40,7 @@ final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
     }
 
     private func updateUsername(_ username: String) throws {
+        print(username)
         try useCase.updateUsername(username)
     }
 
