@@ -49,7 +49,7 @@ final class EditProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            let controller = UIViewController()
+            let controller = ProfileStatusViewController(person: person)
             navigationController?.pushViewController(controller, animated: true)
         }
     }
