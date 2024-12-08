@@ -59,6 +59,13 @@ extension FirebaseClient {
 }
 // MARK: - Person
 extension FirebaseClient {
+    func fetchPersons() async throws -> [Person] {
+        guard let id = Auth.auth().currentUser?.uid else { return [] }
+        let query = try await reference(.persons)
+            .whereField("id", isNotEqualTo: id)
+            .limit(to: 50).getDocuments()
+        return query.documents.compactMap { try? $0.data(as: Person.self)}
+    }
     
     func createPerson(withEmail email: String, uid: String) throws {
         let person = Person(id: uid, username: email, email: email)
