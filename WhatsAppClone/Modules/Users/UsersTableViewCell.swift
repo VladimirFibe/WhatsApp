@@ -63,5 +63,5 @@ final class UsersTableViewCell: UITableViewCell {
 }
 
 #Preview {
-    UsersViewControlller()
+    UsersViewController()
 }

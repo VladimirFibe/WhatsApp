@@ -8,7 +8,7 @@ final class MainTabBarController: UITabBarController {
         view.backgroundColor = .systemBackground
         let chats = ChatsTableViewController()
         let channels = ChannelsViewController()
-        let users = UsersViewControlller()
+        let users = UsersViewController()
         let settings = SettingsViewController()
         chats.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "message"), tag: 0)
         channels.tabBarItem = UITabBarItem(title: "Channels", image: UIImage(systemName: "quote.bubble"), tag: 1)

@@ -1,6 +1,6 @@
 import UIKit
 
-final class UsersViewControlller: UITableViewController {
+final class UsersViewController: UITableViewController {
     private var bag = Bag()
     private let store = UsersStore()
     private var persons: [Person] = []
@@ -41,7 +41,9 @@ final class UsersViewControlller: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let person = searchController.isActive ? filteredPersons[indexPath.row] : persons[indexPath.row]
-        navigationController?.pushViewController(UIViewController(), animated: true)
+        let contoller = ProfileViewController(person: person)
+        contoller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(contoller, animated: true)
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -68,7 +70,7 @@ final class UsersViewControlller: UITableViewController {
     }
 }
 
-extension UsersViewControlller: UISearchResultsUpdating {
+extension UsersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
         filteredPersons = text.isEmpty ? persons : persons.filter({ $0.username.lowercased().contains(text)})
