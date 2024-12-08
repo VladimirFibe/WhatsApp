@@ -34,7 +34,7 @@ final class SettingsNameTableViewCell: UITableViewCell {
     
     private func setupPhotoImageView() {
         addSubview(photoImageView)
-        photoImageView.backgroundColor = .red
+        photoImageView.image = .avatar
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.layer.cornerRadius = 29

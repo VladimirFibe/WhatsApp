@@ -29,6 +29,7 @@ final class ProfileHeaderCell: UITableViewCell {
     private func setupAvatarImageView() {
         contentView.addSubview(avatarImageView)
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        avatarImageView.image = .avatar
         NSLayoutConstraint.activate([
             avatarImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             avatarImageView.topAnchor.constraint(equalTo: contentView.readableContentGuide.topAnchor),
