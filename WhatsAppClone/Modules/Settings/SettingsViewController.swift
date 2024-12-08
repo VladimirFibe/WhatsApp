@@ -5,16 +5,6 @@ final class SettingsViewController: UITableViewController {
     private var bag = Bag()
     private let userInfoCell = SettingsNameTableViewCell()
     private var person: Person? { didSet { showUserInfo() }}
-    private var footerLabel: UILabel = {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
-        label.text = "WhatsApp from FaceBook\nApp version \(appVersion)"
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        label.font = .systemFont(ofSize: 12)
-        label.textColor = .secondaryLabel
-        return label
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +12,14 @@ final class SettingsViewController: UITableViewController {
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         setupObservers()
-        tableView.tableFooterView = footerLabel
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
+        label.text = "WhatsApp from FaceBook\nApp version \(appVersion)"
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .secondaryLabel
+        tableView.tableFooterView = label
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,12 +41,11 @@ final class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let controller = UIViewController()
+        guard let person else { return }
+        let controller = EditProfileViewController(person: person)
         navigationController?.pushViewController(controller, animated: true)
     }
-}
 
-extension SettingsViewController {
     private func setupObservers() {
         store
             .events

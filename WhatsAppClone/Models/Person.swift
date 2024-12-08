@@ -50,8 +50,7 @@ extension Person {
     }
 
     static var currentName: String {
-//        FirebaseClient.shared.person?.username ?? "Current Name"
-        "Current Name"
+        FirebaseClient.shared.person?.username ?? "Current Name"
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {
