@@ -6,6 +6,7 @@ final class FirebaseClient {
     static let shared = FirebaseClient()
     private(set) var person: Person? { didSet { Person.localPerson = person }}
     private init() {}
+    let kRECENTS = "recents"
 }
 // MARK: - Atuh
 extension FirebaseClient {
@@ -128,5 +129,28 @@ extension FirebaseClient {
         case persons
         case messages
         case channels
+    }
+}
+// MARK: - Chats
+extension FirebaseClient {
+
+    func deleteRecent(_ recent: Recent) {
+        guard let currentId = person?.id else { return }
+        reference(.messages)
+            .document(currentId)
+            .collection(kRECENTS)
+            .document(recent.chatRoomId)
+            .updateData(["isHidden": true])
+    }
+
+    func downloadRecentChatsFromFireStore(completion: @escaping ([Recent]) -> Void) {
+        reference(.messages)
+            .document(Person.currentId)
+            .collection(kRECENTS)
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else { return }
+                let recents = documents.compactMap {  try? $0.data(as: Recent.self)}
+                completion(recents)
+            }
     }
 }

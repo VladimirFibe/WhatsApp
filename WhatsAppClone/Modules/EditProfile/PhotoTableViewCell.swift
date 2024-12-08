@@ -18,7 +18,7 @@ final class PhotoTableViewCell: UITableViewCell {
     
     private func setupPhotoImageView() {
         contentView.addSubview(photoImageView)
-        photoImageView.backgroundColor = .red
+        photoImageView.image = .avatar
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.layer.cornerRadius = 30
         photoImageView.layer.masksToBounds = true

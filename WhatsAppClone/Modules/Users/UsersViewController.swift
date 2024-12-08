@@ -3,9 +3,9 @@ import UIKit
 final class UsersViewController: UITableViewController {
     private var bag = Bag()
     private let store = UsersStore()
-    private var persons: [Person] = []
-    private var filteredPersons: [Person] = []
-    private let searchController = UISearchController(searchResultsController: nil)
+    private var persons: [Person] = [] { didSet { tableView.reloadData() }}
+    private let searchResultsController = UsersSearchResultsViewController()
+    private lazy var searchController = UISearchController(searchResultsController: searchResultsController)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +28,22 @@ final class UsersViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        searchController.isActive ? filteredPersons.count : persons.count
+        persons.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewCell.identifier, for: indexPath) as? UsersTableViewCell else { fatalError() }
-        let person = searchController.isActive ? filteredPersons[indexPath.row] : persons[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: UsersTableViewCell.identifier,
+            for: indexPath
+        ) as? UsersTableViewCell else { fatalError() }
+        let person = persons[indexPath.row]
         cell.configure(with: person)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let person = searchController.isActive ? filteredPersons[indexPath.row] : persons[indexPath.row]
+        let person = persons[indexPath.row]
         let contoller = ProfileViewController(person: person)
         contoller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(contoller, animated: true)
@@ -49,7 +52,6 @@ final class UsersViewController: UITableViewController {
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if let isRefreshing = refreshControl?.isRefreshing, isRefreshing {
             store.sendAction(.fetch)
-            print("refreshing")
             refreshControl?.endRefreshing()
         }
     }
@@ -61,9 +63,7 @@ final class UsersViewController: UITableViewController {
             .sink { [weak self] event in
                 guard let self else { return }
                 switch event {
-                case .done(let persons):
-                    self.persons = persons
-                    tableView.reloadData()
+                case .done(let persons): self.persons = persons
                 }
             }
             .store(in: &bag)
@@ -73,7 +73,6 @@ final class UsersViewController: UITableViewController {
 extension UsersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        filteredPersons = text.isEmpty ? persons : persons.filter({ $0.username.lowercased().contains(text)})
-        tableView.reloadData()
+        searchResultsController.persons = persons.filter({ $0.username.lowercased().contains(text)})
     }
 }
