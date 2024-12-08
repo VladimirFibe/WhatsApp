@@ -9,6 +9,7 @@ final class ChatsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(ChatsCell.self, forCellReuseIdentifier: ChatsCell.identifier)
         setupSearchConroller()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(addButtonTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -16,6 +17,10 @@ final class ChatsTableViewController: UITableViewController {
         downloadRecentChats()
     }
     
+    @objc private func addButtonTapped() {
+        let controller = UsersViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
     private func downloadRecentChats() {
         FirebaseClient.shared.downloadRecentChatsFromFireStore { recents in
             DispatchQueue.main.async {
@@ -36,6 +41,13 @@ final class ChatsTableViewController: UITableViewController {
         let recent = recents[indexPath.row]
         cell.configure(with: recent)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let recent = recents[indexPath.row]
+            FirebaseClient.shared.deleteRecent(recent)
+        }
     }
     
     private func setupSearchConroller() {
