@@ -1,13 +1,14 @@
 import UIKit
 
 enum EditProfileEvent {
-    case done(Person?)
+    case done(Person)
 }
 
 enum EditProfileAction {
     case updateUsername(String)
     case uploadImage(UIImage)
     case updateAvatarLink(String)
+    case updateStatus(Person.Status)
     case fetch
 }
 
@@ -32,6 +33,11 @@ final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
             statefulCall { [weak self] in
                 try await self?.fetchPerson()
             }
+        case .updateStatus(let status):
+            statefulCall {
+                weak var wSelf = self
+                try wSelf?.updateStatus(status)
+            }
         }
     }
 
@@ -51,7 +57,12 @@ final class EditProfileStore: Store<EditProfileEvent, EditProfileAction> {
     }
 
     private func fetchPerson() async throws {
-        let person = try await useCase.fetchPerson()
-        sendEvent(.done(person))
+        if let person = try await useCase.fetchPerson() {
+            sendEvent(.done(person))
+        }
+    }
+    
+    private func updateStatus(_ status: Person.Status) throws {
+        try useCase.updateStatus(status)
     }
 }

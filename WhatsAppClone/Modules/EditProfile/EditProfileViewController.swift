@@ -49,7 +49,14 @@ final class EditProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            let controller = ProfileStatusViewController(person: person)
+            let controller = ProfileStatusViewController(status: person.status) {[weak self] status in
+                guard let self else { return }
+                self.person.status = status
+                var config = self.statusCell.defaultContentConfiguration()
+                config.text = status.text
+                self.statusCell.contentConfiguration = config
+                self.store.sendAction(.updateStatus(status))
+            }
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -62,6 +69,17 @@ final class EditProfileViewController: UITableViewController {
     
     private func setupTextFieldCell() {
         textFieldCell.configure(delegate: self)
+    }
+    
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] event in
+                switch event {
+                case .done(let person): self?.person.status = person.status
+                }
+            }.store(in: &bag)
     }
     
     private func showUserInfo() {
