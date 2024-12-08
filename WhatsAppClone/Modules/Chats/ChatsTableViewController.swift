@@ -1,10 +1,9 @@
 import UIKit
 
 final class ChatsTableViewController: UITableViewController {
-    private var recents: [Recent] = []
-    private var filteredRecents: [Recent] = []
-    
-    private let searchController = UISearchController(searchResultsController: nil)
+    private var recents: [Recent] = [] { didSet { tableView.reloadData() }}
+    private var searchResultController = ChatsSearchResultsViewController()
+    private lazy var searchController = UISearchController(searchResultsController: searchResultController)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +20,20 @@ final class ChatsTableViewController: UITableViewController {
         FirebaseClient.shared.downloadRecentChatsFromFireStore { recents in
             DispatchQueue.main.async {
                 self.recents = recents
-                self.tableView.reloadData()
-                print(recents.count)
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        searchController.isActive ? filteredRecents.count : recents.count
+        recents.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatsCell.identifier, for: indexPath) as? ChatsCell else { fatalError() }
-        let recent = searchController.isActive ? filteredRecents[indexPath.row] : recents[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: ChatsCell.identifier,
+            for: indexPath
+        ) as? ChatsCell else { fatalError() }
+        let recent = recents[indexPath.row]
         cell.configure(with: recent)
         return cell
     }
@@ -51,7 +51,6 @@ final class ChatsTableViewController: UITableViewController {
 extension ChatsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        filteredRecents = text.isEmpty ? recents : recents.filter { $0.name.lowercased().contains(text)}
-        tableView.reloadData()
+        searchResultController.recents = text.isEmpty ? recents : recents.filter { $0.name.lowercased().contains(text)}
     }
 }
