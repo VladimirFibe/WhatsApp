@@ -4,6 +4,7 @@ import Realm
 
 final class ChatViewController: MessagesViewController {
     public let recent: Recent
+    
     init(recent: Recent) {
         self.recent = recent
         super.init(nibName: nil, bundle: nil)

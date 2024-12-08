@@ -43,11 +43,10 @@ final class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            print("Start chat")
+            let recent = Recent(name: person.username, avatarLink: person.avatarLink, chatRoomId: person.id)
+            let controller = ChatViewController(recent: recent)
+            controller.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
-}
-
-#Preview {
-    UINavigationController(rootViewController: ProfileViewController(person: Person(id: "dI8suFNYoPagygLAbtXUge9hGhF2", username: "Jhon", email: "Motiw@icloud.com", avatarLink: "https://firebasestorage.googleapis.com:443/v0/b/whatsappclone-78758.appspot.com/o/profile%2FdI8suFNYoPagygLAbtXUge9hGhF2.jpg?alt=media&token=d4ea3134-ac58-44c4-ab98-608676462155")))
 }

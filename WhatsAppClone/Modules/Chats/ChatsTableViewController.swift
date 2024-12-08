@@ -77,5 +77,6 @@ extension ChatsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
         searchResultController.recents = text.isEmpty ? recents : recents.filter { $0.name.lowercased().contains(text)}
+        searchResultController.pushChat = { [weak self] recent in self?.pushChat(recent)}
     }
 }
