@@ -13,7 +13,24 @@
 		45C853232CFCB96D00610B76 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 45C853222CFCB96D00610B76 /* GoogleSignIn */; };
 		45C853252CFCB96D00610B76 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 45C853242CFCB96D00610B76 /* GoogleSignInSwift */; };
 		45C853D32CFF627F00610B76 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 45C853D22CFF627F00610B76 /* ProgressHUD */; };
+		6A53B6912D0655FB0078EFE5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6A53B6902D0655FB0078EFE5 /* MessageKit */; };
+		6A53B69F2D0658430078EFE5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6A53B69E2D0658430078EFE5 /* RealmSwift */; };
+		6A53B6A02D0658430078EFE5 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6A53B69E2D0658430078EFE5 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6A53B6992D0657DE0078EFE5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6A53B6A02D0658430078EFE5 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		45F8AEB92CFC63A00087BF88 /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +65,8 @@
 				45C853252CFCB96D00610B76 /* GoogleSignInSwift in Frameworks */,
 				45C852E82CFC6E3D00610B76 /* FirebaseAuth in Frameworks */,
 				45C853232CFCB96D00610B76 /* GoogleSignIn in Frameworks */,
+				6A53B69F2D0658430078EFE5 /* RealmSwift in Frameworks */,
+				6A53B6912D0655FB0078EFE5 /* MessageKit in Frameworks */,
 				45C853D32CFF627F00610B76 /* ProgressHUD in Frameworks */,
 				45C852EA2CFC6E3D00610B76 /* FirebaseFirestore in Frameworks */,
 				45C852EC2CFC6E3D00610B76 /* FirebaseStorage in Frameworks */,
@@ -61,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				45F8AEBB2CFC63A00087BF88 /* WhatsAppClone */,
+				6A53B69A2D0658000078EFE5 /* Frameworks */,
 				45F8AEBA2CFC63A00087BF88 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +93,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6A53B69A2D0658000078EFE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +110,7 @@
 				45F8AEB52CFC63A00087BF88 /* Sources */,
 				45F8AEB62CFC63A00087BF88 /* Frameworks */,
 				45F8AEB72CFC63A00087BF88 /* Resources */,
+				6A53B6992D0657DE0078EFE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +127,8 @@
 				45C853222CFCB96D00610B76 /* GoogleSignIn */,
 				45C853242CFCB96D00610B76 /* GoogleSignInSwift */,
 				45C853D22CFF627F00610B76 /* ProgressHUD */,
+				6A53B6902D0655FB0078EFE5 /* MessageKit */,
+				6A53B69E2D0658430078EFE5 /* RealmSwift */,
 			);
 			productName = WhatsAppClone;
 			productReference = 45F8AEB92CFC63A00087BF88 /* WhatsAppClone.app */;
@@ -132,6 +162,8 @@
 				45C852E62CFC6E3D00610B76 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				45C853212CFCB96D00610B76 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				45C853D12CFF627F00610B76 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				6A53B68F2D0655FB0078EFE5 /* XCRemoteSwiftPackageReference "MessageKit" */,
+				6A53B6932D0656F70078EFE5 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 45F8AEBA2CFC63A00087BF88 /* Products */;
@@ -389,6 +421,22 @@
 				minimumVersion = 14.1.3;
 			};
 		};
+		6A53B68F2D0655FB0078EFE5 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		6A53B6932D0656F70078EFE5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -421,6 +469,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45C853D12CFF627F00610B76 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
 			productName = ProgressHUD;
+		};
+		6A53B6902D0655FB0078EFE5 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A53B68F2D0655FB0078EFE5 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+		6A53B69E2D0658430078EFE5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A53B6932D0656F70078EFE5 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -21,6 +21,13 @@ final class ChatsTableViewController: UITableViewController {
         let controller = UsersViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    private func pushChat(_ recent: Recent) {
+        let controller = ChatViewController(recent: recent)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     private func downloadRecentChats() {
         FirebaseClient.shared.downloadRecentChatsFromFireStore { recents in
             DispatchQueue.main.async {
@@ -48,6 +55,12 @@ final class ChatsTableViewController: UITableViewController {
             let recent = recents[indexPath.row]
             FirebaseClient.shared.deleteRecent(recent)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let recent = recents[indexPath.row]
+        pushChat(recent)
     }
     
     private func setupSearchConroller() {
