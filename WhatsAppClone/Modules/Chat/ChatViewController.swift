@@ -1,7 +1,7 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
-import Realm
+import RealmSwift
 
 final class ChatViewController: MessagesViewController {
     public let recent: Recent
