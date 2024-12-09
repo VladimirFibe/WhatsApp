@@ -24,6 +24,7 @@ class MKMessage: NSObject, MessageType {
         self.sentDate = message.date
         self.readDate = message.readDate
         self.incoming = message.incoming
+        self.kind = MessageKind.text("text")
 //        switch message.type {
 //        case kPHOTO:
 //            let url = URL(fileURLWithPath: message.pictureUrl)

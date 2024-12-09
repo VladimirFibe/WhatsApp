@@ -8,6 +8,7 @@ final class ChatViewController: MessagesViewController {
     private let refreshControl = UIRefreshControl()
     private let micButton = InputBarButtonItem()
     public let currentUser = MKSender(senderId: Person.currentId, displayName: Person.currentName)
+    public var mkMessages: [MKMessage] = []
     init(recent: Recent) {
         self.recent = recent
         super.init(nibName: nil, bundle: nil)
