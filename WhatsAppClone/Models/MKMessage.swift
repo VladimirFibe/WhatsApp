@@ -13,8 +13,8 @@ class MKMessage: NSObject, MessageType {
     var senderInitials: String
     var status: String
     var readDate: Date
-//    var photoItem: PhotoMessage?
-//    var videoItem: VideoMessage?
+    var photoItem: PhotoMessage?
+    var videoItem: VideoMessage?
     
     init(message: Message) {
         self.messageId = message.id
@@ -25,18 +25,17 @@ class MKMessage: NSObject, MessageType {
         self.readDate = message.readDate
         self.incoming = message.incoming
         self.kind = MessageKind.text("text")
-//        switch message.type {
-//        case kPHOTO:
-//            let url = URL(fileURLWithPath: message.pictureUrl)
-//            let photoItem = PhotoMessage(url: url)
-//            self.kind = MessageKind.photo(photoItem)
-//            self.photoItem = photoItem
-//        case kVIDEO:
-//            let videoItem = VideoMessage(url: nil)
-//            self.kind = MessageKind.video(videoItem)
-//            self.videoItem = videoItem
-//        default: self.kind = MessageKind.text(message.text)
-//        }
-
+        switch message.type {
+        case kPHOTO:
+            let url = URL(fileURLWithPath: message.pictureUrl)
+            let photoItem = PhotoMessage(url: url)
+            self.kind = MessageKind.photo(photoItem)
+            self.photoItem = photoItem
+        case kVIDEO:
+            let videoItem = VideoMessage(url: nil)
+            self.kind = MessageKind.video(videoItem)
+            self.videoItem = videoItem
+        default: self.kind = MessageKind.text(message.text)
+        }
     }
 }

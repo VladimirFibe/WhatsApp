@@ -154,3 +154,104 @@ extension FirebaseClient {
             }
     }
 }
+// MARK: - Messages
+extension FirebaseClient {
+    func updateMessageInFireStore(_ message: Message) {
+        let data: [String: Any] = [kSTATUS: kREAD, kREADDATE: Date()]
+        reference(.messages)
+            .document(message.uid)
+            .collection(Person.currentId)
+            .document(message.id)
+            .updateData(data)
+    }
+
+    func sendMessage(_ message: Message) {
+        try? reference(.messages)
+            .document("channels")
+            .collection(message.chatRoomId)
+            .document(message.id)
+            .setData(from: message)
+    }
+
+    func sendMessage(_ message: Message, recent: Recent) {
+        var data: [String: Any] = [
+            "id": message.id,
+            "chatRoomId": message.chatRoomId,
+            "date": message.date,
+            "name": message.name,
+            "uid": message.uid,
+            "initials": message.initials,
+            kREADDATE: message.readDate,
+            "type": message.type,
+            kSTATUS: message.status,
+            "incoming": false,
+            "text": message.text,
+            "audioUrl": message.audioUrl,
+            "videoUrl": message.videoUrl,
+            "pictureUrl": message.pictureUrl,
+            "latitude": message.latitude,
+            "longitude": message.longitude,
+            "audioDuration": message.audioDuration
+        ]
+        reference(.messages)
+            .document(Person.currentId)
+            .collection(recent.chatRoomId)
+            .document(message.id)
+            .setData(data)
+
+        data["incoming"] = true
+        data["chatRoomId"] = Person.currentId
+        reference(.messages)
+                .document(recent.chatRoomId)
+                .collection(Person.currentId)
+                .document(message.id)
+                .setData(data)
+
+        data = [
+            "text":             message.text,
+            "name":             recent.name,
+            "date":             message.date,
+            "avatarLink":       recent.avatarLink,
+            "unreadCounter":    0,
+            "chatRoomId":       recent.chatRoomId
+        ]
+
+        reference(.messages)
+            .document(Person.currentId)
+            .collection(kRECENTS)
+            .document(recent.chatRoomId)
+            .setData(data)
+        guard let person else { return }
+        data[kNAME] = person.username
+        data["avatarLink"] = person.avatarLink
+        data["chatRoomId"] = person.id
+        
+        reference(.messages)
+            .document(recent.chatRoomId)
+            .collection(kRECENTS)
+            .document(Person.currentId)
+            .getDocument { snapshot, error in
+                if let snapshot,
+                   let old = snapshot.data(),
+                   let unreadCounter = old[kUNREADCOUNTER] as? Int {
+                    data[kUNREADCOUNTER] = unreadCounter + 1
+                } else {
+                    data[kUNREADCOUNTER] = 1
+                }
+
+                self.saveRecent(
+                    firstId: recent.chatRoomId,
+                    secondId: Person.currentId,
+                    data: data
+                )
+            }
+    }
+
+    func saveRecent(firstId: String, secondId: String, data: [String: Any]) {
+        reference(.messages)
+            .document(firstId)
+            .collection(kRECENTS)
+            .document(secondId)
+            .setData(data)
+    }
+}
