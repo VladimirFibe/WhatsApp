@@ -3,11 +3,11 @@ import MessageKit
 
 extension ChatViewController: MessagesDataSource {
     var currentSender: any MessageKit.SenderType {
-        <#code#>
+        currentUser
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> any MessageKit.MessageType {
-        <#code#>
+        mkMes
     }
     
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
