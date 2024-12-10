@@ -9,9 +9,7 @@ struct Person: Identifiable, Hashable, Codable {
     var avatarLink = ""
     var fullname = ""
     var status = Status()
-    var initials: String {
-        String(username.first ?? "?")
-    }
+    var initials: String { String(username.first ?? "?")}
     
     var data: [String: Any] {
         ["id": id,

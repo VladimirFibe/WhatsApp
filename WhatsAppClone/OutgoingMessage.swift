@@ -21,22 +21,18 @@ class OutgoingMessage {
         location: String? = nil,
         memberIds: [String]
     ) {
-        guard let currentUser = FirebaseClient.shared.person else {
-            return
-        }
+        guard let currentUser = FirebaseClient.shared.person else { return }
         let message = Message()
         message.id = UUID().uuidString
         message.chatRoomId = chatRoomId
         message.uid = currentUser.id
         message.name = currentUser.username
-        message.initials = String(currentUser.username.first ?? "?")
+        message.initials = currentUser.initials
         message.date = Date()
         message.status = kSENT
-        print(#function)
         if let text {
             message.text = text
             message.type = kTEXT
-            print(text)
             save(message: message, recent: recent)
         } else if let photo {
             message.text = "Photo Message"
