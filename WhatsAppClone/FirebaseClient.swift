@@ -4,6 +4,13 @@ import FirebaseStorage
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
+    
+    var newChatListener: ListenerRegistration?
+    var updatedChatListener: ListenerRegistration?
+    var typingListener: ListenerRegistration?
+    var channelsListener: ListenerRegistration?
+    var myChannelsListener: ListenerRegistration?
+
     private(set) var person: Person? { didSet { Person.localPerson = person }}
     private init() {}
     let kRECENTS = "recents"
@@ -253,5 +260,34 @@ extension FirebaseClient {
             .collection(kRECENTS)
             .document(secondId)
             .setData(data)
+    }
+}
+// MARK: - Typing
+extension FirebaseClient {
+    func saveTyping(typing: Bool, chatRoomId: String) {
+        reference(.messages)
+            .document(chatRoomId)
+            .collection(kTYPING)
+            .document(Person.currentId)
+            .setData([kTYPING: typing])
+    }
+
+    func createTypingObserver(
+        chatRoomId: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        typingListener = reference(.messages)
+            .document(Person.currentId)
+            .collection(kTYPING)
+            .document(chatRoomId)
+            .addSnapshotListener { snapshot, _ in
+                if let snapshot,
+                      let data = snapshot.data(),
+                   let typing = data[kTYPING] as? Bool {
+                    completion(typing)
+                } else {
+                    completion(false)
+                }
+            }
     }
 }

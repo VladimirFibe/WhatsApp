@@ -6,9 +6,13 @@ import RealmSwift
 final class ChatViewController: MessagesViewController {
     public let recent: Recent
     private let refreshControl = UIRefreshControl()
-    private let micButton = InputBarButtonItem()
+    public let micButton = InputBarButtonItem()
     public let currentUser = MKSender(senderId: Person.currentId, displayName: Person.currentName)
     public var mkMessages: [MKMessage] = []
+    private var isTyping = false
+    
+    private lazy var chatTitleView = ChatTitleView(name: recent.name,
+                                         frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     init(recent: Recent) {
         self.recent = recent
         super.init(nibName: nil, bundle: nil)
@@ -59,5 +63,34 @@ final class ChatViewController: MessagesViewController {
     
     private func actionAttachMessage() {
         print(#function)
+    }
+}
+// MARK: - Typing
+extension ChatViewController {
+    func updateTypingIndicator(_ show: Bool) {
+        chatTitleView.configure(with: show)
+    }
+
+    func typingIndicatorUpdate() {
+        if !isTyping {
+            isTyping = true
+            FirebaseClient.shared.saveTyping(typing: true, chatRoomId: recent.chatRoomId)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.typingCounterStop()
+            }
+        }
+    }
+
+    func typingCounterStop() {
+        isTyping = false
+        FirebaseClient.shared.saveTyping(typing: false, chatRoomId: recent.chatRoomId)
+    }
+
+    func createTypingObserver() {
+        FirebaseClient.shared.createTypingObserver(chatRoomId: recent.chatRoomId) { typing in
+            DispatchQueue.main.async {
+                self.updateTypingIndicator(typing)
+            }
+        }
     }
 }

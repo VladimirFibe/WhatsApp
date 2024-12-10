@@ -35,6 +35,7 @@ class OutgoingMessage {
         if let text {
             message.text = text
             message.type = kTEXT
+            print(text)
             save(message: message, recent: recent)
         } else if let photo {
             message.text = "Photo Message"
