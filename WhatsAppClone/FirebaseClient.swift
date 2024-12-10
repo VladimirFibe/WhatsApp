@@ -186,22 +186,22 @@ extension FirebaseClient {
     func sendMessage(_ message: Message, recent: Recent) {
         var data: [String: Any] = [
             "id": message.id,
-            "chatRoomId": message.chatRoomId,
-            "date": message.date,
-            "name": message.name,
-            "uid": message.uid,
-            "initials": message.initials,
-            kREADDATE: message.readDate,
-            "type": message.type,
-            kSTATUS: message.status,
-            "incoming": false,
-            "text": message.text,
-            "audioUrl": message.audioUrl,
-            "videoUrl": message.videoUrl,
-            "pictureUrl": message.pictureUrl,
-            "latitude": message.latitude,
-            "longitude": message.longitude,
-            "audioDuration": message.audioDuration
+            "chatRoomId":       message.chatRoomId,
+            "date":             message.date,
+            "name":             message.name,
+            "uid":              message.uid,
+            "initials":         message.initials,
+            kREADDATE:          message.readDate,
+            "type":             message.type,
+            kSTATUS:            message.status,
+            "incoming":         false,
+            "text":             message.text,
+            "audioUrl":         message.audioUrl,
+            "videoUrl":         message.videoUrl,
+            "pictureUrl":       message.pictureUrl,
+            "latitude":         message.latitude,
+            "longitude":        message.longitude,
+            "audioDuration":    message.audioDuration
         ]
         reference(.messages)
             .document(Person.currentId)
@@ -209,8 +209,8 @@ extension FirebaseClient {
             .document(message.id)
             .setData(data)
 
-        data["incoming"] = true
-        data["chatRoomId"] = Person.currentId
+        data["incoming"] =      true
+        data["chatRoomId"] =    Person.currentId
         reference(.messages)
                 .document(recent.chatRoomId)
                 .collection(Person.currentId)
@@ -232,9 +232,9 @@ extension FirebaseClient {
             .document(recent.chatRoomId)
             .setData(data)
         guard let person else { return }
-        data[kNAME] = person.username
-        data["avatarLink"] = person.avatarLink
-        data["chatRoomId"] = person.id
+        data[kNAME] =           person.username
+        data["avatarLink"] =    person.avatarLink
+        data["chatRoomId"] =    person.id
         
         reference(.messages)
             .document(recent.chatRoomId)
