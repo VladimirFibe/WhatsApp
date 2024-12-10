@@ -12,13 +12,13 @@ class OutgoingMessage {
 
     static func send(
         chatRoomId: String,
-        recent: Recent?,
-        text: String?,
-        photo: UIImage?,
-        videoUrl: URL?,
-        audio: String?,
+        recent: Recent? = nil,
+        text: String? = nil,
+        photo: UIImage? = nil,
+        videoUrl: URL? = nil,
+        audio: String? = nil,
         audioDuration: Float = 0.0,
-        location: String?,
+        location: String? = nil,
         memberIds: [String]
     ) {
         guard let currentUser = FirebaseClient.shared.person else {
@@ -32,6 +32,7 @@ class OutgoingMessage {
         message.initials = String(currentUser.username.first ?? "?")
         message.date = Date()
         message.status = kSENT
+        print(#function)
         if let text {
             message.text = text
             message.type = kTEXT

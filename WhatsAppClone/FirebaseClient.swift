@@ -12,8 +12,11 @@ final class FirebaseClient {
     var myChannelsListener: ListenerRegistration?
 
     private(set) var person: Person? { didSet { Person.localPerson = person }}
-    private init() {}
-    let kRECENTS = "recents"
+    private init() {
+        Task {
+            try? await self.fetchPerson()
+        }
+    }
 }
 // MARK: - Atuh
 extension FirebaseClient {
