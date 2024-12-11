@@ -17,6 +17,12 @@ final class FirebaseClient {
             try? await self.fetchPerson()
         }
     }
+    
+    func removeListeners() {
+        newChatListener?.remove()
+        typingListener?.remove()
+        updatedChatListener?.remove()
+    }
 }
 // MARK: - Atuh
 extension FirebaseClient {
@@ -292,5 +298,86 @@ extension FirebaseClient {
                     completion(false)
                 }
             }
+    }
+}
+
+extension FirebaseClient {
+    func listenForNewChats(
+        _ currentId: String,
+        friendUid: String,
+        lastMessageDate: Date
+    ) {
+        newChatListener = reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .whereField(kDATE, isGreaterThan: lastMessageDate)
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else { return }
+                snapshot.documentChanges.forEach { change in
+                    if change.type == .added {
+                        let result = Result {
+                            try? change.document.data(as: Message.self)
+                        }
+                        switch result {
+                        case .success(let message):
+                            if let message {
+                                RealmManager.shared.saveToRealm(message)
+                            }
+                        case .failure(let error):
+                            print("DEBUG: Error decoding local message: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+    }
+
+    func listenForReadStatusChanges(
+        _ currentId: String,
+        friendUid: String,
+        completion: @escaping (Message) -> Void
+    ) {
+        updatedChatListener = reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .addSnapshotListener{ querySnapshot, error in
+                guard let snapshot = querySnapshot else { return }
+                snapshot.documentChanges.forEach { change in
+                    if change.type == .modified {
+                        let result = Result {
+                            try? change.document.data(as: Message.self)
+                        }
+                        switch result {
+                        case .success(let message):
+                            if let message, message.status != kSENT {
+                                completion(message)
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+    }
+
+    func checkForOldChats(_ currentId: String, friendUid: String) {
+        reference(.messages)
+            .document(currentId)
+            .collection(friendUid)
+            .order(by: "date")
+            .getDocuments { querySnapshot, _ in
+                guard let documents = querySnapshot?.documents else { return }
+                let messages = documents.compactMap { try? $0.data(as: Message.self)}
+                messages.forEach {
+                    RealmManager.shared.saveToRealm($0)
+                }
+            }
+    }
+
+    func resetUnreadCounter(recent: Recent) {
+        reference(.messages)
+            .document(Person.currentId)
+            .collection("recents")
+            .document(recent.chatRoomId)
+            .updateData(["unreadCounter": 0])
     }
 }

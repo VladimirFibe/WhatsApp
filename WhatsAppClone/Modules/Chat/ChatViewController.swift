@@ -10,7 +10,11 @@ final class ChatViewController: MessagesViewController {
     public let currentUser = MKSender(senderId: Person.currentId, displayName: Person.currentName)
     public var mkMessages: [MKMessage] = []
     private var isTyping = false
-    
+    private var messages: Results<Message>!
+    private let realm = try! Realm()
+    private var notificationToken: NotificationToken?
+    var displayingMessagesCount = 0
+
     private lazy var chatTitleView = ChatTitleView(name: recent.name,
                                          frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     init(recent: Recent) {
@@ -26,6 +30,25 @@ final class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         configureMessageCollectionView()
         configureMessageInputBar()
+        configureLeftBarButton()
+
+        loadChats()
+        listenForNewChats()
+        listenForReadStatusChange()
+        createTypingObserver()
+    }
+    
+    private func configureLeftBarButton() {
+        let leftButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                         primaryAction: UIAction {[weak self] _ in self?.backButtonPressed()})
+        let leftView = UIBarButtonItem(customView: chatTitleView)
+        navigationItem.leftBarButtonItems = [leftButton, leftView]
+    }
+
+    private func backButtonPressed() {
+        FirebaseClient.shared.removeListeners()
+        FirebaseClient.shared.resetUnreadCounter(recent: recent)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Configure
@@ -90,6 +113,73 @@ extension ChatViewController {
         FirebaseClient.shared.createTypingObserver(chatRoomId: recent.chatRoomId) { typing in
             DispatchQueue.main.async {
                 self.updateTypingIndicator(typing)
+            }
+        }
+    }
+}
+// MARK: - Load Chats
+extension ChatViewController {
+    private func loadChats() {
+        let predicate = NSPredicate(format: "chatRoomId = %@", recent.chatRoomId)
+        messages = realm.objects(Message.self).filter(predicate).sorted(byKeyPath: kDATE, ascending: true)
+        if messages.isEmpty { checkForOldChats() }
+        notificationToken = messages.observe({ changes in
+            switch changes {
+            case .initial:
+                self.insertMessages()
+            case .update(_, _, let insertions, _):
+                insertions.forEach {self.insertMessage(self.messages[$0])}
+            case .error(let error): print("Error on new insertion ", error.localizedDescription)
+            }
+        })
+    }
+
+    private func insertMessages() {
+        messages.forEach { insertMessage($0) }
+    }
+
+    private func insertMessage(_ message: Message) {
+        let incoming = IncomingMessage(self)
+
+        if let mkMessage = incoming.createMessage(message) {
+            mkMessages.append(mkMessage)
+            markMessageAsRead(message)
+        }
+    }
+
+    private func markMessageAsRead(_ message: Message) {
+        displayingMessagesCount += 1
+        if message.uid != Person.currentId, message.status != kREAD {
+            FirebaseClient.shared.updateMessageInFireStore(message)
+        }
+    }
+}
+// MARK: - Firebase chats
+extension ChatViewController {
+    private func listenForNewChats() {
+        var lastMessageDate = messages.last?.date ?? Date()
+        lastMessageDate = Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
+        FirebaseClient.shared.listenForNewChats(Person.currentId, friendUid: recent.chatRoomId, lastMessageDate: lastMessageDate)
+    }
+
+    private func listenForReadStatusChange() {
+        FirebaseClient.shared.listenForReadStatusChanges(Person.currentId, friendUid: recent.chatRoomId) { message in
+            self.updateMessage(message)
+        }
+    }
+
+    private func checkForOldChats() {
+        FirebaseClient.shared.checkForOldChats(Person.currentId, friendUid: recent.chatRoomId)
+    }
+
+    private func updateMessage(_ message: Message) {
+        for index in mkMessages.indices {
+            if message.id == mkMessages[index].messageId {
+                mkMessages[index].status = message.status
+                mkMessages[index].readDate = message.readDate
+                RealmManager.shared.saveToRealm(message)
+                messagesCollectionView.reloadData()
+                return
             }
         }
     }
