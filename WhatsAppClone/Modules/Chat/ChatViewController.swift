@@ -125,12 +125,12 @@ extension ChatViewController {
         if messages.isEmpty { checkForOldChats() }
         notificationToken = messages.observe({ changes in
             switch changes {
-            case .initial:
-                self.insertMessages()
-            case .update(_, _, let insertions, _):
-                insertions.forEach {self.insertMessage(self.messages[$0])}
+            case .initial: self.insertMessages()
+            case .update(_, _, let insertions, _): insertions.forEach {self.insertMessage(self.messages[$0])}
             case .error(let error): print("Error on new insertion ", error.localizedDescription)
             }
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToLastItem()
         })
     }
 
