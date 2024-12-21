@@ -6,11 +6,36 @@ extension ChatViewController: MessagesDataSource {
         currentUser
     }
     
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> any MessageKit.MessageType {
+    func messageForItem(
+        at indexPath: IndexPath,
+        in messagesCollectionView: MessageKit.MessagesCollectionView
+    ) -> any MessageKit.MessageType {
         mkMessages[indexPath.section]
     }
     
-    func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
+    func numberOfSections(
+        in messagesCollectionView: MessageKit.MessagesCollectionView
+    ) -> Int {
         mkMessages.count
+    }
+    
+    // MARK: - Cell top labels
+    
+    func cellTopLabelAttributedText(
+        for message: any MessageType,
+        at indexPath: IndexPath
+    ) -> NSAttributedString? {
+        if indexPath.section % 2 == 0 {
+            let showLoadMore = false
+            let text = showLoadMore ? "Pull to load more ... " : MessageKitDateFormatter.shared.string(from: message.sentDate)
+            let font = showLoadMore ? UIFont.systemFont(ofSize: 13) : UIFont.boldSystemFont(ofSize: 10)
+            let color = showLoadMore ? UIColor.systemBlue : UIColor.darkGray
+            return NSAttributedString(
+                string: text,
+                attributes: [.font: font, .foregroundColor: color]
+            )
+        } else {
+            return nil
+        }
     }
 }
