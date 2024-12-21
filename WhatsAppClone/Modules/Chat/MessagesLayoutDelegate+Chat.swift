@@ -25,7 +25,7 @@ extension ChatViewController: MessagesLayoutDelegate {
         at indexPath: IndexPath,
         in messagesCollectionView: MessagesCollectionView
     ) -> CGFloat {
-        indexPath.section == mkMessages.count - 1 ? 10 : 0
+        indexPath.section == mkMessages.count - 1 ? 0 : 10
     }
     
     func configureAvatarView(
@@ -34,6 +34,7 @@ extension ChatViewController: MessagesLayoutDelegate {
         at indexPath: IndexPath,
         in messagesCollectionView: MessagesCollectionView
     ) {
-        <#code#>
+//        avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+        avatarView.initials = mkMessages[indexPath.section].senderInitials
     }
 }

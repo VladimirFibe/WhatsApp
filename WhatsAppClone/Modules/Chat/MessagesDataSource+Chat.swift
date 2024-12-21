@@ -25,7 +25,7 @@ extension ChatViewController: MessagesDataSource {
         for message: any MessageType,
         at indexPath: IndexPath
     ) -> NSAttributedString? {
-        if indexPath.section % 2 == 0 {
+        if indexPath.section % 3 == 0 {
             let showLoadMore = false
             let text = showLoadMore ? "Pull to load more ... " : MessageKitDateFormatter.shared.string(from: message.sentDate)
             let font = showLoadMore ? UIFont.systemFont(ofSize: 13) : UIFont.boldSystemFont(ofSize: 10)
@@ -33,6 +33,25 @@ extension ChatViewController: MessagesDataSource {
             return NSAttributedString(
                 string: text,
                 attributes: [.font: font, .foregroundColor: color]
+            )
+        } else {
+            return nil
+        }
+    }
+    
+    func cellBottomLabelAttributedText(
+        for message: any MessageType,
+        at indexPath: IndexPath
+    ) -> NSAttributedString? {
+        if isFromCurrentSender(message: message) {
+            let mkMessage = mkMessages[indexPath.section]
+            let status = indexPath.section == mkMessages.count - 1 ? "\(mkMessage.status) \(mkMessage.readDate.time)" : ""
+            return NSAttributedString(
+                string: status,
+                attributes: [
+                    .font: UIFont.boldSystemFont(ofSize: 10),
+                    .foregroundColor: UIColor.darkGray
+                ]
             )
         } else {
             return nil
