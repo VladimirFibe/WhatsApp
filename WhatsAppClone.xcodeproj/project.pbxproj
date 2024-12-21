@@ -13,6 +13,7 @@
 		45C853232CFCB96D00610B76 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 45C853222CFCB96D00610B76 /* GoogleSignIn */; };
 		45C853252CFCB96D00610B76 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 45C853242CFCB96D00610B76 /* GoogleSignInSwift */; };
 		45C853D32CFF627F00610B76 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 45C853D22CFF627F00610B76 /* ProgressHUD */; };
+		6A458BE72D168EEF00D521F5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6A458BE62D168EEF00D521F5 /* README.md */; };
 		6A53B6912D0655FB0078EFE5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6A53B6902D0655FB0078EFE5 /* MessageKit */; };
 		6A53B69F2D0658430078EFE5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6A53B69E2D0658430078EFE5 /* RealmSwift */; };
 		6A53B6A02D0658430078EFE5 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6A53B69E2D0658430078EFE5 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		45F8AEB92CFC63A00087BF88 /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A458BE62D168EEF00D521F5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -79,6 +81,7 @@
 		45F8AEB02CFC63A00087BF88 = {
 			isa = PBXGroup;
 			children = (
+				6A458BE62D168EEF00D521F5 /* README.md */,
 				45F8AEBB2CFC63A00087BF88 /* WhatsAppClone */,
 				6A53B69A2D0658000078EFE5 /* Frameworks */,
 				45F8AEBA2CFC63A00087BF88 /* Products */,
@@ -180,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A458BE72D168EEF00D521F5 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
