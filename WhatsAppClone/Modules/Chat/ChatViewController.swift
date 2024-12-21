@@ -15,8 +15,11 @@ final class ChatViewController: MessagesViewController {
     private var notificationToken: NotificationToken?
     var displayingMessagesCount = 0
 
-    private lazy var chatTitleView = ChatTitleView(name: recent.name,
-                                         frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    private lazy var chatTitleView = ChatTitleView(
+        name: recent.name,
+        frame: CGRect(x: 0, y: 0, width: 200, height: 50)
+    )
+    
     init(recent: Recent) {
         self.recent = recent
         super.init(nibName: nil, bundle: nil)
@@ -38,20 +41,22 @@ final class ChatViewController: MessagesViewController {
         createTypingObserver()
     }
     
+    // MARK: - Configure
     private func configureLeftBarButton() {
-        let leftButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
-                                         primaryAction: UIAction {[weak self] _ in self?.backButtonPressed()})
+        let leftButton = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            primaryAction: UIAction {[weak self] _ in self?.backButtonPressed()}
+        )
         let leftView = UIBarButtonItem(customView: chatTitleView)
         navigationItem.leftBarButtonItems = [leftButton, leftView]
     }
-
+    
     private func backButtonPressed() {
         FirebaseClient.shared.removeListeners()
         FirebaseClient.shared.resetUnreadCounter(recent: recent)
         navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - Configure
     private func configureMessageCollectionView() {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesDisplayDelegate = self
