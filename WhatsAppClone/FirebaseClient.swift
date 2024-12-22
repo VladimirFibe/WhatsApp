@@ -320,9 +320,7 @@ extension FirebaseClient {
                         }
                         switch result {
                         case .success(let message):
-                            if let message {
-                                RealmManager.shared.saveToRealm(message)
-                            }
+                            if let message { RealmManager.shared.saveToRealm(message) }
                         case .failure(let error):
                             print("DEBUG: Error decoding local message: \(error.localizedDescription)")
                         }
