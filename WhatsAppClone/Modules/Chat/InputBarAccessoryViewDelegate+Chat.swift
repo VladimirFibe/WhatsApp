@@ -26,13 +26,15 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 // MARK: - Actions
 extension ChatViewController {
     func updateMicButtonStatus(show: Bool) {
-        if show {
-            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
-        } else {
-            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
-        }
+        messageInputBar.setStackViewItems(
+            show ? [micButton] : [messageInputBar.sendButton],
+            forStack: .right,
+            animated: false
+        )
+        messageInputBar.setRightStackViewWidthConstant(
+            to: show ? 30 : 55,
+            animated: false
+        )
     }
 
     private func actionAttachMessage() {

@@ -85,7 +85,7 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
 
-//        updateMicButtonStatus(show: true)
+        updateMicButtonStatus(show: true)
         // add gesutre recognizer
     }
     
