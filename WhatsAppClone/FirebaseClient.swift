@@ -367,9 +367,7 @@ extension FirebaseClient {
             .getDocuments { querySnapshot, _ in
                 guard let documents = querySnapshot?.documents else { return }
                 let messages = documents.compactMap { try? $0.data(as: Message.self)}
-                messages.forEach {
-                    RealmManager.shared.saveToRealm($0)
-                }
+                messages.forEach { RealmManager.shared.saveToRealm($0) }
             }
     }
 
