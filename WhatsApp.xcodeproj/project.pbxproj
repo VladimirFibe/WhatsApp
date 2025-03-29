@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A8AB88DC2D9841C100583A56 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A8AB88DB2D9841C100583A56 /* ProgressHUD */; };
+		A8AB88E12D98592C00583A56 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A8AB88E02D98592C00583A56 /* FirebaseAuth */; };
+		A8AB88E32D98592C00583A56 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A8AB88E22D98592C00583A56 /* FirebaseFirestore */; };
+		A8AB88E52D98592C00583A56 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A8AB88E42D98592C00583A56 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8AB88DC2D9841C100583A56 /* ProgressHUD in Frameworks */,
+				A8AB88E52D98592C00583A56 /* FirebaseStorage in Frameworks */,
+				A8AB88E12D98592C00583A56 /* FirebaseAuth in Frameworks */,
+				A8AB88E32D98592C00583A56 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +90,9 @@
 			name = WhatsApp;
 			packageProductDependencies = (
 				A8AB88DB2D9841C100583A56 /* ProgressHUD */,
+				A8AB88E02D98592C00583A56 /* FirebaseAuth */,
+				A8AB88E22D98592C00583A56 /* FirebaseFirestore */,
+				A8AB88E42D98592C00583A56 /* FirebaseStorage */,
 			);
 			productName = WhatsApp;
 			productReference = A8AB883D2D98067500583A56 /* WhatsApp.app */;
@@ -115,6 +124,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				A8AB88DA2D9841C100583A56 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				A8AB88DF2D98592C00583A56 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A8AB883E2D98067500583A56 /* Products */;
@@ -356,6 +366,14 @@
 				minimumVersion = 14.1.3;
 			};
 		};
+		A8AB88DF2D98592C00583A56 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -363,6 +381,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8AB88DA2D9841C100583A56 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
 			productName = ProgressHUD;
+		};
+		A8AB88E02D98592C00583A56 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8AB88DF2D98592C00583A56 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A8AB88E22D98592C00583A56 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8AB88DF2D98592C00583A56 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		A8AB88E42D98592C00583A56 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8AB88DF2D98592C00583A56 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
