@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A8AB88DC2D9841C100583A56 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A8AB88DB2D9841C100583A56 /* ProgressHUD */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A8AB883D2D98067500583A56 /* WhatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8AB88DC2D9841C100583A56 /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = WhatsApp;
 			packageProductDependencies = (
+				A8AB88DB2D9841C100583A56 /* ProgressHUD */,
 			);
 			productName = WhatsApp;
 			productReference = A8AB883D2D98067500583A56 /* WhatsApp.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = A8AB88342D98067500583A56;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A8AB88DA2D9841C100583A56 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A8AB883E2D98067500583A56 /* Products */;
 			projectDirPath = "";
@@ -337,6 +346,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A8AB88DA2D9841C100583A56 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A8AB88DB2D9841C100583A56 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8AB88DA2D9841C100583A56 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A8AB88352D98067500583A56 /* Project object */;
 }

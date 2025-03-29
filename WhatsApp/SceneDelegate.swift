@@ -11,8 +11,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = AuthViewController()
-        window?.makeKeyAndVisible()
+        autoLogin()
+    }
+    
+    private func autoLogin() {
+        start(login: false)
+    }
+    
+    private func start(login: Bool) {
+        if login {
+            setRooetViewController(makeTabbar())
+        } else {
+            setRooetViewController(makeAuth())
+        }
+    }
+    
+    private func setRooetViewController(_ controller: UIViewController, animated: Bool = true) {
+        guard animated, let window = self.window else {
+            self.window?.rootViewController = controller
+            self.window?.makeKeyAndVisible()
+            return
+        }
+        
+        window.rootViewController = controller
+        window.makeKeyAndVisible()
+        UIView.transition(
+            with: window,
+            duration: 0.3,
+            options: .transitionCrossDissolve,
+            animations: nil,
+            completion: nil
+        )
+    }
+    
+    private func makeAuth() -> UIViewController {
+        UINavigationController(rootViewController: AuthViewController())
+    }
+    
+    private func makeTabbar() -> UIViewController {
+        UIViewController()
     }
 }
 
