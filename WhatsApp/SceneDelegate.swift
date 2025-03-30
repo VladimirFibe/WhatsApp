@@ -1,9 +1,11 @@
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var authListener: AuthStateDidChangeListenerHandle?
+    
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -15,7 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func autoLogin() {
-        start(login: false)
+        authListener = Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            let result = user?.isEmailVerified ?? false
+            self?.start(login: result)
+        }
     }
     
     private func start(login: Bool) {

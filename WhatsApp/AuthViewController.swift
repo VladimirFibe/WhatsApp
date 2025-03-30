@@ -2,9 +2,11 @@ import UIKit
 import ProgressHUD
 
 class AuthViewController: UIViewController {
+    private let store = AuthStore()
+    private var bag = Bag()
     
-    private var isLoading = false
-    private var isLogin = true
+    private var isLoading = false { didSet { self.actionButton.setNeedsUpdateConfiguration()}}
+    private var isLogin = true {didSet { self.updateUI()}}
     
     private let emailTextField = AuthTextField(
         placeholder: "Email",
@@ -48,14 +50,44 @@ private extension AuthViewController {
     }
     
     func setupObservers() {
-        
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self else { return }
+                self.isLoading = false
+                switch event {
+                case .login: self.login()
+                }
+            }
+            .store(in: &bag)
+
     }
     
     func setupForgotButton() {
-        
+        buttonStackView.addArrangedSubview(forgotButton)
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = "Forgot Password?"
+        configuration.titleAlignment = .leading
+        configuration.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        forgotButton.configuration = configuration
+        forgotButton.addAction(
+            UIAction {[weak self] _ in self?.forgotButtonTapped()},
+            for: .primaryActionTriggered
+        )
     }
     
     func setupResendButton() {
+        buttonStackView.addArrangedSubview(resendButton)
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = "Resend Email"
+        configuration.titleAlignment = .trailing
+        configuration.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        resendButton.configuration = configuration
+        resendButton.addAction(
+            UIAction { [weak self] _ in self?.resendButtonTapped()},
+            for: .primaryActionTriggered
+        )
         
     }
     
@@ -86,19 +118,34 @@ private extension AuthViewController {
     }
     
     func setupStatusSwitchButton() {
-        
+        var configuration = UIButton.Configuration.plain()
+        configuration.titleAlignment = .leading
+        statusSwitchButton.configuration = configuration
+        statusSwitchButton.configurationUpdateHandler = { [weak self] button in
+            guard let self else { return }
+            var config = button.configuration
+            config?.title = self.isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"
+            button.configuration = config
+        }
+        statusSwitchButton.addAction(
+            UIAction {[weak self] _ in self?.isLogin.toggle()},
+            for: .primaryActionTriggered
+        )
     }
     
     func setupRootStackView() {
         view.addSubview(rootStackView)
         buttonStackView.distribution = .equalSpacing
+        repeatPasswordTextField.isHidden = true
+        repeatPasswordTextField.alpha = 0
         [
             emailTextField,
             passwordTextField,
             repeatPasswordTextField,
             buttonStackView,
             actionButton,
-            UIView()
+            UIView(),
+            statusSwitchButton
         ].forEach { rootStackView.addArrangedSubview($0)}
         rootStackView.axis = .vertical
         rootStackView.distribution = .fill
@@ -112,6 +159,17 @@ private extension AuthViewController {
             rootStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
     }
+    
+    func updateUI() {
+        actionButton.setNeedsUpdateConfiguration()
+        navigationItem.title = isLogin ? "Login" : "Sign Up"
+        UIView.animate(withDuration: 1) {
+            self.repeatPasswordTextField.isHidden = self.isLogin
+            self.repeatPasswordTextField.alpha = self.isLogin ? 0 : 1
+            self.buttonStackView.isHidden = !self.isLogin
+            self.buttonStackView.alpha = self.isLogin ? 1 : 0
+        }
+    }
 }
 // MARK: - Actions
 private extension AuthViewController {
@@ -119,7 +177,19 @@ private extension AuthViewController {
         let email = emailTextField.text
         let password = passwordTextField.text
         isLoading = true
-        print("login")
+        isLogin ? store.sendAction(.signIn(email, password)) : store.sendAction(.createUser(email, password))
+    }
+    
+    func forgotButtonTapped() {
+        
+    }
+    
+    func resendButtonTapped() {
+        
+    }
+    
+    func login() {
+        print(#function)
     }
 }
 
