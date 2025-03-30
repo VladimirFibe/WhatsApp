@@ -10,6 +10,7 @@ enum AuthAction {
 }
 
 final class AuthStore:Store<AuthEvent, AuthAction> {
+    let useCase = FirebaseClient.shared
     override func handleActions(action: AuthAction) {
         switch action {
         case .signIn(let email, let password):
@@ -26,6 +27,16 @@ final class AuthStore:Store<AuthEvent, AuthAction> {
 
 private extension AuthStore {
     func signIn(withEmail email: String, password: String) async throws {
-        sendEvent(.login)
+        do {
+            let response = try await useCase.signIn(withEmail: email, password: password)
+            if response {
+            } else {
+                print("email не подтвержден")
+            }
+            sendEvent(.login)
+        } catch {
+            print(error.localizedDescription)
+            sendEvent(.login)
+        }
     }
 }
